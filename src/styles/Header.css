@@ -1,0 +1,261 @@
+.header {
+  background-color: #f0b429;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #5f4520;
+}
+
+.logo img {
+  height: 60px;
+  margin-right: var(--spacing-sm);
+}
+
+.logo span {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: #5f4520;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+}
+
+.main-nav li {
+  margin-left: var(--spacing-lg);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.nav-item img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.main-nav a {
+  color: #5f4520;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color var(--transition-fast);
+  text-transform: uppercase;
+}
+
+.main-nav a:hover {
+  color: #8b5a00;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 25px;
+  padding: 8px 15px;
+  margin-left: var(--spacing-lg);
+}
+
+.currency-indicator {
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.currency-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.currency-row:last-child {
+  margin-bottom: 0;
+}
+
+.currency-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+.currency-value {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+}
+
+.view-profile {
+  font-size: 0.8rem;
+  color: #666;
+  text-decoration: underline;
+}
+
+.btn-play {
+  background-color: #f0b429;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+}
+
+.btn-play:hover {
+  background-color: #e0a418;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger {
+  width: 30px;
+  height: 24px;
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #5f4520;
+  border-radius: 3px;
+  transition: all var(--transition-fast);
+  transform-origin: center;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+
+.hamburger span:nth-child(2) {
+  top: 10px;
+}
+
+.hamburger span:nth-child(3) {
+  bottom: 0;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+@media (max-width: 992px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #f0b429;
+    overflow: hidden;
+    transition: height var(--transition-medium);
+    z-index: 99;
+    flex-direction: column;
+  }
+  
+  .main-nav.mobile-open {
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 0 var(--spacing-lg);
+  }
+  
+  .main-nav li {
+    margin: var(--spacing-md) 0;
+  }
+  
+  .user-section {
+    flex-direction: column;
+    margin: var(--spacing-md) 0;
+    width: 80%;
+    max-width: 300px;
+  }
+  
+  .currency-indicator {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .user-profile {
+    flex-direction: column;
+  }
+  
+  .user-avatar {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+  
+  .btn-play {
+    margin-top: var(--spacing-md);
+  }
+} 
