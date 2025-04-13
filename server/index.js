@@ -12,6 +12,10 @@ const userRoutes = require('./routes/users');
 const artifactRoutes = require('./routes/artifacts');
 const gameRoutes = require('./routes/games');
 const timelineRoutes = require('./routes/timelines');
+const authRoutes = require('./routes/auth');
+
+// Import SQL configuration
+const { testConnection } = require('./config/db');
 
 // Config
 dotenv.config({ path: '../.env' });
@@ -30,6 +34,17 @@ app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Kiểm tra kết nối đến SQL
+testConnection()
+  .then(sqlConnected => {
+    console.log(sqlConnected 
+      ? 'Kết nối SQL thành công!'
+      : 'Không thể kết nối đến SQL, kiểm tra lại cấu hình trong .env');
+  })
+  .catch(err => {
+    console.error('Lỗi kết nối SQL:', err.message);
+  });
 
 // Replace <db_password> placeholder with environment variable if needed
 const dbUri = process.env.MONGODB_URI;
@@ -68,6 +83,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/artifacts', artifactRoutes);
 app.use('/api/games', gameRoutes);
 app.use('/api/timelines', timelineRoutes);
+app.use('/api/auth', authRoutes);
 
 // Socket.IO
 io.on('connection', (socket) => {

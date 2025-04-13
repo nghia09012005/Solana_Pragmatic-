@@ -27,19 +27,21 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      // Demo purposes - simulating login
-      // In real app we would call login() from AuthContext
-      // const result = await login(formData.email, formData.password);
-      console.log('Logging in with:', formData);
+      // Gọi API đăng nhập thông qua hàm login trong AuthContext
+      const result = await login(formData.email, formData.password);
       
-      // Simulating success
-      setTimeout(() => {
-        setLoading(false);
-        // Redirect to home page
+      if (result.success) {
+        // Đăng nhập thành công
+        console.log('Đăng nhập thành công:', formData.email);
+        // Chuyển hướng đến trang chủ
         navigate('/');
-      }, 1500);
+      } else {
+        // Đăng nhập thất bại
+        setError(result.message || 'Đăng nhập thất bại. Vui lòng kiểm tra email và mật khẩu.');
+      }
     } catch (err) {
       setError('Đăng nhập thất bại. Vui lòng kiểm tra email và mật khẩu.');
+    } finally {
       setLoading(false);
     }
   };

@@ -36,19 +36,21 @@ const RegisterPage = () => {
     setLoading(true);
 
     try {
-      // Demo purposes - simulating registration
-      // In real app we would call register() from AuthContext
-      // const result = await register(formData);
-      console.log('Registering with:', formData);
+      // Gọi API đăng ký thông qua hàm register trong AuthContext
+      const result = await register(formData);
       
-      // Simulating success
-      setTimeout(() => {
-        setLoading(false);
-        // Redirect to home page
-        navigate('/');
-      }, 1500);
+      if (result.success) {
+        // Đăng ký thành công
+        console.log('Đăng ký thành công:', formData);
+        // Chuyển hướng đến trang đăng nhập
+        navigate('/login');
+      } else {
+        // Đăng ký thất bại
+        setError(result.message || 'Đăng ký thất bại. Vui lòng thử lại sau.');
+      }
     } catch (err) {
       setError('Đăng ký thất bại. Vui lòng thử lại sau.');
+    } finally {
       setLoading(false);
     }
   };
