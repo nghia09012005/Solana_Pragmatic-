@@ -4,7 +4,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 // Tạo instance axios với cấu hình mặc định
 const authApi = axios.create({
-  baseURL: `${API_URL}/auth`,
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -27,7 +27,7 @@ authApi.interceptors.request.use(
 // Hàm đăng nhập
 export const login = async (username, password) => {
   try {
-    const response = await authApi.post('/login', { username, password });
+    const response = await authApi.post('/auth/login', { username, password });
     
     // Lưu token và thông tin người dùng vào localStorage
     if (response.data.token) {
@@ -45,7 +45,7 @@ export const login = async (username, password) => {
 // Hàm đăng ký
 export const register = async (userData) => {
   try {
-    const response = await authApi.post('/register', userData);
+    const response = await authApi.post('/auth/register', userData);
     
     // Lưu token và thông tin người dùng vào localStorage
     if (response.data.token) {
@@ -63,7 +63,7 @@ export const register = async (userData) => {
 export const logout = async () => {
   try {
     const refreshToken = localStorage.getItem('refreshToken');
-    await authApi.post('/logout', { refreshToken });
+    await authApi.post('/auth/logout', { refreshToken });
     
     // Xóa thông tin người dùng và token từ localStorage
     localStorage.removeItem('token');
@@ -84,7 +84,7 @@ export const refreshToken = async () => {
       throw new Error('Không có refresh token');
     }
     
-    const response = await authApi.post('/refresh-token', { refreshToken });
+    const response = await authApi.post('/auth/refresh-token', { refreshToken });
     
     if (response.data.token) {
       localStorage.setItem('token', response.data.token);
@@ -103,7 +103,7 @@ export const refreshToken = async () => {
 // Hàm lấy thông tin người dùng hiện tại
 export const getCurrentUser = async () => {
   try {
-    const response = await authApi.get('/me');
+    const response = await authApi.get('/auth/me');
     return response.data.user;
   } catch (error) {
     throw error.response?.data || { message: 'Lỗi lấy thông tin người dùng' };
