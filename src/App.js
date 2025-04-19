@@ -9,7 +9,7 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
-
+import Morse from './pages/CuChiGame/Morse';
 
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
 
           {/* path="/CuChiGame" sau khi test xong */}
           <Route path="/" element={<CuChiGameG1/>} />
+          <Route path="/morse" element={<Morse />} />
           
           {/* <Route path="/museum" element={<MuseumPage />} />
       

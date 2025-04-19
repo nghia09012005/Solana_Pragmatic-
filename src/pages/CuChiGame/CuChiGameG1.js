@@ -4,18 +4,31 @@ import '../../styles/CuChiStyle/CuChiGameG1.css';
 import ReactAudioPlayer from 'react-audio-player';
 import audioFile from '../../assets/CuChiGame/audio/Cuchisound.mp3'; // Import tệp âm thanh
 import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.png'; // Nhân vật
+import { useNavigate } from 'react-router-dom';
+import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';//bản đồ địa đạo
+import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';//vị trí địa đạo
+
+
 
 const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0); // Bắt đầu luôn từ câu đầu
   const [showAlert, setShowAlert] = useState(true); // Quản lý trạng thái alert
   const [audioPlaying, setAudioPlaying] = useState(false); // Trạng thái nhạc
+  const navigate = useNavigate();
 
   const dialogues = [
-    'Đồng chí đã sẵn sàng chưa!!!!!!!!!!',
     'Chào đồng chí, đây là khu căn cứ địa Củ Chi!',
-    'Nhiệm vụ của bạn là tìm hiểu và vượt qua thử thách.',
-    'Bạn đã sẵn sàng chưa? Bắt đầu thôi!'
+    'Chào mừng đồng chí tình báo đã đến đây, đồng chí hãy tìm hiểu và hoàn thành tốt nhiệm vụ được giao.',
+    'Đồng chí hãy luôn trong tư thế sẵn sàng chiến đấu !!!!!!!!!',
+    'Bắt đầu thôi nào!',
+    'Có vẻ đồng chí là người mới tôi sẽ giải thích một chút về nơi này để đồng chí nắm bắt.',
+    'Địa đạo Củ Chi, cách TP.HCM khoảng 70km về phía Tây Bắc, là biểu tượng cho sự sáng tạo và kiên cường của quân và dân Củ Chi trong cuộc kháng chiến chống Mỹ.',
+    'Hệ thống của ta gồm các đường hầm đồ sộ với khoảng 250km đường hầm tỏa rộng như mạng nhện, và gồm nhiều công trình liên hoàn như chiến hào, ụ chiến đấu, hầm ăn ngủ, hội họp, quân y, kho tàng, giếng nước, bếp Hoàng Cầm.',
+    'Nơi đây đã hình thành từ những hầm bí mật thời kháng chiến chống Pháp, và ở giai đoạn kháng chiến chống Mỹ này nó lại càn phát triển mạnh mẽ hơn, đặc biệt sau các cuộc càn quét lớn của địch.',
+    'Biệt danh "Làng ngầm trong lòng đất": Thể hiện rõ nét cuộc sống và chiến đấu diễn ra dưới lòng đất của chúng tôi những con người Củ Chi.',
+    'Hãy khắc sâu những kỳ tích hào hùng này để mai này khi thống nhất nó không bị mai một đi.',
+
   ];
 
   useEffect(() => {
@@ -30,6 +43,7 @@ const CuChiGameG1 = () => {
     } else {
       // Kết thúc hội thoại, ẩn text box
       setDialogStep(-1);
+      navigate('/morse');
     }
   };
 
@@ -57,12 +71,12 @@ const CuChiGameG1 = () => {
           )}
 
           {/* Nhân vật */}
+          <div className="character-wrapper">
           <img 
             src={characterImg} 
             alt="Character" 
             className="character-model" 
           />
-
           {/* Hộp thoại */}
           {dialogStep !== -1 && (
             <div className="dialog-box">
@@ -70,7 +84,18 @@ const CuChiGameG1 = () => {
               <button onClick={handleNextDialog}>Tiếp tục</button>
             </div>
           )}
+          </div>
 
+
+            <div className="image-container">
+            <div className="image-container">
+                {dialogStep >= 6 && <img src={diadaomap} alt="map" className="map" />}
+                {dialogStep >= 5 && <img src={didaodist} alt="dist" className="dist" />}
+          </div>
+          </div>
+          
+          
+          
           {/* Nhạc nền */}
           {audioPlaying && (
             <ReactAudioPlayer

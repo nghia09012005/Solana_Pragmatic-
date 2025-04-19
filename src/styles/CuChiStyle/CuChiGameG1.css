@@ -63,21 +63,29 @@
     cursor: not-allowed; /* Thay đổi con trỏ thành dấu x khi chuột di vào */
     opacity: 0.5; /* Mờ dần nút khi vô hiệu hóa */
   }
-  /* NHÂN VẬT */
-  .character-model {
+
+  /* nhân vật */
+  .character-wrapper {
     position: absolute;
     bottom: 5px;
     right: 20px;
-    width: 500px; /* điều chỉnh kích thước tuỳ bạn */
-    height: auto;
-    z-index: 10; /* đảm bảo nó nằm trên background */
+    width: 500px;
+    display: flex;
+    flex-direction: column-reverse; /* đảo thứ tự: img ở dưới, dialog ở trên */
+    align-items: center;
+    z-index: 10;
   }
-
-  /* HỘI THOẠI */
+  
+  /* Giữ nguyên nếu cần */
+  .character-model {
+    width: 500px;
+    height: auto;
+  }
+  
+  /* Đặt hộp thoại ở trên đầu nhân vật */
   .dialog-box {
-    position: absolute;
-    bottom: 450px;
-    right: 150px;
+    position: relative;
+    bottom: 0px; /* nâng lên trên đầu nhân vật */
     background-color: rgba(0, 0, 0, 0.7);
     border: 2px solid gold;
     border-radius: 10px;
@@ -86,8 +94,19 @@
     max-width: 400px;
     font-size: 1.2rem;
     z-index: 20;
+    text-align: center;
   }
-  
+  /* Thêm mũi tên */
+.dialog-box::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; /* Điều chỉnh vị trí của mũi tên */
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid gold; /* Màu sắc của mũi tên */
+}
   .dialog-box button {
     margin-top: 10px;
     padding: 8px 16px;
@@ -101,6 +120,7 @@
   .dialog-box button:hover {
     background-color: orange;
   }
+  
   /* alert */
   .alert-banner {
     position: absolute;
@@ -142,4 +162,19 @@
     background-color: rgba(255, 255, 255, 0.3); /* Màu nền khi hover */
     color: gold; /* Màu chữ khi hover */
   }
- 
+
+  /* map dist */
+  .image-container {
+    display: flex;
+    flex-direction: column; /* hoặc row nếu muốn nằm ngang */
+    align-items: flex-start; /* canh trái */
+    padding-right: 500px; /* tạo khoảng cách bên trái */
+  }
+  
+  .map,
+  .dist {
+    width: 500px; /* chỉnh độ rộng theo ý muốn */
+    height: auto; /* giữ tỉ lệ ảnh */
+    margin-bottom: 10px; /* khoảng cách giữa 2 ảnh */
+  }
+  
