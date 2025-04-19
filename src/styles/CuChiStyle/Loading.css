@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  background-color: #0f0f0f;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.cyberpunk-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #0f0f0f;
+  color: #0ff;
+  animation: tunnel-effect 5s infinite;
+}
+
+.glitch-text {
+  font-size: 3rem;
+  color: #0ff;
+  text-shadow: 
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #f0f,
+    0 0 80px #f0f;
+  animation: glitch 1s infinite, text-glow 1s infinite alternate;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes tunnel-effect {
+  0% {
+    background-color: #0f0f0f;
+    box-shadow: 0 0 20px #0ff, 0 0 40px #f0f, 0 0 60px #0ff;
+    transform: scale(1);
+  }
+  50% {
+    background-color: #0f0f0f;
+    box-shadow: 0 0 40px #0ff, 0 0 80px #f0f, 0 0 120px #0ff;
+    transform: scale(1.1);
+  }
+  100% {
+    background-color: #0f0f0f;
+    box-shadow: 0 0 60px #0ff, 0 0 120px #f0f, 0 0 160px #0ff;
+    transform: scale(1);
+  }
+}
+
+.neon-spinner {
+  margin-top: 40px;
+  width: 60px;
+  height: 60px;
+  border: 6px solid transparent;
+  border-top: 6px solid #0ff;
+  border-right: 6px solid #f0f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite, glowing 1.5s ease-in-out infinite;
+  box-shadow: 
+    0 0 10px #0ff,
+    0 0 20px #f0f,
+    0 0 30px #0ff;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px #0ff, 0 0 10px #f0f, 0 0 15px #0ff;
+  }
+  50% {
+    box-shadow: 0 0 15px #0ff, 0 0 25px #f0f, 0 0 30px #0ff;
+  }
+  100% {
+    box-shadow: 0 0 5px #0ff, 0 0 10px #f0f, 0 0 15px #0ff;
+  }
+}

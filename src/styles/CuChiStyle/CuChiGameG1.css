@@ -1,0 +1,145 @@
+@keyframes moveBackground {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 1000px 0; /* Di chuyển ngang */
+    }
+  }
+  
+  .cuchigameg1-background {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../assets/CuChiGame/images/Cuchibackground.png');
+    background-size: auto 100%; /* Chiều cao fix toàn màn, chiều ngang tự động */
+    background-repeat: repeat-x;
+    animation: moveBackground 30s linear infinite;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+  }
+  /* Trong file CuChiGameG1.css */
+.character {
+    background-color: #f0e68c;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .cuchigameg1-background {
+    padding: 20px;
+    background-color: #dcdcdc;
+    text-align: center;
+  }
+ /* CSS cho nút Play với viền vàng và hiệu ứng mờ dần */
+.play-button {
+    background-color: #4CAF50; /* Màu nền của nút */
+    color: white; /* Màu chữ */
+    font-size: 1.5rem; /* Kích thước chữ */
+    padding: 15px 32px; /* Khoảng cách từ cạnh trái/phải và trên/dưới */
+    border: 2px solid #FFD700; /* Viền vàng */
+    border-radius: 8px; /* Bo góc */
+    cursor: pointer; /* Thay đổi con trỏ thành hình bàn tay khi di chuột vào */
+    transition: background-color 0.3s ease, border-color 0.3s ease, opacity 1s ease; /* Hiệu ứng chuyển màu nền và viền khi hover */
+  }
+  
+  .play-button:hover {
+    background-color: #45a049; /* Màu nền khi hover */
+    border-color: #ffcc00; /* Màu viền khi hover */
+  }
+  
+  .play-button:focus {
+    outline: none; /* Xóa viền focus khi nhấn vào nút */
+  }
+  
+  .play-button:disabled {
+    background-color: #d3d3d3; /* Màu nền khi nút bị vô hiệu hóa */
+    border-color: #a9a9a9; /* Màu viền khi nút bị vô hiệu hóa */
+    color: #808080; /* Màu chữ khi nút bị vô hiệu hóa */
+    cursor: not-allowed; /* Thay đổi con trỏ thành dấu x khi chuột di vào */
+    opacity: 0.5; /* Mờ dần nút khi vô hiệu hóa */
+  }
+  /* NHÂN VẬT */
+  .character-model {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    width: 500px; /* điều chỉnh kích thước tuỳ bạn */
+    height: auto;
+    z-index: 10; /* đảm bảo nó nằm trên background */
+  }
+
+  /* HỘI THOẠI */
+  .dialog-box {
+    position: absolute;
+    bottom: 450px;
+    right: 150px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid gold;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 20px;
+    max-width: 400px;
+    font-size: 1.2rem;
+    z-index: 20;
+  }
+  
+  .dialog-box button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    background-color: gold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .dialog-box button:hover {
+    background-color: orange;
+  }
+  /* alert */
+  .alert-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #ffc107; /* vàng cảnh báo */
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: fadeDown 0.5s ease;
+  }
+  
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+ /* button xx */
+ .close-alert {
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .close-alert:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Màu nền khi hover */
+    color: gold; /* Màu chữ khi hover */
+  }
+ 
