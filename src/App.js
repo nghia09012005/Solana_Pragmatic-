@@ -21,14 +21,20 @@ function App() {
       {/* <Header /> */}
       <main className="main-content">
         <Routes>
+
+          // <Route path="/" element={<HomePage />} />
+          {/* <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/RegisterPage" element={<RegisterPage />} /> */}
+
           {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
           {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
           {/* path="/CuChiGame" sau khi test xong */}
-          <Route path="/" element={<CuChiGameG1/>} />
-          <Route path="/morse" element={<Morse />} />
           
+          {/* <Route path="/" element={<CuChiGameG1/>} /> */}
+          {/* <Route path="/morse" element={<Morse />} /> */}
+
           {/* <Route path="/museum" element={<MuseumPage />} />
       
           <Route path="/profile" element={<ProfilePage />} />
