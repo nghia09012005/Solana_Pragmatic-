@@ -3,18 +3,28 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(21, 20, 12);
   font-family: monospace;
   color: lightgray;
+  min-height: 100vh;
+  overflow-x: hidden; /* Thêm thuộc tính này để ẩn thanh cuộn */
+  overflow-y: auto;
+  width: 100%;
 }
 
 .container{
-  display: flex;
+  display: flex;  /* Thay đổi từ fixed thành flex */
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100%;    /* Thêm width 100% */
+  min-height: 100vh;
   position: relative;
-  
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  /* align-items: center;
+  justify-content: center; Căn giữa nội dung */
+   background: #000000; /* Màu nền đen */;
+  background-attachment: fixed;
 }
 
 /* header{
@@ -32,7 +42,7 @@ body {
 } */
 
 header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -40,9 +50,9 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px 30px;
-   background: rgba(14, 12, 21, 0.6); /* Làm mờ background */
-  background: rgba(14, 12, 21, 0.8);
-  z-index: 999;
+   background: rgba(21, 19, 12, 0.6); /* Làm mờ background */
+   backdrop-filter: blur(8px); /* Làm mờ background */
+  z-index: 1001;
 }
 
 /* Thêm border dưới có hiệu ứng phát sáng */
@@ -164,6 +174,8 @@ header a:hover:hover::before {
 .head-right{
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 1001;
 }
 
 
@@ -215,13 +227,13 @@ header a:hover:hover::before {
       background-position: 200%;
   }
 }
-@font-face {
+/* @font-face {
   font-family: 'monospace';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: local('monospace'), url(https://fonts.gstatic.com/s/robotomono/v13/L0x5DF4xlVMF-BfR8bXMIjhLq38.woff2) format('woff2');
-}
+} */
 .head-right button{
   position: absolute;
   inset: 3px 3px 3px 3px;
@@ -249,6 +261,11 @@ header a:hover:hover::before {
   width: 100%;
   height: 150vh ;
   overflow: hidden;
+  display:flex ;
+  flex-direction: column;
+  align-items: flex-start; /* Căn trái nội dung */
+  padding: 0;    /* Reset padding */
+  margin: 0;  
 }
 
 .homepage-background {
@@ -259,44 +276,54 @@ header a:hover:hover::before {
   left: 0;  /* Thêm left 0 */
   object-fit: cover;
   object-position: center;  /* Thêm object-position */
+  transform: scale(1.0); 
 }
 
 .homepage-background-effect{
   position: absolute;
   width: 90%;
-  top: 12%;   
+  top: 15%;   
   
-  opacity: 0.8;
-  filter: blur(18px);
+  opacity: 0.5;
+  filter: blur(8px);
 }
 
 .background h1{
   position: absolute;
-  top:12%;
+  top:15%;
  
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 45px;
-  max-width: 570px;
+  max-width: 600px;
   /* text-align: center; */
   color: white;
- 
+ opacity: 1;
   padding-left: 35px;
+  z-index: 2;
 }
 
 .background h3{
   position: absolute;
-  top: 30%;
+  top: 35%;
   font-size: 17px;
   max-width: 570px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: left;
   color: rgb(142, 141, 141);
   padding-left: 35px;
+  opacity: 1;
+  z-index: 2;
+}
+
+body:has(.overlay) .background h1,
+body:has(.overlay) .background h3,
+body:has(.overlay) .background button {
+  opacity: 0;
 }
 
 .background button{
   position: relative;
-  top: 42%;
+  top: 48%;
   left: 200px;
   width: 180px;
   height: 80px;
@@ -391,11 +418,11 @@ header a:hover:hover::before {
 
 /* Delay cho từng phần tử */
 .delay-1 {
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
 }
 
 .delay-2 {
-  transition-delay: 0.6s;
+  transition-delay: 0.1s;
 }
 
 .parallax{
@@ -403,24 +430,478 @@ header a:hover:hover::before {
 }
 
 
-/*FEATURE*/
-.feature{
-  position: relative;  
-display: flex;  
-flex-direction: column;  
-align-items: center;  
-flex-wrap: wrap;  
-width: 95%;  
-border: 0.5px solid rgba(115, 116, 88, 0.5);  
-border-top: none;  
-padding-bottom: 10%;  
-z-index: 1;
+
+/*Sign-in*/
+.signin-page-box {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* Thay đổi height thành auto */
+  padding: 20px;
+  top: 55%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, 
+    rgba(0, 115, 255, 0.15),
+    rgba(255, 215, 0, 0.15)
+  );
+  backdrop-filter: blur(20px);
+ 
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  box-shadow: 
+    0 0 30px rgba(0, 153, 255, 0.2),
+    0 0 60px rgba(255, 215, 0, 0.1);
+    animation: formSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: center center;
+  opacity: 0;
+  background-blend-mode: overlay;
+  background-image: url('/public/images/sign-in-sign-up-box.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
 }
-.feature h1{
-  font-size: 50px;
-  max-width: 600px;
-  color: white;
-  margin-bottom: 50px;
+
+
+.signin-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Thêm justify-content */
+  gap: 12px;
+  height: 100%;
+  font-size: small;
+  color: #eaeaea;
+}
+
+.signin-page h1 {
+  color: #fff;
+  font-size: 30px;
+  margin-bottom: 30px;
+  margin-top: 40px;
   text-align: center;
-  margin:100px 0;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.signin-page input {
+  width: 90%;
+  padding: 15px;
+  margin: 8px 0;
+  border: none;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.788);
+  color: #fff;
+  font-size: small;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.signin-page input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 15px rgba(218, 165, 32, 0.2);
+}
+
+.signin-page button {
+  width: 200px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 12px 30px;
+  margin:20px 0;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(to bottom,
+    #DAA520,     /* Golden yellow */
+    #B8860B 50%, /* Dark golden */
+    #8B6508      /* Deep golden brown */
+  );
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 15px rgba(255, 255, 255, 0.2),
+    0 0 10px rgba(218, 165, 32, 0.3);
+  }
+
+.signin-page button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(to bottom,
+    rgba(140, 122, 0, 0.95),
+    rgba(102, 87, 0, 0.95)
+  );
+  box-shadow: 
+    inset 0 0 25px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Bỏ hiệu ứng shine */
+.signin-page button::before {
+  display: none;
+}
+.signin-page a {
+  color: #9b7b23;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.signin-page a:hover {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+/*Sign-up*/
+.signup-page-box {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* Thay đổi height thành auto */
+  padding: 20px;
+  top: 55%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  margin-bottom: 10px;
+  background: linear-gradient(180deg, 
+    rgba(0, 115, 255, 0.15),
+    rgba(255, 215, 0, 0.15)
+  );
+  backdrop-filter: blur(20px);
+  
+  
+  
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  z-index: 1000;
+  box-shadow: 
+    0 0 30px rgba(0, 153, 255, 0.2),
+    0 0 60px rgba(255, 215, 0, 0.1);
+    animation: formSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: center center;
+    opacity: 0;
+    background-image: url('/public/images/sign-in-sign-up-box.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+}
+
+@keyframes formSlideIn {
+  0% {
+    opacity: 0;
+    transform: translate(-200%, -50%) rotate(-15deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-45%, -50%) rotate(5deg);
+  }
+  80% {
+    transform: translate(-52%, -50%) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0);
+  }
+}
+.signup-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Thêm justify-content */
+  gap: 10px;
+  height: 90%;
+  
+  font-size: small;
+  color: #eaeaea;
+}
+
+.signup-page h1 {
+  color: #fff;
+  font-size: 30px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.signup-page input {
+  width: 90%;
+  padding: 15px;
+  margin: 8px 0;
+  border: none;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.788);
+  color: #fff;
+  font-size: small;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.signup-page input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 15px rgba(218, 165, 32, 0.2);
+}
+
+.signup-page button {
+  width: 200px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 12px 30px;
+  margin:20px 0;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(to bottom,
+    #DAA520,     /* Golden yellow */
+    #B8860B 50%, /* Dark golden */
+    #8B6508      /* Deep golden brown */
+  );
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 15px rgba(255, 255, 255, 0.2),
+    0 0 10px rgba(218, 165, 32, 0.3);
+  }
+
+.signup-page button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(to bottom,
+    rgba(140, 122, 0, 0.95),
+    rgba(102, 87, 0, 0.95)
+  );
+  box-shadow: 
+    inset 0 0 25px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Bỏ hiệu ứng shine */
+.signup-page button::before {
+  display: none;
+}
+.signup-page a {
+  color: #9b7b23;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.signup-page a:hover {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+/* Thêm styles cho overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Giảm opacity xuống 0.5 */
+  z-index: 999;
+  animation: overlayFadeIn 0.3s ease forwards;
+}
+
+@keyframes overlayFadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+
+.background {
+  transition: all 0.05s ease;
+}
+
+
+/* .signin-page-box::before,
+.signup-page-box::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  padding: 40px;
+  height: 280px;
+  background-image: url('/public/images/sign-in-sign-up-box.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+  z-index: 0;
+
+} */
+
+/*FEATURE*/
+.tinh-nang-chinh{
+  position: relative;
+  top:-200px;
+  padding: 50px 0;
+  width: 21.5%;
+  left:-410px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+}
+.feature{
+  position: relative;
+  
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+}
+
+
+
+
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0 50px;
+  margin-top:-250px;
+}
+
+.feature-card {
+  position: relative;
+  padding: 30px;
+  border: 1px solid rgba(218, 165, 32, 0.3);
+  border-radius: 15px;
+  background: linear-gradient(
+    145deg,
+    rgba(0, 0, 0, 0.95),
+    rgba(21, 20, 12, 0.98)
+  );
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 0;
+  filter: brightness(0.2); /* Remove blur, just make it darker */
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(218, 165, 32, 0.1);
+}
+.feature-card:hover::before {
+  opacity: 1;
+   transform: translateY(-5px);
+   transform: scale(1.1);
+  box-shadow: 
+    0 10px 30px rgba(218, 165, 32, 0.1),
+    0 0 50px rgba(218, 165, 32, 0.05);
+  border-color: rgba(218, 165, 32, 0.5);
+}
+
+.feature-card h3 {
+  color: #DAA520;
+  font-size: 25px;
+  margin-bottom: 35px;
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  text-align: center;
+  align-items: center;
+  justify-self: center  ;
+}
+
+.feature-card p {
+  color: #999;
+  font-size: 15px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  text-align: justify; /* Add this line */
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+}
+
+
+/* Individual card backgrounds */
+.feature-card:nth-child(1)::before {
+  background-image: url('/public/images/time-travel.png');
+}
+
+.feature-card:nth-child(2)::before {
+  background-image: url('/public/images/minigame.png');
+}
+
+ .feature-card:nth-child(3)::before {
+  background-image: url('/public/images/museum.png');
+}
+
+.feature-card:nth-child(4)::before {
+  background-image: url('/public/images/education.png');
+}
+
+.feature-card:nth-child(5)::before {
+  background-image: url('/public/images/character.png');
+}
+
+.feature-card:nth-child(6)::before {
+  background-image: url('/public/images/personal-museum.png');
+}
+ 
+
+.tong-quan {
+  position: relative;
+  width: 95%;
+  padding: 20px;
+ top:-120px;
+  display: flex;
+  flex-direction: column;
+
 }

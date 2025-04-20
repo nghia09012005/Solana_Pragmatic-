@@ -24,8 +24,8 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/LoginPage" element={<LoginPage />} />
-          <Route path="/RegisterPage" element={<RegisterPage />} />
+          {/* <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/RegisterPage" element={<RegisterPage />} /> */}
           {/* <Route path="/museum" element={<MuseumPage />} />
       
           <Route path="/profile" element={<ProfilePage />} />
