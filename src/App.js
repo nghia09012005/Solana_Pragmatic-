@@ -8,24 +8,33 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
-
+import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
+import Morse from './pages/CuChiGame/Morse';
 
 
 function App() {
   const { loading } = useAuth();
 
-  // if (loading) {
-  //   return <LoadingScreen />;
-  // }
 
   return (
     <div className="app">
       {/* <Header /> */}
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+
+          // <Route path="/" element={<HomePage />} />
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
+
+          {/* <Route path="/" element={<HomePage />} /> */}
+          {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
+          {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
+
+          {/* path="/CuChiGame" sau khi test xong */}
+          
+          {/* <Route path="/" element={<CuChiGameG1/>} /> */}
+          {/* <Route path="/morse" element={<Morse />} /> */}
+
           {/* <Route path="/museum" element={<MuseumPage />} />
       
           <Route path="/profile" element={<ProfilePage />} />
@@ -34,23 +43,7 @@ function App() {
       </main>
       {/* <Footer /> */}
     </div>
-    // <Router>
-    //   <div className="app">
-    //     <main className="main-content">
-    //       <Routes>
-    //         <Route path="/" element={<HomePage />} />
-    //         {/* <Route path="/museum" element={<MuseumPage />} />
-    //         <Route path="/collection" element={<CollectionPage />} />
-    //         <Route path="/leaderboard" element={<LeaderboardPage />} /> */}
-    //         <Route path="/login" element={<LoginPage />} />
-    //         <Route path="/register" element={<RegisterPage />} />
-    //         {/* <Route path="/profile" element={<ProfilePage />} /> */}
-    //         <Route path="*" element={<NotFoundPage />} />
-    //       </Routes>
-    //     </main>
-    //   </div>
-    // </Router>
-    
+ 
   );
 }
 
