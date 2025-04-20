@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Loading from './Loading';
 import '../../styles/CuChiStyle/CuChiGameG1.css';
+import '../../styles/CuChiStyle/usequiz.css';
 import ReactAudioPlayer from 'react-audio-player';
 import audioFile from '../../assets/CuChiGame/audio/Cuchisound.mp3'; // Import tệp âm thanh
 import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.png'; // Nhân vật
 import { useNavigate } from 'react-router-dom';
 import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';//bản đồ địa đạo
 import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';//vị trí địa đạo
-
+import Usequiz from "./Usequiz";
 
 
 const CuChiGameG1 = () => {
@@ -30,6 +31,45 @@ const CuChiGameG1 = () => {
     'Hãy khắc sâu những kỳ tích hào hùng này để mai này khi thống nhất nó không bị mai một đi.',
 
   ];
+
+  // quiz 
+  const questions = [
+    {
+      question: "Địa đạo Củ Chi nằm ở tỉnh/thành nào?",
+      options: ["Hà Nội", "Đà Nẵng", "TP. Hồ Chí Minh", "Huế"],
+      answer: "TP. Hồ Chí Minh",
+    },
+    {
+      question: "Địa đạo Củ Chi dài khoảng bao nhiêu km?",
+      options: ["10km", "50km", "120km", "250km"],
+      answer: "250km",
+    },
+    {
+      question: "Địa đạo Củ Chi được xây dựng trong giai đoạn nào?",
+      options: [
+        "Kháng chiến chống Pháp",
+        "Chiến tranh thế giới thứ 2",
+        "Chiến tranh Đông Dương",
+        "Kháng chiến chống Mỹ",
+      ],
+      answer: "Kháng chiến chống Mỹ",
+    },
+  ];
+
+  const {
+    currentQuestion,
+    currentIndex,
+    score,
+    isFinished,
+    selectedOption,
+    selectOption,
+    nextQuestion,
+    restart,
+    totalQuestions,
+  } = Usequiz(questions);
+
+///
+
 
   useEffect(() => {
     // Thời gian chờ cho loading
@@ -63,7 +103,8 @@ const CuChiGameG1 = () => {
           {/* Alert thanh thông báo */}
           {showAlert && (
             <div className="alert-banner">
-              🎖️ Chào mừng đồng chí đến với chiến trường Củ Chi!
+              🎖️ Chào mừng đồng chí đến với chiến trường Củ Chi! <br />
+              🎖️ Trả lời quizz để nhận thêm exp và vàng 
               <button className="close-alert" onClick={() => setShowAlert(false)}>
                 ❌
               </button>
@@ -89,11 +130,42 @@ const CuChiGameG1 = () => {
 
             <div className="image-container">
             <div className="image-container">
-                {dialogStep >= 6 && <img src={diadaomap} alt="map" className="map" />}
-                {dialogStep >= 5 && <img src={didaodist} alt="dist" className="dist" />}
+                { dialogStep >= 6  && <img src={diadaomap} alt="map" className="map" />}
+                {  dialogStep >= 5  && <img src={didaodist} alt="dist" className="dist" />}
           </div>
           </div>
-          
+
+
+          {/* quiz */}
+          { !isFinished  && dialogStep >= 7 && currentQuestion && <div className="quiz-container">
+  <p className="quiz-question">{currentQuestion.question}</p>
+  <div className="quiz-options">
+    {currentQuestion.options.map((option) => (
+      <button
+        className={`quiz-option ${
+          selectedOption
+            ? option === currentQuestion.answer
+              ? "correct"
+              : option === selectedOption
+              ? "incorrect"
+              : ""
+            : ""
+        }`}
+        onClick={() => selectOption(option)}
+        disabled={!!selectedOption}
+      >
+        {option}
+      </button>
+    ))}
+  </div>
+
+  {selectedOption && (
+    <button onClick={nextQuestion} className="quiz-button">
+      Tiếp tục
+    </button>
+  )}
+</div>}
+          {/* quiz */}
           
           
           {/* Nhạc nền */}

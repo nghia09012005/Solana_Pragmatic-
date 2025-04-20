@@ -86,7 +86,7 @@
   font-size: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 250px;
+  width: 400px;
 }
 
 .decode-input button {
@@ -104,6 +104,114 @@
   background-color: orange;
 }
 
+/* overlay */
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 2s forwards 1.5s;
+}
 
-  
+.success-content {
+  background: #ffffff;
+  padding: 30px 50px;
+  border-radius: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: green;
+  box-shadow: 0 0 20px #00ff77;
+  animation: zoomFade 1.5s ease-out;
+}
+.close-overlay-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
+@keyframes zoomFade {
+  0% {
+    transform: scale(0.5) translateY(-50px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* letter overlay */
+/* Lớp phủ mờ phía sau letter overlay */
+.letter-overlay-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Màu đen với độ trong suốt 70% */
+  z-index: 9998; /* Đảm bảo nó nằm dưới letter-overlay */
+}
+
+/* letter overlay */
+.letter-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Đảm bảo nó nằm trên lớp phủ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letter-img {
+  width: 300px; /* Tùy chỉnh kích thước ảnh */
+  height: auto;
+}
+/* Button giống như button thông thường */
+.button-overlay {
+  background-color: #ff5e57; /* Màu nền đỏ */
+  color: white; /* Màu chữ */
+  padding: 10px 20px; /* Khoảng cách trong button */
+  font-size: 18px; /* Kích thước chữ */
+  text-decoration: none; /* Bỏ gạch chân của link */
+  border-radius: 8px; /* Bo tròn các góc */
+  cursor: pointer; /* Con trỏ chuột khi hover */
+  border: none; /* Bỏ viền */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ cho button */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Hiệu ứng chuyển động */
+  margin-top: 20px; /* Khoảng cách từ ảnh tới button */
+}
+
+/* Hiệu ứng khi hover vào button */
+.button-overlay:hover {
+  background-color: #ff3b30; /* Đổi màu nền khi hover */
+  transform: scale(1.05); /* Tăng kích thước một chút khi hover */
+}
+
+/* Hiệu ứng khi nhấn vào button */
+.button-overlay:active {
+  transform: scale(1); /* Trở về kích thước ban đầu khi nhấn */
+}
