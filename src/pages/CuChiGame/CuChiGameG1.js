@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Loading from './Loading';
+import Loading from './Loading';  
 import '../../styles/CuChiStyle/CuChiGameG1.css';
 import '../../styles/CuChiStyle/usequiz.css';
 import ReactAudioPlayer from 'react-audio-player';

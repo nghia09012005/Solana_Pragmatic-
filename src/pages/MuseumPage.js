@@ -111,7 +111,7 @@ const Card = ({ artwork, isActive }) => {
     // Chuyển hướng sau khi animation hoàn thành
     setTimeout(() => {
       if (artwork.title === "Địa Đạo Củ Chi") {
-        navigate('/cuchigame');
+        navigate('/cuchigameg1');
       } else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });
       }

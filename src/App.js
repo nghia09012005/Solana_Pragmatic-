@@ -22,7 +22,9 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<MuseumPage />} />
-           {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/cuchigameg1" element={<CuChiGameG1 />} />
+          <Route path="/morse" element={<Morse />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
