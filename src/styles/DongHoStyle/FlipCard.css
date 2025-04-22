@@ -1,0 +1,103 @@
+/* Khung toàn bộ game */
+.game-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  height: 100vh; /* Đảm bảo chiều cao màn hình */
+  width: 100%;
+  box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến width */
+}
+
+/* Khung bên phải hiển thị thông tin */
+.info-panel {
+  width: 20%; /* Chiếm 1/5 chiều ngang */
+  background-color: #f9e1a0; /* Màu vàng nhạt */
+  color: black; /* Màu chữ đen */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Căn trên các phần tử trong khung */
+  align-items: center;
+  border-radius: 10px;
+  height: 100%; /* Chiều cao 100% để có thể chứa nội dung */
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+  overflow-y: auto; /* Cho phép cuộn nếu nội dung quá dài */
+}
+
+/* Phần chữ thông tin */
+.info-text {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.4;
+  color: black;
+}
+
+/* Hình ảnh nhân vật */
+.info-img {
+  height: 350px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px; /* Nằm sát mép dưới */
+}
+
+/* Khung lưới thẻ bài */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cột */
+  grid-gap: 10px;
+  width: 80%; /* Chiếm 4/5 chiều ngang */
+  height: 100%; /* Đảm bảo chiều cao thẻ bài chiếm toàn bộ */
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+/* Các thẻ bài */
+.card {
+  width: 100%;
+  height: 120px; /* Chiều cao lớn hơn để thẻ không quá nhỏ */
+  background-color: #f9e1a0; /* Màu vàng nhạt */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Hiệu ứng phóng to nhẹ khi hover */
+}
+
+/* Cách hiển thị khi thẻ bị lật */
+.card.flipped,
+.card.matched {
+  background-color: transparent;
+  transform: rotateY(180deg); /* Lật thẻ */
+}
+
+.card-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+}
+
+/* Khi hoàn thành trò chơi */
+.congrats-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}

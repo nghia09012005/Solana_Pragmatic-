@@ -10,7 +10,8 @@ import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
 import Morse from './pages/CuChiGame/Morse';
-
+import DongHoGame from './pages/DongHoGame/DongHoGameG1';
+import FlipCard from './pages/DongHoGame/FlipCard';
 
 function App() {
   const { loading } = useAuth();
@@ -22,7 +23,7 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          // <Route path="/" element={<HomePage />} />
+          // <Route path="/" element={<FlipCard />} />
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 

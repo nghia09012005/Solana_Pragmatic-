@@ -1,0 +1,115 @@
+.game-container {
+  background-image: url('../../assets/DongHoGame/image/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.character-img {
+  position: absolute;
+  bottom: 0; /* đứng sát mép dưới */
+  right: 2%; /* cách mép phải 2% */
+  height: 400px; 
+}
+
+.text-box {
+  position: absolute;
+  bottom: 10%; 
+  left: 5%; 
+  right: 25%; 
+  background-color: #f9e1a0; /* Màu nền vàng nhẹ */
+  padding: 16px;
+  border-radius: 15px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3); /* Bóng mờ nhẹ, tạo cảm giác nổi */
+  font-size: 16px;
+  color: rgba(0, 0, 0);
+  border: 2px solid #333; /* Viền đen cho khung */
+  font-family: 'Georgia', serif; /* Phông chữ sang trọng, cổ điển */
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Tạo khoảng cách giữa các phần tử trong text-box */
+}
+
+.steps-row {
+  position: absolute;
+  top: 20%; 
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 80%;
+  max-width: 1000px;
+  z-index: 10;
+}
+
+.step-img-centered {
+  width: 25%; 
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 3px solid black;
+  transform: scale(0);
+  animation: boomEffect 0.5s forwards;
+  transition: transform 0.3s ease;
+}
+
+@keyframes boomEffect {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.step-img-centered:hover {
+  transform: scale(1.1); /* Hiệu ứng phóng to nhẹ khi hover */
+}
+
+/* Nút "Tiếp tục" ở góc dưới bên phải */
+.next-button {
+  position: absolute;
+  bottom: 10px; /* Cách mép dưới 10px */
+  right: 5%; /* Cách mép phải 5% */
+  padding: 12px 25px;
+  background-color: #d8a800; /* Màu vàng đậm, cổ điển */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase; /* Tạo cảm giác mạnh mẽ hơn */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px; /* Khoảng cách giữa nút và text box */
+}
+
+.next-button:hover {
+  background-color: #c68c00; /* Màu vàng đậm hơn khi hover */
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+.start-button {
+  margin-top: 12px;
+  padding: 12px 25px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
