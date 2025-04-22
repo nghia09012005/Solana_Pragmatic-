@@ -21,8 +21,8 @@ function App() {
       {/* <Header /> */}
       <main className="main-content">
         <Routes>
-
-          // <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<MuseumPage />} />
+           {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
