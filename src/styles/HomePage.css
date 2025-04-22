@@ -324,7 +324,7 @@ body:has(.overlay) .background button {
 .background button{
   position: relative;
   top: 48%;
-  left: 200px;
+  left: 200px;    
   width: 180px;
   height: 80px;
   background: linear-gradient(to right, #ffffff, #f8f8f8);
@@ -781,7 +781,7 @@ body:has(.overlay) .background button {
 }
 .feature{
   position: relative;
-  
+  background-image: url('/public/images/background-feature.png');
   padding: 50px 0;
   display: flex;
   flex-direction: column;
@@ -905,3 +905,38 @@ body:has(.overlay) .background button {
   flex-direction: column;
 
 }
+
+.cong-nghe {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  
+}
+
+.cong-nghe-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+
+}
+
+.cong-nghe-1 {
+  position: absolute;
+  top: 39.5%;
+  left: 5%;
+  width:90%;
+  height: 100%;
+  z-index: 1;
+}
+
+
+
+

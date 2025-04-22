@@ -25,6 +25,53 @@ function HomePage() {
 const [isVisible, setIsVisible] = useState(false);
 const [showSignIn, setShowSignIn] = useState(false); // Thêm state cho signin box
 const [showSignUp, setShowSignUp] = useState(false); // Thêm state này
+
+
+useEffect(() => {
+  const handleMouseMove = (e) => {
+    requestAnimationFrame(() => {
+      const icons = document.querySelectorAll('.tech-icon');
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      icons.forEach(icon => {
+        const speed = parseFloat(icon.getAttribute('data-speed'));
+        const rect = icon.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // Calculate distance with easing
+        const distanceX = (mouseX - centerX) * 0.1;
+        const distanceY = (mouseY - centerY) * 0.1;
+        
+        // Apply smooth movement
+        const translateX = distanceX * speed;
+        const translateY = distanceY * speed;
+        
+        icon.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+      });
+    });
+  };
+
+  // Throttle the mousemove event
+  let ticking = false;
+  const throttledMouseMove = (e) => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleMouseMove(e);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('mousemove', throttledMouseMove);
+  
+  return () => {
+    window.removeEventListener('mousemove', throttledMouseMove);
+  };
+}, []);
+
 {showSignIn && (
   <div className="signin-page-box">
     <div className="signin-page">
@@ -116,9 +163,9 @@ const [showSignUp, setShowSignUp] = useState(false); // Thêm state này
         <h3 lassName={`fade-in-text  ${isVisible ? 'visible' : ''}`}>
         Hóa thân thành người gìn giữ ký ức, vượt qua thử thách ảo ảnh, thu thập mảnh ghép di sản và viết tiếp câu chuyện của quá khứ bằng công nghệ.
         </h3>
-        <Link to="/CuChiGameG1">
+        {/* <Link to="/CuChiGameG1"> */}
           <button >KHÁM PHÁ NGAY!</button>
-        </Link>
+        {/* </Link> */}
         <div></div>
       </section>
 
@@ -217,6 +264,74 @@ const [showSignUp, setShowSignUp] = useState(false); // Thêm state này
             </div>
             </div>
         </section>
+
+        <section className='cong-nghe'>
+        <img
+    className="cong-nghe-header"
+    src="/images/cong-nghe.png"
+    alt=""
+  />
+  <img
+    className="cong-nghe-1"
+    src="/images/background-cong-nghe-1.png"
+    alt=""
+  />
+  {/* <img 
+    className="cong-nghe-2"
+    src="/images/background-cong-nghe-2.png"
+    alt=""
+  />
+
+
+  <div className="tech-icons">
+    <img 
+      className="tech-icon mysql"
+      src="/images/mysql-icon.png" 
+      alt="MySQL"
+      data-speed="0.3"
+      
+    />
+    <img 
+      className="tech-icon gemini"
+      src="/images/gemini-icon.png" 
+      alt="Gemini"
+      data-speed="0.45"
+    />
+  
+    <img 
+      className="tech-icon react"
+      src="/images/react-icon.png" 
+      alt="React"
+      data-speed="0.5"
+    />
+    <img 
+      className="tech-icon node"
+      src="/images/nodejs-icon.png" 
+      alt="NodeJS"
+      data-speed="0.4"
+    />
+    <img 
+      className="tech-icon html"
+      src="/images/html-icon.png" 
+      alt="HTML"
+      data-speed="0.6"
+    />
+    <img 
+      className="tech-icon figma"
+      src="/images/figma-icon.png" 
+      alt="Figma"
+      data-speed="0.45"
+    />
+    <img 
+      className="tech-icon spring"
+      src="/images/spring-icon.png" 
+      alt="Spring"
+      data-speed="0.35"
+    />
+  </div> */}
+  
+
+</section>
 </div>
   );
 }

@@ -1,87 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
 body {
   margin: 0;
-  background-color: #0f0f0f;
+  background-color: #000;
   font-family: 'Orbitron', sans-serif;
+  overflow: hidden;
 }
 
 .cyberpunk-loader {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #0f0f0f;
-  color: #0ff;
-  animation: tunnel-effect 5s infinite;
+  background: #000;
+  perspective: 1000px;
 }
 
+/* Hiệu ứng vòng xoáy thời gian */
+.time-tunnel {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at center, transparent 0%, #000 100%),
+    repeating-conic-gradient(
+      from 0deg,
+      #000 0deg 10deg,
+      rgba(0, 255, 255, 0.15) 10deg 15deg,
+      #000 15deg 30deg
+    );
+  animation: tunnelSpin 8s linear infinite;
+  transform-origin: center;
+  filter: blur(1px);
+}
+
+.time-tunnel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-conic-gradient(
+      from 45deg,
+      #000 0deg 10deg,
+      rgba(255, 0, 255, 0.15) 10deg 15deg,
+      #000 15deg 30deg
+    );
+  animation: tunnelSpin 12s linear infinite reverse;
+  opacity: 0.7;
+}
+
+/* Text chính với hiệu ứng hologram */
 .glitch-text {
-  font-size: 3rem;
-  color: #0ff;
-  text-shadow: 
-    0 0 5px #0ff,
-    0 0 10px #0ff,
-    0 0 20px #0ff,
-    0 0 40px #f0f,
-    0 0 80px #f0f;
-  animation: glitch 1s infinite, text-glow 1s infinite alternate;
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 40px;
+  animation: hologramFlicker 5s infinite;
+  z-index: 2;
 }
 
-@keyframes glitch {
+.glitch-text::before,
+.glitch-text::after {
+  content: 'BẠN ĐANG VỀ LẠI ĐỊA ĐẠO CỦ CHI NĂM 1967';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: #0ff;
+  animation: hologramOffset 4s infinite;
+  text-shadow: 2px 0 #ff0080;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch-text::after {
+  color: #ff0080;
+  animation: hologramOffset 4s infinite reverse;
+  text-shadow: -2px 0 #0ff;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+/* Vòng loading với hiệu ứng năng lượng */
+.neon-spinner {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.neon-spinner::before,
+.neon-spinner::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  padding: 8px;
+  background: linear-gradient(45deg, #ff0080, #0ff);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spinnerRotate 2s linear infinite;
+}
+
+.neon-spinner::after {
+  animation: spinnerRotate 2s linear infinite reverse;
+  background: linear-gradient(-45deg, #ff0080, #0ff);
+  opacity: 0.7;
+}
+
+/* Hiệu ứng tia năng lượng */
+.light-beams {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%),
+    radial-gradient(circle at center, rgba(255, 0, 128, 0.1) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: pulseBeams 4s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes tunnelSpin {
+  from { transform: rotate(0deg) scale(2); }
+  to { transform: rotate(360deg) scale(0.5); }
+}
+
+@keyframes hologramFlicker {
+  0%, 100% { opacity: 0.9; }
+  33% { opacity: 0.7; }
+  66% { opacity: 0.8; }
+  77% { opacity: 0.9; filter: brightness(1.2); }
+  88% { opacity: 0.7; filter: brightness(1); }
+}
+
+@keyframes hologramOffset {
   0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(2px, -1px); }
-  60% { transform: translate(-1px, 1px); }
-  80% { transform: translate(1px, -2px); }
+  25% { transform: translate(2px, -1px); filter: hue-rotate(30deg); }
+  50% { transform: translate(-1px, 2px); filter: hue-rotate(-30deg); }
+  75% { transform: translate(1px, -2px); filter: hue-rotate(15deg); }
   100% { transform: translate(0); }
 }
 
-@keyframes tunnel-effect {
-  0% {
-    background-color: #0f0f0f;
-    box-shadow: 0 0 20px #0ff, 0 0 40px #f0f, 0 0 60px #0ff;
+@keyframes spinnerRotate {
+  0% { transform: rotate(0deg) scale(0.95); }
+  50% { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(0.95); }
+}
+
+@keyframes pulseBeams {
+  0%, 100% { 
     transform: scale(1);
+    opacity: 0.5;
   }
-  50% {
-    background-color: #0f0f0f;
-    box-shadow: 0 0 40px #0ff, 0 0 80px #f0f, 0 0 120px #0ff;
-    transform: scale(1.1);
-  }
-  100% {
-    background-color: #0f0f0f;
-    box-shadow: 0 0 60px #0ff, 0 0 120px #f0f, 0 0 160px #0ff;
-    transform: scale(1);
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.7;
   }
 }
 
-.neon-spinner {
-  margin-top: 40px;
-  width: 60px;
-  height: 60px;
-  border: 6px solid transparent;
-  border-top: 6px solid #0ff;
-  border-right: 6px solid #f0f;
-  border-radius: 50%;
-  animation: spin 1s linear infinite, glowing 1.5s ease-in-out infinite;
-  box-shadow: 
-    0 0 10px #0ff,
-    0 0 20px #f0f,
-    0 0 30px #0ff;
+/* Hiệu ứng quét hologram */
+.scan-effect {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 255, 255, 0.2) 45%,
+    rgba(255, 0, 128, 0.2) 55%,
+    transparent 100%
+  );
+  animation: scanMove 3s ease-in-out infinite;
+  mix-blend-mode: screen;
+  transform: translateY(-50%);
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes scanMove {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(50%) rotate(360deg); }
 }
 
-@keyframes glowing {
-  0% {
-    box-shadow: 0 0 5px #0ff, 0 0 10px #f0f, 0 0 15px #0ff;
-  }
-  50% {
-    box-shadow: 0 0 15px #0ff, 0 0 25px #f0f, 0 0 30px #0ff;
-  }
-  100% {
-    box-shadow: 0 0 5px #0ff, 0 0 10px #f0f, 0 0 15px #0ff;
-  }
+/* Thêm hiệu ứng nhiễu */
+.cyberpunk-loader::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
+

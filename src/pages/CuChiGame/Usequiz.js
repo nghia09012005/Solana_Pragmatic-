@@ -1,6 +1,6 @@
 import { useState } from "react";
 
- const Usequiz = (questions) => {
+const Usequiz = (questions) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
@@ -43,4 +43,5 @@ import { useState } from "react";
     totalQuestions: questions.length,
   };
 };
+
 export default Usequiz;
