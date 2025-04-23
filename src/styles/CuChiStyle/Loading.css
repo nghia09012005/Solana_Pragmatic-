@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
 
-/* body {
+body  {
   margin: 0;
   background-color: #000;
-  font-family: 'Orbitron', sans-serif;
-  overflow: hidden;
-} */
+
+} 
 
 .cyberpunk-loader {
   position: relative;

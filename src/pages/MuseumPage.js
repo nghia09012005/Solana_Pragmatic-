@@ -111,7 +111,7 @@ const Card = ({ artwork, isActive }) => {
     // Chuyển hướng sau khi animation hoàn thành
     setTimeout(() => {
       if (artwork.title === "Địa Đạo Củ Chi") {
-        navigate('/cuchigameg1');
+        navigate('/cuchigame');
       } else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });
       }
@@ -186,6 +186,7 @@ const Carousel = ({ children }) => {
 };  
 
 const MuseumPage = () => (  
+  <div className='museum-page-body'>
   <div className="app">  
     <Carousel>  
       {CARDS.map((artwork, i) => (  
@@ -197,6 +198,7 @@ const MuseumPage = () => (
       ))}  
     </Carousel>  
   </div>  
+  </div>
 );  
 
 export default MuseumPage;
