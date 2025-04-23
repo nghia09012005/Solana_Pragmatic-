@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Thongnhat/TankGame.css"; // Import CSS file
-import tankImage from '../../assets/Thongnhat/images/tank.png'; // Đảm bảo đường dẫn hình ảnh đúng
+import tankImage from '../../assets/Thongnhat/images/tankfinal.png'; // Đảm bảo đường dẫn hình ảnh đúng
 import tankSound from '../../assets/Thongnhat/audio/sound.wav';
 import obstacle from '../../assets/Thongnhat/images/obstacle.png';
 import bullet from '../../assets/Thongnhat/images/bullet.png';
@@ -18,11 +18,11 @@ const TankGame = () => {
   const [success, setsucces] = useState(false);
 
  
-  useEffect(() => {
-    const audio = new Audio(tankSound);
-    audio.loop = true; // Phát nhạc liên tục
-    audio.play().catch((err) => console.log("Error playing audio:", err));
-  }, []);
+  // useEffect(() => {
+  //   const audio = new Audio(tankSound);
+  //   audio.loop = true; // Phát nhạc liên tục
+  //   audio.play().catch((err) => console.log("Error playing audio:", err));
+  // }, []);
 
   // Hàm phát âm thanh nổ
   const playExplosionSound = () => {
@@ -207,14 +207,14 @@ const TankGame = () => {
       ))}
 
       {/* Hiển thị điểm số */}
-      <div className="score-text">Score: {score}</div>
+      <div className="score-text">Mục tiêu bị hạ: {score}</div>
 
       {/* Game Over */}
       {gameOver && (
         <div className="game-over">
           <div className="game-over-content">
-            <h2>Game Over</h2>
-            <p>Score: {score}</p>
+            <h2>Nhiệm vụ thất bại</h2>
+            <p>Mục tiêu bị hạ: {score}</p>
             <button onClick={restartGame}>Chơi lại</button>
           </div>
         </div>
@@ -225,7 +225,7 @@ const TankGame = () => {
         <div className="success">
           <div className="success-content">
             <h2>TỚI DINH ĐỘC LẬP RỒI!!!! THỐNG NHẤT CẬN KỀ TIẾN LÊN THÔI!!!!</h2>
-            <p>Score: {score}</p>
+            <p>Mục tiêu bị hạ: {score}</p>
             {<button onClick={handlesuccess}>Tới Dinh Độc Lập thôi nào</button>}
           </div>
         </div>
