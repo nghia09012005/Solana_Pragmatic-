@@ -2,11 +2,14 @@ import '../styles/HomePage.css';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-
+import Footer from '../components/layout/Footer';
 
 
 function HomePage() {
- 
+  const [isVisible, setIsVisible] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false); // Thêm state cho signin box
+  const [showSignUp, setShowSignUp] = useState(false); // Thêm state này
+  
   const switchToSignUp = () => {
     setShowSignIn(false); // Tắt form đăng nhập
     setTimeout(() => {     // Đợi animation kết thúc
@@ -22,9 +25,6 @@ function HomePage() {
   };
 
 
-const [isVisible, setIsVisible] = useState(false);
-const [showSignIn, setShowSignIn] = useState(false); // Thêm state cho signin box
-const [showSignUp, setShowSignUp] = useState(false); // Thêm state này
 
 
 useEffect(() => {
@@ -72,33 +72,7 @@ useEffect(() => {
   };
 }, []);
 
-{showSignIn && (
-  <div className="signin-page-box">
-    <div className="signin-page">
-    <img 
-        src="/images/sign-in-sign-up-box .png" 
-        alt="" 
-        className="form-logo"
-        style={{
-          width: '60px',
-          height: '60px',
-          marginBottom: '10px',
-          opacity: '0.8'
-        }}
-      />
-      <h1>ĐĂNG NHẬP</h1>
-      <h3>
-        <input type="text" placeholder="Tên tài khoản" />
-        <input type="password" placeholder="Mật khẩu" />
-      </h3>
-      <div>
-        Bạn chưa có tài khoản?{" "}
-        <Link to="/RegisterPage">Đăng ký ngay</Link>
-      </div>
-      <button>ĐĂNG NHẬP</button>
-    </div>
-  </div>
-)}
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -141,7 +115,7 @@ useEffect(() => {
 
 
 
-      <div class="gold-line"></div>
+      <div className="gold-line"></div>
 
       <section className="background">
         <img
@@ -160,12 +134,12 @@ useEffect(() => {
 
         <h1 className={`fade-in-text ${isVisible ? 'visible' : ''}`}>
           Hành trình mở khóa di sản – Bạn đã sẵn sàng?</h1>
-        <h3 lassName={`fade-in-text  ${isVisible ? 'visible' : ''}`}>
+        <h3 className={`fade-in-text  ${isVisible ? 'visible' : ''}`}>
         Hóa thân thành người gìn giữ ký ức, vượt qua thử thách ảo ảnh, thu thập mảnh ghép di sản và viết tiếp câu chuyện của quá khứ bằng công nghệ.
         </h3>
-        {/* <Link to="/CuChiGameG1"> */}
+         <Link to="/museum"> 
           <button >KHÁM PHÁ NGAY!</button>
-        {/* </Link> */}
+        </Link> 
         <div></div>
       </section>
 
@@ -276,62 +250,17 @@ useEffect(() => {
     src="/images/background-cong-nghe-1.png"
     alt=""
   />
-  {/* <img 
-    className="cong-nghe-2"
-    src="/images/background-cong-nghe-2.png"
-    alt=""
-  />
-
-
-  <div className="tech-icons">
-    <img 
-      className="tech-icon mysql"
-      src="/images/mysql-icon.png" 
-      alt="MySQL"
-      data-speed="0.3"
-      
-    />
-    <img 
-      className="tech-icon gemini"
-      src="/images/gemini-icon.png" 
-      alt="Gemini"
-      data-speed="0.45"
-    />
   
-    <img 
-      className="tech-icon react"
-      src="/images/react-icon.png" 
-      alt="React"
-      data-speed="0.5"
-    />
-    <img 
-      className="tech-icon node"
-      src="/images/nodejs-icon.png" 
-      alt="NodeJS"
-      data-speed="0.4"
-    />
-    <img 
-      className="tech-icon html"
-      src="/images/html-icon.png" 
-      alt="HTML"
-      data-speed="0.6"
-    />
-    <img 
-      className="tech-icon figma"
-      src="/images/figma-icon.png" 
-      alt="Figma"
-      data-speed="0.45"
-    />
-    <img 
-      className="tech-icon spring"
-      src="/images/spring-icon.png" 
-      alt="Spring"
-      data-speed="0.35"
-    />
-  </div> */}
-  
+   
 
 </section>
+<img className='info'
+src="/images/goldframe.png" alt="goldframe" />
+
+<img className='last'
+src="/images/last-page.png" alt="lastpage" />
+
+<Footer />
 </div>
   );
 }
