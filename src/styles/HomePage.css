@@ -144,7 +144,7 @@ header a:hover {
   background: rgba(0, 0, 0, 0.2);  /* Giảm opacity của background */
   /* border: 1px solid rgba(0, 207, 255, 0.3);  Border màu xanh mờ */
   padding: 6px 16px;
-  font-size: 14px;
+  font-size: 13px;
   border-radius: 3px;
   transition: all 0.3s ease;
   cursor: pointer;
