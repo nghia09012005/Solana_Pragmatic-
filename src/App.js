@@ -11,7 +11,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
 import Morse from './pages/CuChiGame/Morse';
 import TankGame from './pages/Thongnhat/TankGame';
-
+import Bantin from './pages/Thongnhat/Bantin';
+import ThongTin304 from './pages/Thongnhat/ThongTin304';
 
 function App() {
   const { loading } = useAuth();
@@ -24,7 +25,9 @@ function App() {
         <Routes>
 
           {/* <Route path="/" element={<HomePage />} /> */}
-          <Route path="/" element={<TankGame />} />
+          {/* <Route path="/" element={<TankGame />} /> */}
+          {/* <Route path="/" element={<Bantin />} /> */}
+          <Route path="/" element={<ThongTin304 />} />
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 

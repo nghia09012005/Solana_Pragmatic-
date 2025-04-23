@@ -7,7 +7,7 @@ import bullet from '../../assets/Thongnhat/images/bullet.png';
 import explo from '../../assets/Thongnhat/audio/explosion.wav';
 import { useNavigate } from "react-router-dom";
 
-const BOUND = 390; // 390 số hiệu xe tank tông dinh độc lập
+const BOUND = 304; // 390 số hiệu xe tank tông dinh độc lập
 
 const TankGame = () => {
   const [tankPosition, setTankPosition] = useState(50); // Vị trí tank (%)
@@ -18,11 +18,11 @@ const TankGame = () => {
   const [success, setsucces] = useState(false);
 
  
-  // useEffect(() => {
-  //   const audio = new Audio(tankSound);
-  //   audio.loop = true; // Phát nhạc liên tục
-  //   audio.play().catch((err) => console.log("Error playing audio:", err));
-  // }, []);
+  useEffect(() => {
+    const audio = new Audio(tankSound);
+    audio.loop = true; // Phát nhạc liên tục
+    audio.play().catch((err) => console.log("Error playing audio:", err));
+  }, []);
 
   // Hàm phát âm thanh nổ
   const playExplosionSound = () => {
@@ -106,8 +106,8 @@ const TankGame = () => {
           setBullets((prev) => prev.filter((b) => b.id !== bullet.id)); // Xóa đạn
           
           playExplosionSound();
-          setScore((prev) => prev + 10); // Tăng điểm số
-          if ( score +10 >= BOUND){
+          setScore((prev) => prev + 16); // Tăng điểm số
+          if ( score +16 >= BOUND){
             setsucces(true);
           }
           
