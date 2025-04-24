@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TiChevronLeftOutline, TiChevronRightOutline } from "react-icons/ti";
 import { BsArrowsFullscreen } from "react-icons/bs";
+import { FaHome } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/MuseumPage.css';
 
@@ -189,8 +190,19 @@ const Carousel = ({ children }) => {
   );  
 };  
 
-const MuseumPage = () => (  
+const MuseumPage = () => {
+  const navigate = useNavigate();
+
+  const goToHome = () => {
+    navigate('/');
+  };
+
+  return (
   <div className='museum-page-body'>
+    <button className="home-button" onClick={goToHome}>
+      <FaHome />
+      <span> Trang chủ </span>
+    </button>
   <div className="app">  
     <Carousel>  
       {CARDS.map((artwork, i) => (  
@@ -204,5 +216,6 @@ const MuseumPage = () => (
   </div>  
   </div>
 );  
+};
 
 export default MuseumPage;

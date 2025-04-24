@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/DongHoStyle/FlipCard.css';
@@ -56,8 +57,8 @@ const showCongrats = (audioRef, playAgainFn, returnToMuseumFn) => {
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    cancelButtonText: "Chơi lại",
-    confirmButtonText: "Quay về Bảo tàng"
+    confirmButtonText: "Chơi lại",
+    cancelButtonText: "Quay về Bảo tàng"
   }).then((result) => {
     if (result.isConfirmed) {
       playAgainFn();
@@ -67,11 +68,13 @@ const showCongrats = (audioRef, playAgainFn, returnToMuseumFn) => {
   });
 };
 
+
 const FlipCard = () => {
   const [cards, setCards] = useState([]);
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState([]);
   const [info, setInfo] = useState('');
+  const [completed, setCompleted] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [audioStarted, setAudioStarted] = useState(false);
   const audioRef = useRef(new Audio(nhacNen));
@@ -99,6 +102,13 @@ const FlipCard = () => {
       setTimeout(() => setShowInfo(true), 50);
     }
   }, [info]);
+
+
+  // Show Swal when game done
+  useEffect(() => {
+    if (completed) showCongrats(audioRef);
+  }, [completed]);
+  
 
   // Handle background music: play once after first click
   useEffect(() => {
@@ -152,7 +162,7 @@ const FlipCard = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
-    navigate('/'); // Quay về trang chính/bảo tàng
+    navigate('/museum'); // Quay về trang chính/bảo tàng
   };
 
   return (

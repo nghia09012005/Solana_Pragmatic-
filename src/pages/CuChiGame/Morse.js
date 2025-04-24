@@ -49,6 +49,17 @@ const Morse = () => {
     //   const timer = setTimeout(() => setLoading(false), 3000);
     //   return () => clearTimeout(timer);
     // }, []);
+    useEffect(() => {
+      const audio = new Audio(audioFile);
+      audio.loop = true;
+    
+      audio.play().catch((err) => console.log("Error playing audio:", err));
+    
+      return () => {
+        audio.pause();        // 👈 Dừng nhạc
+        audio.currentTime = 0; // 👈 Reset về đầu (tuỳ chọn)
+      };
+    }, []);
 
     const [inputSG, setInputSG] = useState('');
     const [inputHN, setInputHN] = useState('');
@@ -377,7 +388,7 @@ const Morse = () => {
 </div>
          
             {/* Nhạc nền */}
-            {audioPlaying && (
+            {/* {audioPlaying && (
               <ReactAudioPlayer
                 src={audioFile}
                 autoPlay
@@ -385,7 +396,7 @@ const Morse = () => {
                 controls={false}
                 onError={() => console.log("Error loading audio")}
               />
-            )}
+            )} */}
           </div>
         )}
       </>

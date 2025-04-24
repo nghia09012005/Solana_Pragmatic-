@@ -4,19 +4,26 @@ import HomePage from './pages/HomePage';
 import MuseumPage from './pages/MuseumPage';
 // import CollectionPage from './pages/CollectionPage';
 // import LeaderboardPage from './pages/LeaderboardPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ProfilePage from './pages/ProfilePage';
+
+// import LoginPage from './pages/LoginPage';
+// import RegisterPage from './pages/RegisterPage';
+// import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
+
+
 import DongHoGame from './pages/DongHoGame/DongHoGameG1';
 import TayNguyenGame from './pages/TayNguyenGame';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
 import Morse from './pages/CuChiGame/Morse';
 
 import FlipCard from './pages/DongHoGame/FlipCard';
+import TankGame from './pages/Thongnhat/TankGame';
+import Bantin from './pages/Thongnhat/Bantin';
+import ThongTin304 from './pages/Thongnhat/ThongTin304';
 
+  
 function App() {
-  const { loading } = useAuth();
+  // const { loading } = useAuth();
 
   // if (loading) {
   //   return <LoadingScreen />;
@@ -28,11 +35,12 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
           <Route path="/museum" element={<MuseumPage />} />
           
           {/* Tây Nguyên Gongs Game */}
-          <Route path="/taynguyengame" element={<TayNguyenGame />} />
+          <Route path="taynguyengame" element={<TayNguyenGame />} />
+          
           
           {/* Cu Chi Game */}
           <Route path="/cuchigame" element={<CuChiGameG1 />} />
@@ -48,22 +56,7 @@ function App() {
       </main>
       {/* <Footer /> */}
     </div>
-    // <Router>
-    //   <div className="app">
-    //     <main className="main-content">
-    //       <Routes>
-    //         <Route path="/" element={<HomePage />} />
-    //         {/* <Route path="/museum" element={<MuseumPage />} />
-    //         <Route path="/collection" element={<CollectionPage />} />
-    //         <Route path="/leaderboard" element={<LeaderboardPage />} /> */}
-    //         <Route path="/login" element={<LoginPage />} />
-    //         <Route path="/register" element={<RegisterPage />} />
-    //         {/* <Route path="/profile" element={<ProfilePage />} /> */}
-    //         <Route path="*" element={<NotFoundPage />} />
-    //       </Routes>
-    //     </main>
-    //   </div>
-    // </Router>
+   
     
   );
 }
