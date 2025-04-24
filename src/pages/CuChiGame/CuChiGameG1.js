@@ -87,6 +87,16 @@ const CuChiGameG1 = () => {
     }
   };
 
+// phát nhạc liên tục
+ useEffect(() => {
+    const audio = new Audio(audioFile);
+    audio.loop = true; // Phát nhạc liên tục
+    audio.play().catch((err) => console.log("Error playing audio:", err));
+  }, []);
+
+//
+
+
   // Hàm xử lý khi click vào bất kỳ đâu
   const handleClickAnywhere = () => {
     if (!audioPlaying) {
@@ -169,7 +179,7 @@ const CuChiGameG1 = () => {
           
           
           {/* Nhạc nền */}
-          {audioPlaying && (
+          {/* {audioPlaying && (
             <ReactAudioPlayer
               src={audioFile}
               autoPlay
@@ -177,7 +187,7 @@ const CuChiGameG1 = () => {
               controls={false}
               onError={() => console.log("Error loading audio")}
             />
-          )}
+          )} */}
         </div>
       )}
     </>

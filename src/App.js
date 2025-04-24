@@ -36,15 +36,15 @@ function App() {
         <Routes>
 
 
-        {<Route path="/" element={<DongHoGame />} />}
-        {<Route path="/FlipCard" element={<FlipCard />} />}
+        {/* {<Route path="/" element={<DongHoGame />} />} */}
+        {/* {<Route path="/FlipCard" element={<FlipCard />} />} */}
 
 
          {/* {<Route path="/" element={<DongHoGame />} />} */}
         {/* {<Route path="/FlipCard" element={<FlipCard />} />}  */}
 
 
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/" element={<TankGame />} /> */}
 
           {/* <Route path="/" element={<Bantin />} /> */}
@@ -57,10 +57,10 @@ function App() {
 
           {/* path="/CuChiGame" sau khi test xong */}
           
-          {/* <Route path="/" element={<CuChiGameG1/>} />
-          <Route path="/morse" element={<Morse />} />*/}
+          <Route path="/" element={<CuChiGameG1/>} />
+          <Route path="/morse" element={<Morse />} />
 
-          <Route path="/museum" element={<MuseumPage />} />
+          {/* <Route path="/museum" element={<MuseumPage />} /> */}
       
           {/* <Route path="/profile" element={<ProfilePage />} /> */}
          {/* <Route path="*" element={<NotFoundPage />} />  */}
