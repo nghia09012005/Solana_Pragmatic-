@@ -26,8 +26,11 @@ function App() {
 
           {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/" element={<TankGame />} /> */}
+
           {/* <Route path="/" element={<Bantin />} /> */}
-          <Route path="/" element={<ThongTin304 />} />
+
+          {/* <Route path="/" element={<ThongTin304 />} /> */}
+
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
@@ -37,8 +40,8 @@ function App() {
 
           {/* path="/CuChiGame" sau khi test xong */}
           
-          {/* <Route path="/" element={<CuChiGameG1/>} /> */}
-          {/* <Route path="/morse" element={<Morse />} /> */}
+          <Route path="/" element={<CuChiGameG1/>} />
+          <Route path="/morse" element={<Morse />} />
 
           {/* <Route path="/museum" element={<MuseumPage />} />
       

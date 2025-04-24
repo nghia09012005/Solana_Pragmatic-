@@ -136,8 +136,8 @@ useEffect(() => {
   </div>
 )}
 
-    {/* <audio ref={bantinAudioRef} src={bantin} />
-    <audio ref={backgroundAudioRef} src={backgroundbantin} /> */}
+    <audio ref={bantinAudioRef} src={bantin} />
+    <audio ref={backgroundAudioRef} src={backgroundbantin} />
   </div>
   );
 };
