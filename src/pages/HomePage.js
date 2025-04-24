@@ -2,6 +2,8 @@ import '../styles/HomePage.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import useSignIn from '../hooks/useSignIn';
+import useSignUp from '../hooks/useSignUp';
 
 import Footer from '../components/layout/Footer';
 
@@ -16,13 +18,13 @@ function HomePage() {
 const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 const [passwordAgain, setPasswordAgain] = useState("");
-// const { signUp, loading, message } = useSignUp();
+const { signUp, loading, message } = useSignUp();
   //----------
 
 //signin var
 const [signinUsername, setSigninUsername] = useState("");
 const [signinPassword, setSigninPassword] = useState("");
-// const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
+const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
 //----------
 
 
