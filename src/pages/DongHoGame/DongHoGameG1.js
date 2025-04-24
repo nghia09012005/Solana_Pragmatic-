@@ -42,30 +42,30 @@ const DongHoGame = () => {
         navigate('/FlipCard');
     };
 
-    // useEffect(() => {
-    //     const playAudioOnClick = () => {
-    //         if (!audioStarted && audioRef.current) {
-    //             audioRef.current.audioEl.current.play().catch((err) => {
-    //                 console.warn("Không thể phát nhạc:", err);
-    //             });
-    //             setAudioStarted(true);
-    //         }
-    //     };
+    useEffect(() => {
+        const playAudioOnClick = () => {
+            if (!audioStarted && audioRef.current) {
+                audioRef.current.audioEl.current.play().catch((err) => {
+                    console.warn("Không thể phát nhạc:", err);
+                });
+                setAudioStarted(true);
+            }
+        };
 
-    //     window.addEventListener('click', playAudioOnClick);
-    //     return () => window.removeEventListener('click', playAudioOnClick);
-    // }, [audioStarted]);
+        window.addEventListener('click', playAudioOnClick);
+        return () => window.removeEventListener('click', playAudioOnClick);
+    }, [audioStarted]);
 
     return (
         <div className="game-container" onClick={nextText}>
-          {/* <ReactAudioPlayer
-            src={require('../../assets/DongHoGame/sounds/nhacnen.mp3')}
+          <ReactAudioPlayer
+            src={require('../../assets/DongHoGame/audio/DongHonhacnen.mp3')}
             autoPlay={false}
             controls={false}
             ref={audioRef}
             loop
           />
-       */}
+      
           {/* Hàng ảnh giữa màn hình */}
           {currentTextIndex >= 3 && currentTextIndex <= 6 && (
             <div className="steps-row">
