@@ -26,13 +26,13 @@ function App() {
         <Routes>
 
 
-        <Route path="/" element={<DongHoGame />} />
-        <Route path="/FlipCard" element={<FlipCard />} />
+        {/* {<Route path="/" element={<DongHoGame />} />}
+        {<Route path="/FlipCard" element={<FlipCard />} />} */}
 
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
-          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/" element={<HomePage />} />
           {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
           {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
@@ -51,22 +51,7 @@ function App() {
       </main>
       {/* <Footer /> */}
     </div>
-    // <Router>
-    //   <div className="app">
-    //     <main className="main-content">
-    //       <Routes>
-    //         <Route path="/" element={<HomePage />} />
-    //         {/* <Route path="/museum" element={<MuseumPage />} />
-    //         <Route path="/collection" element={<CollectionPage />} />
-    //         <Route path="/leaderboard" element={<LeaderboardPage />} /> */}
-    //         <Route path="/login" element={<LoginPage />} />
-    //         <Route path="/register" element={<RegisterPage />} />
-    //         {/* <Route path="/profile" element={<ProfilePage />} /> */}
-    //         <Route path="*" element={<NotFoundPage />} />
-    //       </Routes>
-    //     </main>
-    //   </div>
-    // </Router>
+   
     
   );
 }
