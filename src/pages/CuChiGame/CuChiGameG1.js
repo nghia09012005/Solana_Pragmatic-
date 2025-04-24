@@ -3,19 +3,17 @@ import Loading from './Loading';
 import '../../styles/CuChiStyle/CuChiGameG1.css';
 import '../../styles/CuChiStyle/usequiz.css';
 import ReactAudioPlayer from 'react-audio-player';
-import audioFile from '../../assets/CuChiGame/audio/Cuchisound.mp3'; // Import tệp âm thanh
-import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.png'; // Nhân vật
+import audioFile from '../../assets/CuChiGame/audio/Cuchisound.mp3';
+import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.png';
 import { useNavigate } from 'react-router-dom';
-import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';//bản đồ địa đạo
-import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';//vị trí địa đạo
+import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
+import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';
 import Usequiz from "./Usequiz";
-
 
 const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
-  const [dialogStep, setDialogStep] = useState(0); // Bắt đầu luôn từ câu đầu
-  const [showAlert, setShowAlert] = useState(true); // Quản lý trạng thái alert
-  const [audioPlaying, setAudioPlaying] = useState(false); // Trạng thái nhạc
+  const [dialogStep, setDialogStep] = useState(0);
+  const [audioPlaying, setAudioPlaying] = useState(false);
   const navigate = useNavigate();
 
   const dialogues = [
@@ -25,14 +23,12 @@ const CuChiGameG1 = () => {
     'Bắt đầu thôi nào!',
     'Có vẻ đồng chí là người mới tôi sẽ giải thích một chút về nơi này để đồng chí nắm bắt.',
     'Địa đạo Củ Chi, cách TP.HCM khoảng 70km về phía Tây Bắc, là biểu tượng cho sự sáng tạo và kiên cường của quân và dân Củ Chi trong cuộc kháng chiến chống Mỹ.',
-    'Hệ thống của ta gồm các đường hầm đồ sộ với khoảng 250km đường hầm tỏa rộng như mạng nhện, và gồm nhiều công trình liên hoàn như chiến hào, ụ chiến đấu, hầm ăn ngủ, hội họp, quân y, kho tàng, giếng nước, bếp Hoàng Cầm.',
-    'Nơi đây đã hình thành từ những hầm bí mật thời kháng chiến chống Pháp, và ở giai đoạn kháng chiến chống Mỹ này nó lại càn phát triển mạnh mẽ hơn, đặc biệt sau các cuộc càn quét lớn của địch.',
-    'Biệt danh "Làng ngầm trong lòng đất": Thể hiện rõ nét cuộc sống và chiến đấu diễn ra dưới lòng đất của chúng tôi những con người Củ Chi.',
+    'Hệ thống của ta gồm các đường hầm đồ sộ với khoảng 250km đường hầm tỏa rộng như mạng nhện...',
+    'Nơi đây đã hình thành từ những hầm bí mật thời kháng chiến chống Pháp...',
+    'Biệt danh "Làng ngầm trong lòng đất": Thể hiện rõ nét cuộc sống và chiến đấu diễn ra dưới lòng đất...',
     'Hãy khắc sâu những kỳ tích hào hùng này để mai này khi thống nhất nó không bị mai một đi.',
-
   ];
 
-  // quiz 
   const questions = [
     {
       question: "Địa đạo Củ Chi nằm ở tỉnh/thành nào?",
@@ -68,31 +64,56 @@ const CuChiGameG1 = () => {
     totalQuestions,
   } = Usequiz(questions);
 
-///
-
-
   useEffect(() => {
-    // Thời gian chờ cho loading
     const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleNextDialog = () => {
-    if (dialogStep < dialogues.length - 1) {
-      setDialogStep(dialogStep + 1);
-    } else {
-      // Kết thúc hội thoại, ẩn text box
+  const handleClickAnywhere = () => {
+    if (!audioPlaying) setAudioPlaying(true);
+
+    // Nếu chưa đến đoạn quiz
+    if (dialogStep < 7) {
+      setDialogStep(prev => prev + 1);
+    }
+
+    // Nếu đã xong quiz và còn thoại thì tiếp tục thoại
+    if (dialogStep >= 7 && isFinished && dialogStep < dialogues.length - 1) {
+      setDialogStep(prev => prev + 1);
+    }
+
+    // Nếu đã xong hết thì chuyển màn
+    if (dialogStep >= dialogues.length - 1 && isFinished) {
       setDialogStep(-1);
       navigate('/morse');
     }
   };
 
-  // Hàm xử lý khi click vào bất kỳ đâu
-  const handleClickAnywhere = () => {
-    if (!audioPlaying) {
-      setAudioPlaying(true);
-    }
+
+// phát nhạc liên tục
+useEffect(() => {
+  const audio = new Audio(audioFile);
+  audio.loop = true;
+
+  audio.play().catch((err) => console.log("Error playing audio:", err));
+
+  return () => {
+    audio.pause();        // 👈 Dừng nhạc
+    audio.currentTime = 0; // 👈 Reset về đầu (tuỳ chọn)
   };
+}, []);
+
+
+//
+
+
+  // // Hàm xử lý khi click vào bất kỳ đâu
+  // const handleClickAnywhere = () => {
+  //   if (!audioPlaying) {
+  //     setAudioPlaying(true);
+  //   }
+  // };
+
 
   return (
     <>
@@ -100,32 +121,65 @@ const CuChiGameG1 = () => {
         <Loading />
       ) : (
         <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
-          {/* Alert thanh thông báo */}
-          {showAlert && (
-            <div className="alert-banner">
-              🎖️ Chào mừng đồng chí đến với chiến trường Củ Chi! <br />
-              🎖️ Trả lời quizz để nhận thêm exp và vàng 
-              <button className="close-alert" onClick={() => setShowAlert(false)}>
-                ❌
-              </button>
+          <div className="character-wrapper">
+            <img src={characterImg} alt="Character" className="character-model" />
+
+            {/* Hộp thoại chỉ hiện khi KHÔNG trong phần quiz */}
+            {dialogStep !== -1 && (dialogStep < 7 || isFinished) && (
+              <div className="dialog-box">
+                <p>{dialogues[dialogStep]}</p>
+              </div>
+            )}
+          </div>
+
+          <div className="image-container">
+            {dialogStep >= 6 && <img src={diadaomap} alt="map" className="map" />}
+            {dialogStep >= 5 && <img src={didaodist} alt="dist" className="dist" />}
+          </div>
+
+          {/* Quiz chỉ hiện từ dialogStep >= 7 và chưa xong */}
+          {!isFinished && dialogStep >= 7 && currentQuestion && (
+            <div className="quiz-container">
+              <p className="quiz-question">{currentQuestion.question}</p>
+              <div className="quiz-options">
+                {currentQuestion.options.map((option) => (
+                  <button
+                    key={option}
+                    className={`quiz-option ${
+                      selectedOption
+                        ? option === currentQuestion.answer
+                          ? "correct"
+                          : option === selectedOption
+                          ? "incorrect"
+                          : ""
+                        : ""
+                    }`}
+                    onClick={() => selectOption(option)}
+                    disabled={!!selectedOption}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+              {selectedOption && (
+                <button
+                onClick={() => {
+                  if (currentIndex === totalQuestions - 1) {
+                    // Quiz vừa hoàn tất => hiện dialog tiếp
+                    nextQuestion();
+                    setDialogStep((prev) => prev + 1);
+                  } else {
+                    nextQuestion();
+                  }
+                }}
+                className="quiz-button"
+              >
+                  Tiếp tục
+                </button>
+              )}
             </div>
           )}
 
-          {/* Nhân vật */}
-          <div className="character-wrapper">
-          <img 
-            src={characterImg} 
-            alt="Character" 
-            className="character-model" 
-          />
-          {/* Hộp thoại */}
-          {dialogStep !== -1 && (
-            <div className="dialog-box">
-              <p>{dialogues[dialogStep]}</p>
-              <button onClick={handleNextDialog}>Tiếp tục</button>
-            </div>
-          )}
-          </div>
 
 
             <div className="image-container">
@@ -169,7 +223,10 @@ const CuChiGameG1 = () => {
           
           
           {/* Nhạc nền */}
+          {/* {audioPlaying && (
+
           {audioPlaying && (
+
             <ReactAudioPlayer
               src={audioFile}
               autoPlay
@@ -177,7 +234,7 @@ const CuChiGameG1 = () => {
               controls={false}
               onError={() => console.log("Error loading audio")}
             />
-          )}
+          )} */}
         </div>
       )}
     </>

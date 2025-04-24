@@ -1,8 +1,8 @@
 import '../styles/HomePage.css'; 
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
-
+import useSignUp from '../hooks/useSignUp';
+import useSignIn from '../hooks/useSignIn';
 import Footer from '../components/layout/Footer';
 
 
@@ -10,6 +10,37 @@ function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false); // Thêm state cho signin box
   const [showSignUp, setShowSignUp] = useState(false); // Thêm state này
+  const [isSignin, setissignin] = useState(false);
+
+  // signup var 
+const [username, setUsername] = useState("");
+const [password, setPassword] = useState("");
+const [passwordAgain, setPasswordAgain] = useState("");
+const { signUp, loading, message } = useSignUp();
+  //----------
+
+//signin var
+const [signinUsername, setSigninUsername] = useState("");
+const [signinPassword, setSigninPassword] = useState("");
+const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
+//----------
+
+
+// check khi reload trang
+  // Kiểm tra đăng nhập khi reload trang
+  useEffect(() => {
+    const user = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+    if (user && (token != null || token != "undefined")) {
+      setissignin(true);  // Nếu tồn tại username trong localStorage, coi như đã đăng nhập
+    }
+    else{
+      setissignin(false);
+    }
+  }, []);
+
+//-------------
+
   
   const switchToSignUp = () => {
     setShowSignIn(false); // Tắt form đăng nhập
@@ -25,8 +56,45 @@ function HomePage() {
     }, 300);
   };
 
+// handle signup
+const handleSignUp = async () => {
+  if (password !== passwordAgain) {
+    alert("Mật khẩu không khớp");
+    return;
+  }
+
+  const success = await signUp({ username, password });
+
+  if (!success) {
+    // Nếu đăng ký thất bại, hiển thị lỗi
+    alert(message || "Đăng ký thất bại. Tên người dùng đã tồn tại.");
+  } else {
+    // Nếu đăng ký thành công, có thể điều hướng hoặc thực hiện thao tác khác
+    alert("Đăng ký thành công!");
+  }
+  switchToSignIn();
+
+};
+//--------------
 
 
+//handle signin
+const handleSignIn = async () => {
+  const result = await signIn({ username: signinUsername, password: signinPassword });
+
+  if (result.success) {
+    // Lưu token và username vào localStorage
+    // localStorage.setItem('username', signinUsername);
+    // localStorage.setItem('token', result.token);  // result.token là token nhận được từ API
+    setissignin(true); // Đánh dấu người dùng đã đăng nhập
+    setShowSignIn(false);
+    setShowSignUp(false);
+  } else {
+    alert("Đăng nhập thất bại. Vui lòng kiểm tra tài khoản hoặc mật khẩu.");
+  }
+};
+
+//----------
 
 useEffect(() => {
   const handleMouseMove = (e) => {
@@ -95,22 +163,32 @@ useEffect(() => {
   <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
 </ul>
 
-        <div className="head-right">
-        <div className="button-box">
-        <button onClick={() =>{ setShowSignUp(!showSignUp); setShowSignIn(false);}}> 
-              ĐĂNG KÝ
-          </button> 
-            
-          </div>
         
-          <div className="button-box">
-          <button onClick={() => {setShowSignIn(!showSignIn); setShowSignUp(false); }}> 
-              ĐĂNG NHẬP
-          </button> 
-            
-          </div>
 
-        </div>
+        {!isSignin &&  
+         <div className="head-right">
+         <div className="button-box">
+       <button onClick={() =>{ setShowSignUp(!showSignUp); setShowSignIn(false);}}> 
+             ĐĂNG KÝ
+         </button> 
+         </div>
+         <div className="button-box">
+         <button onClick={() => {setShowSignIn(!showSignIn); setShowSignUp(false); }}> 
+             ĐĂNG NHẬP
+         </button> 
+         </div>
+         </div>
+        }
+           
+          {isSignin && 
+            
+            <div className='signin'>{localStorage.getItem('username')}</div> 
+                 
+          }
+
+       
+
+
       </header>
 
 
@@ -149,14 +227,14 @@ useEffect(() => {
 
       {(showSignIn || showSignUp) && <div className="overlay"></div>}
       
-      {showSignUp && (
+      { showSignUp && (
         <div className="signup-page-box">
           <div className="signup-page">
             <h1>ĐĂNG KÝ</h1>
             <h3>
-              <input type="text" placeholder="Tên tài khoản" />
-              <input type="password" placeholder="Mật khẩu" />
-              <input type="password-ensure" placeholder="Nhập lại mật khẩu" />
+            <input type="text" placeholder="Tên tài khoản" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input type="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" placeholder="Nhập lại mật khẩu" value={passwordAgain} onChange={(e) => setPasswordAgain(e.target.value)} />
             </h3>
             <div>
             Bạn đã có tài khoản?{" "}
@@ -164,17 +242,30 @@ useEffect(() => {
               Đăng nhập ngay
             </span>
           </div>
-            <button>ĐĂNG KÝ</button>
+          <button onClick={handleSignUp} disabled={loading}>
+             {loading ? "Đang đăng ký..." : "ĐĂNG KÝ"}
+          </button>
           </div>
         </div>
       )}
+
      {showSignIn && (
         <div className="signin-page-box">
           <div className="signin-page">
             <h1>ĐĂNG NHẬP</h1>
             <h3>
-              <input type="text" placeholder="Tên tài khoản" />
-              <input type="password" placeholder="Mật khẩu" />
+              <input 
+          type="text" 
+          placeholder="Tên tài khoản" 
+          value={signinUsername} 
+          onChange={(e) => setSigninUsername(e.target.value)} 
+        />
+        <input 
+          type="password" 
+          placeholder="Mật khẩu" 
+          value={signinPassword} 
+          onChange={(e) => setSigninPassword(e.target.value)} 
+        />
             </h3>
             <div>
               Bạn chưa có tài khoản?{" "}
@@ -185,7 +276,9 @@ useEffect(() => {
                 Đăng ký ngay
               </span>
             </div>
-            <button>ĐĂNG NHẬP</button>
+            <button onClick={handleSignIn} disabled={loadingSignIn}>
+        {loadingSignIn ? "Đang đăng nhập..." : "ĐĂNG NHẬP"}
+      </button>
           </div>
         </div>
       )}
