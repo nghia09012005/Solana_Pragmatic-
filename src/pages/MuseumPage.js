@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TiChevronLeftOutline, TiChevronRightOutline } from "react-icons/ti";
 import { BsArrowsFullscreen } from "react-icons/bs";
+import { FaHome } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/MuseumPage.css';
 
@@ -112,6 +113,10 @@ const Card = ({ artwork, isActive }) => {
     setTimeout(() => {
       if (artwork.title === "Địa Đạo Củ Chi") {
         navigate('/cuchigame');
+      } else if (artwork.title === "Tranh Đông Hồ") {
+        navigate('/donghogame');
+      } else if (artwork.title === "Cồng Chiêng Tây Nguyên") {
+        navigate('/taynguyengame');
       } else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });
       }
@@ -185,8 +190,19 @@ const Carousel = ({ children }) => {
   );  
 };  
 
-const MuseumPage = () => (  
+const MuseumPage = () => {
+  const navigate = useNavigate();
+
+  const goToHome = () => {
+    navigate('/');
+  };
+
+  return (
   <div className='museum-page-body'>
+    <button className="home-button" onClick={goToHome}>
+      <FaHome />
+      <span> Trang chủ </span>
+    </button>
   <div className="app">  
     <Carousel>  
       {CARDS.map((artwork, i) => (  
@@ -200,5 +216,6 @@ const MuseumPage = () => (
   </div>  
   </div>
 );  
+};
 
 export default MuseumPage;

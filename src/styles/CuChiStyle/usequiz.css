@@ -5,16 +5,21 @@
     transform: translate(-50%, -50%);
     max-width: 400px;
     width: 90%;
-    background-color: #fff;
+    background-color:rgba(255, 253, 240, 0.9);;
     padding: 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow:  0 12px 30px rgba(0, 0, 0, 0.25);
+    border: 2px solid #8d6e63; /* viền đất */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   
   .quiz-question {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    font-size: 24px;
+    font-weight: 550;
+  color: #3e2723;
+  text-align: center;
+  margin-bottom: 34px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   
   .quiz-options {
@@ -25,41 +30,54 @@
   
   .quiz-option {
     padding: 0.75rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+   
+    background: #fff8e1;
+  color: #4e342e;
+  border: 2px solid #a1887f;
+  border-radius: 14px;
     cursor: pointer;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: left;
     transition: all 0.2s ease;
+    font-size: medium;
+    font-weight:normal;
   }
   
   .quiz-option:hover {
-    background-color: #eee;
+    background-color: #ffe082;
+    border-color: #ffca28;
+    color: #3e2723;
   }
   
   .quiz-option.correct {
-    background-color: #c9f7c9;
-    border-color: #3adb3a;
+    background-color: #c5e1a5;
+    border-color: #7cb342;
+    color: #1b5e20;
   }
   
   .quiz-option.incorrect {
-    background-color: #f9c9c9;
-    border-color: #e02e2e;
+    background-color: #ffcdd2;
+    border-color: #e53935;
+    color: #b71c1c;
   }
   
   .quiz-button {
     margin-top: 1.5rem;
     padding: 0.75rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    font-weight: 500;
+    background-color: #6d4c41;
+  color: #fff8e1;
+  font-size: large;
+  font-weight: 600;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   
   .quiz-button:hover {
-    background-color: #0056b3;
+    background-color: #5d4037;
   }
   
   .quiz-score {
@@ -68,14 +86,7 @@
     margin-bottom: 1rem;
     text-align: center;
   }
-  .quiz-question {
-    font-size: 20px;             /* Kích thước chữ */
-    font-weight: bold;           /* Đậm */
-    color: #333;                 /* Màu chữ */
-    text-align: center;          /* Căn giữa */
-    margin-bottom: 20px;         /* Khoảng cách dưới */
-    padding: 10px;               /* Đệm quanh câu hỏi */
-    background-color: #f7f7f7;   /* Màu nền nhẹ */
-    border-radius: 8px;          /* Bo góc cho nền */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho nền */
-  }
+  .quiz-option:active,
+.quiz-button:active {
+  transform: scale(0.98);
+}
