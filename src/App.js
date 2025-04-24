@@ -23,7 +23,9 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          // <Route path="/" element={<FlipCard />} />
+        <Route path="/" element={<DongHoGame />} />
+        <Route path="/FlipCard" element={<FlipCard />} />
+
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
@@ -36,10 +38,10 @@ function App() {
           {/* <Route path="/" element={<CuChiGameG1/>} /> */}
           {/* <Route path="/morse" element={<Morse />} /> */}
 
-          {/* <Route path="/museum" element={<MuseumPage />} />
+          <Route path="/museum" element={<MuseumPage />} />
       
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="*" element={<NotFoundPage />} /> */}
+          {/* <Route path="/profile" element={<ProfilePage />} /> */}
+         {/* <Route path="*" element={<NotFoundPage />} />  */}
         </Routes>
       </main>
       {/* <Footer /> */}
