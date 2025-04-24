@@ -97,16 +97,16 @@ useEffect(() => {
 
         <div className="head-right">
         <div className="button-box">
-          <button onClick={() => setShowSignUp(!showSignUp)}>
+        <button onClick={() =>{ setShowSignUp(!showSignUp); setShowSignIn(false);}}> 
               ĐĂNG KÝ
-          </button>
+          </button> 
             
           </div>
         
           <div className="button-box">
-          <button onClick={() => setShowSignIn(!showSignIn)}>
+          <button onClick={() => {setShowSignIn(!showSignIn); setShowSignUp(false); }}> 
               ĐĂNG NHẬP
-          </button>
+          </button> 
             
           </div>
 
