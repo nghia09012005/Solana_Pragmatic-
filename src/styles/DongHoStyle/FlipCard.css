@@ -41,7 +41,7 @@
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
-  font-size: 14px;
+  font-size: 90%;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -62,7 +62,7 @@
 
 /* Hình ảnh nhân vật */
 .info-img {
-  height: 200px;
+  height: 40%;
   border-radius: 50%;
   position: absolute;
   bottom: 1px; /* Nằm sát mép dưới */
@@ -82,6 +82,7 @@
 /* Các thẻ bài */
 /* Các thẻ bài */
 .flip-card {
+  position: relative;
   width: 100%;
   height: 100%;
   border-radius: 18px;
@@ -94,6 +95,7 @@
   backdrop-filter: blur(3px); /* Làm mờ nhẹ nền */
   border: 1px solid rgba(153, 123, 89, 0.25); /* Viền nhẹ nâu */
   cursor: pointer;
+
 }
 
 .flip-card:hover {
@@ -110,6 +112,7 @@
 .flip-card.matched {
   background-color: transparent;
   transform: rotateY(180deg); /* Lật thẻ */
+  
 }
 
 .card-image {
@@ -118,10 +121,10 @@
   border-radius: 8px;
    position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Đảm bảo ảnh phủ đầy mà không bị méo */
+  /* left: 10%; */
+ width:100%;
+ height:100%;
+  
   border-radius: 10px; /* Khớp với border-radius của flip-card */
   z-index: 1;
 }
