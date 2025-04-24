@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/DongHoStyle/FlipCard.css';
 import nhanvat from '../../assets/DongHoGame/image/nhanvat.png';
 import flipSound from '../../assets/DongHoGame/audio/flipcard.mp3';
 import congratsSound from '../../assets/DongHoGame/audio/level-win.mp3';
 import nhacNen from '../../assets/DongHoGame/audio/FlipCardnhacnen.mp3';
-
 import Swal from 'sweetalert2';
 
 // Import tranh
@@ -45,21 +45,25 @@ const imageObjects = [
 // Shuffle array
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
-const showCongrats = (audioRef) => {
+const showCongrats = (audioRef, playAgainFn, returnToMuseumFn) => {
+  if (audioRef.current) {
+    audioRef.current.pause();
+  }
+  
   Swal.fire({
-    title: '🎉 Chúc mừng bạn đã có được toàn bộ số tranh này! 🎉',
-    text: 'Bạn đã làm rất tốt!',
-    icon: 'success',
-    confirmButtonText: 'OK',
-    background: '#FEFBEEFF',
-    customClass: {
-      title: 'congrats-title',
-      popup: 'congrats-popup',
-    },
-  }).then(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
+    title: "Chúc mừng!",
+    text: "Bạn đã nhận được toàn bộ số tranh này!",
+    icon: "success",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Chơi lại",
+    cancelButtonText: "Quay về Bảo tàng"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      playAgainFn();
+    } else {
+      returnToMuseumFn();
     }
   });
 };
@@ -74,6 +78,7 @@ const FlipCard = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [audioStarted, setAudioStarted] = useState(false);
   const audioRef = useRef(new Audio(nhacNen));
+  const navigate = useNavigate();
 
   // Shuffle cards
   useEffect(() => {
@@ -82,11 +87,11 @@ const FlipCard = () => {
     setCards(shuffled);
   }, []);
 
-  // Play congrat sound + Swal
+  // Play congrat sound when game completed
   useEffect(() => {
-    if (matched.length === imageObjects.length) {
-      setCompleted(true);
+    if (matched.length === imageObjects.length && matched.length > 0) {
       new Audio(congratsSound).play();
+      showCongrats(audioRef, playAgain, returnToMuseum);
     }
   }, [matched]);
 
@@ -97,6 +102,7 @@ const FlipCard = () => {
       setTimeout(() => setShowInfo(true), 50);
     }
   }, [info]);
+
 
   // Show Swal when game done
   useEffect(() => {
@@ -135,6 +141,30 @@ const FlipCard = () => {
     }
   };
 
+  // Hàm quay lại trò chơi từ đầu
+  const playAgain = () => {
+    // Reset trạng thái game
+    setCards([]);
+    setFlipped([]);
+    setMatched([]);
+    setInfo('');
+    
+    // Tạo lại bộ bài mới
+    const duplicated = [...imageObjects, ...imageObjects];
+    const shuffled = shuffle(duplicated.map((item, index) => ({ ...item, id: index })));
+    setCards(shuffled);
+  };
+
+  // Hàm quay về bảo tàng
+  const returnToMuseum = () => {
+    // Dừng nhạc nền trước khi rời khỏi trang
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    navigate('/museum'); // Quay về trang chính/bảo tàng
+  };
+
   return (
     <div className="game-container">
       <div className="card-grid">
@@ -145,7 +175,7 @@ const FlipCard = () => {
             onClick={() => handleFlip(card)}
           >
             {(flipped.includes(card) || matched.includes(card.img)) && (
-              <img src={card.img} alt="card" className={`card-image ${completed ? 'faded' : ''}`} />
+              <img src={card.img} alt="card" className="card-image" />
             )}
           </div>
         ))}
