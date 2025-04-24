@@ -20,7 +20,7 @@ import FlipCard from './pages/DongHoGame/FlipCard';
 import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
 import ThongTin304 from './pages/Thongnhat/ThongTin304';
-
+import Personalmuseum from './pages/PersonalMuseum';
   
 function App() {
   // const { loading } = useAuth();
@@ -35,7 +35,7 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        <Route path="/" element={<HomePage />} />
+
           <Route path="/museum" element={<MuseumPage />} />
           
           {/* Tây Nguyên Gongs Game */}
