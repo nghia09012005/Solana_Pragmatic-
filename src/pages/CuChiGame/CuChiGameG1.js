@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Loading from './Loading';  
+import CuChiLoading from './CuChiLoading';  
 import '../../styles/CuChiStyle/CuChiGameG1.css';
 import '../../styles/CuChiStyle/usequiz.css';
 import ReactAudioPlayer from 'react-audio-player';
@@ -10,14 +10,22 @@ import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
 import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';
 import Usequiz from "./Usequiz";
 
+// Add a style to control transitions
+const noTransitionStyle = {
+  transition: 'none'
+};
+
+
 const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
   const navigate = useNavigate();
 
+
+  
   const dialogues = [
-    'Chào đồng chí, đây là khu căn cứ địa Củ Chi!',
+    'Chào đồng chí, đây là khu căn cứ địa đạo Củ Chi!',
     'Chào mừng đồng chí tình báo đã đến đây, đồng chí hãy tìm hiểu và hoàn thành tốt nhiệm vụ được giao.',
     'Đồng chí hãy luôn trong tư thế sẵn sàng chiến đấu !!!!!!!!!',
     'Bắt đầu thôi nào!',
@@ -64,10 +72,17 @@ const CuChiGameG1 = () => {
     totalQuestions,
   } = Usequiz(questions);
 
+// <<<<<<< HEAD
+  const handleLoadingComplete = () => {
+    // Immediately remove loading screen without transition
+    setLoading(false);
+  };
+// =======
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
+// >>>>>>> origin/hompageupdate
 
   const handleClickAnywhere = () => {
     if (!audioPlaying) setAudioPlaying(true);
@@ -91,17 +106,17 @@ const CuChiGameG1 = () => {
 
 
 // phát nhạc liên tục
-useEffect(() => {
-  const audio = new Audio(audioFile);
-  audio.loop = true;
+// useEffect(() => {
+//   const audio = new Audio(audioFile);
+//   audio.loop = true;
 
-  audio.play().catch((err) => console.log("Error playing audio:", err));
+//   audio.play().catch((err) => console.log("Error playing audio:", err));
 
-  return () => {
-    audio.pause();        // 👈 Dừng nhạc
-    audio.currentTime = 0; // 👈 Reset về đầu (tuỳ chọn)
-  };
-}, []);
+//   // return () => {
+//   //   audio.pause();        // 👈 Dừng nhạc
+//   //   audio.currentTime = 0; // 👈 Reset về đầu (tuỳ chọn)
+//   // };
+// }, []);
 
 
 //
@@ -118,8 +133,19 @@ useEffect(() => {
   return (
     <>
       {loading ? (
-        <Loading />
+        <CuChiLoading onLoadingComplete={handleLoadingComplete} />
       ) : (
+// <<<<<<< HEAD
+//         <div className="cuchigameg1-background" style={noTransitionStyle} onClick={handleClickAnywhere}>
+//           {/* Alert thanh thông báo */}
+//           {showAlert && (
+//             <div className="alert-banner">
+//               🎖️ Chào mừng đồng chí đến với chiến trường Củ Chi! <br />
+//               🎖️ Trả lời quizz để nhận thêm exp và vàng 
+//               <button className="close-alert" onClick={() => setShowAlert(false)}>
+//                 ❌
+//               </button>
+// =======
         <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
           <div className="character-wrapper">
             <img src={characterImg} alt="Character" className="character-model" />
@@ -133,8 +159,8 @@ useEffect(() => {
           </div>
 
           <div className="image-container">
-            {dialogStep >= 6 && <img src={diadaomap} alt="map" className="map" />}
-            {dialogStep >= 5 && <img src={didaodist} alt="dist" className="dist" />}
+            {dialogStep >= 4 && <img src={diadaomap} alt="map" className="map" />}
+            {dialogStep >= 4 && <img src={didaodist} alt="dist" className="dist" />}
           </div>
 
           {/* Quiz chỉ hiện từ dialogStep >= 7 và chưa xong */}
@@ -174,9 +200,10 @@ useEffect(() => {
                 }}
                 className="quiz-button"
               >
-                  Tiếp tục
+                  TIẾP TỤC
                 </button>
               )}
+
             </div>
           )}
 
@@ -223,7 +250,7 @@ useEffect(() => {
           
           
           {/* Nhạc nền */}
-          {/* {audioPlaying && (
+          
 
           {audioPlaying && (
 
@@ -234,7 +261,9 @@ useEffect(() => {
               controls={false}
               onError={() => console.log("Error loading audio")}
             />
-          )} */}
+          )} 
+
+
         </div>
       )}
     </>

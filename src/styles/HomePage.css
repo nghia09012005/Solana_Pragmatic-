@@ -25,7 +25,120 @@ html, body {
   overflow-x: hidden;
 }
 
+/* issignin */
+/* .signin {
+  position: fixed;          
+  top: 20px;
+  right: 20px;
+  background-color: #b79540;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  transition: all 0.3s ease;
+} */
 
+.signin {
+  position: fixed;
+  top: 0.5px;
+  right: 100px;
+  padding: 7px 15px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 13px;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: #fff;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  z-index: 999;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: linear-gradient(to top, rgba(255, 215, 0, 0.25), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.2), 0 4px 30px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+/* Ánh vàng từ dưới lên */
+.signin::before {
+  content: "";
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(to top, rgba(195, 171, 33, 0.4), transparent);
+  animation: goldGlow 3s infinite ease-in-out;
+  z-index: -1;
+}
+
+/* Viền xanh biển blink blink */
+.signin::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  border-radius: 14px;
+  background: linear-gradient(45deg, #1b5155, #144e7c, #40858a);
+  background-size: 400% 400%;
+  animation: borderBlink 4s ease infinite;
+  z-index: -2;
+  pointer-events: none;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+@keyframes goldGlow {
+  0% {
+    bottom: -100%;
+    opacity: 0;
+  }
+  50% {
+    bottom: 0%;
+    opacity: 1;
+  }
+  100% {
+    bottom: -100%;
+    opacity: 0;
+  }
+}
+
+@keyframes borderBlink {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.6);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+}
+
+.signin:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4), 0 8px 36px rgba(0, 0, 0, 0.35);
+}
+
+/* het nut signiin */
 .container{
   display: flex;  /* Thay đổi từ fixed thành flex */
   flex-direction: column;
