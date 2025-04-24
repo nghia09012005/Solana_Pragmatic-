@@ -1,0 +1,202 @@
+/* Tank Game Styles */
+
+/* Container cho game - chiếm toàn màn hình */
+.game-container {
+  width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
+  height: 100vh; /* Chiếm toàn bộ chiều cao màn hình */
+  background-color: #2d2d2d;
+  position: relative;
+  overflow: hidden;
+  border: none; /* Loại bỏ border nếu không cần thiết */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/Thongnhat/images/Dinhdoclapcali.jpeg"); /* hoặc ảnh nền khác */
+}
+
+/* Tank */
+.tank {
+  position: absolute;
+  bottom: 5%;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../assets/Thongnhat/images/tank.png");
+  background-size: contain; /* Hoặc 'cover' tùy theo yêu cầu */
+  background-position: center;
+  background-repeat: no-repeat; /* Đảm bảo hình ảnh không bị lặp lại */
+ 
+}
+/* Bullet */
+.bullet {
+  position: absolute;
+  width: 8px;
+  height: 20px;
+  background-image: url("../../assets/Thongnhat/images/bullet.png"); /* Đảm bảo đường dẫn hình ảnh đúng */
+  background-size: cover;
+  transform: translateX(-50%);
+  z-index: 1; /* Đảm bảo đạn hiển thị trên cùng */
+}
+/* Obstacle */
+.obstacle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../assets/Thongnhat/images/obstacle.png"); /* Đảm bảo đường dẫn hình ảnh đúng */
+  background-size: cover; /* Hoặc 'contain' tùy theo yêu cầu */
+  z-index: 0; /* Đảm bảo chướng ngại vật nằm dưới đạn */
+  border-radius: 5px; /* Nếu muốn chướng ngại vật có góc bo tròn */
+}
+
+/* Score Text */
+.score-text {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  font-size: 30px;
+}
+
+/* Game Over Screen */
+.game-over {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.75);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000; /* Đảm bảo Game Over luôn hiển thị trên các phần khác */
+}
+
+/* Nội dung Game Over */
+.game-over-content {
+text-align: center;
+color: white;
+animation: fadeIn 0.5s ease-in-out; /* Hiệu ứng hiển thị */
+}
+
+/* Hiệu ứng fadeIn */
+@keyframes fadeIn {
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+.game-over h2 {
+font-size: 36px;
+margin-bottom: 20px;
+}
+
+.game-over p {
+font-size: 24px;
+margin-bottom: 20px;
+}
+
+.game-over button {
+background-color: #4CAF50;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 18px;
+}
+
+.game-over button:hover {
+background-color: #45a049;
+}
+
+/* Success */
+/* Success Container */
+.success {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Nền mờ tối */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Đảm bảo hiển thị trên tất cả các phần tử khác */
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  animation: fadeIn 1s ease-out; /* Hiệu ứng mờ dần khi hiện lên */
+}
+
+/* Nội dung của success */
+.success-content {
+  text-align: center;
+  padding: 20px;
+  background-color: #28a745; /* Màu xanh cho sự thành công */
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.5s ease-out; /* Hiệu ứng bật lên */
+}
+
+/* Tạo hiệu ứng fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Tạo hiệu ứng bounceIn */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Thêm kiểu cho tiêu đề */
+.success h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase; /* Tăng độ nổi bật */
+}
+
+/* Thêm kiểu cho phần điểm số */
+.success p {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: normal;
+  color: #fff;
+}
+
+/* Thêm kiểu cho nút (nếu có) */
+.success button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: none;
+  color: #28a745;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Thêm hiệu ứng hover cho nút */
+.success button:hover {
+  background-color: #28a745;
+  color: white;
+}

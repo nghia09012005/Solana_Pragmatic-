@@ -8,9 +8,17 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
+<<<<<<< HEAD
 import DongHoGame from './pages/DongHoGame/DongHoGameG1';
 
 import FlipCard from './pages/DongHoGame/FlipCard';
+=======
+import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
+import Morse from './pages/CuChiGame/Morse';
+import TankGame from './pages/Thongnhat/TankGame';
+import Bantin from './pages/Thongnhat/Bantin';
+import ThongTin304 from './pages/Thongnhat/ThongTin304';
+>>>>>>> tankgame
 
 function App() {
   const { loading } = useAuth();
@@ -26,22 +34,31 @@ function App() {
         <Routes>
 
 
+
         {/* {<Route path="/" element={<DongHoGame />} />}
         {<Route path="/FlipCard" element={<FlipCard />} />} */}
+
+          {/* <Route path="/" element={<HomePage />} /> */}
+          {/* <Route path="/" element={<TankGame />} /> */}
+
+          {/* <Route path="/" element={<Bantin />} /> */}
+
+          {/* <Route path="/" element={<ThongTin304 />} /> */}
+
 
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
           {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
           {/* path="/CuChiGame" sau khi test xong */}
           
-          {/* <Route path="/" element={<CuChiGameG1/>} /> */}
-          {/* <Route path="/morse" element={<Morse />} /> */}
+          {/* <Route path="/" element={<CuChiGameG1/>} />
+          <Route path="/morse" element={<Morse />} />
 
-          <Route path="/museum" element={<MuseumPage />} />
+          <Route path="/museum" element={<MuseumPage />} /> */}
       
           {/* <Route path="/profile" element={<ProfilePage />} /> */}
          {/* <Route path="*" element={<NotFoundPage />} />  */}
