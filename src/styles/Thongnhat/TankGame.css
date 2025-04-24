@@ -1,7 +1,7 @@
 /* Tank Game Styles */
 
 /* Container cho game - chiếm toàn màn hình */
-.game-container {
+.tank-container {
   width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
   height: 100vh; /* Chiếm toàn bộ chiều cao màn hình */
   background-color: #2d2d2d;

@@ -35,8 +35,8 @@ function App() {
 
 
 
-        {/* {<Route path="/" element={<DongHoGame />} />}
-        {<Route path="/FlipCard" element={<FlipCard />} />} */}
+         {<Route path="/" element={<DongHoGame />} />}
+        {<Route path="/FlipCard" element={<FlipCard />} />} 
 
           {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/" element={<TankGame />} /> */}
@@ -49,7 +49,7 @@ function App() {
           {/* <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
           {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
