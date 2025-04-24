@@ -46,10 +46,10 @@ function App() {
         {<Route path="/FlipCard" element={<FlipCard />} />} */}
 
 
-          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/" element={<HomePage />} />
 
-         {/* {<Route path="/" element={<DongHoGame />} />} */}
-        {/* {<Route path="/FlipCard" element={<FlipCard />} />}  */}
+         {/* {<Route path="/" element={<DongHoGame />} />}
+        {<Route path="/FlipCard" element={<FlipCard />} />}  */}
 
 
 
@@ -69,8 +69,8 @@ function App() {
 
           {/* path="/CuChiGame" sau khi test xong */}
           
-          <Route path="/" element={<CuChiGameG1/>} />
-          <Route path="/morse" element={<Morse />} />
+          {/* <Route path="/" element={<CuChiGameG1/>} />
+          <Route path="/morse" element={<Morse />} /> */}
 
           {/* <Route path="/museum" element={<MuseumPage />} /> */}
       
