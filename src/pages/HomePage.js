@@ -181,8 +181,8 @@ useEffect(() => {
         }
            
           {isSignin && 
-          
-            <div className='head-right'>{localStorage.getItem('username')}</div> 
+            
+            <div className='signin'>{localStorage.getItem('username')}</div> 
                  
           }
 
