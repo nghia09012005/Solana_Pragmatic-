@@ -8,17 +8,17 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
-<<<<<<< HEAD
+
 import DongHoGame from './pages/DongHoGame/DongHoGameG1';
 
 import FlipCard from './pages/DongHoGame/FlipCard';
-=======
+
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
 import Morse from './pages/CuChiGame/Morse';
 import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
 import ThongTin304 from './pages/Thongnhat/ThongTin304';
->>>>>>> tankgame
+
 
 function App() {
   const { loading } = useAuth();
