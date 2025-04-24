@@ -20,7 +20,7 @@ import Morse from './pages/CuChiGame/Morse';
 import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
 import ThongTin304 from './pages/Thongnhat/ThongTin304';
-
+import Personalmuseum from './pages/PersonalMuseum';
   
 function App() {
   // const { loading } = useAuth();
@@ -55,7 +55,7 @@ function App() {
 
           {/* <Route path="/" element={<HomePage />} /> */}
 
-          {/* <Route path="/" element={<TankGame />} /> */}
+          <Route path="/" element={<Personalmuseum />} />
 
           {/* <Route path="/" element={<Bantin />} /> */}
 
@@ -66,9 +66,9 @@ function App() {
           {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
           {/* path="/CuChiGame" sau khi test xong */}
-          
+{/*           
           <Route path="/" element={<CuChiGameG1/>} />
-          <Route path="/morse" element={<Morse />} />
+          <Route path="/morse" element={<Morse />} /> */}
 
           {/* <Route path="/museum" element={<MuseumPage />} /> */}
       

@@ -1,0 +1,315 @@
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+  
+  .museum-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .add-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid #333;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+  
+  .add-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+  }
+  
+  .placed-artifact {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    animation: artifactAppear 0.8s ease-out;
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.3));
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(6px);
+    overflow: visible;
+    transition: border-color 0.3s, box-shadow 0.3s ease;
+  }
+
+  .placed-artifact:hover {
+    border-color: #ffd700;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+  }
+  
+  .placed-artifact::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, #ffd700, #ffa500, #ff8c00);
+    border-radius: 19px;
+    z-index: -1;
+    opacity: 0.7;
+    animation: borderGlow 3s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  }
+  
+  .placed-artifact::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #8B4513, #654321);
+    border-radius: 17px;
+    z-index: -2;
+    opacity: 0.3;
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.2);
+  }
+  
+  .placed-artifact .artifact-image {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+  
+  .placed-artifact .artifact-image:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  @keyframes borderGlow {
+    0% {
+      opacity: 0.7;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+      opacity: 0.9;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+    }
+    100% {
+      opacity: 0.7;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+  }
+  
+  .remove-artifact {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .remove-artifact:hover {
+    background-color: rgba(255, 0, 0, 1);
+    transform: scale(1.1);
+  }
+  
+  @keyframes artifactAppear {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .artifact-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px;
+  }
+  
+  .artifact-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .artifact-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 320px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: menuSlideIn 0.5s ease-out;
+  }
+  
+  @keyframes menuSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(100px) translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+  }
+  
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(139, 69, 19, 0.2);
+    position: relative;
+  }
+  
+  .menu-header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.5), transparent);
+  }
+  
+  .menu-header h3 {
+    color: #8B4513;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-header button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #8B4513;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .menu-header button:hover {
+    background-color: rgba(139, 69, 19, 0.1);
+    transform: rotate(90deg);
+  }
+  
+  .menu-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 15px 0;
+  }
+  
+  .artifact-item {
+    text-align: center;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5));
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .artifact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .artifact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-color: rgba(139, 69, 19, 0.4);
+  }
+  
+  .artifact-item:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .artifact-item img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .artifact-item:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .artifact-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #8B4513;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
+  }
+  
