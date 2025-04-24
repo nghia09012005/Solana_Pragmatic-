@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
   background-color: var(--primary-dark);
   color: var(--text-light);
   padding-top: var(--spacing-xl);
@@ -110,4 +110,115 @@
     width: 100%;
     text-align: center;
   }
-} 
+}  */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+.footer-wrapper {
+  background-color: #1f1f1f;
+  padding: 50px 20px 20px;
+  font-family: 'Quicksand', sans-serif;
+  color: #ccc;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+  gap: 30px;
+}
+
+.footer-col {
+  flex: 1;
+  text-align: justify;
+  min-width: 220px;
+}
+
+.footer-col h3,
+.footer-col h4 {
+  color: #f0f0f0;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footer-col p {
+  color: #bbb;
+  font-size: 14px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #bbb;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #00bcd4;
+}
+
+.social-icons a {
+  font-size: 20px;
+  margin-right: 14px;
+  transition: transform 0.3s;
+  display: inline-block;
+}
+
+.social-icons a.facebook {
+  color: #1877f2;
+}
+.social-icons a.instagram {
+  position: relative;
+  display: inline-block;
+}
+
+.social-icons a.instagram i {
+  color: transparent;
+  background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: transform 0.3s;
+}
+
+.social-icons a.tiktok {
+  color: #ffffff;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+  margin-top: 30px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-col {
+    margin-bottom: 30px;
+  }
+
+  .social-icons a {
+    margin: 0 10px;
+  }
+}

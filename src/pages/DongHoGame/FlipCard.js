@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/DongHoStyle/FlipCard.css';
 import nhanvat from '../../assets/DongHoGame/image/nhanvat.png';
+import flipSound from '../../assets/DongHoGame/audio/flipcard.mp3';
+import congratsSound from '../../assets/DongHoGame/audio/level-win.mp3';
 
+import Swal from 'sweetalert2';
 // Import ảnh
 import p1BitMatBatDe from '../../assets/DongHoGame/image/p1BitMatBatDe.jpg';
 import p2DamCuoiChuot from '../../assets/DongHoGame/image/p2DamCuoiChuot.jpg';
@@ -41,13 +44,27 @@ const imageObjects = [
   { key: 'p8DanhGhen', img: p8DanhGhen },
 ];
 
+const showCongrats = () => {
+  Swal.fire({
+    title: '🎉 Chúc mừng bạn đã có được toàn bộ số tranh này! 🎉',
+    text: 'Bạn đã làm rất tốt!',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    background: '#FEFBEEFF',
+    customClass: {
+      title: 'congrats-title',
+      popup: 'congrats-popup',
+    },
+  });
+};
+
 const FlipCard = () => {
   const [cards, setCards] = useState([]);
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState([]);
   const [info, setInfo] = useState('');
   const [completed, setCompleted] = useState(false);
-
+  const [showInfo, setShowInfo] = useState(false);
   useEffect(() => {
     const duplicated = [...imageObjects, ...imageObjects];
     const shuffled = shuffle(duplicated.map((item, index) => ({ ...item, id: index })));
@@ -55,13 +72,39 @@ const FlipCard = () => {
   }, []);
 
   useEffect(() => {
+    if (completed) {
+      showCongrats(); // Chỉ gọi khi đã hoàn thành
+    }
+  }, [completed]); // Chỉ chạy khi completed thay đổi
+  
+
+  useEffect(() => {
+    if (info !== '') {
+      setShowInfo(false);
+      // Delay 1 chút để trigger animation lại từ đầu
+      setTimeout(() => setShowInfo(true), 50);
+    }
+  }, [info]);
+
+  useEffect(() => {
     if (matched.length === imageObjects.length) {
       setCompleted(true);
+      audio.play();
     }
   }, [matched]);
 
+  const playFlipSound = () => {
+    const audio = new Audio(flipSound);
+    audio.play();
+  };
+
+  const audio = new Audio(congratsSound);
+
+
   const handleFlip = (card) => {
     if (flipped.length === 2 || flipped.find(c => c.id === card.id) || matched.includes(card.img)) return;
+
+    playFlipSound(); 
 
     const newFlipped = [...flipped, card];
     setFlipped(newFlipped);
@@ -76,28 +119,33 @@ const FlipCard = () => {
     }
   };
 
+  
+  
+
   return (
     <div className="game-container">
       <div className="card-grid">
         {cards.map(card => (
           <div
             key={card.id}
-            className={`card ${flipped.includes(card) || matched.includes(card.img) ? 'flipped' : ''}`}
+            className={`flip-card ${flipped.includes(card) || matched.includes(card.img) ? 'flipped' : ''}`}
             onClick={() => handleFlip(card)}
           >
             {(flipped.includes(card) || matched.includes(card.img)) && (
               <img src={card.img} alt="card" className={`card-image ${completed ? 'faded' : ''}`} />
             )}
           </div>
+          
         ))}
-        {completed && (
-          <div className="congrats-message">
-            🎉 Chúc mừng bạn đã có được toàn bộ số tranh này! 🎉
-          </div>
-        )}
+        {/* {completed && (
+          showCongrats()
+          // <div className="congrats-message">
+          //  Chúc mừng bạn đã có được toàn bộ số tranh này! 
+          // </div>
+        )} */}
       </div>
       <div className="info-panel">
-        <div className="info-text">{info}</div>
+        <div className={`info-text ${showInfo ? 'appear' : ''}`}>{info}</div>
         <img src={nhanvat} alt="Nhân vật" className="info-img" />
       </div>
     </div>

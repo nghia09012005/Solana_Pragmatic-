@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { Carousel, CARDS, Card } from '../pages/MuseumPage';
+
 // Tạo instance axios với cấu hình mặc định
 const api = axios.create({
   baseURL: 'http://localhost:8080',
@@ -151,4 +153,19 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-}; 
+};
+// export const MuseumPage = () => (
+//   <div className="museum-page-body">
+//     <div className="app">
+//       <Carousel>
+//         {CARDS.map((artwork, i) => (
+//           <Card
+//             key={i}
+//             artwork={artwork}
+//             isActive={i === 0} />
+//         ))}
+//       </Carousel>
+//     </div>
+//   </div>
+// );
+ 

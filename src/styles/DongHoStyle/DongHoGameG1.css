@@ -1,32 +1,39 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap'); */
+
 .game-container {
   background-image: url('../../assets/DongHoGame/image/bg.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
   position: relative;
+  
   overflow: hidden;
+
 }
 
 .character-img {
   position: absolute;
   bottom: 0; /* đứng sát mép dưới */
   right: 2%; /* cách mép phải 2% */
-  height: 400px; 
+  height: 270px; 
+  width: auto;
 }
 
 .text-box {
   position: absolute;
   bottom: 10%; 
   left: 5%; 
+  width: 75%;
+  text-align: justify;
   right: 25%; 
   background-color: #f9e1a0; /* Màu nền vàng nhẹ */
   padding: 16px;
   border-radius: 15px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3); /* Bóng mờ nhẹ, tạo cảm giác nổi */
-  font-size: 16px;
+  font-size: 18px;  
   color: rgba(0, 0, 0);
   border: 2px solid #333; /* Viền đen cho khung */
-  font-family: 'Georgia', serif; /* Phông chữ sang trọng, cổ điển */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Phông chữ sang trọng, cổ điển */
   line-height: 1.5;
   display: flex;
   flex-direction: column;
@@ -74,29 +81,31 @@
 }
 
 /* Nút "Tiếp tục" ở góc dưới bên phải */
-.next-button {
-  position: absolute;
-  bottom: 10px; /* Cách mép dưới 10px */
-  right: 5%; /* Cách mép phải 5% */
-  padding: 12px 25px;
-  background-color: #d8a800; /* Màu vàng đậm, cổ điển */
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  text-transform: uppercase; /* Tạo cảm giác mạnh mẽ hơn */
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: 20px; /* Khoảng cách giữa nút và text box */
-}
-
-.next-button:hover {
-  background-color: #c68c00; /* Màu vàng đậm hơn khi hover */
-  transform: scale(1.05); /* Phóng to nhẹ khi hover */
-}
-
 .start-button {
+  background-color: #f6c453;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #3b2200;
+  font-weight: bold;
+  border: 2px solid #e6a347;
+  justify-content: center;
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-size: 2.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  position: absolute;
+  top: 50%; /* Đặt nút ở giữa theo chiều dọc */
+  left: 50%; /* Đặt nút ở giữa theo chiều ngang */
+  transform: translate(-50%, -50%); /* Điều chỉnh lại vị trí để đúng chính giữa */
+}
+
+.start-button:hover {
+  background-color: #ffd97b;
+  
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);}
+
+
+/* .start-button {
   margin-top: 12px;
   padding: 12px 25px;
   background-color: #007BFF;
@@ -111,5 +120,5 @@
 
 .start-button:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Phóng to nhẹ khi hover */
-}
+  transform: scale(1.05); 
+} */
