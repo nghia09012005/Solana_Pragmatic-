@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactAudioPlayer from 'react-audio-player';
 import '../../styles/DongHoStyle/DongHoGameG1.css';
+import DongHoLoading from './DongHoLoading';
 
 // Import ảnh
 import nhanvat from '../../assets/DongHoGame/image/nhanvat.png';
@@ -12,7 +13,13 @@ import buoc4 from '../../assets/DongHoGame/image/buoc4.jpg';
 
 const buocImages = [buoc1, buoc2, buoc3, buoc4];
 
+// Add a style to control transitions
+const noTransitionStyle = {
+  transition: 'none'
+};
+
 const DongHoGame = () => {
+    const [loading, setLoading] = useState(true);
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [isGameStarted, setIsGameStarted] = useState(false);
     const [audioStarted, setAudioStarted] = useState(false);
@@ -30,6 +37,12 @@ const DongHoGame = () => {
         'Hãy cùng khám phá những bức tranh Đông Hồ nổi tiếng qua một trò chơi vui nhộn nhé!'
     ];
 
+    // Add the missing handleLoadingComplete function
+    const handleLoadingComplete = () => {
+        // Immediately remove loading screen without transition
+        setLoading(false);
+    };
+
     const nextText = () => {
         if (currentTextIndex < texts.length - 1) {
             setCurrentTextIndex(prev => prev + 1);
@@ -39,33 +52,38 @@ const DongHoGame = () => {
     };
 
     const startGame = () => {
+        // Chuyển hướng đến trang FlipCard
         navigate('/FlipCard');
     };
 
-    // useEffect(() => {
-    //     const playAudioOnClick = () => {
-    //         if (!audioStarted && audioRef.current) {
-    //             audioRef.current.audioEl.current.play().catch((err) => {
-    //                 console.warn("Không thể phát nhạc:", err);
-    //             });
-    //             setAudioStarted(true);
-    //         }
-    //     };
+    useEffect(() => {
+        const playAudioOnClick = () => {
+            if (!audioStarted && audioRef.current) {
+                audioRef.current.audioEl.current.play().catch((err) => {
+                    console.warn("Không thể phát nhạc:", err);
+                });
+                setAudioStarted(true);
+            }
+        };
 
-    //     window.addEventListener('click', playAudioOnClick);
-    //     return () => window.removeEventListener('click', playAudioOnClick);
-    // }, [audioStarted]);
+        window.addEventListener('click', playAudioOnClick);
+        return () => window.removeEventListener('click', playAudioOnClick);
+    }, [audioStarted]);
 
     return (
-        <div className="game-container" onClick={nextText}>
-          {/* <ReactAudioPlayer
-            src={require('../../assets/DongHoGame/sounds/nhacnen.mp3')}
+      <>
+        {loading ? (
+          <DongHoLoading onLoadingComplete={handleLoadingComplete} />
+      ) : (
+          <div className="game-container" onClick={nextText} style={noTransitionStyle}>
+          <ReactAudioPlayer
+            src={require('../../assets/DongHoGame/audio/DongHonhacnen.mp3')}
             autoPlay={false}
             controls={false}
             ref={audioRef}
             loop
           />
-       */}
+      
           {/* Hàng ảnh giữa màn hình */}
           {currentTextIndex >= 3 && currentTextIndex <= 6 && (
             <div className="steps-row">
@@ -92,7 +110,9 @@ const DongHoGame = () => {
               <button onClick={startGame} className="start-button">Bắt đầu</button>
           )}
         </div>
-      );
+      )}
+    </>
+  );
 };
 
 export default DongHoGame;

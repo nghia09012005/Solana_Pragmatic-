@@ -112,6 +112,10 @@ const Card = ({ artwork, isActive }) => {
     setTimeout(() => {
       if (artwork.title === "Địa Đạo Củ Chi") {
         navigate('/cuchigame');
+      } else if (artwork.title === "Tranh Đông Hồ") {
+        navigate('/donghogame');
+      } else if (artwork.title === "Cồng Chiêng Tây Nguyên") {
+        navigate('/taynguyengame');
       } else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });
       }

@@ -44,9 +44,8 @@
   align-items: center;
   color: white;
   font-size: 2rem;
-  opacity: 0;
+  opacity: 1; /* Changed from 0 to 1 to show immediately */
   perspective: 1000px;
-  animation: zoomInFade 2s ease-out forwards;
 }
 /* Trong file CuChiGameG1.css */
 .character {

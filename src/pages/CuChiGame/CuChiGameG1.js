@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Loading from './Loading';  
+import CuChiLoading from './CuChiLoading';  
 import '../../styles/CuChiStyle/CuChiGameG1.css';
 import '../../styles/CuChiStyle/usequiz.css';
 import ReactAudioPlayer from 'react-audio-player';
@@ -10,6 +10,10 @@ import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';//bản đ
 import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';//vị trí địa đạo
 import Usequiz from "./Usequiz";
 
+// Add a style to control transitions
+const noTransitionStyle = {
+  transition: 'none'
+};
 
 const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
@@ -68,14 +72,10 @@ const CuChiGameG1 = () => {
     totalQuestions,
   } = Usequiz(questions);
 
-///
-
-
-  useEffect(() => {
-    // Thời gian chờ cho loading
-    const timer = setTimeout(() => setLoading(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
+  const handleLoadingComplete = () => {
+    // Immediately remove loading screen without transition
+    setLoading(false);
+  };
 
   const handleNextDialog = () => {
     if (dialogStep < dialogues.length - 1) {
@@ -97,9 +97,9 @@ const CuChiGameG1 = () => {
   return (
     <>
       {loading ? (
-        <Loading />
+        <CuChiLoading onLoadingComplete={handleLoadingComplete} />
       ) : (
-        <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
+        <div className="cuchigameg1-background" style={noTransitionStyle} onClick={handleClickAnywhere}>
           {/* Alert thanh thông báo */}
           {showAlert && (
             <div className="alert-banner">
