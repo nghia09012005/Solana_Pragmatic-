@@ -91,11 +91,18 @@ const CuChiGameG1 = () => {
 
 
 // phát nhạc liên tục
- useEffect(() => {
-    const audio = new Audio(audioFile);
-    audio.loop = true; // Phát nhạc liên tục
-    audio.play().catch((err) => console.log("Error playing audio:", err));
-  }, []);
+useEffect(() => {
+  const audio = new Audio(audioFile);
+  audio.loop = true;
+
+  audio.play().catch((err) => console.log("Error playing audio:", err));
+
+  return () => {
+    audio.pause();        // 👈 Dừng nhạc
+    audio.currentTime = 0; // 👈 Reset về đầu (tuỳ chọn)
+  };
+}, []);
+
 
 //
 
