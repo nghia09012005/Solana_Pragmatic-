@@ -34,9 +34,9 @@ function App() {
         <Routes>
 
 
-
         {<Route path="/" element={<DongHoGame />} />}
         {<Route path="/FlipCard" element={<FlipCard />} />}
+
 
           {/* <Route path="/" element={<HomePage />} /> */}
           {/* <Route path="/" element={<TankGame />} /> */}

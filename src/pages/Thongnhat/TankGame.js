@@ -149,7 +149,7 @@ const TankGame = () => {
   };
 
   return (
-    <div className="game-container">
+    <div className="tank-container">
        
       {/* Màn hình hiển thị vị trí tank và các chướng ngại vật
       <p>tank pos: {tankPosition}</p>
