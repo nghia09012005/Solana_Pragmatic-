@@ -1,58 +1,42 @@
-/* Khung toàn bộ game */
 .game-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding: 20px;
-  height: 100vh; /* Đảm bảo chiều cao màn hình */
+  height: 100vh;
   width: 100%;
-  box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến width */
+  box-sizing: border-box;
 }
 
-/* Khung bên phải hiển thị thông tin */
+/* Panel hiển thị thông tin */
 .info-panel {
-  width: 20%; /* Chiếm 1/5 chiều ngang */
-  /* background-color: #f9e1a0; Màu vàng nhạt */
-  color: rgb(0, 0, 0); /* Màu chữ đen */
+  width: 20%;
+  color: rgb(0, 0, 0);
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Căn trên các phần tử trong khung */
+  justify-content: space-between;
   align-items: center;
   border-radius: 10px;
-  height: 100%; /* Chiều cao 100% để có thể chứa nội dung */
   position: relative;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
-  overflow-y: auto; /* Cho phép cuộn nếu nội dung quá dài */
+  height: 100%;
+  overflow-y: auto;
 }
 
-/* Phần chữ thông tin */
+/* Thông tin text */
 .info-text {
-  background-color: #fff0d9;
+  background-color: #fff8dc;
   color: #4d2e00;
   padding: 12px 16px;
-  border-radius: 16px 16px 16px 16px;
+  border-radius: 16px;
   max-width: 100%;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   line-height: 1.4;
- 
-  animation: appear 0.4s ease;
   text-align: justify;
+  font-size: 90%;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
-  font-size: 14px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  } to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .info-text.appear {
@@ -60,85 +44,66 @@
   transform: translateY(0);
 }
 
-/* Hình ảnh nhân vật */
+/* Ảnh nhân vật */
 .info-img {
-  height: 200px;
+  width: 80%;
+  max-width: 160px;
+  height: auto;
   border-radius: 50%;
-  position: absolute;
-  bottom: 1px; /* Nằm sát mép dưới */
+  margin-top: 20px;
 }
 
-/* Khung lưới thẻ bài */
+/* Lưới thẻ bài */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cột */
-  grid-gap: 10px;
-  width: 80%; /* Chiếm 4/5 chiều ngang */
-  height: 100%; /* Đảm bảo chiều cao thẻ bài chiếm toàn bộ */
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 12px;
+  width: 80%;
+  height: 100%;
   padding-right: 20px;
   box-sizing: border-box;
 }
 
-/* Các thẻ bài */
-/* Các thẻ bài */
 .flip-card {
+  position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 18px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #e6cf99, #dbca77); /* Gradient vàng be */
-  box-shadow: 
-    0 4px 10px rgba(0, 0, 0, 0.2),    /* Bóng ngoài thẻ nhẹ nhàng */
-    inset 0 0 8px rgba(255, 255, 255, 0.8); /* Bóng nhẹ bên trong */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(3px); /* Làm mờ nhẹ nền */
-  border: 1px solid rgba(153, 123, 89, 0.25); /* Viền nhẹ nâu */
+  background-color: #f9e1a0;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .flip-card:hover {
-  transform: scale(1.05); /* Phóng to nhẹ */
-  box-shadow: 
-    inset 0 0 6px rgba(255, 255, 255, 0.5),
-    0 10px 24px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
 }
 
-
-
-/* Cách hiển thị khi thẻ bị lật */
 .flip-card.flipped,
 .flip-card.matched {
   background-color: transparent;
-  transform: rotateY(180deg); /* Lật thẻ */
+  transform: rotateY(180deg);
 }
 
 .card-image {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 8px;
-   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Đảm bảo ảnh phủ đầy mà không bị méo */
-  border-radius: 10px; /* Khớp với border-radius của flip-card */
-  z-index: 1;
+  object-fit: contain;
+  border-radius: 12px;
 }
-
 
 .congrats-title {
   font-size: 30px;
   color: #493e09;
   font-weight: bold;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .congrats-popup {
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
-
-
-
-
