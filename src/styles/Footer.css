@@ -117,7 +117,7 @@
 .footer-wrapper {
   background-color: #1f1f1f;
   padding: 50px 20px 20px;
-  font-family: 'Quicksand', sans-serif;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #ccc;
 }
 
@@ -133,7 +133,8 @@
 .footer-col {
   flex: 1;
   text-align: justify;
-  min-width: 220px;
+  min-width: 200px;
+  max-width: 200px;
 }
 
 .footer-col h3,
@@ -145,7 +146,7 @@
 
 .footer-col p {
   color: #bbb;
-  font-size: 14px;
+  font-size: 14.5px;
 }
 
 .footer-col ul {
@@ -164,7 +165,7 @@
 }
 
 .footer-col ul li a:hover {
-  color: #00bcd4;
+  color: #c3a917;
 }
 
 .social-icons a {
@@ -200,7 +201,7 @@
 
 .footer-bottom {
   text-align: center;
-  font-size: 13px;
+  font-size: 14.5px;
   color: #888;
   margin-top: 30px;
   border-top: 1px solid #333;

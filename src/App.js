@@ -41,7 +41,10 @@ function App() {
 
           
           {/* Tây Nguyên Gongs Game */}
-          {/* <Route path="/taynguyengame" element={<TayNguyenGame />} /> */}
+
+          <Route path="taynguyengame" element={<TayNguyenGame />} />
+          <Route path="/" element={<HomePage />} />
+
           
           {/* <Route path="/bantin" element={<Bantin />} /> */}
           {/* Cu Chi Game */}
