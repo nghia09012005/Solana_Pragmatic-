@@ -7,7 +7,7 @@ import MuseumPage from './pages/MuseumPage';
 
 // import LoginPage from './pages/LoginPage';
 // import RegisterPage from './pages/RegisterPage';
-// import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 
@@ -49,10 +49,10 @@ function App() {
           {/* <Route path="/morse" element={<Morse />} /> */}
           
           {/* Dong Ho Game */}
-          <Route path="/" element={<DongHoGame />} />
-          <Route path="/FlipCard" element={<FlipCard />} />
+          {/* <Route path="/" element={<DongHoGame />} />
+          <Route path="/FlipCard" element={<FlipCard />} /> */}
           
-          {/* <Route path="/profile" element={<ProfilePage />} />  */}
+          <Route path="/" element={<ProfilePage />} /> 
           {/* <Route path="*" element={<NotFoundPage />} /> */}
 
         </Routes>
