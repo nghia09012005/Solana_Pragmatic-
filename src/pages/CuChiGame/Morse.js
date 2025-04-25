@@ -25,23 +25,23 @@ const Morse = () => {
     const [isBookOpen, setIsBookOpen] = useState(false);
   
     const dialogues = [
-      'Tình báo ở lòng Sài gòn và Hà Nội vừa gửi mật thư tới, đồng chí giải mã gấp để anh em triển khai. đừng chừng chờ kẻo lỡ mất thời cơ phản công. Đây là bảng mã để giải.',
-      'Chào mừng đồng chí tình báo đã đến đây, đồng chí hãy tìm hiểu và hoàn thành tốt nhiệm vụ được giao.',
-      'Đồng chí hãy luôn trong tư thế sẵn sàng chiến đấu !!!!!!!!!',
-      'Bắt đầu thôi nào!',
-      'Có vẻ đồng chí là người mới tôi sẽ giải thích một chút về nơi này để đồng chí nắm bắt.',
-      'Địa đạo Củ Chi, cách TP.HCM khoảng 70km về phía Tây Bắc, là biểu tượng cho sự sáng tạo và kiên cường của quân và dân Củ Chi trong cuộc kháng chiến chống Mỹ.',
-      'Hệ thống của ta gồm các đường hầm đồ sộ với khoảng 250km đường hầm tỏa rộng như mạng nhện, và gồm nhiều công trình liên hoàn như chiến hào, ụ chiến đấu, hầm ăn ngủ, hội họp, quân y, kho tàng, giếng nước, bếp Hoàng Cầm.',
-      'Nơi đây đã hình thành từ những hầm bí mật thời kháng chiến chống Pháp, và ở giai đoạn kháng chiến chống Mỹ này nó lại càn phát triển mạnh mẽ hơn, đặc biệt sau các cuộc càn quét lớn của địch.',
-      'Biệt danh "Làng ngầm trong lòng đất": Thể hiện rõ nét cuộc sống và chiến đấu diễn ra dưới lòng đất của chúng tôi những con người Củ Chi.',
-      'Hãy khắc sâu những kỳ tích hào hùng này để mai này khi thống nhất nó không bị mai một đi.',
+      'Tình báo từ Sài Gòn và Hà Nội vừa gửi mật thư khẩn cấp! Đồng chí hãy giải mã ngay để chúng ta có thể triển khai kế hoạch. Đừng chần chừ kẻo lỡ mất thời cơ phản công!',
+      'Chào mừng đồng chí tình báo! Nhiệm vụ của chúng ta bây giờ là giải mã những thông điệp bí mật này. Đây là bảng mã Morse, công cụ quan trọng để giải mã mật thư.',
+      'Đồng chí hãy luôn trong tư thế sẵn sàng! Mỗi giây phút đều quý giá trong nhiệm vụ này!',
+      'Bắt đầu thôi nào! Hãy lắng nghe kỹ những tín hiệu Morse và giải mã chúng!',
+      'Có vẻ đồng chí là người mới, tôi sẽ giải thích về hệ thống mã Morse. Đây là một phương pháp truyền tin cực kỳ thông minh!',
+      'Nó sử dụng các tín hiệu ngắn và dài để biểu thị các chữ cái và số.',
+      'Mỗi ký tự trong bảng chữ cái đều có một mã riêng. Ví dụ, chữ A là ".-", chữ B là "-...". Đồng chí hãy nhìn vào bảng mã để hiểu rõ hơn.',
+      'Trong thời chiến, mã Morse là một phương tiện liên lạc cực kỳ quan trọng. Nó giúp chúng ta truyền tin một cách bí mật và hiệu quả.',
+      'Bây giờ, đồng chí hãy lắng nghe kỹ những tín hiệu từ Sài Gòn và Hà Nội. Mỗi thông điệp đều chứa đựng thông tin quan trọng!',
+      'Hãy tập trung và giải mã thật chính xác. Mỗi ký tự đều có ý nghĩa riêng của nó!'
     ];
 
     const [showhint1, sethint1] = useState(false);
     const [showhint2, sethint2] = useState(false);
     const hint =[
       'Nơi đồng chí và chúng ta đang có mặt!!!!',
-      'Điều chúng ta mong muốn',
+      'Điều chúng ta hướng đến',
     ]
 
     
