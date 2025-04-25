@@ -25,21 +25,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* issignin */
-/* .signin {
-  position: fixed;          
-  top: 20px;
-  right: 20px;
-  background-color: #b79540;
-  color: #333;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-  transition: all 0.3s ease;
-} */
 
 .signin {
   position: fixed;
@@ -138,7 +123,6 @@ html, body {
   box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4), 0 8px 36px rgba(0, 0, 0, 0.35);
 }
 
-/* het nut signiin */
 .container{
   display: flex;  /* Thay đổi từ fixed thành flex */
   flex-direction: column;
@@ -910,16 +894,20 @@ body:has(.overlay) .background button {
 /*FEATURE*/
 .tinh-nang-chinh{
   position: relative;
-  top:-200px;
+  top:-180px;
   padding: 50px 0;
   width: 21.5%;
-  left:-490px;
+  left:25px; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: rgb(0, 0, 0);
 }
+
+
+
+
 .feature{
   position: relative;
   background-image: url('/public/images/background-feature.png');
@@ -1046,7 +1034,7 @@ body:has(.overlay) .background button {
   position: relative;
   width: 100%;
   padding: 20px;
- top:-120px;
+  top:-120px;
   display: flex;
   flex-direction: column;
 
@@ -1089,7 +1077,7 @@ body:has(.overlay) .background button {
   margin-top: 300px; 
   
   height: auto;
-  width: 1200px;
+  width: 1440px;
   text-align: justify;
   justify-content: center;
   font-size: large;

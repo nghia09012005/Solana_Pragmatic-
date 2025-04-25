@@ -290,15 +290,15 @@ useEffect(() => {
           src="/images/tong-quan.png"
           alt=""
         />
-      
-      
-
-      <section className='feature'>
-      <img
+       <img
           className="tinh-nang-chinh"
           src="/images/tinh-nang-chinh.png"
           alt=""
         />
+      
+
+      <section className='feature'>
+     
       
 
         <div className="feature-gradient"
