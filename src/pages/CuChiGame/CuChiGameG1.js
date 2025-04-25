@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
 import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';
 import Usequiz from "./Usequiz";
+import GameMenu from './GameMenu';
 
 // Add a style to control transitions
 const noTransitionStyle = {
@@ -20,6 +21,7 @@ const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
 
@@ -147,6 +149,11 @@ const CuChiGameG1 = () => {
 //               </button>
 // =======
         <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
+          <button className="menu-button" onClick={(e) => {
+            e.stopPropagation();
+            setIsMenuOpen(true);
+          }}>☰</button>
+          <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
           <div className="character-wrapper">
             <img src={characterImg} alt="Character" className="character-model" />
 

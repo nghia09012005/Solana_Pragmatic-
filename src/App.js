@@ -53,15 +53,17 @@ function App() {
           
           {/* <Route path="/bantin" element={<Bantin />} /> */}
           {/* Cu Chi Game */}
-          {/* <Route path="/cuchigame" element={<CuChiGameG1 />} /> */}
-          {/* <Route path="/morse" element={<Morse />} /> */}
+          <Route path="/cuchigame" element={<CuChiGameG1 />} />
+          <Route path="/morse" element={<Morse />} />
           
           {/* Dong Ho Game */}
-          <Route path="/" element={<DongHoGame />} />
+          <Route path="/donghogame" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} />
+          <Route path="/museum" element={<MuseumPage />} />
+          <Route path="/personalmuseum" element={<Personalmuseum />} />
           
           {/* <Route path="/profile" element={<ProfilePage />} />  */}
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          <Route path="*" element={<NotFoundPage />} />
 
         </Routes>
       </main>

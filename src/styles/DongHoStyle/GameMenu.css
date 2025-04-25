@@ -1,0 +1,139 @@
+/* Nút hamburger menu */
+.menu-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(139, 0, 0, 0.7);
+  color: white;
+  border: 2px solid #8b0000;
+  padding: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 120;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+  transition: background 0.18s, border 0.18s, color 0.18s, transform 0.18s;
+}
+
+.menu-button:hover {
+  background: #8b0000;
+  border-color: #8b0000;
+  color: white;
+  transform: scale(1.10);
+}
+
+.menu-button:active {
+  transform: scale(0.97);
+}
+
+/* Nền mờ khi menu mở */
+.menu-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(21, 19, 12, 0.68);
+  z-index: 110;
+  animation: fadeInOverlay 0.19s;
+  backdrop-filter: blur(2px);
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Sidebar menu dạng drawer */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 295px;
+  height: 100vh;
+  background: rgba(139, 0, 0, 0.45);
+  color: white;
+  box-shadow: 2px 0 32px rgba(0,0,0,0.25);
+  border-right: 2.5px solid #8b0000;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(6px);
+  animation: slideInMenu 0.22s cubic-bezier(.65,.05,.36,1);
+}
+
+@keyframes slideInMenu {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 18px 10px 18px;
+  border-bottom: 1.5px solid #ffcc00;
+}
+
+.side-menu-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffcc00;
+  letter-spacing: 1px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.close-menu-button {
+  background: none;
+  border: none;
+  color: #ffcc00;
+  font-size: 1.7rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.13s, color 0.13s;
+}
+
+.close-menu-button:hover {
+  background: #8b0000;
+  color: #ffcc00;
+}
+
+.side-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.side-menu-item {
+  width: 100%;
+}
+
+.side-menu-link {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 18px 28px;
+  font-size: 1.13rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0 14px 14px 0;
+  transition: background 0.14s, color 0.14s;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.side-menu-link:hover {
+  background: #c02020;
+  color: white;
+  box-shadow: 2px 0 16px #c02020;
+}

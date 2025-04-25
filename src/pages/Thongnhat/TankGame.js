@@ -6,6 +6,7 @@ import obstacle from '../../assets/Thongnhat/images/obstacle.png';
 import bullet from '../../assets/Thongnhat/images/bullet.png';
 import explo from '../../assets/Thongnhat/audio/explosion.wav';
 import { useNavigate } from "react-router-dom";
+import GameMenu from './GameMenu';
 
 const BOUND = 304; // 390 số hiệu xe tank tông dinh độc lập
 
@@ -16,8 +17,9 @@ const TankGame = () => {
   const [score, setScore] = useState(0); // Điểm số
   const [gameOver, setGameOver] = useState(false); // Trạng thái game over
   const [success, setsucces] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
- 
   useEffect(() => {
     const audio = new Audio(tankSound);
     audio.loop = true; // Phát nhạc liên tục
@@ -30,14 +32,12 @@ const TankGame = () => {
     audio.play();  // Phát âm thanh
   };
 
-   // success
-   const navigate = useNavigate();
-   const handlesuccess = () => {
-     // Điều hướng về trang chủ khi nhấn Restart
-     navigate("/Homepage");
-   };
- 
- 
+  // success
+  const handlesuccess = () => {
+    // Điều hướng về trang chủ khi nhấn Restart
+    navigate("/Homepage");
+  };
+
   // Di chuyển tank bằng phím mũi tên
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -76,7 +76,7 @@ const TankGame = () => {
       clearInterval(obstacleInterval);
       clearInterval(moveObstaclesInterval);
     };
-  }, [gameOver,success]);
+  }, [gameOver, success]);
 
   // Di chuyển đạn
   useEffect(() => {
@@ -149,8 +149,12 @@ const TankGame = () => {
   };
 
   return (
-    <div className="tank-container">
-       
+    <div className="tank-container" onClick={() => setIsMenuOpen(false)} style={{ position: 'relative' }}>
+      <button className="menu-button" onClick={(e) => {
+        e.stopPropagation();
+        setIsMenuOpen(true);
+      }}>☰</button>
+      <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       {/* Màn hình hiển thị vị trí tank và các chướng ngại vật
       <p>tank pos: {tankPosition}</p>
       {obstacles.map((obs) => (

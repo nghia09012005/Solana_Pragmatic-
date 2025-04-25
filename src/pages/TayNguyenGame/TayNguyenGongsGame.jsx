@@ -29,8 +29,8 @@ import {
 // Game styles
 const GameContainer = styled.div`
 
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: relative;
   margin: 0;
   overflow: hidden;
@@ -38,7 +38,8 @@ const GameContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 `;
 
 const VillageScene = styled.div`
@@ -57,14 +58,14 @@ const VillageScene = styled.div`
 const CharacterPortrait = styled.div`
   width: 400px;
   height: 400px;
-  background-image: url(${props => props.sprite});
+  background-image: url(${props => props.$sprite});
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  bottom: ${props => props.bottom || "auto"};
-  left: ${props => props.left || "auto"};
-  right: ${props => props.right || "auto"};
-  top: ${props => props.top || "auto"};
+  bottom: ${props => props.$bottom || "auto"};
+  left: ${props => props.$left || "auto"};
+  right: ${props => props.$right || "auto"};
+  top: ${props => props.$top || "auto"};
   z-index: 1;
 `;
 
@@ -80,7 +81,7 @@ const DialogBox = styled.div`
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 2;
-  left: ${props => props.position === 'left' ? '5%' : '25%'};
+  left: ${props => props.$position === 'left' ? '5%' : '25%'};
   display: flex;
   flex-direction: column;
 `;
@@ -114,7 +115,7 @@ const ButtonContainer = styled.div`
 `;
 
 const GameButton = styled.button`
-  background-color: ${props => props.primary ? "#B22222" : "#8B4513"};
+  background-color: ${props => props.$primary ? "#B22222" : "#8B4513"};
   color: white;
   border: none;
   padding: 8px 16px;
@@ -122,9 +123,11 @@ const GameButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
   
   &:hover {
-    background-color: ${props => props.primary ? "#8B0000" : "#654321"};
+    background-color: ${props => props.$primary ? "#8B0000" : "#654321"};
   }
 `;
 
@@ -133,7 +136,7 @@ const ControlContainer = styled.div`
   top: 20px;
   right: 20px;
   z-index: 10;
-  display: ${props => props.show ? 'flex' : 'none'};
+  display: ${props => props.$show ? 'flex' : 'none'};
   gap: 10px;
 `;
 
@@ -149,7 +152,7 @@ const AudioControl = styled.div`
 `;
 
 const AudioButton = styled.button`
-  background-color: ${props => props.isActive ? "#B22222" : "rgba(139, 69, 19, 0.7)"};
+  background-color: ${props => props.$isActive ? "#B22222" : "rgba(139, 69, 19, 0.7)"};
   color: white;
   border: none;
   padding: 8px;
@@ -165,7 +168,7 @@ const AudioButton = styled.button`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   
   &:hover {
-    background-color: ${props => props.isActive ? "#8B0000" : "#8B4513"};
+    background-color: ${props => props.$isActive ? "#8B0000" : "#8B4513"};
     transform: scale(1.05);
   }
 
@@ -209,14 +212,14 @@ const VolumeValueDisplay = styled.span`
   text-align: center;
 `;
 
-// Nút hiển thị menu
+// Nút hamburger menu
 const MenuButton = styled.button`
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: rgba(139, 69, 19, 0.7);
+  background: rgba(139, 69, 19, 0.7);
   color: white;
-  border: none;
+  border: 2px solid #8B4513;
   padding: 8px;
   border-radius: 50%;
   width: 40px;
@@ -226,16 +229,120 @@ const MenuButton = styled.button`
   justify-content: center;
   cursor: pointer;
   font-size: 1.2rem;
-  z-index: 10;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  
+  z-index: 120;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+  transition: background 0.18s, border 0.18s, color 0.18s, transform 0.18s;
   &:hover {
-    background-color: #8B4513;
-    transform: scale(1.05);
+    background: #8B4513;
+    border-color: #8B4513;
+    color: white;
+    transform: scale(1.10);
   }
-  
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
+  }
+`;
+
+// Nền mờ khi menu mở
+const MenuOverlay = styled.div`
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(21, 19, 12, 0.68);
+  z-index: 110;
+  animation: fadeInOverlay 0.19s;
+  backdrop-filter: blur(2px);
+  @keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+`;
+
+// Sidebar menu dạng drawer
+const SideMenu = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 295px;
+  height: 100vh;
+  background: rgba(139, 69, 19, 0.45);
+  color: white;
+  box-shadow: 2px 0 32px rgba(0,0,0,0.25);
+  border-right: 2.5px solid #8B4513;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(6px);
+  animation: slideInMenu 0.22s cubic-bezier(.65,.05,.36,1);
+  @keyframes slideInMenu {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(0); }
+  }
+`;
+
+const SideMenuHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 18px 10px 18px;
+  border-bottom: 1.5px solid #8B4513;
+`;
+
+const SideMenuTitle = styled.div`
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`;
+
+const CloseMenuButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.7rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.13s, color 0.13s;
+  &:hover {
+    background: #8B4513;
+    color: white;
+  }
+`;
+
+const SideMenuList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+`;
+
+const SideMenuItem = styled.li`
+  width: 100%;
+`;
+
+const SideMenuLink = styled.button`
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 18px 28px;
+  font-size: 1.13rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0 14px 14px 0;
+  transition: background 0.14s, color 0.14s;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  &:hover {
+    background: #8B4513;
+    color: white;
+    box-shadow: 2px 0 16px #8B4513;
   }
 `;
 
@@ -250,7 +357,7 @@ const MinigameContainer = styled.div`
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 3;
+  z-index: 10;
   transition: all 0.3s ease;
   border: 2px solid #8B4513;
 `;
@@ -421,6 +528,8 @@ const LoadingScreen = styled.div`
   z-index: 1000;
   animation: ${props => props.isLoading ? fadeIn : fadeOut} 1s ease-in-out;
   color: #FFF8DC;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 `;
 
 const LoadingTitle = styled.h1`
@@ -547,28 +656,29 @@ const MapButton = styled.button`
   }
 `;
 
-// Cập nhật MapOverlay để hiển thị ở bên phải màn hình thay vì toàn màn hình
+// Sửa MapOverlay
 const MapOverlay = styled.div`
-  position: absolute;
-  top: 10px;
-  right: ${props => props.show ? '10px' : '-500px'};
-  width: 300px;
-  height: 350px;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: ${props => props.show ? 'flex' : 'none'};
-  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   align-items: center;
-  z-index: 9;
-  border-radius: 10px;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 0;
   transition: right 0.3s ease-in-out;
   overflow: hidden;
-  visibility: ${props => props.show ? 'visible' : 'hidden'};
-  opacity: ${props => props.show ? '1' : '0'};
+  visibility: ${props => props.$show ? 'visible' : 'hidden'};
+  opacity: ${props => props.$show ? '1' : '0'};
 `;
 
 const MapContainer = styled.div`
-  width: 90%;
-  height: 90%;
+  width: 700px;
+  height: 550px;
+  max-width: 95vw;
+  max-height: 90vh;
   background-image: url(${mapImage});
   background-size: cover;
   background-position: center;
@@ -619,21 +729,21 @@ const CloseMapButton = styled.button`
   }
 `;
 
-// Cập nhật MapBadge để phù hợp với kích thước bản đồ nhỏ hơn
+// Sửa MapBadge
 const MapBadge = styled.div`
   position: absolute;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: ${props => props.collected ? 'rgba(178, 34, 34, 0.9)' : 'rgba(139, 69, 19, 0.7)'};
-  border: 2px solid ${props => props.collected ? '#FFF8DC' : '#8B4513'};
+  background-color: ${props => props.$collected ? 'rgba(178, 34, 34, 0.9)' : 'rgba(139, 69, 19, 0.7)'};
+  border: 2px solid ${props => props.$collected ? '#FFF8DC' : '#8B4513'};
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: bold;
   cursor: pointer;
-  animation: ${props => props.collected ? 'none' : pulse} 2s infinite;
+  animation: ${props => props.$collected ? 'none' : pulse} 2s infinite;
   z-index: 5;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
@@ -665,7 +775,7 @@ const MapBadge = styled.div`
   }
 `;
 
-// Thêm styled component cho NextQuestionButton
+// Sửa NextQuestionButton
 const NextQuestionButton = styled.button`
   margin-top: 15px;
   padding: 8px 15px;
@@ -675,7 +785,7 @@ const NextQuestionButton = styled.button`
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  display: ${props => props.show ? 'block' : 'none'};
+  display: ${props => props.$show ? 'block' : 'none'};
   margin-left: auto;
   margin-right: auto;
   transition: all 0.2s;
@@ -689,16 +799,16 @@ const NextQuestionButton = styled.button`
 // Thêm styled components cho các nhạc cụ trong nhà Rông
 const MusicalInstrument = styled.div`
   position: absolute;
-  width: ${props => props.width || '80px'};
-  height: ${props => props.height || '80px'};
-  background-image: url(${props => props.image});
+  width: ${props => props.$width || '80px'};
+  height: ${props => props.$height || '80px'};
+  background-image: url(${props => props.$image});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  top: ${props => props.top};
-  left: ${props => props.left};
-  bottom: ${props => props.bottom};
-  right: ${props => props.right};
+  top: ${props => props.$top};
+  left: ${props => props.$left};
+  bottom: ${props => props.$bottom};
+  right: ${props => props.$right};
   cursor: pointer;
   transition: all 0.2s ease;
   z-index: 0;
@@ -714,7 +824,7 @@ const MusicalInstrument = styled.div`
   }
 `;
 
-// Thêm modal hiển thị thông tin chi tiết nhạc cụ
+// Tìm và sửa InstrumentDetailsModal
 const InstrumentDetailsModal = styled.div`
   position: absolute;
   top: 50%;
@@ -727,7 +837,7 @@ const InstrumentDetailsModal = styled.div`
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 20;
-  display: ${props => props.show ? 'flex' : 'none'};
+  display: ${props => props.$show ? 'flex' : 'none'};
   flex-direction: column;
   align-items: center;
   border: 3px solid #8B4513;
@@ -853,7 +963,7 @@ const ImagesContainer = styled.div`
   transition: transform 0.5s ease;
   width: 100%;
   height: 100%;
-  transform: translateX(${props => props.translateValue}px);
+  transform: translateX(${props => props.$translateValue}px);
 `;
 
 const SlideImage = styled.img`
@@ -874,15 +984,9 @@ const CarouselDot = styled.div`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: ${props => props.active ? '#B22222' : '#8B4513'};
+  background-color: ${props => props.$active ? '#B22222' : '#8B4513'};
   margin: 0 5px;
   cursor: pointer;
-  opacity: ${props => props.active ? 1 : 0.5};
-  transition: all 0.3s ease;
-  
-  &:hover {
-    opacity: 0.8;
-  }
 `;
 
 const CarouselButton = styled.button`
@@ -908,24 +1012,23 @@ const CarouselButton = styled.button`
   }
 `;
 
-// YouTube Mission Box
+// Tìm và sửa YouTubeMissionBox
 const YouTubeMissionBox = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) ${props => props.show ? 'scale(1)' : 'scale(0.9)'};
+  transform: translate(-50%, -50%) ${props => props.$show ? 'scale(1)' : 'scale(0.9)'};
   background-color: rgba(255, 250, 240, 0.98);
   border: 3px solid #B22222;
   border-radius: 15px;
   padding: 20px;
-  width: 80%;
-  max-width: 650px;
-  max-height: 85vh;
+  width: 650px;
+  height: 85vh;
   z-index: 25;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
   text-align: center;
-  opacity: ${props => props.show ? '1' : '0'};
-  visibility: ${props => props.show ? 'visible' : 'hidden'};
+  opacity: ${props => props.$show ? '1' : '0'};
+  visibility: ${props => props.$show ? 'visible' : 'hidden'};
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow-y: auto;
   
@@ -1045,6 +1148,7 @@ const rotateAnim = keyframes`
   100% { transform: rotate(360deg); }
 `;
 
+// Sửa FireworksContainer
 const FireworksContainer = styled.div`
   position: fixed;
   top: 0;
@@ -1053,28 +1157,29 @@ const FireworksContainer = styled.div`
   height: 100vh;
   pointer-events: none;
   z-index: 30;
-  display: ${props => props.show ? 'block' : 'none'};
+  display: ${props => props.$show ? 'block' : 'none'};
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
+// Sửa Firework
 const Firework = styled.div`
   position: absolute;
-  width: ${props => props.size || '15px'};
-  height: ${props => props.size || '15px'};
+  width: ${props => props.$size || '15px'};
+  height: ${props => props.$size || '15px'};
   border-radius: 50%;
-  background-color: ${props => props.color || '#ff0000'};
+  background-color: ${props => props.$color || '#ff0000'};
   animation: ${fireworksAnimation} 1.5s ease-out forwards, 
              ${explosion} 1.5s ease-out forwards;
-  animation-delay: ${props => props.delay || '0s'};
-  top: ${props => props.top || '50%'};
-  left: ${props => props.left || '50%'};
+  animation-delay: ${props => props.$delay || '0s'};
+  top: ${props => props.$top || '50%'};
+  left: ${props => props.$left || '50%'};
   opacity: 0;
-  --x: ${props => props.x || '0px'};
-  --y: ${props => props.y || '0px'};
-  --color-shadow: ${props => props.color || 'rgba(255, 0, 0, 0.7)'};
+  --x: ${props => props.$x || '0px'};
+  --y: ${props => props.$y || '0px'};
+  --color-shadow: ${props => props.$color || 'rgba(255, 0, 0, 0.7)'};
   transform-origin: center center;
-  z-index: ${props => props.depth || '1'};
+  z-index: ${props => props.$depth || '1'};
   
   &::before, &::after {
     content: '';
@@ -1084,17 +1189,17 @@ const Firework = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: ${props => props.color || '#ff0000'};
+    background-color: ${props => props.$color || '#ff0000'};
     transform: translate(-50%, -50%);
     opacity: 0.6;
-    animation: ${rotateAnim} ${props => props.rotateSpeed || '3s'} linear infinite;
+    animation: ${rotateAnim} ${props => props.$rotateSpeed || '3s'} linear infinite;
   }
   
   &::before {
     width: 140%;
     height: 140%;
     opacity: 0.3;
-    animation-duration: ${props => props.rotateSpeed2 || '5s'};
+    animation-duration: ${props => props.$rotateSpeed2 || '5s'};
     animation-direction: reverse;
   }
 `;
@@ -1103,7 +1208,7 @@ const CompletionMessage = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) ${props => props.show ? 'scale(1)' : 'scale(0.9)'};
+  transform: translate(-50%, -50%) ${props => props.$show ? 'scale(1)' : 'scale(0.9)'};
   background-color: rgba(255, 250, 240, 0.98);
   border: 5px solid gold;
   border-radius: 20px;
@@ -1113,8 +1218,8 @@ const CompletionMessage = styled.div`
   z-index: 40;
   max-width: 550px;
   max-height: 80vh;
-  opacity: ${props => props.show ? '1' : '0'};
-  visibility: ${props => props.show ? 'visible' : 'hidden'};
+  opacity: ${props => props.$show ? '1' : '0'};
+  visibility: ${props => props.$show ? 'visible' : 'hidden'};
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow-y: auto;
   
@@ -1572,7 +1677,7 @@ const TayNguyenGongsGame = () => {
     
     const interval = setInterval(() => {
       // Smaller increment for slower progress
-      progress += Math.random() * 25 + 1;
+      progress += Math.random() * 50 + 1;
       
       if (progress >= 100) {
         progress = 100;
@@ -1599,17 +1704,25 @@ const TayNguyenGongsGame = () => {
     
     // Load and initialize audio
     if (!audioRef.current) {
-      const audio = new Audio(process.env.PUBLIC_URL + '/assets/TayNguyenGame/sound/nhac_nen.mp3');
-      audio.loop = true;
-      audio.volume = volume;
-      audioRef.current = audio;
-      
-      // Không tự động phát nhạc
-      audioRef.current.play().then(() => {
-        console.log('Nhạc đã phát');
-      }).catch((err) => {
-        console.error('Lỗi khi phát nhạc:', err);
-      });
+      try {
+        // Sửa đường dẫn file audio, bỏ process.env.PUBLIC_URL nếu file trong src
+        const audio = new Audio('../../assets/TayNguyenGame/sound/nhac_nen.mp3');
+        audio.loop = true;
+        audio.volume = volume;
+        audioRef.current = audio;
+        
+        // Không tự động phát nhạc
+        audioRef.current.play().then(() => {
+          console.log('Nhạc đã phát');
+          setIsPlaying(true);
+        }).catch((err) => {
+          console.error('Lỗi khi phát nhạc:', err);
+          // Không gây lỗi khi không phát được nhạc
+        });
+      } catch (error) {
+        console.error("Lỗi khi tạo audio:", error);
+        // Tiếp tục mà không cần audio
+      }
     }
     
     // Initialize game elements
@@ -1624,13 +1737,19 @@ const TayNguyenGongsGame = () => {
     
     // Initialize audio when component mounts
     if (!audioRef.current) {
-      const audio = new Audio(process.env.PUBLIC_URL + '/assets/TayNguyenGame/sound/nhac_nen.mp3');
-      audio.loop = true;
-      audio.volume = volume;
-      audioRef.current = audio;
-      
-      // Không tự động phát nhạc
-      // audioRef.current.play().catch()...
+      try {
+        // Sửa đường dẫn file audio, bỏ process.env.PUBLIC_URL nếu file trong src
+        const audio = new Audio('../../assets/TayNguyenGame/sound/nhac_nen.mp3');
+        audio.loop = true;
+        audio.volume = volume;
+        audioRef.current = audio;
+        
+        // Không tự động phát nhạc
+        // audioRef.current.play().catch()...
+      } catch (error) {
+        console.error("Lỗi khi tạo audio:", error);
+        // Tiếp tục mà không cần audio
+      }
     } else {
       audioRef.current.volume = volume;
     }
@@ -1953,9 +2072,9 @@ const TayNguyenGongsGame = () => {
     }
   };
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  // const toggleMenu = () => {
+  //   setShowMenu(!showMenu);
+  // };
   
   // Thêm hàm xử lý cho bản đồ
   const handleMapBadgeClick = (piece) => {
@@ -2197,6 +2316,30 @@ const TayNguyenGongsGame = () => {
       )}
       
       <GameContainer>
+        {/* Nút hamburger menu và sidebar */}
+        <MenuButton onClick={() => setShowMenu(true)} title="Menu">
+          <span role="img" aria-label="menu">☰</span>
+        </MenuButton>
+        {showMenu && <MenuOverlay onClick={() => setShowMenu(false)} />}
+        {showMenu && (
+          <SideMenu>
+            <SideMenuHeader>
+              <SideMenuTitle>Menu</SideMenuTitle>
+              <CloseMenuButton onClick={() => setShowMenu(false)} title="Đóng menu">×</CloseMenuButton>
+            </SideMenuHeader>
+            <SideMenuList>
+              <SideMenuItem>
+                <SideMenuLink onClick={() => window.location.href = '/'}>🏠 Quay lại Trang chủ</SideMenuLink>
+              </SideMenuItem>
+              <SideMenuItem>
+                <SideMenuLink onClick={() => window.location.href = '/museum'}>🏛️ Quay lại Bảo tàng</SideMenuLink>
+              </SideMenuItem>
+              <SideMenuItem>
+                <SideMenuLink onClick={() => window.location.href = '/personalmuseum'}>📦 Đến Bộ sưu tập</SideMenuLink>
+              </SideMenuItem>
+            </SideMenuList>
+          </SideMenu>
+        )}
         <VillageScene background={currentBackground}>
           {/* Thêm nút mở bản đồ */}
           <MapButton onClick={() => setShowMap(!showMap)} title="Bản đồ">
@@ -2204,7 +2347,7 @@ const TayNguyenGongsGame = () => {
           </MapButton>
           
           {/* Map Overlay */}
-          <MapOverlay show={showMap}>
+          <MapOverlay $show={showMap}>
             <MapContainer>
               <MapTitle>Bản Đồ Buôn Làng</MapTitle>
               <CloseMapButton onClick={closeMap}>✕</CloseMapButton>
@@ -2212,7 +2355,7 @@ const TayNguyenGongsGame = () => {
               {/* Badges on map - điều chỉnh vị trí cho phù hợp với bản đồ nhỏ */}
               <MapBadge 
                 style={{ top: '25%', right: '20%' }} 
-                collected={minigamePieces.trong_dat} 
+                $collected={minigamePieces.trong_dat} 
                 name="Trống Đất"
                 onClick={() => handleMapBadgeClick("trong_dat")}
               >
@@ -2221,7 +2364,7 @@ const TayNguyenGongsGame = () => {
               
               <MapBadge 
                 style={{ top: '35%', left: '15%' }} 
-                collected={minigamePieces.hoi_lua} 
+                $collected={minigamePieces.hoi_lua} 
                 name="Hơi Lửa"
                 onClick={() => handleMapBadgeClick("hoi_lua")}
               >
@@ -2230,7 +2373,7 @@ const TayNguyenGongsGame = () => {
               
               <MapBadge 
                 style={{ bottom: '20%', left: '35%' }} 
-                collected={minigamePieces.bong_rung} 
+                $collected={minigamePieces.bong_rung} 
                 name="Bóng Rừng"
                 onClick={() => handleMapBadgeClick("bong_rung")}
               >
@@ -2239,22 +2382,22 @@ const TayNguyenGongsGame = () => {
             </MapContainer>
           </MapOverlay>
           
-          <MenuButton onClick={toggleMenu} title="Menu">
+          {/* <MenuButton onClick={toggleMenu} title="Menu">
             ☰
-          </MenuButton>
+          </MenuButton> */}
           
-          <ControlContainer show={showMenu}>
+          {/* <ControlContainer $show={showMenu}>
             <GameButton onClick={showRandomFact}>Tin nhắn</GameButton>
             <GameButton onClick={() => startDialogWith("assistant", "introduction")}>Nói chuyện với trợ lý AI</GameButton>
             <GameButton onClick={() => startDialogWith("elder", "elder_greeting")}>Nói chuyện với già làng</GameButton>
             <GameButton onClick={() => setShowMap(!showMap)}>Xem bản đồ</GameButton>
-          </ControlContainer>
+          </ControlContainer> */}
           
           {/* Điều khiển âm thanh */}
           <AudioControl>
             <AudioButton 
               onClick={togglePlayMusic} 
-              isActive={isPlaying}
+              $isActive={isPlaying}
               title={isPlaying ? "Tắt nhạc" : "Bật nhạc"}
             >
               {isPlaying ? "♪" : "♫"}
@@ -2302,27 +2445,27 @@ const TayNguyenGongsGame = () => {
           {currentBackground === insideNhaRong && (
             <>
               <MusicalInstrument 
-                image={danDaImage}
-                width="200px"
-                height="200px"
-                top="55%"
-                left="13%"
+                $image={danDaImage}
+                $width="200px"
+                $height="200px"
+                $top="55%"
+                $left="13%"
                 onClick={() => handleInstrumentClick("dan_da")}
               />
               <MusicalInstrument 
-                image={congChiengImage}
-                width="130px"
-                height="130px"
-                top="35%"
-                right="5%"
+                $image={congChiengImage}
+                $width="130px"
+                $height="130px"
+                $top="35%"
+                $right="5%"
                 onClick={() => handleInstrumentClick("trong_dong")}
               />
               <MusicalInstrument 
-                image={danTrungImage}
-                width="180px"
-                height="180px"
-                bottom="25%"
-                right="23%"
+                $image={danTrungImage}
+                $width="180px"
+                $height="180px"
+                $bottom="25%"
+                $right="23%"
                 onClick={() => handleInstrumentClick("dan_trung")}
               />
               
@@ -2336,7 +2479,7 @@ const TayNguyenGongsGame = () => {
           )}
           
           {/* Modal chi tiết nhạc cụ */}
-          <InstrumentDetailsModal show={showInstrumentDetails}>
+          <InstrumentDetailsModal $show={showInstrumentDetails}>
             {currentInstrument && (
               <>
                 <InstrumentDetailsHeader>
@@ -2346,7 +2489,7 @@ const TayNguyenGongsGame = () => {
                 
                 <ImageCarousel>
                   <CarouselContainer>
-                    <ImagesContainer translateValue={-350 * currentImageIndex}>
+                    <ImagesContainer $translateValue={-350 * currentImageIndex}>
                       {currentInstrument.images.map((image, index) => (
                         <SlideImage 
                           key={index} 
@@ -2368,7 +2511,7 @@ const TayNguyenGongsGame = () => {
                     {currentInstrument.images.map((_, index) => (
                       <CarouselDot 
                         key={index} 
-                        active={index === currentImageIndex}
+                        $active={index === currentImageIndex}
                         onClick={() => goToImage(index)}
                       />
                     ))}
@@ -2384,10 +2527,13 @@ const TayNguyenGongsGame = () => {
           {currentDialog && dialogs[currentDialog] && !exploringInstruments && (
             <>
               <CharacterPortrait 
-                sprite={getCharacterSprite()} 
-                {...getCharacterPosition()}
+                $sprite={getCharacterSprite()} 
+                $left={getCharacterPosition().left}
+                $right={getCharacterPosition().right}
+                $bottom={getCharacterPosition().bottom}
+                $top={getCharacterPosition().top}
               />
-              <DialogBox position={currentCharacter === "assistant" ? "left" : "right"}>
+              <DialogBox $position={currentCharacter === "assistant" ? "left" : "right"}>
                 <DialogHeader>{dialogs[currentDialog].speaker}</DialogHeader>
                 <DialogContent>
                   {currentDialog === "random_fact" ? randomFactContent : dialogs[currentDialog].content}
@@ -2395,7 +2541,7 @@ const TayNguyenGongsGame = () => {
                 <ButtonContainer>
                   {showNextQuestion ? (
                     <NextQuestionButton 
-                      show={true}
+                      $show={true}
                       onClick={handleNextQuestion}
                     >
                       Tìm mảnh tiếp theo
@@ -2404,7 +2550,7 @@ const TayNguyenGongsGame = () => {
                     dialogs[currentDialog].options.map((option, index) => (
                       <GameButton 
                         key={index}
-                        primary={index === 0}
+                        $primary={index === 0}
                         onClick={() => handleDialogOption(option, currentDialog)}
                       >
                         {option}
@@ -2417,7 +2563,7 @@ const TayNguyenGongsGame = () => {
           )}
           
           {/* YouTube Mission Box */}
-          <YouTubeMissionBox show={showYouTubeMission}>
+          <YouTubeMissionBox $show={showYouTubeMission}>
             <MissionTitle>Trải Nghiệm Lễ Hội Cồng Chiêng Tây Nguyên</MissionTitle>
             <MissionDescription>
               Chúc mừng bạn đã hoàn thành hành trình khám phá nhà Rông và các nhạc cụ truyền thống!
@@ -2454,26 +2600,26 @@ const TayNguyenGongsGame = () => {
           </YouTubeMissionBox>
           
           {/* Fireworks Animation */}
-          <FireworksContainer show={showFireworks}>
+          <FireworksContainer $show={showFireworks}>
             {fireworks.map(firework => (
               <Firework
                 key={firework.id}
-                top={firework.top}
-                left={firework.left}
-                size={firework.size}
-                color={firework.color}
-                delay={firework.delay}
-                x={firework.x}
-                y={firework.y}
-                rotateSpeed={firework.rotateSpeed}
-                rotateSpeed2={firework.rotateSpeed2}
-                depth={firework.depth}
+                $top={firework.top}
+                $left={firework.left}
+                $size={firework.size}
+                $color={firework.color}
+                $delay={firework.delay}
+                $x={firework.x}
+                $y={firework.y}
+                $rotateSpeed={firework.rotateSpeed}
+                $rotateSpeed2={firework.rotateSpeed2}
+                $depth={firework.depth}
               />
             ))}
           </FireworksContainer>
           
           {/* Completion Message */}
-          <CompletionMessage show={showCompletion}>
+          <CompletionMessage $show={showCompletion}>
             <AchievementBadge />
             <CompletionTitle>Nhiệm Vụ Hoàn Thành!</CompletionTitle>
             <CompletionText>

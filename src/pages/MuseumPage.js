@@ -117,7 +117,10 @@ const Card = ({ artwork, isActive }) => {
         navigate('/donghogame');
       } else if (artwork.title === "Cồng Chiêng Tây Nguyên") {
         navigate('/taynguyengame');
-      } else {
+      } else if (artwork.title === "Ngày giải phóng miền Nam"){
+        navigate('/tankgame');
+      }
+       else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });
       }
       
