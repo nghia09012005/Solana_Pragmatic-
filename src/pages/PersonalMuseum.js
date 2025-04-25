@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/PersonalMuseum.css';
 import museumbg from '../assets/PersonalMuseum/museum1.png';
 import artifact1 from '../assets/PersonalMuseum/Comattran.svg';
 import artifact2 from '../assets/PersonalMuseum/successletter.png';
 import artifact3 from '../assets/PersonalMuseum/tranh-dong-ho.png';
+import museumMusic from '../assets/PersonalMuseum/audio/acoustic.wav';
+import { Link } from 'react-router-dom';
+import { FaHome } from 'react-icons/fa';
 
 const addPositions = [
-  { top: '30%', left: '20%' },
-  { top: '50%', left: '40%' },
-  { top: '70%', left: '60%' },
-  { top: '40%', left: '70%' },
+  { top: '67%', left: '17%' },
+  { top: '50%', left: '28%' },
+  { top: '50%', left: '49%' },
+  { top: '53%', left: '73%' },
+  { top: '69%', left: '87%' },
 ];
 
 const artifacts = [
@@ -28,6 +32,28 @@ const PersonalMuseum = () => {
   const [selectedPos, setSelectedPos] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
   const [placedArtifacts, setPlacedArtifacts] = useState({});
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  // Initialize audio
+  useEffect(() => {
+    audioRef.current = new Audio(museumMusic);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.5;
+
+    // Start playing when component mounts
+    audioRef.current.play()
+      .then(() => setIsPlaying(true))
+      .catch(err => console.log("Error playing audio:", err));
+
+    // Cleanup function
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
 
   // Load saved artifacts
   useEffect(() => {
@@ -98,6 +124,11 @@ const PersonalMuseum = () => {
       className="museum-container"
       style={{ backgroundImage: `url(${museumbg})` }}
     >
+      <Link to="/" className="home-button">
+        <FaHome />
+        <span>Trang chủ</span>
+      </Link>
+
       {addPositions.map((pos, index) => (
         <div
           key={index}
