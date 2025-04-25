@@ -170,7 +170,7 @@ const DongHoLoading = ({ onLoadingComplete }) => {
   };
 
   return (
-    <LoadingScreen backgroundImage={require('../../assets/DongHoGame/image/bg.jpg')} isLoading={isLoading}>
+    <LoadingScreen backgroundImage={require('../../assets/DongHoGame/image/bg.png')} isLoading={isLoading}>
       <LogoImage 
         src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
         alt="Tranh Đông Hồ Logo" 
