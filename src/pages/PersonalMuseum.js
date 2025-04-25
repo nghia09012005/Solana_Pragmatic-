@@ -91,6 +91,12 @@ const PersonalMuseum = () => {
     }
   }, [placedArtifacts]);
 
+  // Get available artifacts (those not yet placed)
+  const getAvailableArtifacts = () => {
+    const placedImageNames = Object.values(placedArtifacts).map(artifact => artifact.imageName);
+    return artifacts.filter(artifact => !placedImageNames.includes(artifact.imageName));
+  };
+
   const handleAddClick = (index) => {
     setSelectedPos(index);
     setShowMenu(true);
@@ -163,7 +169,7 @@ const PersonalMuseum = () => {
             <button onClick={() => setShowMenu(false)}>×</button>
           </div>
           <div className="menu-content">
-            {artifacts.map((artifact) => (
+            {getAvailableArtifacts().map((artifact) => (
               <div
                 key={artifact.id}
                 className="artifact-item"

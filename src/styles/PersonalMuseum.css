@@ -39,47 +39,37 @@
     height: 120px;
     animation: artifactAppear 0.8s ease-out;
     padding: 12px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.3));
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border: 3px solid rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
     overflow: visible;
-    transition: border-color 0.3s, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+    transform-origin: center;
   }
 
   .placed-artifact:hover {
-    border-color: #ffd700;
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
   }
   
   .placed-artifact::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    background: linear-gradient(45deg, #ffd700, #ffa500, #ff8c00);
-    border-radius: 19px;
-    z-index: -1;
-    opacity: 0.7;
-    animation: borderGlow 3s ease-in-out infinite;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-  }
-  
-  .placed-artifact::after {
     content: '';
     position: absolute;
     top: -2px;
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, #8B4513, #654321);
-    border-radius: 17px;
-    z-index: -2;
-    opacity: 0.3;
-    box-shadow: 0 0 20px rgba(139, 69, 19, 0.2);
+    background: linear-gradient(45deg, #ffd700, #ffa500, #ff8c00);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .placed-artifact:hover::before {
+    opacity: 0.2;
   }
   
   .placed-artifact .artifact-image {
@@ -87,9 +77,9 @@
     height: 140px;
     object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: transparent;
     padding: 8px;
     position: absolute;
     top: 50%;
@@ -100,21 +90,22 @@
   
   .placed-artifact .artifact-image:hover {
     transform: translate(-50%, -50%) scale(1.05);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.1);
   }
   
-  @keyframes borderGlow {
+  @keyframes artifactAppear {
     0% {
-      opacity: 0.7;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      opacity: 0;
+      transform: scale(0.2);
     }
     50% {
-      opacity: 0.9;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+      opacity: 1;
+      transform: scale(1.1);
     }
     100% {
-      opacity: 0.7;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      opacity: 1;
+      transform: scale(1);
     }
   }
   
@@ -125,7 +116,7 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background-color: rgba(255, 0, 0, 0.8);
+    background: linear-gradient(135deg, #ff4d4d, #ff0000);
     color: white;
     border: none;
     font-size: 16px;
@@ -135,23 +126,12 @@
     justify-content: center;
     z-index: 101;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
   }
   
   .remove-artifact:hover {
-    background-color: rgba(255, 0, 0, 1);
-    transform: scale(1.1);
-  }
-  
-  @keyframes artifactAppear {
-    0% {
-      opacity: 0;
-      transform: scale(0.5) translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
   }
   
   .artifact-image {
@@ -188,11 +168,11 @@
   @keyframes menuSlideIn {
     0% {
       opacity: 0;
-      transform: translateX(100px) translateY(-20px);
+      transform: translateX(20px);
     }
     100% {
       opacity: 1;
-      transform: translateX(0) translateY(0);
+      transform: translateX(0);
     }
   }
   
@@ -252,6 +232,18 @@
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 20px;
     padding: 15px 0;
+    animation: contentFadeIn 0.5s ease-out 0.2s both;
+  }
+  
+  @keyframes contentFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   .artifact-item {

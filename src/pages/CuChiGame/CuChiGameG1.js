@@ -151,7 +151,7 @@ const CuChiGameG1 = () => {
             <img src={characterImg} alt="Character" className="character-model" />
 
             {/* Hộp thoại chỉ hiện khi KHÔNG trong phần quiz */}
-            {dialogStep !== -1 && (dialogStep < 7 || isFinished) && (
+            {dialogStep !== -1 && (
               <div className="dialog-box">
                 <p>{dialogues[dialogStep]}</p>
               </div>
