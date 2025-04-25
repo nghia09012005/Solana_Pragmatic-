@@ -7,7 +7,7 @@ import MuseumPage from './pages/MuseumPage';
 
 // import LoginPage from './pages/LoginPage';
 // import RegisterPage from './pages/RegisterPage';
-// import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 
@@ -20,7 +20,7 @@ import FlipCard from './pages/DongHoGame/FlipCard';
 import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
 import ThongTin304 from './pages/Thongnhat/ThongTin304';
-import Personalmuseum from './pages/PersonalMuseum';
+import PersonalMuseum from './pages/PersonalMuseum';
   
 function App() {
   // const { loading } = useAuth();
@@ -35,15 +35,27 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          
 
-          {/* <Route path="/museum" element={<MuseumPage />} /> */}
+          <Route path="/" element={<HomePage />} />
+
+
+          {/* <Route path="/" element={<HomePage />} /> */}
+
+
 
           
           {/* Tây Nguyên Gongs Game */}
 
+
           {/* <Route path="/" element={<TayNguyenGame />} /> */}
           {/* <Route path="/" element={<HomePage />} /> */}
+
+
+          {/* <Route path="taynguyengame" element={<TayNguyenGame />} />
+
+          <Route path="tankgame" element={<TankGame />} />
+          <Route path="bantin" element={<Bantin />} />
+          <Route path="thongtin304" element={<ThongTin304 />} /> */}
 
           
           {/* <Route path="/bantin" element={<Bantin />} /> */}
@@ -55,8 +67,10 @@ function App() {
           {/* <Route path="/" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} /> */}
           
-          {/* <Route path="/profile" element={<ProfilePage />} />  */}
+          {/* <Route path="/" element={<ProfilePage />} />  */}
           {/* <Route path="*" element={<NotFoundPage />} /> */}
+
+          {/* <Route path="/" element={<PersonalMuseum />} />  */}
 
         </Routes>
       </main>
