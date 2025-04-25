@@ -50,7 +50,7 @@
   position: absolute;
   bottom: 0; /* đứng sát mép dưới */
   right: 5%; /* cách mép phải 2% */
-  height: 55%; 
+  height: 45%; 
   width: auto;
 }
 
@@ -107,4 +107,50 @@
 .congrats-popup {
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Popup nền giấy cổ */
+.swal2-popup {
+  background: #fbf3dd;
+  background-size: cover;
+  border: 3px solid #d7ccc8;
+  border-radius: 18px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #4e342e;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Tiêu đề đậm chất sử thi */
+.swal2-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #6d4c41;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+/* Nội dung */
+.swal2-html-container {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Nút confirm (chơi lại) màu xanh chiến thắng */
+.swal2-confirm {
+  background-color: #2e7d32 !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: bold;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+/* Nút cancel (về bảo tàng) màu đỏ gạch */
+.swal2-cancel {
+  background-color: #c62828 !important;
+  color: white !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 10px !important;
+  font-weight: 500;
+  padding: 10px 20px;
 }
