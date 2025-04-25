@@ -91,8 +91,8 @@ function App() {
           {/* <Route path="/" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} /> */}
           
-          {/* <Route path="/" element={<ProfilePage />} />  */}
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          <Route path="/profile" element={<ProfilePage />} /> 
+          <Route path="*" element={<NotFoundPage />} />
 
           <Route path="/museum" element={<PersonalMuseum />} /> 
 
