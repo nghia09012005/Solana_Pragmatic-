@@ -38,11 +38,19 @@ function App() {
           {/* <Route path="/" element={<HomePage />} /> */}
 
 
+          <Route path="/" element={<HomePage />} />
+
+
           {/* <Route path="/" element={<HomePage />} /> */}
+
 
 
           
           {/* Tây Nguyên Gongs Game */}
+
+
+          {/* <Route path="/" element={<TayNguyenGame />} /> */}
+          {/* <Route path="/" element={<HomePage />} /> */}
 
 
           {/* <Route path="taynguyengame" element={<TayNguyenGame />} />
@@ -67,12 +75,11 @@ function App() {
           <Route path="/" element={<CuChiGameG1/>} />
           <Route path="/morse" element={<Morse />} />
 
-
           
           {/* <Route path="/bantin" element={<Bantin />} /> */}
           {/* Cu Chi Game */}
-          {/* <Route path="/cuchigame" element={<CuChiGameG1 />} /> */}
-          {/* <Route path="/morse" element={<Morse />} /> */}
+          <Route path="/" element={<CuChiGameG1 />} /> 
+           <Route path="/morse" element={<Morse />} />
           
           {/* Dong Ho Game */}
           {/* <Route path="/" element={<DongHoGame />} />
