@@ -25,21 +25,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* issignin */
-/* .signin {
-  position: fixed;          
-  top: 20px;
-  right: 20px;
-  background-color: #b79540;
-  color: #333;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-  transition: all 0.3s ease;
-} */
 
 .signin {
   position: fixed;
@@ -138,7 +123,6 @@ html, body {
   box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4), 0 8px 36px rgba(0, 0, 0, 0.35);
 }
 
-/* het nut signiin */
 .container{
   display: flex;  /* Thay đổi từ fixed thành flex */
   flex-direction: column;
@@ -188,6 +172,7 @@ header {
    background: rgba(21, 19, 12, 0.6); /* Làm mờ background */
    backdrop-filter: blur(8px); /* Làm mờ background */
   z-index: 1001;
+
  
 }
 
@@ -228,8 +213,9 @@ header::after {
 }
 
 .head-left img{
-  height: 45px;
+  height: 60px;
   margin-right: 15px;
+  margin-left: 20px;
 }
 
 header ul{
@@ -247,7 +233,7 @@ header a{
   text-decoration: none;
   color:gray;
   font-weight: 900;
-  font-size: 15px;
+  font-size: 16px;
   transition: 0.3s;
   font-family: monospace  ; 
 }
@@ -257,7 +243,7 @@ header a:hover {
   background: rgba(0, 0, 0, 0.2);  /* Giảm opacity của background */
   /* border: 1px solid rgba(0, 207, 255, 0.3);  Border màu xanh mờ */
   padding: 6px 16px;
-  font-size: 13px;
+  font-size: 14px;
   border-radius: 3px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -354,7 +340,7 @@ header a:hover:hover::before {
   cursor: pointer;
   transition: 0.3s;
   font-family: 'Roboto Mono', monospace;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 /* cái nút sign in chuyển động  */
@@ -429,7 +415,7 @@ header a:hover:hover::before {
   top:15%;
  
   font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 42px;
+  font-size: 45px;
   max-width: 650px;
   /* text-align: center; */
   color: white;
@@ -443,8 +429,8 @@ header a:hover:hover::before {
 .background h3{
   position: absolute;
   top: 35%;
-  font-size: 16px;
-  max-width: 610px;
+  font-size: 17px;
+  max-width: 650px;
   font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: left;
   color: rgb(142, 141, 141);
@@ -908,16 +894,20 @@ body:has(.overlay) .background button {
 /*FEATURE*/
 .tinh-nang-chinh{
   position: relative;
-  top:-200px;
+  top:-180px;
   padding: 50px 0;
   width: 21.5%;
-  left:-410px;
+  left:25px; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: rgb(0, 0, 0);
 }
+
+
+
+
 .feature{
   position: relative;
   background-image: url('/public/images/background-feature.png');
@@ -939,8 +929,9 @@ body:has(.overlay) .background button {
   gap: 30px;
   padding: 0 50px;
   margin-top:-250px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif  ;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif  ;
   font-size: 20px;
+  margin-left: 3%;
 }
 
 .feature-card {
@@ -954,6 +945,8 @@ body:has(.overlay) .background button {
     rgba(21, 20, 12, 0.98)
   );
   transition: all 0.3s ease;
+  width: 90%;
+  height: auto;
   overflow: hidden;
 }
 .feature-card::before {
@@ -988,7 +981,7 @@ body:has(.overlay) .background button {
 
 .feature-card h3 {
   color: #DAA520;
-  font-size: 27px;
+  font-size: 29px;
   margin-bottom: 35px;
   position: relative;
   z-index: 1;
@@ -1039,9 +1032,9 @@ body:has(.overlay) .background button {
 
 .tong-quan {
   position: relative;
-  width: 95%;
+  width: 100%;
   padding: 20px;
- top:-120px;
+  top:-120px;
   display: flex;
   flex-direction: column;
 
@@ -1084,7 +1077,7 @@ body:has(.overlay) .background button {
   margin-top: 300px; 
   
   height: auto;
-  width: 1000px;
+  width: 1440px;
   text-align: justify;
   justify-content: center;
   font-size: large;

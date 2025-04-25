@@ -4,7 +4,7 @@ import villageBackground from '../../assets/TayNguyenGame/village-background.png
 import insideNhaRong from '../../assets/TayNguyenGame/inside_nha_rong.png';
 import characterSprite from '../../assets/TayNguyenGame/character.png';
 import elderSprite from '../../assets/TayNguyenGame/elder.png';
-import assistantSprite from '../../assets/TayNguyenGame/assistant.png';
+import assistantSprite from '../../assets/TayNguyenGame/cong-chieng1.png';
 import mapImage from '../../assets/TayNguyenGame/map.png';
 import trongDatImage from '../../assets/TayNguyenGame/trong_dat.png';
 import hoiLuaImage from '../../assets/TayNguyenGame/hoi_lua.png';
@@ -28,8 +28,9 @@ import {
 
 // Game styles
 const GameContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
+
+  width: 100%;
+  height: 100%;
   position: relative;
   margin: 0;
   overflow: hidden;
@@ -37,6 +38,7 @@ const GameContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
 `;
 
 const VillageScene = styled.div`
@@ -90,6 +92,7 @@ const DialogHeader = styled.div`
   font-weight: bold;
   font-size: 1.2rem;
   flex-shrink: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const DialogContent = styled.div`
@@ -99,6 +102,7 @@ const DialogContent = styled.div`
   max-height: 130px;
   overflow-y: auto;
   flex-grow: 1;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const ButtonContainer = styled.div`
@@ -404,8 +408,8 @@ const LoadingScreen = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
     url(${villageBackground});
   background-size: cover;
@@ -1922,7 +1926,7 @@ const TayNguyenGongsGame = () => {
   const getCharacterPosition = () => {
     if (currentCharacter === "assistant") {
       return {
-        left: "auto", 
+        left: "75%", 
         bottom: "0px",
         right: "30px"
       };

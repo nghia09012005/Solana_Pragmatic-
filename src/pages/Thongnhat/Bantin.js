@@ -12,7 +12,7 @@ const Bantin = () => {
   const bantinAudioRef = useRef(null);
   const backgroundAudioRef = useRef(null);
   const delay = 37000; // 37 giây
-  const backgroundVolume = 0.2;
+  const backgroundVolume = 1;
 
   const [dialogIndex, setDialogIndex] = useState(0);
   const [showNotification, setShowNotification] = useState(false);
