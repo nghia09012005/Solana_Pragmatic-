@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../../styles/Thongnhat/TankGame.css"; // Import CSS file
 import tankImage from '../../assets/Thongnhat/images/tankfinal.png'; // Đảm bảo đường dẫn hình ảnh đúng
 import tankSound from '../../assets/Thongnhat/audio/sound.wav';
@@ -16,28 +16,50 @@ const TankGame = () => {
   const [score, setScore] = useState(0); // Điểm số
   const [gameOver, setGameOver] = useState(false); // Trạng thái game over
   const [success, setsucces] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+  const explosionRef = useRef(null);
 
- 
   useEffect(() => {
-    const audio = new Audio(tankSound);
-    audio.loop = true; // Phát nhạc liên tục
-    audio.play().catch((err) => console.log("Error playing audio:", err));
+    // Initialize background music
+    audioRef.current = new Audio(tankSound);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.5;
+
+    // Initialize explosion sound
+    explosionRef.current = new Audio(explo);
+    explosionRef.current.volume = 0.7;
+
+    // Start playing background music
+    audioRef.current.play()
+      .then(() => setIsPlaying(true))
+      .catch(err => console.log("Error playing audio:", err));
+
+    // Cleanup function
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
   }, []);
 
-  // Hàm phát âm thanh nổ
+  // Function to play explosion sound
   const playExplosionSound = () => {
-    const audio = new Audio(explo);  // Tạo đối tượng âm thanh
-    audio.play();  // Phát âm thanh
+    if (explosionRef.current) {
+      explosionRef.current.currentTime = 0;
+      explosionRef.current.play()
+        .catch(err => console.log("Error playing explosion sound:", err));
+    }
   };
 
-   // success
-   const navigate = useNavigate();
-   const handlesuccess = () => {
-     // Điều hướng về trang chủ khi nhấn Restart
-     navigate("/Homepage");
-   };
- 
- 
+  // success
+  const navigate = useNavigate();
+  const handlesuccess = () => {
+    // Điều hướng về trang chủ khi nhấn Restart
+    navigate("/Homepage");
+  };
+
   // Di chuyển tank bằng phím mũi tên
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -146,6 +168,14 @@ const TankGame = () => {
     setScore(0);
     setGameOver(false);
     setsucces(false);
+    
+    // Restart background music
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch(err => console.log("Error playing audio:", err));
+    }
   };
 
   return (
