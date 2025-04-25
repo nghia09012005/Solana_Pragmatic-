@@ -352,8 +352,18 @@ useEffect(() => {
    
 
 </section>
-<img className='info'
-src="/images/goldframe.png" alt="goldframe" />
+
+
+<div className="info-box">
+  <img className="info" src="/images/goldframe.png" alt="goldframe" />
+  <div className="info-text">
+   
+    <p>
+    Hành trình Di sản mang sứ mệnh gìn giữ và lan tỏa những giá trị văn hóa Việt Nam bằng cách kết hợp giữa tinh thần truyền thống và sức mạnh của công nghệ số. Di sản không chỉ là những thứ cũ kỹ nằm trong quá khứ, mà là phần hồn của dân tộc – cần được sống lại, chạm tới, và truyền cảm hứng cho thế hệ hôm nay. Dự án hướng đến việc tạo ra những trải nghiệm nhập vai, sáng tạo và gần gũi, để mỗi người trẻ đều có thể thấu hiểu cội nguồn, tự hào về bản sắc và trở thành người kể tiếp câu chuyện của cha ông theo cách của riêng mình.
+    </p>
+  </div>
+</div>
+
 
 <img className='last'
 src="/images/last-page.png" alt="lastpage" />
