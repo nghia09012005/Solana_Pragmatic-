@@ -1,7 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap'); */
 
 .game-container {
-  background-image: url('../../assets/DongHoGame/image/bg.jpg');
+  background-image: url('../../assets/DongHoGame/image/bg.png');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -15,7 +15,7 @@
   position: absolute;
   bottom: 0; /* đứng sát mép dưới */
   right: 2%; /* cách mép phải 2% */
-  height: 270px; 
+  height: 60%; 
   width: auto;
 }
 
