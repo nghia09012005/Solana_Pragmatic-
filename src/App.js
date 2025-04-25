@@ -20,7 +20,7 @@ import FlipCard from './pages/DongHoGame/FlipCard';
 import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
 import ThongTin304 from './pages/Thongnhat/ThongTin304';
-
+import Personalmuseum from './pages/PersonalMuseum';
   
 function App() {
   // const { loading } = useAuth();
@@ -38,9 +38,10 @@ function App() {
           {/* <Route path="/" element={<HomePage />} /> */}
 
           {/* <Route path="/museum" element={<MuseumPage />} /> */}
+
           
           {/* Tây Nguyên Gongs Game */}
-          {/* <Route path="taynguyengame" element={<TayNguyenGame />} /> */}
+          {/* <Route path="/taynguyengame" element={<TayNguyenGame />} /> */}
           
           {/* <Route path="/bantin" element={<Bantin />} /> */}
           {/* Cu Chi Game */}
@@ -51,14 +52,13 @@ function App() {
           <Route path="/" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} />
           
-
-          {/* <Route path="/profile" element={<ProfilePage />} /> */}
+          {/* <Route path="/profile" element={<ProfilePage />} />  */}
           {/* <Route path="*" element={<NotFoundPage />} /> */}
+
         </Routes>
       </main>
       {/* <Footer /> */}
     </div>
-   
     
   );
 }

@@ -14,26 +14,27 @@
 .character-img {
   position: absolute;
   bottom: 0; /* đứng sát mép dưới */
-  right: 2%; /* cách mép phải 2% */
-  height: 60%; 
+  right: 2%; 
+  height: 55%; 
   width: auto;
 }
 
 .text-box {
   position: absolute;
-  bottom: 10%; 
+  bottom: 12%; 
   left: 5%; 
   width: 75%;
   text-align: justify;
-  right: 25%; 
-  background-color: #f9e1a0; /* Màu nền vàng nhẹ */
+  right: 30%; 
+  background-color: #f9e1a0; 
   padding: 16px;
   border-radius: 15px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3); /* Bóng mờ nhẹ, tạo cảm giác nổi */
   font-size: 18px;  
-  color: rgba(0, 0, 0);
-  border: 2px solid #333; /* Viền đen cho khung */
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Phông chữ sang trọng, cổ điển */
+  color: #4d2e00;
+  border: 2px solid #333; 
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  */
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   display: flex;
   flex-direction: column;
@@ -77,14 +78,15 @@
 }
 
 .step-img-centered:hover {
-  transform: scale(1.1); /* Hiệu ứng phóng to nhẹ khi hover */
+  transform: scale(1.1); 
 }
 
-/* Nút "Tiếp tục" ở góc dưới bên phải */
+/* Nút "Bắt đầu" để chơi */
 .start-button {
   background-color: #f6c453;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #3b2200;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #4d2e00;
   font-weight: bold;
   border: 2px solid #e6a347;
   justify-content: center;
@@ -94,34 +96,16 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
   position: absolute;
-  top: 50%; /* Đặt nút ở giữa theo chiều dọc */
-  left: 50%; /* Đặt nút ở giữa theo chiều ngang */
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%); /* Điều chỉnh lại vị trí để đúng chính giữa */
 }
 
 .start-button:hover {
   background-color: #ffd97b;
-  
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);}
-
-
-/* .start-button {
-  margin-top: 12px;
-  padding: 12px 25px;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-.start-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05); 
-} */
 
 /* Thêm phần CSS cho thông báo hoàn thành nhiệm vụ */
 .mission-complete-notification {
