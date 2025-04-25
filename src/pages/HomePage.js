@@ -219,7 +219,7 @@ useEffect(() => {
         <h3 className={`fade-in-text  ${isVisible ? 'visible' : ''}`}>
         Hóa thân thành người gìn giữ ký ức, vượt qua thử thách ảo ảnh, thu thập mảnh ghép di sản và viết tiếp câu chuyện của quá khứ bằng công nghệ.
         </h3>
-         <Link to="/museum"> 
+         <Link to="/museumpage"> 
           <button >KHÁM PHÁ NGAY!</button>
         </Link> 
         
