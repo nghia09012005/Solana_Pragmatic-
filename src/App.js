@@ -40,7 +40,7 @@ function App() {
           
           {/* Tây Nguyên Gongs Game */}
           <Route path="taynguyengame" element={<TayNguyenGame />} />
-          
+          <Route path="/" element={<HomePage />} />
           
           {/* Cu Chi Game */}
           <Route path="/cuchigame" element={<CuChiGameG1 />} />
