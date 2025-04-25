@@ -22,8 +22,10 @@ const CuChiGameG1 = () => {
   const [audioPlaying, setAudioPlaying] = useState(false);
   const navigate = useNavigate();
 
+
+  
   const dialogues = [
-    'Chào đồng chí, đây là khu căn cứ địa Củ Chi!',
+    'Chào đồng chí, đây là khu căn cứ địa đạo Củ Chi!',
     'Chào mừng đồng chí tình báo đã đến đây, đồng chí hãy tìm hiểu và hoàn thành tốt nhiệm vụ được giao.',
     'Đồng chí hãy luôn trong tư thế sẵn sàng chiến đấu !!!!!!!!!',
     'Bắt đầu thôi nào!',
@@ -157,8 +159,8 @@ const CuChiGameG1 = () => {
           </div>
 
           <div className="image-container">
-            {dialogStep >= 6 && <img src={diadaomap} alt="map" className="map" />}
-            {dialogStep >= 5 && <img src={didaodist} alt="dist" className="dist" />}
+            {dialogStep >= 4 && <img src={diadaomap} alt="map" className="map" />}
+            {dialogStep >= 4 && <img src={didaodist} alt="dist" className="dist" />}
           </div>
 
           {/* Quiz chỉ hiện từ dialogStep >= 7 và chưa xong */}
@@ -198,7 +200,7 @@ const CuChiGameG1 = () => {
                 }}
                 className="quiz-button"
               >
-                  Tiếp tục
+                  TIẾP TỤC
                 </button>
               )}
 
