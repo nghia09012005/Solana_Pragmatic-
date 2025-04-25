@@ -303,7 +303,7 @@ const Morse = () => {
             </div>
   
             {/* morse table */}
-            <div className="image-container">
+            <div className="image-container-morse">
                 {!(sgfinish && hnfinish) && (<img src={morsetable} alt="mtable" className="mtable" />)}
             </div>
 

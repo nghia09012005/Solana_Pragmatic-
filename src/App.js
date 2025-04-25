@@ -35,25 +35,25 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          {/* <Route path="/" element={<HomePage />} /> */}
+          
 
           {/* <Route path="/museum" element={<MuseumPage />} /> */}
 
           
           {/* Tây Nguyên Gongs Game */}
 
-          <Route path="taynguyengame" element={<TayNguyenGame />} />
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<TayNguyenGame />} /> */}
+          {/* <Route path="/" element={<HomePage />} /> */}
 
           
           {/* <Route path="/bantin" element={<Bantin />} /> */}
           {/* Cu Chi Game */}
-          {/* <Route path="/cuchigame" element={<CuChiGameG1 />} /> */}
-          {/* <Route path="/morse" element={<Morse />} /> */}
+          <Route path="/" element={<CuChiGameG1 />} /> 
+           <Route path="/morse" element={<Morse />} />
           
           {/* Dong Ho Game */}
-          <Route path="/" element={<DongHoGame />} />
-          <Route path="/FlipCard" element={<FlipCard />} />
+          {/* <Route path="/" element={<DongHoGame />} />
+          <Route path="/FlipCard" element={<FlipCard />} /> */}
           
           {/* <Route path="/profile" element={<ProfilePage />} />  */}
           {/* <Route path="*" element={<NotFoundPage />} /> */}
