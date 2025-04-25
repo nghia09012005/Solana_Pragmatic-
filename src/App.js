@@ -35,7 +35,7 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
 
 
           {/* <Route path="/" element={<HomePage />} /> */}
@@ -63,9 +63,9 @@ function App() {
           {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
           {/* path="/CuChiGame" sau khi test xong */}
-          {/*           
+                    
           <Route path="/" element={<CuChiGameG1/>} />
-          <Route path="/morse" element={<Morse />} /> */}
+          <Route path="/morse" element={<Morse />} />
 
 
           
@@ -81,7 +81,7 @@ function App() {
           {/* <Route path="/" element={<ProfilePage />} />  */}
           {/* <Route path="*" element={<NotFoundPage />} /> */}
 
-          {/* <Route path="/" element={<PersonalMuseum />} />  */}
+          <Route path="/museum" element={<PersonalMuseum />} /> 
 
         </Routes>
       </main>
