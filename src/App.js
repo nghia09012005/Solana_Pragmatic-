@@ -56,9 +56,9 @@ function App() {
 
           {/* <Route path="/" element={<HomePage />} /> */}
 
-          <Route path="/" element={<Personalmuseum />} />
+          {/* <Route path="/" element={<Personalmuseum />} /> */}
 
-          {/* <Route path="/" element={<Bantin />} /> */}
+          <Route path="/" element={<Bantin />} />
 
           {/* <Route path="/" element={<ThongTin304 />} /> */}
 
