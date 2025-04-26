@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import co from '../assets/PersonalMuseum/Comattran.svg';
+import thu from '../assets/PersonalMuseum/successletter.png';
+import tranh from '../assets/PersonalMuseum/tranh-dong-ho.png';
+import congchieng from '../assets/PersonalMuseum/cong_chieng.png';
 import '../styles/ProfilePage.css';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState({
     username: '',
     exp: 0,
@@ -19,29 +21,17 @@ const ProfilePage = () => {
       trongdong: false
     }
   });
-  const [message, setMessage] = useState({ text: '', type: '' });
 
   useEffect(() => {
-    const user = localStorage.getItem('username');
+    const username = localStorage.getItem('username');
     const token = localStorage.getItem('token');
-    const savedUserData = localStorage.getItem('userData');
     
-    console.log('User:', user);
-    console.log('Token:', token);
-    console.log('Saved Data:', savedUserData);
-    
-    if (savedUserData) {
-      setUserData(JSON.parse(savedUserData));
-      return;
-    }
-
-    if (!user || !token) {
-      console.log('No user or token found');
+    if (!username || !token) {
       navigate('/');
       return;
     }
 
-    fetch(`/api/users/stats/${user}`, {
+    fetch(`/api/users/stats/${username}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -49,14 +39,12 @@ const ProfilePage = () => {
       }
     })
     .then(response => {
-      console.log('Response status:', response.status);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       return response.json();
     })
     .then(data => {
-      console.log('Response data:', data);
       if (data.code === "1000") {
         const newUserData = {
           username: data.result.user.username,
@@ -71,7 +59,6 @@ const ProfilePage = () => {
             trongdong: data.result.trongdong
           }
         };
-        console.log('New user data:', newUserData);
         setUserData(newUserData);
         localStorage.setItem('userData', JSON.stringify(newUserData));
       } else {
@@ -85,39 +72,6 @@ const ProfilePage = () => {
     });
   }, [navigate]);
 
-  // Tính toán số lượng vật phẩm đã sở hữu
-  const getItemCount = () => {
-    const items = userData.items;
-    let count = 0;
-    if (items.congchieng) count++;
-    if (items.co) count++;
-    if (items.thu) count++;
-    if (items.tranh) count++;
-    if (items.quanho) count++;
-    if (items.trongdong) count++;
-    return count;
-  };
-
-  // Tính toán tên viết tắt từ tên người dùng
-  const getInitials = (name) => {
-    if (!name) return "U";
-    return name.charAt(0).toUpperCase();
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setMessage({ text: 'Cập nhật thông tin thành công!', type: 'success' });
-    setIsEditing(false);
-  };
-
   const handleLogout = () => {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
@@ -129,11 +83,6 @@ const ProfilePage = () => {
       <div className="profile-container">
         <div className="profile-header">
           <h1>Thông tin tài khoản</h1>
-          {message.text && (
-            <div className={`message ${message.type}`}>
-              {message.text}
-            </div>
-          )}
         </div>
 
         <div className="profile-content">
@@ -150,7 +99,7 @@ const ProfilePage = () => {
               </div>
               <div className="stat-item">
                 <span className="stat-label">Vật phẩm:</span>
-                <span className="stat-value">{getItemCount()}/6</span>
+                <span className="stat-value">{Object.values(userData.items).filter(value => value === true).length}/6</span>
               </div>
               <div className="stat-item">
                 <span className="stat-label">EXP:</span>
@@ -160,73 +109,56 @@ const ProfilePage = () => {
           </div>
 
           <div className="profile-details">
-            {isEditing ? (
-              <form onSubmit={handleSubmit} className="edit-form">
-                <div className="form-group">
-                  <label htmlFor="displayName">Tên hiển thị</label>
-                  <input
-                    type="text"
-                    id="displayName"
-                    name="displayName"
-                    value={userData.username}
-                    onChange={handleChange}
-                    placeholder="Nhập tên hiển thị của bạn"
-                  />
-                </div>
-                
-                <div className="form-actions">
-                  <button type="submit" className="btn-save">Lưu thay đổi</button>
-                  <button 
-                    type="button" 
-                    className="btn-cancel" 
-                    onClick={() => setIsEditing(false)}
-                  >
-                    Hủy
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <>
-                <div className="profile-info">
-                  <h2>{userData.username}</h2>
-                  <div className="items-grid">
-                    <div className={`item-card ${userData.items.congchieng ? 'owned' : ''}`}>
-                      <span>Cồng Chiêng</span>
-                    </div>
-                    <div className={`item-card ${userData.items.co ? 'owned' : ''}`}>
-                      <span>Cờ</span>
-                    </div>
-                    <div className={`item-card ${userData.items.thu ? 'owned' : ''}`}>
-                      <span>Thư</span>
-                    </div>
-                    <div className={`item-card ${userData.items.tranh ? 'owned' : ''}`}>
-                      <span>Tranh</span>
-                    </div>
-                    <div className={`item-card ${userData.items.quanho ? 'owned' : ''}`}>
-                      <span>Quan Họ</span>
-                    </div>
-                    <div className={`item-card ${userData.items.trongdong ? 'owned' : ''}`}>
-                      <span>Trống Đồng</span>
-                    </div>
+            <div className="profile-info">
+              <h2>{userData.username}</h2>
+              <div className="items-grid">
+                {userData.items.congchieng && (
+                  <div className="item-card owned">
+                    <img src={congchieng} alt="Cồng Chiêng" />
+                    <span>Cồng Chiêng</span>
                   </div>
-                </div>
-                
-                <div className="profile-actions">
-                  <button 
-                    className="btn-edit" 
-                    onClick={() => setIsEditing(true)}
-                  >
-                    Chỉnh sửa thông tin
-                  </button>
-                  <button 
-                    className="btn-logout" 
-                    onClick={handleLogout}
-                  >
-                    Đăng xuất
-                  </button>
-                </div>
-              </>
-            )}
+                )}
+                {userData.items.co && (
+                  <div className="item-card owned">
+                    <img src={co} alt="Cờ" />
+                    <span>Cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam</span>
+                  </div>
+                )}
+                {userData.items.thu && (
+                  <div className="item-card owned">
+                    <img src={thu} alt="Thư" />
+                    <span>Mật thư từ Địa đạo Củ Chi</span>
+                  </div>
+                )}
+                {userData.items.tranh && (
+                  <div className="item-card owned">
+                    <img src={tranh} alt="Tranh" />
+                    <span>Tranh Đông Hồ</span>
+                  </div>
+                )}
+                {userData.items.quanho && (
+                  <div className="item-card owned">
+                    <img src={co} alt="Quan Họ" />
+                    <span>Quan Họ</span>
+                  </div>
+                )}
+                {userData.items.trongdong && (
+                  <div className="item-card owned">
+                    <img src={co} alt="Trống Đồng" />
+                    <span>Trống Đồng</span>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className="profile-actions">
+              <button 
+                className="btn-logout" 
+                onClick={handleLogout}
+              >
+                Đăng xuất
+              </button>
+            </div>
           </div>
         </div>
       </div>
