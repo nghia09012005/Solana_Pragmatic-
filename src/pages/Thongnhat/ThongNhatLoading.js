@@ -87,7 +87,6 @@ const LoadingMessage = styled.p`
   transition: opacity 0.5s ease;
   text-align: center;
   max-width: 80%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const StartButton = styled.button`
@@ -114,7 +113,7 @@ const StartButton = styled.button`
   }
 `;
 
-const DongHoLoading = ({ onLoadingComplete }) => {
+const ThongNhatLoading = ({ onLoadingComplete }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingMessage, setLoadingMessage] = useState("Đang chuẩn bị hành trình...");
   const [loadingComplete, setLoadingComplete] = useState(false);
@@ -122,16 +121,16 @@ const DongHoLoading = ({ onLoadingComplete }) => {
   
   // Define loading messages
   const messageInbox = [
-    "BẠN CÓ BIẾT: Tranh Đông Hồ là loại hình tranh dân gian truyền thống của Việt Nam.",
-    "BẠN CÓ BIẾT: Tranh Đông Hồ có lịch sử hơn 500 năm, xuất phát từ làng Đông Hồ, Bắc Ninh.",
-    "BẠN CÓ BIẾT: Tranh Đông Hồ được làm từ giấy điệp và sử dụng màu sắc từ tự nhiên.",
-    "BẠN CÓ BIẾT: Tranh Đông Hồ thường được treo trong dịp Tết Nguyên đán.",
-    "BẠN CÓ BIẾT: Quy trình làm tranh Đông Hồ gồm nhiều công đoạn phức tạp.",
-    "BẠN CÓ BIẾT: Tranh Đông Hồ đã được UNESCO công nhận là di sản văn hóa phi vật thể.",
-    "BẠN CÓ BIẾT: Tranh Đông Hồ có nhiều đề tài như: Lợn đàn, Gà đàn, Vinh hoa, Đám cưới chuột...",
-    "BẠN CÓ BIẾT: Các màu chủ đạo của tranh Đông Hồ là đỏ, vàng, đen, xanh và trắng.",
-    "BẠN CÓ BIẾT: Điều đặc biệt của tranh Đông Hồ là sử dụng ván khắc gỗ để in nhiều lần.",
-    "BẠN CÓ BIẾT: Tranh Đông Hồ thể hiện nét đẹp văn hóa dân gian của người Việt Nam."
+    "BẠN CÓ BIẾT: Chiến dịch Hồ Chí Minh là trận đánh quyết định đưa tới thắng lợi hoàn toàn vào ngày 30/4/1975.",
+    "BẠN CÓ BIẾT: Xe tăng T-54 số hiệu 843 là một trong những chiếc đầu tiên tiến vào Dinh Độc Lập.",
+    "BẠN CÓ BIẾT: Cờ của Mặt trận Dân tộc Giải phóng miền Nam Việt Nam được cắm trên Dinh Độc Lập vào trưa 30/4.",
+    "BẠN CÓ BIẾT: Sự kiện 30/4/1975 đã kết thúc 21 năm chia cắt đất nước Bắc – Nam.",
+    "BẠN CÓ BIẾT: Chiến dịch Hồ Chí Minh chỉ diễn ra trong vòng 5 ngày, từ 26 đến 30 tháng 4 năm 1975.",
+    "BẠN CÓ BIẾT: Đại đội trưởng Bùi Quang Thận là người cắm lá cờ đầu tiên lên nóc Dinh Độc Lập.",
+    "BẠN CÓ BIẾT: Tổng thống ngụy quyền Dương Văn Minh đã tuyên bố đầu hàng vô điều kiện vào trưa 30/4.",
+    "BẠN CÓ BIẾT: Ngày 30/4 hằng năm được gọi là Ngày Giải phóng miền Nam, thống nhất đất nước.",
+    "BẠN CÓ BIẾT: Hơn 3 triệu quân và dân đã tham gia vào Chiến dịch Hồ Chí Minh lịch sử.",
+    "BẠN CÓ BIẾT: Sự kiện 30/4/1975 đánh dấu kết thúc chiến tranh, mở ra thời kỳ hòa bình và thống nhất quốc gia."
   ];
   
   useEffect(() => {
@@ -171,16 +170,16 @@ const DongHoLoading = ({ onLoadingComplete }) => {
   };
 
   return (
-    <LoadingScreen backgroundImage={require('../../assets/DongHoGame/image/bg.png')} isLoading={isLoading}>
+    <LoadingScreen backgroundImage={require('../../assets/Thongnhat/images/Dinhdoclapcali.jpeg')} isLoading={isLoading}>
       <LogoImage 
         src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
-        alt="Tranh Đông Hồ Logo" 
+        alt="Thống Nhất Logo" 
       />
       
       <LoadingTitle>
         <img 
           src={`${process.env.PUBLIC_URL}/images/icons/logo-font.png`} 
-          alt="Tranh Đông Hồ" 
+          alt="Thống Nhất" 
           style={{ maxWidth: '100%', height: 'auto' }}
         />
       </LoadingTitle>
@@ -203,4 +202,4 @@ const DongHoLoading = ({ onLoadingComplete }) => {
   );
 };
 
-export default DongHoLoading; 
+export default ThongNhatLoading; 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ReactAudioPlayer from 'react-audio-player';
 import '../../styles/DongHoStyle/DongHoGameG1.css';
 import DongHoLoading from './DongHoLoading';
+import GameMenu from './GameMenu';
 
 // Import ảnh
 import nhanvat from '../../assets/DongHoGame/image/nhanvat.png';
@@ -23,11 +24,12 @@ const DongHoGame = () => {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [isGameStarted, setIsGameStarted] = useState(false);
     const [audioStarted, setAudioStarted] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const audioRef = useRef(null);
     const navigate = useNavigate();
 
     const texts = [
-        'Xin chào các em bé hiếu học! Bạn đã đến làng tranh Đông Hồ - nơi lưu giữ tinh hoa tranh dân gian Việt Nam đã hơn 500 năm tuổi... ',
+        'Xin chào các em bé hiếu học! Em đã đến làng tranh Đông Hồ - nơi lưu giữ tinh hoa tranh dân gian Việt Nam đã hơn 500 năm tuổi... ',
         'Tranh Đông Hồ là tranh dân gian truyền thống của Việt Nam, xuất phát từ làng Đông Hồ (Bắc Ninh). Tranh phản ánh đời sống, phong tục, tín ngưỡng và thường được sử dụng trong dịp Tết, mang ý nghĩa chúc phúc, may mắn.',
         'Quy trình làm tranh Đông Hồ gồm nhiều bước công phu, truyền thống, từ việc chuẩn bị nguyên liệu đến vẽ và in ấn.',
         'Đầu tiên là sáng tác và khắc ván gỗ: Mỗi bức tranh Đông Hồ có 2 - 5 bản khắc gỗ khác nhau tùy theo màu sắc của từng mẫu (mỗi ván khắc tương ứng với 1 màu). Đây là công đoạn khó nhất đòi hỏi người thợ phải có kỹ thuật cao.',
@@ -75,6 +77,11 @@ const DongHoGame = () => {
           <DongHoLoading onLoadingComplete={handleLoadingComplete} />
       ) : (
           <div className="game-container" onClick={nextText} style={noTransitionStyle}>
+          <button className="menu-button" onClick={(e) => {
+            e.stopPropagation();
+            setIsMenuOpen(true);
+          }}>☰</button>
+          <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
           <ReactAudioPlayer
             src={require('../../assets/DongHoGame/audio/DongHonhacnen.mp3')}
             autoPlay={false}

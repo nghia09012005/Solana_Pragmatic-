@@ -20,21 +20,34 @@ const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
   const navigate = useNavigate();
 
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-  
+  const handleMenuClick = (path) => {
+    setShowMenu(false);
+    navigate(path);
+  };
+
   const dialogues = [
-    'Chào đồng chí, đây là khu căn cứ địa đạo Củ Chi!',
-    'Chào mừng đồng chí tình báo đã đến đây, đồng chí hãy tìm hiểu và hoàn thành tốt nhiệm vụ được giao.',
-    'Đồng chí hãy luôn trong tư thế sẵn sàng chiến đấu !!!!!!!!!',
-    'Bắt đầu thôi nào!',
-    'Có vẻ đồng chí là người mới tôi sẽ giải thích một chút về nơi này để đồng chí nắm bắt.',
-    'Địa đạo Củ Chi, cách TP.HCM khoảng 70km về phía Tây Bắc, là biểu tượng cho sự sáng tạo và kiên cường của quân và dân Củ Chi trong cuộc kháng chiến chống Mỹ.',
-    'Hệ thống của ta gồm các đường hầm đồ sộ với khoảng 250km đường hầm tỏa rộng như mạng nhện...',
-    'Nơi đây đã hình thành từ những hầm bí mật thời kháng chiến chống Pháp...',
-    'Biệt danh "Làng ngầm trong lòng đất": Thể hiện rõ nét cuộc sống và chiến đấu diễn ra dưới lòng đất...',
-    'Hãy khắc sâu những kỳ tích hào hùng này để mai này khi thống nhất nó không bị mai một đi.',
+    'Chào đồng chí! Đây là khu căn cứ địa đạo Củ Chi - nơi đã làm nên những kỳ tích lịch sử!',
+    'Chào mừng đồng chí tình báo đã đến đây. Nhiệm vụ của đồng chí là tìm hiểu và khám phá những bí mật của địa đạo này.',
+    'Đồng chí hãy luôn trong tư thế sẵn sàng chiến đấu! Chúng ta sẽ cùng nhau khám phá những điều thú vị phía trước!',
+    'Bắt đầu thôi nào! Địa đạo Củ Chi đang chờ đón đồng chí!',
+    'Có vẻ đồng chí là người mới, tôi sẽ kể cho đồng chí nghe về nơi này. Đây là một câu chuyện thú vị lắm đấy!',
+    'Địa đạo Củ Chi, cách TP.HCM khoảng 70km về phía Tây Bắc, là một kiệt tác của sự sáng tạo và lòng dũng cảm. Nơi đây đã chứng kiến biết bao chiến công hiển hách!',
+    'Hệ thống đường hầm của ta rộng lớn đến 250km, tỏa ra như mạng nhện. Có cả chiến hào, ụ chiến đấu, hầm ăn ngủ, hội họp, quân y, kho tàng, giếng nước, và cả bếp Hoàng Cầm nữa!',
+    'Địa đạo này bắt đầu từ thời kháng chiến chống Pháp, nhưng đến thời chống Mỹ mới thực sự phát triển mạnh mẽ. Đặc biệt là sau những cuộc càn quét lớn của địch, nó càng được mở rộng và hoàn thiện hơn.',
+    'Biệt danh "Làng ngầm trong lòng đất" không phải ngẫu nhiên mà có. Nơi đây là cả một thế giới ngầm, nơi quân và dân ta sống, chiến đấu, và làm nên lịch sử!',
+    'Những kỳ tích này sẽ mãi mãi là niềm tự hào của dân tộc ta. Hãy cùng nhau tìm hiểu và ghi nhớ những trang sử hào hùng này!',
+    'Bây giờ, đồng chí hãy thử trả lời một số câu hỏi để xem đã hiểu rõ về địa đạo Củ Chi chưa nhé!',
+    'Chúc đồng chí hoàn thành tốt nhiệm vụ! Hãy cho tôi thấy sự hiểu biết của đồng chí về địa đạo Củ Chi!'
   ];
 
   const questions = [
@@ -72,17 +85,29 @@ const CuChiGameG1 = () => {
     totalQuestions,
   } = Usequiz(questions);
 
-// <<<<<<< HEAD
+
   const handleLoadingComplete = () => {
     // Immediately remove loading screen without transition
     setLoading(false);
   };
-// =======
+
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
-// >>>>>>> origin/hompageupdate
+
+  useEffect(() => {
+    const audio = new Audio(audioFile);
+    audio.loop = true;
+    setAudioPlaying(true);
+    audio.play().catch((err) => console.log("Error playing audio:", err));
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
+
 
   const handleClickAnywhere = () => {
     if (!audioPlaying) setAudioPlaying(true);
@@ -135,32 +160,47 @@ const CuChiGameG1 = () => {
       {loading ? (
         <CuChiLoading onLoadingComplete={handleLoadingComplete} />
       ) : (
-// <<<<<<< HEAD
-//         <div className="cuchigameg1-background" style={noTransitionStyle} onClick={handleClickAnywhere}>
-//           {/* Alert thanh thông báo */}
-//           {showAlert && (
-//             <div className="alert-banner">
-//               🎖️ Chào mừng đồng chí đến với chiến trường Củ Chi! <br />
-//               🎖️ Trả lời quizz để nhận thêm exp và vàng 
-//               <button className="close-alert" onClick={() => setShowAlert(false)}>
-//                 ❌
-//               </button>
-// =======
         <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
+{/* <<<<<<< HEAD */}
+          <div className="menu-container">
+            <button className="home-button" onClick={toggleMenu}>
+              <i className="fas fa-home"></i>
+            </button>
+            {showMenu && (
+              <div className="menu-dropdown">
+                <div className="menu-item" onClick={() => handleMenuClick('/')}>
+                  <i className="fas fa-home"></i>
+                  <span>Trang chủ</span>
+                </div>
+                <div className="menu-item" onClick={() => handleMenuClick('/museum')}>
+                  <i className="fas fa-museum"></i>
+                  <span>Bảo tàng cá nhân</span>
+                </div>
+              </div>
+            )}
+          </div>
+          
+{/* =======
+          <button className="menu-button" onClick={(e) => {
+            e.stopPropagation();
+            setIsMenuOpen(true);
+          }}>☰</button>
+          <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+>>>>>>> 8f54c945a958b2141f23da8ff15aea8032dd5112 */}
           <div className="character-wrapper">
             <img src={characterImg} alt="Character" className="character-model" />
 
             {/* Hộp thoại chỉ hiện khi KHÔNG trong phần quiz */}
-            {dialogStep !== -1 && (dialogStep < 7 || isFinished) && (
-              <div className="dialog-box">
+            {dialogStep !== -1 && (
+              <div className="dialog-box" onClick={handleClickAnywhere}>
                 <p>{dialogues[dialogStep]}</p>
               </div>
             )}
           </div>
 
           <div className="image-container">
-            {dialogStep >= 4 && <img src={diadaomap} alt="map" className="map" />}
-            {dialogStep >= 4 && <img src={didaodist} alt="dist" className="dist" />}
+            {dialogStep > 4 && <img src={diadaomap} alt="map" className="map" />}
+            {dialogStep > 5 && <img src={didaodist} alt="dist" className="dist" />}
           </div>
 
           {/* Quiz chỉ hiện từ dialogStep >= 7 và chưa xong */}
@@ -209,12 +249,12 @@ const CuChiGameG1 = () => {
 
 
 
-            <div className="image-container">
+            {/* <div className="image-container">
             <div className="image-container">
                 { dialogStep >= 6  && <img src={diadaomap} alt="map" className="map" />}
                 {  dialogStep >= 5  && <img src={didaodist} alt="dist" className="dist" />}
           </div>
-          </div>
+          </div> */}
 
 
           {/* quiz */}
@@ -252,7 +292,7 @@ const CuChiGameG1 = () => {
           {/* Nhạc nền */}
           
 
-          {audioPlaying && (
+          {/* {audioPlaying && (
 
             <ReactAudioPlayer
               src={audioFile}
@@ -261,7 +301,7 @@ const CuChiGameG1 = () => {
               controls={false}
               onError={() => console.log("Error loading audio")}
             />
-          )} 
+          )}  */}
 
 
         </div>

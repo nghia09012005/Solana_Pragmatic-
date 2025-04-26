@@ -6,6 +6,7 @@ import audioFile from '../../assets/CuChiGame/audio/morse.wav'; // Import tệp 
 import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.png'; // Nhân vật
 import { useNavigate } from 'react-router-dom';
 import morsetable from '../../assets/CuChiGame/images/Morse.png';
+import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
 // morse sound
 import m1 from '../../assets/CuChiGame/audio/CUCHICON.wav';
 import m2 from '../../assets/CuChiGame/audio/SAIGONMAT.wav';
@@ -19,27 +20,29 @@ const Morse = () => {
     const [dialogStep, setDialogStep] = useState(0); // Bắt đầu luôn từ câu đầu
     const [showAlert, setShowAlert] = useState(true); // Quản lý trạng thái alert
     const [audioPlaying, setAudioPlaying] = useState(false); // Trạng thái nhạc
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [userInput, setUserInput] = useState('');
+    const [isBookOpen, setIsBookOpen] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
   
     const dialogues = [
-      'Tình báo ở lòng Sài gòn và Hà Nội vừa gửi mật thư tới, đồng chí giải mã gấp để anh em triển khai. đừng chừng chờ kẻo lỡ mất thời cơ phản công. Đây là bảng mã để giải.',
-      'Chào mừng đồng chí tình báo đã đến đây, đồng chí hãy tìm hiểu và hoàn thành tốt nhiệm vụ được giao.',
-      'Đồng chí hãy luôn trong tư thế sẵn sàng chiến đấu !!!!!!!!!',
-      'Bắt đầu thôi nào!',
-      'Có vẻ đồng chí là người mới tôi sẽ giải thích một chút về nơi này để đồng chí nắm bắt.',
-      'Địa đạo Củ Chi, cách TP.HCM khoảng 70km về phía Tây Bắc, là biểu tượng cho sự sáng tạo và kiên cường của quân và dân Củ Chi trong cuộc kháng chiến chống Mỹ.',
-      'Hệ thống của ta gồm các đường hầm đồ sộ với khoảng 250km đường hầm tỏa rộng như mạng nhện, và gồm nhiều công trình liên hoàn như chiến hào, ụ chiến đấu, hầm ăn ngủ, hội họp, quân y, kho tàng, giếng nước, bếp Hoàng Cầm.',
-      'Nơi đây đã hình thành từ những hầm bí mật thời kháng chiến chống Pháp, và ở giai đoạn kháng chiến chống Mỹ này nó lại càn phát triển mạnh mẽ hơn, đặc biệt sau các cuộc càn quét lớn của địch.',
-      'Biệt danh "Làng ngầm trong lòng đất": Thể hiện rõ nét cuộc sống và chiến đấu diễn ra dưới lòng đất của chúng tôi những con người Củ Chi.',
-      'Hãy khắc sâu những kỳ tích hào hùng này để mai này khi thống nhất nó không bị mai một đi.',
+      'Tình báo từ Sài Gòn và Hà Nội vừa gửi mật thư khẩn cấp! Đồng chí hãy giải mã ngay để chúng ta có thể triển khai kế hoạch. Đừng chần chừ kẻo lỡ mất thời cơ phản công!',
+      'Chào mừng đồng chí tình báo! Nhiệm vụ của chúng ta bây giờ là giải mã những thông điệp bí mật này. Đây là bảng mã Morse, công cụ quan trọng để giải mã mật thư.',
+      'Đồng chí hãy luôn trong tư thế sẵn sàng! Mỗi giây phút đều quý giá trong nhiệm vụ này!',
+      'Bắt đầu thôi nào! Hãy lắng nghe kỹ những tín hiệu Morse và giải mã chúng!',
+      'Có vẻ đồng chí là người mới, tôi sẽ giải thích về hệ thống mã Morse. Đây là một phương pháp truyền tin cực kỳ thông minh!',
+      'Nó sử dụng các tín hiệu ngắn và dài để biểu thị các chữ cái và số.',
+      'Mỗi ký tự trong bảng chữ cái đều có một mã riêng. Ví dụ, chữ A là ".-", chữ B là "-...". Đồng chí hãy nhìn vào bảng mã để hiểu rõ hơn.',
+      'Trong thời chiến, mã Morse là một phương tiện liên lạc cực kỳ quan trọng. Nó giúp chúng ta truyền tin một cách bí mật và hiệu quả.',
+      'Bây giờ, đồng chí hãy lắng nghe kỹ những tín hiệu từ Sài Gòn và Hà Nội. Mỗi thông điệp đều chứa đựng thông tin quan trọng!',
+      'Hãy tập trung và giải mã thật chính xác. Mỗi ký tự đều có ý nghĩa riêng của nó!'
     ];
 
     const [showhint1, sethint1] = useState(false);
     const [showhint2, sethint2] = useState(false);
     const hint =[
       'Nơi đồng chí và chúng ta đang có mặt!!!!',
-      'Điều chúng ta mong muốn',
+      'Điều chúng ta hướng đến',
     ]
 
     
@@ -67,6 +70,8 @@ const Morse = () => {
     const [hnfinish, sethnfinish] = useState(false);
     const [sgalert, setsgalert] = useState(false);
     const [hnalert, sethnalert] = useState(false);
+    const [sgIncorrect, setSgIncorrect] = useState(false);
+    const [hnIncorrect, setHnIncorrect] = useState(false);
     //overlay screen
     const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
     const [receiveoverlay, setrece] = useState(false);
@@ -146,19 +151,19 @@ const Morse = () => {
       
       if ( (upperWords.includes("CU") && upperWords.includes("CHI") && upperWords.length === 2 ) || (upperWords.includes("CỦ") && upperWords.includes("CHI")  ) && upperWords.length === 2) {
         setsgfinish(true);
-        // alert("Giải mã thành công!")
         setsgalert(true);
         sethnalert(false);
         setShowAlert(false);
         setShowSuccessOverlay(true);
-
-        
+        setSgIncorrect(false);
       } else {
         sethint1(true);
         sethint2(false);
         sethnalert(false);
         setShowAlert(false);
         setsgalert(false);
+        setSgIncorrect(true);
+        setTimeout(() => setSgIncorrect(false), 1000);
       }
     };
     
@@ -172,15 +177,15 @@ const Morse = () => {
         setShowAlert(false);
         setsgalert(false);
         setShowSuccessOverlay(true);
-    
-        
-        // alert("Giải mã thành công!")
+        setHnIncorrect(false);
       } else {
         sethint2(true);
         sethint1(false);
         sethnalert(false);
         setShowAlert(false);
         setsgalert(false);
+        setHnIncorrect(true);
+        setTimeout(() => setHnIncorrect(false), 1000);
       }
     };
 
@@ -202,8 +207,36 @@ const Morse = () => {
       }
     };
   
+    const toggleMenu = (e) => {
+      e.stopPropagation();
+      setShowMenu(!showMenu);
+    };
+
+    const handleMenuClick = (path) => {
+      setShowMenu(false);
+      navigate(path);
+    };
+
     return (
-      <>
+      <div className="Morse-background">
+        <div className="menu-container">
+          <button className="home-button" onClick={toggleMenu}>
+            <i className="fas fa-home"></i>
+          </button>
+          {showMenu && (
+            <div className="menu-dropdown">
+              <div className="menu-item" onClick={() => handleMenuClick('/')}>
+                <i className="fas fa-home"></i>
+                <span>Trang chủ</span>
+              </div>
+              <div className="menu-item" onClick={() => handleMenuClick('/museum')}>
+                <i className="fas fa-museum"></i>
+                <span>Bảo tàng cá nhân</span>
+              </div>
+            </div>
+          )}
+        </div>
+
         {loading ? (
           <Loading />
         ) : (
@@ -211,35 +244,35 @@ const Morse = () => {
 
             {/* overlay */}
             {showSuccessOverlay && (
-          <div className="success-overlay">
-        <div className="success-content">
-      ✅ Hoàn thành giải mã!
-        </div>
-        </div>
-        )}
+              <div className="success-overlay">
+                <div className="success-content">
+                  ✅ Hoàn thành giải mã!
+                </div>
+              </div>
+            )}
             {/*  */}
 
             {/* letter overlay */}
             {receiveoverlay && (
-  <>
-    {/* Lớp phủ mờ phía sau letter overlay */}
-    <div className="letter-overlay-background"></div>
+              <>
+                {/* Lớp phủ mờ phía sau letter overlay */}
+                <div className="letter-overlay-background"></div>
 
-    {/* Letter overlay */}
-    <div className="letter-overlay">
-      <img src={letter} alt="Success Letter" className="letter-img" />
-      <Link to="/" className="button-overlay">
-        Tiếp tục
-      </Link>
-    </div>
-  </>
-)}
+                {/* Letter overlay */}
+                <div className="letter-overlay">
+                  <img src={letter} alt="Success Letter" className="letter-img" />
+                  <Link to="/museum" className="button-overlay">
+                    Trở lại bảo tàng
+                  </Link>
+                </div>
+              </>
+            )}
             {/*  */}
 
             {/* Alert thanh thông báo */}
             {showAlert && (
               <div className="alert-banner">
-                🎖️ Chúng ta nhận được mật thư, GIẢI MÃ GẤP!!!!!!!!<br />
+                ️ Chúng ta nhận được mật thư, GIẢI MÃ GẤP!!!!!!!!<br />
                 ❌ Công nghệ của ta còn hạn chế nên hãy giải tuần tự để không bị nhiễu sóng!!!!!
                 <button className="close-alert" onClick={() => setShowAlert(false) }>
                   ❌
@@ -247,7 +280,7 @@ const Morse = () => {
               </div>
             )}
 
-          {showhint1 && (
+            {showhint1 && (
               <div className="alert-banner">
                 🎖️GỢI Ý: {hint[0]}
                 <button className="close-alert" onClick={() => sethint1(false) }>
@@ -265,7 +298,7 @@ const Morse = () => {
             )}
 
 
-          {sgalert && (
+            {sgalert && (
               <div className="alert-banner">
                 🎖️ GIẢI MÃ THÀNH CÔNG MẬT MÃ TỪ SÀI GÒN !!!!!!!!<br />
                 
@@ -275,7 +308,7 @@ const Morse = () => {
               </div>
             )}    
 
-          {hnalert && (
+            {hnalert && (
               <div className="alert-banner">
                 🎖️ GIẢI MÃ THÀNH CÔNG MẬT MÃ TỪ HÀ NỘI !!!!!!!!<br />
                 
@@ -285,110 +318,76 @@ const Morse = () => {
               </div>
             )}   
 
-  
+
             {/* Nhân vật */}
             <div className="character-wrapper">
-            <img 
-              src={characterImg} 
-              alt="Character" 
-              className="character-model" 
-            />
-            {/* Hộp thoại */}
-            {dialogStep !== -1 && (
-              <div className="dialog-box">
-                <p>{dialogues[dialogStep]}</p>
-                <button onClick={handleNextDialog}>Tiếp tục</button>
-              </div>
-            )}
+              <img 
+                src={characterImg} 
+                alt="Character" 
+                className="character-model" 
+              />
+              {/* Hộp thoại */}
+              {dialogStep !== -1 && dialogStep < dialogues.length  &&(
+                <div className="dialog-box">
+                  <p>{dialogues[dialogStep]}</p>
+                  <button onClick={handleNextDialog}>Tiếp tục</button>
+                </div>
+              )}
             </div>
-  
+
             {/* morse table */}
-            <div className="image-container">
+
+            {/* <div className="image-container">
+=======
+
                 {!(sgfinish && hnfinish) && (<img src={morsetable} alt="mtable" className="mtable" />)}
-            </div>
+            </div> */}
 
             {/*  */}
 
 
             <div className="audio-buttons">
-  {/* Cặp 1: Mật mã từ Sài Gòn */}
-  <div className="audio-group">
-  <button onClick={() => new Audio(m1).play()}>Mật mã từ Sài Gòn</button>
-  <div className="decode-input">
-    <input
-      type="text"
-      placeholder="Giải mã gấp!!!"
-      value={inputSG}
-      onChange={(e) => setInputSG(e.target.value)}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' && !sgfinish) {
-          handleSubmitSG();
-        }
-      }}
-      style={{
-        borderColor: sgfinish ? 'green' : 'initial',
-        opacity: sgfinish ? 0.5 : 1, // làm mờ khi hoàn thành
-        pointerEvents: sgfinish ? 'none' : 'auto' // không cho chỉnh khi đã xong
-      }}
-    />
-    <button onClick={handleSubmitSG} disabled={sgfinish}>
-      Submit
-    </button>
-    {!sgfinish && inputSG && (
-      <p style={{ color: 'red', fontSize: '20px' }}>
-        🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
-      </p>
-    )}
-    {sgfinish && (
-      <p style={{ color: 'green', fontSize: '20px', opacity: 0.5 }}>
-        ✅ Đã giải mã thành công!
-      </p>
-    )}
-  </div>
-</div>
+      {/* Cặp 1: Mật mã từ Sài Gòn */}
+      {/* <div className="audio-group">
+      <button onClick={() => new Audio(m1).play()}>Mật mã từ Sài Gòn</button>
+      <div className="decode-input">
+        <input
+          type="text"
+          placeholder="Giải mã gấp!!!"
+          value={inputSG}
+          onChange={(e) => setInputSG(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !sgfinish) {
+              handleSubmitSG();
+            }
+          }}
+          style={{
+            borderColor: sgfinish ? 'green' : 'initial',
+            opacity: sgfinish ? 0.5 : 1, // làm mờ khi hoàn thành
+            pointerEvents: sgfinish ? 'none' : 'auto' // không cho chỉnh khi đã xong
+          }}
+        />
+        <button onClick={handleSubmitSG} disabled={sgfinish}>
+          Submit
+        </button>
+        {!sgfinish && inputSG && (
+          <p style={{ color: 'red', fontSize: '20px' }}>
+            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+          </p>
+        )}
+        {sgfinish && (
+          <p style={{ color: 'green', fontSize: '20px', opacity: 0.5 }}>
+            ✅ Đã giải mã thành công!
+          </p>
+        )}
+      </div>
+    </div> */}
 
 
-  {/* Cặp 2: Mật mã từ Hà Nội */}
-  <div className="audio-group">
-  <button onClick={() => new Audio(m2).play()}>Mật mã từ Hà Nội</button>
-  <div className="decode-input">
-    <input
-      type="text"
-      placeholder="Giải mã gấp!!!"
-      value={inputHN}
-      onChange={(e) => setInputHN(e.target.value)}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' && !hnfinish) {
-          handleSubmitHN();
-        }
-      }}
-      style={{
-        borderColor: hnfinish ? 'green' : 'initial',
-        opacity: hnfinish ? 0.5 : 1, // làm mờ khi hoàn thành
-        pointerEvents: hnfinish ? 'none' : 'auto' // không cho chỉnh khi đã xong
-      }}
-    />
-    <button onClick={handleSubmitHN} disabled={hnfinish}>
-      Submit
-    </button>
-    {!hnfinish && inputHN && (
-      <p style={{ color: 'red', fontSize: '20px' }}>
-        🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
-      </p>
-    )}
-    {hnfinish && (
-      <p style={{ color: 'green', fontSize: '20px', opacity: 0.5 }}>
-        ✅ Đã giải mã thành công!
-      </p>
-    )}
-  </div>
-</div>
-
-
-</div>
+    </div>
          
             {/* Nhạc nền */}
-            {/* {audioPlaying && (
+            {audioPlaying && (
               <ReactAudioPlayer
                 src={audioFile}
                 autoPlay
@@ -396,12 +395,118 @@ const Morse = () => {
                 controls={false}
                 onError={() => console.log("Error loading audio")}
               />
-            )} */}
+            )}
           </div>
         )}
-      </>
+        
+
+        {/* Book Container */}
+        <div className="book-container">
+          <div className={`book ${isBookOpen ? 'open' : ''}`}>
+            <div className="book-cover" onClick={() => setIsBookOpen(true)}>
+              <h2>Mật Thư</h2>
+              <p>Nhấn để mở sách và giải mã mật thư</p>
+            </div>
+            <div className="book-content">
+              {/* Left Page - Morse Table and Map */}
+              <div className="book-page-left">
+                <div className="morse-table-container">
+                  <img src={morsetable} alt="Morse Table" className="mtable" />
+                </div>
+                <div className="map-container">
+                  <img src={diadaomap} alt="Map" className="map" />
+                </div>
+              </div>
+
+              {/* Right Page - Answer Section */}
+              <div className="book-page-right">
+                <div className="audio-groups">
+                  {/* Sài Gòn Group */}
+                  <div className="audio-group">
+                    <button onClick={() => new Audio(m1).play()}>
+                      Mật mã từ Sài Gòn
+                    </button>
+                    <div className="decode-input">
+                      <input
+                        type="text"
+                        placeholder="Giải mã gấp!!!"
+                        value={inputSG}
+                        onChange={(e) => setInputSG(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !sgfinish) {
+                            handleSubmitSG();
+                          }
+                        }}
+                        className={sgIncorrect ? 'incorrect' : ''}
+                        style={{
+                          borderColor: sgfinish ? 'green' : 'initial',
+                          opacity: sgfinish ? 0.5 : 1,
+                          pointerEvents: sgfinish ? 'none' : 'auto'
+                        }}
+                      />
+                      <button onClick={handleSubmitSG} disabled={sgfinish}>
+                        Submit
+                      </button>
+                      {!sgfinish && inputSG && (
+                        <p style={{ color: 'red', fontSize: '14px' }}>
+                          🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                        </p>
+                      )}
+                      {sgfinish && (
+                        <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
+                          ✅ Đã giải mã thành công!
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Hà Nội Group */}
+                  <div className="audio-group">
+                    <button onClick={() => new Audio(m2).play()}>
+                      Mật mã từ Hà Nội
+                    </button>
+                    <div className="decode-input">
+                      <input
+                        type="text"
+                        placeholder="Giải mã gấp!!!"
+                        value={inputHN}
+                        onChange={(e) => setInputHN(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !hnfinish) {
+                            handleSubmitHN();
+                          }
+                        }}
+                        className={hnIncorrect ? 'incorrect' : ''}
+                        style={{
+                          borderColor: hnfinish ? 'green' : 'initial',
+                          opacity: hnfinish ? 0.5 : 1,
+                          pointerEvents: hnfinish ? 'none' : 'auto'
+                        }}
+                      />
+                      <button onClick={handleSubmitHN} disabled={hnfinish}>
+                        Submit
+                      </button>
+                      {!hnfinish && inputHN && (
+                        <p style={{ color: 'red', fontSize: '14px' }}>
+                          🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                        </p>
+                      )}
+                      {hnfinish && (
+                        <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
+                          ✅ Đã giải mã thành công!
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="book-spine"></div>
+          </div>
+        </div>
+      </div>
     );
   };
-  
- 
+
+
 export default Morse;

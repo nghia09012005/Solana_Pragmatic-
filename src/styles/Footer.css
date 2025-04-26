@@ -191,8 +191,9 @@
   transition: transform 0.3s;
 }
 
-.social-icons a.tiktok {
-  color: #ffffff;
+
+.social-icons a.gmail {
+  color: #D93025  ;
 }
 
 .social-icons a:hover {

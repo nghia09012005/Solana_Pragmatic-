@@ -33,19 +33,6 @@ const CARDS = [
     image: "./images/tranh-dong-ho.png"
   },
   {
-    title: "Dân ca Quan Họ",
-    
-    description: "Quan Họ là sự kết nối giữa các thế hệ, giữa người với người, thể hiện lòng hiếu khách và sự gắn bó với cội nguồn",
-    
-    artist: {
-      name: "Làng Quan Họ",
-      
-      location: "Bắc Ninh, Việt Nam",
-      image: "/images/character/quan-ho.png"
-    },
-    image: "/images/quan-ho.png"
-  },
-  {
     title: "Địa Đạo Củ Chi",
     
     description: "Củ Chi là niềm tự hào, là minh chứng cho sức mạnh của chiến tranh nhân dân.",
@@ -57,6 +44,19 @@ const CARDS = [
       image: "/images/character/dia-dao.png"
     },
     image: "/images/dia-dao.png"
+  },
+  {
+    title: "Ngày giải phóng miền Nam",
+    
+    description: "Ngày 30 tháng 4 là ngày mà dân tộc Việt Nam thể hiện sự kiên cường, bất khuất, một ngày lịch sử không thể nào quên.",
+    
+    artist: {
+      name: "Sài Gòn",
+     
+      location: "Sài Gòn (TPHCM), Việt Nam",
+      image: "/images/character/giai-phong.png"
+    },
+    image: "/images/giai-phong.png"
   },
   {
     title: "Trống Đồng \n Đông Sơn",
@@ -71,17 +71,17 @@ const CARDS = [
     image: "/images/trong-dong-dong-son.png"
   },
   {
-    title: "Ngày giải phóng miền Nam",
+    title: "Dân ca Quan Họ",
     
-    description: "Ngày 30 tháng 4 là ngày mà dân tộc Việt Nam thể hiện sự kiên cường, bất khuất, một ngày lịch sử không thể nào quên.",
+    description: "Quan Họ là sự kết nối giữa các thế hệ, giữa người với người, thể hiện lòng hiếu khách và sự gắn bó với cội nguồn",
     
     artist: {
-      name: "Sài Gòn",
-     
-      location: "Sài Gòn (TPHCM), Việt Nam",
-      image: "/images/character/giai-phong.png"
+      name: "Làng Quan Họ",
+      
+      location: "Bắc Ninh, Việt Nam",
+      image: "/images/character/quan-ho.png"
     },
-    image: "/images/giai-phong.png"
+    image: "/images/quan-ho.png"
   }
 ];
 
@@ -91,7 +91,16 @@ const Card = ({ artwork, isActive }) => {
   const navigate = useNavigate();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Kiểm tra xem game có bị khóa không
+  const isLocked = artwork.title === "Trống Đồng \n Đông Sơn" || artwork.title === "Dân ca Quan Họ";
+
   const handleExpand = () => {
+    // Nếu game bị khóa, không làm gì cả
+    if (isLocked) {
+      alert("Game này hiện đang được phát triển. Vui lòng quay lại sau!");
+      return;
+    }
+
     setIsTransitioning(true);
     
     // Tạo overlay và vortex elements
@@ -117,7 +126,10 @@ const Card = ({ artwork, isActive }) => {
         navigate('/donghogame');
       } else if (artwork.title === "Cồng Chiêng Tây Nguyên") {
         navigate('/taynguyengame');
-      } else {
+      } else if (artwork.title === "Ngày giải phóng miền Nam"){
+        navigate('/tankgame');
+      }
+       else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });
       }
       
@@ -128,10 +140,28 @@ const Card = ({ artwork, isActive }) => {
   };
 
   return (
-    <div className={`card ${isActive ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''}`}>
-      <button className="expand-button" onClick={handleExpand}>
-        <BsArrowsFullscreen />
-        Khám phá
+    <div className={`card ${isActive ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''} ${isLocked ? 'locked-card' : ''}`}>
+      {isLocked && (
+        <div className="locked-overlay">
+          <div className="big-lock-icon">🔒</div>
+        </div>
+      )}
+      <button 
+        className={`expand-button ${isLocked ? 'locked' : ''}`} 
+        onClick={handleExpand}
+        title={isLocked ? "Game đang được phát triển" : "Khám phá"}
+      >
+        {isLocked ? (
+          <>
+            <span className="lock-icon">🔒</span>
+            Sắp ra mắt
+          </>
+        ) : (
+          <>
+            <BsArrowsFullscreen />
+            Khám phá
+          </>
+        )}
       </button>
       <img src={artwork.image} alt={artwork.title} className="artwork-image" />
       <div className="artwork-info">
@@ -200,8 +230,8 @@ const MuseumPage = () => {
   return (
   <div className='museum-page-body'>
     <button className="home-button" onClick={goToHome}>
-      <FaHome />
-      <span> Trang chủ </span>
+      <i className="fas fa-home"></i>
+      {/* <span>Trang chủ</span> */}
     </button>
   <div className="app">  
     <Carousel>  

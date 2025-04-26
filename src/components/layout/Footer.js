@@ -75,9 +75,9 @@
           <div className="footer-col">
             <h4>Liên kết</h4>
             <ul>
-              <li><a href="#">Trang chủ</a></li>
-              <li><a href="#">Khám phá</a></li>
-              <li><a href="#">Liên hệ</a></li>
+              <li><a href="/">Trang chủ</a></li>
+              <li><a href="/museum">Khám phá</a></li>
+              <li><a href="/">Bộ sưu tập</a></li>
             </ul>
           </div>
 
@@ -85,8 +85,8 @@
             <h4>Kết nối</h4>
             <div className="social-icons">
               <a href="https://www.facebook.com/trquynh79/" className="facebook"><i className="fab fa-facebook-f"></i></a>
-              <a href="https://www.instagram.com/trquynh79/" className="instagram" ><i className="fab fa-instagram"></i></a>
-              <a href="https://www.tiktok.com/@trquynh79" className="tiktok"><i className="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/tr.quynh_79/" className="instagram" ><i className="fab fa-instagram"></i></a>
+              <a href="mailto:nguyenngoctrucquynh2005@gmail.com" className="gmail"><i className="fab fa-google"></i></a>
             </div>
           </div>
 

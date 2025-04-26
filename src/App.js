@@ -3,7 +3,7 @@ import { useAuth } from './hooks/useAuth';
 import HomePage from './pages/HomePage';
 import MuseumPage from './pages/MuseumPage';
 // import CollectionPage from './pages/CollectionPage';
-// import LeaderboardPage from './pages/LeaderboardPage';
+import LeaderboardPage from './pages/Leaderboard';
 
 // import LoginPage from './pages/LoginPage';
 // import RegisterPage from './pages/RegisterPage';
@@ -34,36 +34,38 @@ function App() {
       {/* <Header /> */}
       <main className="main-content">
         <Routes>
-
-          {/* <Route path="/" element={<HomePage />} /> */}
-
-
-          {/* <Route path="/" element={<HomePage />} /> */}
-
+        <Route path="/" element={<HomePage />} />
+          
+          {/* Tây Nguyên Gongs Game */}
 
           
           {/* Tây Nguyên Gongs Game */}
 
+          <Route path="/" element={<HomePage />} />
+          <Route path="/museumpage" element={<MuseumPage />} />
 
-          {/* <Route path="taynguyengame" element={<TayNguyenGame />} />
+  
+          <Route path="/taynguyengame" element={<TayNguyenGame />} />
 
-          <Route path="tankgame" element={<TankGame />} />
-          <Route path="bantin" element={<Bantin />} />
-          <Route path="thongtin304" element={<ThongTin304 />} /> */}
+  
+           <Route path="/tankgame" element={<TankGame />} /> 
+           <Route path="/leaderboard" element={<LeaderboardPage />} /> 
 
+           <Route path="/cuchigame" element={<CuChiGameG1/>} />
+           <Route path="/morse" element={<Morse />} />
+           <Route path="/bantin" element={<Bantin />} />
 
           
-          {/* <Route path="/bantin" element={<Bantin />} /> */}
-          {/* Cu Chi Game */}
-          {/* <Route path="/cuchigame" element={<CuChiGameG1 />} /> */}
-          {/* <Route path="/morse" element={<Morse />} /> */}
+
+          <Route path="/profile" element={<ProfilePage />} /> 
+          <Route path="*" element={<NotFoundPage />} />          
           
           {/* Dong Ho Game */}
-          <Route path="/" element={<DongHoGame />} />
+          <Route path="/donghogame" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} />
           
-          {/* <Route path="/" element={<ProfilePage />} />  */}
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          <Route path="/profile" element={<ProfilePage />} /> 
+          <Route path="*" element={<NotFoundPage />} />
 
           {/* <Route path="/" element={<PersonalMuseum />} />  */}
 

@@ -1105,3 +1105,10 @@ body:has(.overlay) .background button {
   transition: opacity 500ms ease-in;
 }
 
+.info {
+  position: relative;
+  width: 100%;
+  margin-top: 400px;
+  margin-bottom: 50px;
+}
+
