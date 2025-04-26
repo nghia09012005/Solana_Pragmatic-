@@ -20,14 +20,13 @@ const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const navigate = useNavigate();
 
   const toggleMenu = (e) => {
     e.stopPropagation();
-    setIsMenuOpen(!isMenuOpen);
+    setShowMenu(!showMenu);
   };
 
   const handleMenuClick = (path) => {
@@ -128,32 +127,6 @@ const CuChiGameG1 = () => {
       navigate('/morse');
     }
   };
-
-
-// phát nhạc liên tục
-// useEffect(() => {
-//   const audio = new Audio(audioFile);
-//   audio.loop = true;
-
-//   audio.play().catch((err) => console.log("Error playing audio:", err));
-
-//   // return () => {
-//   //   audio.pause();        // 👈 Dừng nhạc
-//   //   audio.currentTime = 0; // 👈 Reset về đầu (tuỳ chọn)
-//   // };
-// }, []);
-
-
-//
-
-
-  // // Hàm xử lý khi click vào bất kỳ đâu
-  // const handleClickAnywhere = () => {
-  //   if (!audioPlaying) {
-  //     setAudioPlaying(true);
-  //   }
-  // };
-
 
   return (
     <>

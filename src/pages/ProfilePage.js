@@ -22,7 +22,7 @@ const ProfilePage = () => {
     }
   });
 
-  useEffect(() => {
+  const fetchUserData = async () => {
     const username = localStorage.getItem('username');
     const token = localStorage.getItem('token');
     
@@ -31,20 +31,20 @@ const ProfilePage = () => {
       return;
     }
 
-    fetch(`/api/users/stats/${username}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
+    try {
+      const response = await fetch(`/api/users/stats/${username}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return response.json();
-    })
-    .then(data => {
+
+      const data = await response.json();
       if (data.code === "1000") {
         const newUserData = {
           username: data.result.user.username,
@@ -65,12 +65,15 @@ const ProfilePage = () => {
         console.error('Invalid response code:', data.code);
         navigate('/');
       }
-    })
-    .catch(error => {
+    } catch (error) {
       console.error('Error details:', error);
       navigate('/');
-    });
-  }, [navigate]);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  });
 
   const handleLogout = () => {
     localStorage.removeItem('username');

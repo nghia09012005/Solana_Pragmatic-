@@ -108,12 +108,15 @@ const Morse = () => {
     useEffect(() => {
       if (sgfinish && hnfinish) {
         // Chờ một khoảng thời gian trước khi hiển thị overlay letter và bắn pháo bông
-        const timeout = setTimeout(() => {
+        const timeout = setTimeout(async () => {
           // Bắt đầu bắn pháo bông
           fireConfetti();
     
           // Hiển thị overlay letter
           setrece(true); // Hiển thị overlay letter
+
+          // Set the co item
+          await setCoItem();
         }, 3000); // Đặt thời gian delay 3 giây (bạn có thể điều chỉnh thời gian này)
     
         // Dọn dẹp timeout khi component unmount hoặc trạng thái thay đổi
@@ -148,7 +151,63 @@ const Morse = () => {
     
     //
 
-    const handleSubmitSG = () => {
+    const updateUserStats = async (object) => {
+      try {
+        const token = localStorage.getItem('token');
+        const username = localStorage.getItem('username');
+        const response = await fetch('/api/users/stats/me', {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            username: username,
+            object: object,
+            amount: 200
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to update ${object}`);
+        }
+
+        const data = await response.json();
+        console.log(`${object} updated:`, data);
+      } catch (error) {
+        console.error(`Error updating ${object}:`, error);
+      }
+    };
+
+    const setCoItem = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const username = localStorage.getItem('username');
+        const response = await fetch('/api/users/stats/set', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            username: username,
+            item: "co"
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to set co item');
+        }
+
+        const data = await response.json();
+        console.log('Co item set:', data);
+      } catch (error) {
+        console.error('Error setting co item:', error);
+      }
+    };
+
+    const handleSubmitSG = async () => {
       const words = inputSG.trim().split(/\s+/);
       const upperWords = words.map(w => w.toUpperCase());
       
@@ -159,6 +218,8 @@ const Morse = () => {
         setShowAlert(false);
         setShowSuccessOverlay(true);
         setSgIncorrect(false);
+        await updateUserStats("money");
+        await updateUserStats("exp");
       } else {
         sethint1(true);
         sethint2(false);
@@ -170,7 +231,7 @@ const Morse = () => {
       }
     };
     
-    const handleSubmitHN = () => {
+    const handleSubmitHN = async () => {
       const words = inputHN.trim().split(/\s+/);
       const upperWords = words.map(w => w.toUpperCase());
       
@@ -181,6 +242,8 @@ const Morse = () => {
         setsgalert(false);
         setShowSuccessOverlay(true);
         setHnIncorrect(false);
+        await updateUserStats("money");
+        await updateUserStats("exp");
       } else {
         sethint2(true);
         sethint1(false);
@@ -268,7 +331,7 @@ const Morse = () => {
                 {/* Letter overlay */}
                 <div className="letter-overlay">
                   <img src={letter} alt="Success Letter" className="letter-img" />
-                  <Link to="/museum" className="button-overlay">
+                  <Link to="/museumpage" className="button-overlay">
                     Trở lại bảo tàng
                   </Link>
                 </div>
@@ -343,58 +406,6 @@ const Morse = () => {
                 )}
               </div>
 
-
-            {/* morse table */}
-
-            {/* <div className="image-container">
-=======
-
-                {!(sgfinish && hnfinish) && (<img src={morsetable} alt="mtable" className="mtable" />)}
-            </div> */}
-
-            {/*  */}
-
-
-            <div className="audio-buttons">
-      {/* Cặp 1: Mật mã từ Sài Gòn */}
-      {/* <div className="audio-group">
-      <button onClick={() => new Audio(m1).play()}>Mật mã từ Sài Gòn</button>
-      <div className="decode-input">
-        <input
-          type="text"
-          placeholder="Giải mã gấp!!!"
-          value={inputSG}
-          onChange={(e) => setInputSG(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && !sgfinish) {
-              handleSubmitSG();
-            }
-          }}
-          style={{
-            borderColor: sgfinish ? 'green' : 'initial',
-            opacity: sgfinish ? 0.5 : 1, // làm mờ khi hoàn thành
-            pointerEvents: sgfinish ? 'none' : 'auto' // không cho chỉnh khi đã xong
-          }}
-        />
-        <button onClick={handleSubmitSG} disabled={sgfinish}>
-          Submit
-        </button>
-        {!sgfinish && inputSG && (
-          <p style={{ color: 'red', fontSize: '20px' }}>
-            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
-          </p>
-        )}
-        {sgfinish && (
-          <p style={{ color: 'green', fontSize: '20px', opacity: 0.5 }}>
-            ✅ Đã giải mã thành công!
-          </p>
-        )}
-      </div>
-    </div> */}
-
-
-    </div>
-         
             {/* Nhạc nền */}
             {audioPlaying && (
               <ReactAudioPlayer
