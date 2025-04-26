@@ -67,7 +67,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />
 
-          {/* <Route path="/" element={<PersonalMuseum />} />  */}
+          <Route path="/" element={<PersonalMuseum />} /> 
 
         </Routes>
       </main>
