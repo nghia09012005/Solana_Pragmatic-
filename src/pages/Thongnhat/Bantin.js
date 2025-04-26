@@ -131,7 +131,7 @@ useEffect(() => {
   <div className="overlay" onClick={() => setShowOverlay(false)}>
     <div className="overlay-content">
       <p>Nhận vật phẩm cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam thành công !!!!!!</p>
-      <button onClick={() => navigate("/home")}>Tới bảo tàng cá nhân</button>
+      <button onClick={() => navigate("/museumpage")}>Tới bảo tàng cá nhân</button>
     </div>
   </div>
 )}

@@ -24,7 +24,8 @@ const Morse = () => {
     const [userInput, setUserInput] = useState('');
     const [isBookOpen, setIsBookOpen] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-  
+    const [showBook, setShowBook] = useState(false); // State to control book visibility
+
     const dialogues = [
       'Tình báo từ Sài Gòn và Hà Nội vừa gửi mật thư khẩn cấp! Đồng chí hãy giải mã ngay để chúng ta có thể triển khai kế hoạch. Đừng chần chừ kẻo lỡ mất thời cơ phản công!',
       'Chào mừng đồng chí tình báo! Nhiệm vụ của chúng ta bây giờ là giải mã những thông điệp bí mật này. Đây là bảng mã Morse, công cụ quan trọng để giải mã mật thư.',
@@ -52,6 +53,8 @@ const Morse = () => {
     //   const timer = setTimeout(() => setLoading(false), 3000);
     //   return () => clearTimeout(timer);
     // }, []);
+
+   
     useEffect(() => {
       const audio = new Audio(audioFile);
       audio.loop = true;
@@ -194,9 +197,9 @@ const Morse = () => {
       if (dialogStep < dialogues.length - 1) {
         setDialogStep(dialogStep + 1);
       } else {
-        // Kết thúc hội thoại, ẩn text box
-        // setDialogStep(-1);
-        
+        // Khi kết thúc hội thoại, hiển thị quyển sách
+        setDialogStep(-1);
+        setShowBook(true); // Show the book after dialogues
       }
     };
   
@@ -229,7 +232,7 @@ const Morse = () => {
                 <i className="fas fa-home"></i>
                 <span>Trang chủ</span>
               </div>
-              <div className="menu-item" onClick={() => handleMenuClick('/museum')}>
+              <div className="menu-item" onClick={() => handleMenuClick('/museumpage')}>
                 <i className="fas fa-museum"></i>
                 <span>Bảo tàng cá nhân</span>
               </div>
@@ -240,7 +243,7 @@ const Morse = () => {
         {loading ? (
           <Loading />
         ) : (
-          <div className="Morse-background" onClick={handleClickAnywhere}>
+          <div className="Morse-background" onClick={handleNextDialog}>
 
             {/* overlay */}
             {showSuccessOverlay && (
@@ -326,14 +329,16 @@ const Morse = () => {
                 alt="Character" 
                 className="character-model" 
               />
-              {/* Hộp thoại */}
-              {dialogStep !== -1 && dialogStep < dialogues.length  &&(
-                <div className="dialog-box">
-                  <p>{dialogues[dialogStep]}</p>
-                  <button onClick={handleNextDialog}>Tiếp tục</button>
-                </div>
-              )}
-            </div>
+                {/* Hộp thoại */}
+                {dialogStep !== -1 && dialogStep < dialogues.length  &&(
+                  <div className="dialog-box"
+                    
+                    onClick={handleNextDialog}>
+                    <p>{dialogues[dialogStep]}</p>
+                  </div>
+                )}
+              </div>
+
 
             {/* morse table */}
 
@@ -401,109 +406,111 @@ const Morse = () => {
         
 
         {/* Book Container */}
-        <div className="book-container">
-          <div className={`book ${isBookOpen ? 'open' : ''}`}>
-            <div className="book-cover" onClick={() => setIsBookOpen(true)}>
-              <h2>Mật Thư</h2>
-              <p>Nhấn để mở sách và giải mã mật thư</p>
-            </div>
-            <div className="book-content">
-              {/* Left Page - Morse Table and Map */}
-              <div className="book-page-left">
-                <div className="morse-table-container">
-                  <img src={morsetable} alt="Morse Table" className="mtable" />
-                </div>
-                <div className="map-container">
-                  <img src={diadaomap} alt="Map" className="map" />
-                </div>
+        {dialogStep === -1 && showBook && (
+          <div className="book-container">
+            <div className={`book ${isBookOpen ? 'open' : ''}`}>
+              <div className="book-cover" onClick={() => setIsBookOpen(true)}>
+                <h2>Mật Thư</h2>
+                <p>Nhấn để mở sách và giải mã mật thư</p>
               </div>
-
-              {/* Right Page - Answer Section */}
-              <div className="book-page-right">
-                <div className="audio-groups">
-                  {/* Sài Gòn Group */}
-                  <div className="audio-group">
-                    <button onClick={() => new Audio(m1).play()}>
-                      Mật mã từ Sài Gòn
-                    </button>
-                    <div className="decode-input">
-                      <input
-                        type="text"
-                        placeholder="Giải mã gấp!!!"
-                        value={inputSG}
-                        onChange={(e) => setInputSG(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' && !sgfinish) {
-                            handleSubmitSG();
-                          }
-                        }}
-                        className={sgIncorrect ? 'incorrect' : ''}
-                        style={{
-                          borderColor: sgfinish ? 'green' : 'initial',
-                          opacity: sgfinish ? 0.5 : 1,
-                          pointerEvents: sgfinish ? 'none' : 'auto'
-                        }}
-                      />
-                      <button onClick={handleSubmitSG} disabled={sgfinish}>
-                        Submit
-                      </button>
-                      {!sgfinish && inputSG && (
-                        <p style={{ color: 'red', fontSize: '14px' }}>
-                          🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
-                        </p>
-                      )}
-                      {sgfinish && (
-                        <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
-                          ✅ Đã giải mã thành công!
-                        </p>
-                      )}
-                    </div>
+              <div className="book-content">
+                {/* Left Page - Morse Table and Map */}
+                <div className="book-page-left">
+                  <div className="morse-table-container">
+                    <img src={morsetable} alt="Morse Table" className="mtable" />
                   </div>
-
-                  {/* Hà Nội Group */}
-                  <div className="audio-group">
-                    <button onClick={() => new Audio(m2).play()}>
-                      Mật mã từ Hà Nội
-                    </button>
-                    <div className="decode-input">
-                      <input
-                        type="text"
-                        placeholder="Giải mã gấp!!!"
-                        value={inputHN}
-                        onChange={(e) => setInputHN(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' && !hnfinish) {
-                            handleSubmitHN();
-                          }
-                        }}
-                        className={hnIncorrect ? 'incorrect' : ''}
-                        style={{
-                          borderColor: hnfinish ? 'green' : 'initial',
-                          opacity: hnfinish ? 0.5 : 1,
-                          pointerEvents: hnfinish ? 'none' : 'auto'
-                        }}
-                      />
-                      <button onClick={handleSubmitHN} disabled={hnfinish}>
-                        Submit
-                      </button>
-                      {!hnfinish && inputHN && (
-                        <p style={{ color: 'red', fontSize: '14px' }}>
-                          🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
-                        </p>
-                      )}
-                      {hnfinish && (
-                        <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
-                          ✅ Đã giải mã thành công!
-                        </p>
-                      )}
-                    </div>
+                  <div className="map-container">
+                    <img src={diadaomap} alt="Map" className="map" />
                   </div>
                 </div>
+
+                {/* Right Page - Answer Section */}
+                <div className="book-page-right">
+                  <div className="audio-groups">
+                    {/* Sài Gòn Group */}
+                    <div className="audio-group">
+                      <button onClick={() => new Audio(m1).play()}>
+                        Mật mã từ Sài Gòn
+                      </button>
+                      <div className="decode-input">
+                        <input
+                          type="text"
+                          placeholder="Giải mã gấp!!!"
+                          value={inputSG}
+                          onChange={(e) => setInputSG(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' && !sgfinish) {
+                              handleSubmitSG();
+                            }
+                          }}
+                          className={sgIncorrect ? 'incorrect' : ''}
+                          style={{
+                            borderColor: sgfinish ? 'green' : 'initial',
+                            opacity: sgfinish ? 0.5 : 1,
+                            pointerEvents: sgfinish ? 'none' : 'auto'
+                          }}
+                        />
+                        <button onClick={handleSubmitSG} disabled={sgfinish}>
+                          Submit
+                        </button>
+                        {!sgfinish && inputSG && (
+                          <p style={{ color: 'red', fontSize: '14px' }}>
+                            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                          </p>
+                        )}
+                        {sgfinish && (
+                          <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
+                            ✅ Đã giải mã thành công!
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Hà Nội Group */}
+                    <div className="audio-group">
+                      <button onClick={() => new Audio(m2).play()}>
+                        Mật mã từ Hà Nội
+                      </button>
+                      <div className="decode-input">
+                        <input
+                          type="text"
+                          placeholder="Giải mã gấp!!!"
+                          value={inputHN}
+                          onChange={(e) => setInputHN(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' && !hnfinish) {
+                              handleSubmitHN();
+                            }
+                          }}
+                          className={hnIncorrect ? 'incorrect' : ''}
+                          style={{
+                            borderColor: hnfinish ? 'green' : 'initial',
+                            opacity: hnfinish ? 0.5 : 1,
+                            pointerEvents: hnfinish ? 'none' : 'auto'
+                          }}
+                        />
+                        <button onClick={handleSubmitHN} disabled={hnfinish}>
+                          Submit
+                        </button>
+                        {!hnfinish && inputHN && (
+                          <p style={{ color: 'red', fontSize: '14px' }}>
+                            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                          </p>
+                        )}
+                        {hnfinish && (
+                          <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
+                            ✅ Đã giải mã thành công!
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <div className="book-spine"></div>
             </div>
-            <div className="book-spine"></div>
           </div>
-        </div>
+        )}
       </div>
     );
   };

@@ -97,6 +97,11 @@ const handleSignIn = async () => {
   }
 };
 
+const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+
 //----------
 
 useEffect(() => {
@@ -155,16 +160,18 @@ useEffect(() => {
     <div className="container">
        
 
-      <header>
-        <div className="head-left">
-          <img src="/images/logo.png" alt="logo" />
-        </div>
+       <header>
+  <div className="head-left">
+    <img src="/images/logo.png" alt="logo" />
+  </div>
 
-        <ul>
-  <li><Link to="/">TRANG CHỦ</Link></li>
-  <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
-  <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
-</ul>
+
+
+  <ul className={isMenuOpen ? 'nav-menu active' : 'nav-menu'}>
+    <li><Link to="/">TRANG CHỦ</Link></li>
+    <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
+    <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
+  </ul>
 
         
 
@@ -191,7 +198,9 @@ useEffect(() => {
             </div> 
           }
 
-       
+<div className="hamburger" onClick={toggleMenu}>
+    {isMenuOpen ? '✖' : '☰'}
+  </div>
 
 
       </header>
