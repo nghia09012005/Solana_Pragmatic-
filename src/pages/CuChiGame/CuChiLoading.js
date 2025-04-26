@@ -141,7 +141,7 @@ const CuChiLoading = ({ onLoadingComplete }) => {
     
     const interval = setInterval(() => {
       // Smaller increment for slower progress
-      progress += Math.random() * 45 + 1;
+      progress += Math.random() * 75 + 1;
       
       if (progress >= 100) {
         progress = 100;
