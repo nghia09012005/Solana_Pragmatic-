@@ -43,26 +43,8 @@ function App() {
 
           <Route path="/tankgame" element={<TankGame />} />
 
-          {/* <Route path="/" element={<HomePage />} /> */}
 
-
-
-          
-          {/* Tây Nguyên Gongs Game */}
-
-
-          {/* <Route path="/" element={<TayNguyenGame />} /> */}
-          {/* <Route path="/" element={<HomePage />} /> */}
-
-
-           <Route path="taynguyengame" element={<TayNguyenGame />} /> 
-
-
-          {/* <Route path="/" element={<HomePage />} /> */}
-
-          {/* <Route path="/" element={<HomePage />} /> */}
-
-          {/* <Route path="/" element={<Personalmuseum />} /> */}
+          <Route path="taynguyengame" element={<TayNguyenGame />} />
 
 
           <Route path="/bantin" element={<Bantin />} />
@@ -73,20 +55,15 @@ function App() {
            
            <Route path="/tankgame" element={<TankGame />} /> */
 
-          {/* <Route path="/" element={<HomePage />} /> */}
-          {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
-          {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
 
-          {/* path="/CuChiGame" sau khi test xong */}
                     
           <Route path="/cuchigame" element={<CuChiGameG1/>} />
           <Route path="/morse" element={<Morse />} />
 
-          
-          {/* <Route path="/bantin" element={<Bantin />} /> */}
-          {/* Cu Chi Game */}
-          <Route path="/cuchigame" element={<CuChiGameG1 />} />
-          <Route path="/morse" element={<Morse />} />
+
+          <Route path="/bantin" element={<Bantin />} />
+
+
           
           {/* Dong Ho Game */}
           <Route path="/donghogame" element={<DongHoGame />} />
@@ -98,8 +75,8 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />          
           
           {/* Dong Ho Game */}
-          {/* <Route path="/" element={<DongHoGame />} />
-          <Route path="/FlipCard" element={<FlipCard />} /> */}
+          <Route path="/donghogame" element={<DongHoGame />} />
+          <Route path="/FlipCard" element={<FlipCard />} />
           
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />
