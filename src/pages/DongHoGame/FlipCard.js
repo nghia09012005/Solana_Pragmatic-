@@ -109,6 +109,33 @@ const FlipCard = () => {
     }
   };
 
+  const setTranhItem = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      const response = await fetch('/api/users/stats/set', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username: username,
+          item: "tranh"
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to set tranh item');
+      }
+
+      const data = await response.json();
+      console.log('Tranh item set:', data);
+    } catch (error) {
+      console.error('Error setting tranh item:', error);
+    }
+  };
+
   // Shuffle cards
   useEffect(() => {
     const duplicated = [...imageObjects, ...imageObjects];
@@ -120,6 +147,7 @@ const FlipCard = () => {
   useEffect(() => {
     if (matched.length === imageObjects.length && matched.length > 0) {
       new Audio(congratsSound).play();
+      setTranhItem(); // Set the tranh item when all cards are matched
       showCongrats(audioRef, playAgain, returnToMuseum);
     }
   }, [matched]);
