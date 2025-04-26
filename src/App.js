@@ -34,11 +34,11 @@ function App() {
       {/* <Header /> */}
       <main className="main-content">
         <Routes>
-
+        <Route path="/" element={<HomePage />} />
           
           {/* Tây Nguyên Gongs Game
 
-          <Route path="/" element={<HomePage />} />
+          
           <Route path="/museumpage" element={<MuseumPage />} />
 
   
