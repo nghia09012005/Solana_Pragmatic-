@@ -352,6 +352,7 @@ useEffect(() => {
    
 
 </section>
+
 <img className='info'
 src="/images/goldframe.png" alt="goldframe" />
 

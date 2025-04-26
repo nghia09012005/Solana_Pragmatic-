@@ -35,53 +35,34 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          {/* <Route path="/" element={<HomePage />} /> */}
-
+          
+          {/* Tây Nguyên Gongs Game
 
           <Route path="/" element={<HomePage />} />
           <Route path="/museumpage" element={<MuseumPage />} />
 
-          <Route path="/tankgame" element={<TankGame />} />
-
-
+  
           <Route path="taynguyengame" element={<TayNguyenGame />} />
 
+  
+           <Route path="/tankgame" element={<TankGame />} /> 
 
-          <Route path="/bantin" element={<Bantin />} />
+          // <Route path="/cuchigame" element={<CuChiGameG1/>} />
+          // <Route path="/morse" element={<Morse />} />
+          // <Route path="/bantin" element={<Bantin />} />
 
-
-
-           {/* <Route path="/" element={<ThongTin304 />} /> */}
-           
-           <Route path="/tankgame" element={<TankGame />} /> */
-
-
-                    
-          <Route path="/cuchigame" element={<CuChiGameG1/>} />
-          <Route path="/morse" element={<Morse />} />
-
-
-          <Route path="/bantin" element={<Bantin />} />
-
-
-          
-          {/* Dong Ho Game */}
-          <Route path="/donghogame" element={<DongHoGame />} />
-          <Route path="/FlipCard" element={<FlipCard />} />
-          <Route path="/museum" element={<MuseumPage />} />
-          <Route path="/personalmuseum" element={<PersonalMuseum />} />
-          
+           */}
           {/* <Route path="/profile" element={<ProfilePage />} />  */}
-          <Route path="*" element={<NotFoundPage />} />          
-          
+          {/* <Route path="*" element={<NotFoundPage />} />          
+           */}
           {/* Dong Ho Game */}
-          <Route path="/donghogame" element={<DongHoGame />} />
+          {/* <Route path="/donghogame" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} />
           
           <Route path="/profile" element={<ProfilePage />} /> 
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} /> */}
 
-          <Route path="/museum" element={<PersonalMuseum />} /> 
+          {/* <Route path="/" element={<PersonalMuseum />} />  */}
 
         </Routes>
       </main>
