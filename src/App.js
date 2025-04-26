@@ -65,9 +65,10 @@ function App() {
           
 
           <Route path="/" element={<ProfilePage />} /> 
-          {/* <Route path="*" element={<NotFoundPage />} />
+          {/* <Route path="/" element={<LeaderboardPage />} />  */}
+          {/* <Route path="*" element={<NotFoundPage />} /> */}
 
-          <Route path="/personalmuseum" element={<PersonalMuseum />} />  */}
+           {/* <Route path="/personalmuseum" element={<PersonalMuseum />} />   */}
 
         </Routes>
       </main>
