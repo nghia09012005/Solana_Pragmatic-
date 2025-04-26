@@ -170,3 +170,46 @@
 .table-body::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #ffa500, #ff8c00);
 }
+
+.current-user-rank {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.current-user-rank h2 {
+  color: #FFD700;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.current-user-row {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.current-user-row:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
