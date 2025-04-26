@@ -38,7 +38,7 @@ const dialogues = [
 ];
 
 useEffect(() => {
-    if (dialogIndex > 8) {
+    if (dialogIndex > 11) {
       setShowNotification(true);
       setTimeout(() => {
         setShowNotification(false);
@@ -55,6 +55,14 @@ useEffect(() => {
       // Thêm xử lý lỗi khi phát nhạc
       const playBantin = async () => {
         try {
+          // Đảm bảo audio đã được load
+          if (bantinAudio.readyState === 0) {
+            await new Promise((resolve) => {
+              bantinAudio.addEventListener('loadeddata', resolve, { once: true });
+            });
+          }
+          // Đặt currentTime về 0 trước khi phát
+          bantinAudio.currentTime = 0;
           await bantinAudio.play();
           console.log('Bản tin đã phát');
         } catch (error) {
@@ -67,7 +75,15 @@ useEffect(() => {
     const playBackground = async () => {
       if (backgroundAudio) {
         try {
+          // Đảm bảo audio đã được load
+          if (backgroundAudio.readyState === 0) {
+            await new Promise((resolve) => {
+              backgroundAudio.addEventListener('loadeddata', resolve, { once: true });
+            });
+          }
           backgroundAudio.volume = backgroundVolume;
+          // Đặt currentTime về 0 trước khi phát
+          backgroundAudio.currentTime = 0;
           await backgroundAudio.play();
           console.log('Nhạc nền đã phát');
         } catch (error) {
@@ -93,20 +109,60 @@ useEffect(() => {
       if (bantinAudio) {
         bantinAudio.pause();
         bantinAudio.currentTime = 0;
+        bantinAudio.removeEventListener('loadeddata', () => {});
       }
 
       if (backgroundAudio) {
         backgroundAudio.pause();
         backgroundAudio.currentTime = 0;
         backgroundAudio.removeEventListener('ended', handleBackgroundEnd);
+        backgroundAudio.removeEventListener('loadeddata', () => {});
       }
 
       clearTimeout(initialDelay);
     };
   }, []);
 
+  const handleFlagClick = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      
+      if (!token || !username) {
+        console.error('Không tìm thấy token hoặc username');
+        return;
+      }
+
+      const response = await fetch('/api/users/stats/set', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username: username,
+          co: true
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Lỗi khi cập nhật item');
+      }
+
+      const data = await response.json();
+      console.log('Cập nhật item thành công:', data);
+      setShowOverlay(true);
+    } catch (error) {
+      console.error('Lỗi khi fetch item:', error);
+    }
+  };
+
   return (
-    <div className="bantin-container">
+    <div className="bantin-container" onClick={() => {
+      if (dialogIndex < dialogues.length - 1) {
+        setDialogIndex(dialogIndex + 1);
+      }
+    }}>
     {/* Video nền */}
     <video
       autoPlay
@@ -120,16 +176,13 @@ useEffect(() => {
         <img src={character} alt="Character" className="character-image" />
         <div className="dialogue-box">
   <p>{dialogues[dialogIndex]}</p>
-  {dialogIndex < dialogues.length - 1 && (
-    <button onClick={() => setDialogIndex(dialogIndex + 1)}>Next</button>
-  )}
 </div>
 
     <div className="bantin-content">
 
         {/* Hiển thị cờ khi dialogIndex là 9 */}
-      {dialogIndex >8 && (
-        <img src={flag} alt="Vietnam Flag" onClick={() => setShowOverlay(true)} className="flag-image" />
+      {dialogIndex >11 && (
+        <img src={flag} alt="Vietnam Flag" onClick={handleFlagClick} className="flag-image" />
       )}
       
     </div>
@@ -145,7 +198,7 @@ useEffect(() => {
   <div className="overlay" onClick={() => setShowOverlay(false)}>
     <div className="overlay-content">
       <p>Nhận vật phẩm cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam thành công !!!!!!</p>
-      <button onClick={() => navigate("/museumpage")}>Tới bảo tàng cá nhân</button>
+      <button onClick={() => navigate("/museumpage")}>Quay về</button>
     </div>
   </div>
 )}
