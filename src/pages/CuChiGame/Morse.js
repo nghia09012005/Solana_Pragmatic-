@@ -192,7 +192,7 @@ const Morse = () => {
           },
           body: JSON.stringify({
             username: username,
-            item: "co"
+            item: "thu"
           })
         });
 
