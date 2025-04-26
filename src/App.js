@@ -7,7 +7,7 @@ import MuseumPage from './pages/MuseumPage';
 
 // import LoginPage from './pages/LoginPage';
 // import RegisterPage from './pages/RegisterPage';
-// import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 
@@ -20,7 +20,7 @@ import FlipCard from './pages/DongHoGame/FlipCard';
 import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
 import ThongTin304 from './pages/Thongnhat/ThongTin304';
-import Personalmuseum from './pages/PersonalMuseum';
+import PersonalMuseum from './pages/PersonalMuseum';
   
 function App() {
   // const { loading } = useAuth();
@@ -39,20 +39,53 @@ function App() {
 
 
           <Route path="/" element={<HomePage />} />
+          <Route path="/museumpage" element={<MuseumPage />} />
+
+          <Route path="/tankgame" element={<TankGame />} />
+
+          {/* <Route path="/" element={<HomePage />} /> */}
+
 
 
           
           {/* Tây Nguyên Gongs Game */}
 
-          <Route path="taynguyengame" element={<TayNguyenGame />} />
 
-          <Route path="tankgame" element={<TankGame />} />
-          <Route path="bantin" element={<Bantin />} />
-          <Route path="thongtin304" element={<ThongTin304 />} />
+          {/* <Route path="/" element={<TayNguyenGame />} /> */}
+          {/* <Route path="/" element={<HomePage />} /> */}
+
+
+          {/* <Route path="taynguyengame" element={<TayNguyenGame />} />
+
+
+          {/* <Route path="/" element={<HomePage />} /> */}
+
+          {/* <Route path="/" element={<HomePage />} /> */}
+
+          {/* <Route path="/" element={<Personalmuseum />} /> */}
+
+
+          <Route path="/bantin" element={<Bantin />} />
+
+
+
+           <Route path="/" element={<ThongTin304 />} />
+           
+           <Route path="/tankgame" element={<TankGame />} /> */
+
+          {/* <Route path="/" element={<HomePage />} /> */}
+          {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
+          {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
+
+          {/* path="/CuChiGame" sau khi test xong */}
+                    
+          <Route path="/cuchigame" element={<CuChiGameG1/>} />
+          <Route path="/morse" element={<Morse />} />
 
           
           {/* <Route path="/bantin" element={<Bantin />} /> */}
           {/* Cu Chi Game */}
+<<<<<<< HEAD
           <Route path="/cuchigame" element={<CuChiGameG1 />} />
           <Route path="/morse" element={<Morse />} />
           
@@ -64,6 +97,18 @@ function App() {
           
           {/* <Route path="/profile" element={<ProfilePage />} />  */}
           <Route path="*" element={<NotFoundPage />} />
+=======
+          
+          
+          {/* Dong Ho Game */}
+          {/* <Route path="/" element={<DongHoGame />} />
+          <Route path="/FlipCard" element={<FlipCard />} /> */}
+          
+          <Route path="/profile" element={<ProfilePage />} /> 
+          <Route path="*" element={<NotFoundPage />} />
+
+          <Route path="/museum" element={<PersonalMuseum />} /> 
+>>>>>>> 3867977a8243fe3c38fd86aaa3aa6c1464c48ed9
 
         </Routes>
       </main>

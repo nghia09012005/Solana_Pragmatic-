@@ -162,6 +162,7 @@ useEffect(() => {
         <ul>
   <li><Link to="/">TRANG CHỦ</Link></li>
   <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
+  <li><Link to="/museum">BỘ SƯU TẬP</Link></li>
   <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
 </ul>
 
@@ -219,7 +220,7 @@ useEffect(() => {
         <h3 className={`fade-in-text  ${isVisible ? 'visible' : ''}`}>
         Hóa thân thành người gìn giữ ký ức, vượt qua thử thách ảo ảnh, thu thập mảnh ghép di sản và viết tiếp câu chuyện của quá khứ bằng công nghệ.
         </h3>
-         <Link to="/museum"> 
+         <Link to="/museumpage"> 
           <button >KHÁM PHÁ NGAY!</button>
         </Link> 
         
@@ -290,15 +291,15 @@ useEffect(() => {
           src="/images/tong-quan.png"
           alt=""
         />
-      
-      
-
-      <section className='feature'>
-      <img
+       <img
           className="tinh-nang-chinh"
           src="/images/tinh-nang-chinh.png"
           alt=""
         />
+      
+
+      <section className='feature'>
+     
       
 
         <div className="feature-gradient"
@@ -354,6 +355,8 @@ useEffect(() => {
 </section>
 <img className='info'
 src="/images/goldframe.png" alt="goldframe" />
+
+
 
 <img className='last'
 src="/images/last-page.png" alt="lastpage" />
