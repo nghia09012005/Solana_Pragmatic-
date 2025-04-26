@@ -64,9 +64,9 @@ function App() {
           <Route path="/FlipCard" element={<FlipCard />} />
           
           <Route path="/profile" element={<ProfilePage />} /> 
-          <Route path="*" element={<NotFoundPage />} />
+          {/* <Route path="*" element={<NotFoundPage />} />
 
-          <Route path="/personalmuseum" element={<PersonalMuseum />} /> 
+          <Route path="/personalmuseum" element={<PersonalMuseum />} />  */}
 
         </Routes>
       </main>

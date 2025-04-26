@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/ProfilePage.css';
@@ -6,12 +6,97 @@ import '../styles/ProfilePage.css';
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    displayName: 'Nguyễn Văn A',
-    email: 'nguyenvana@example.com',
-    bio: 'Yêu thích lịch sử và văn hóa Việt Nam'
+  const [userData, setUserData] = useState({
+    username: '',
+    exp: 0,
+    money: 0,
+    items: {
+      congchieng: false,
+      co: false,
+      thu: false,
+      tranh: false,
+      quanho: false,
+      trongdong: false
+    }
   });
   const [message, setMessage] = useState({ text: '', type: '' });
+
+  useEffect(() => {
+    const user = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+    const savedUserData = localStorage.getItem('userData');
+    
+    console.log('User:', user);
+    console.log('Token:', token);
+    console.log('Saved Data:', savedUserData);
+    
+    if (savedUserData) {
+      setUserData(JSON.parse(savedUserData));
+      return;
+    }
+
+    if (!user || !token) {
+      console.log('No user or token found');
+      navigate('/');
+      return;
+    }
+
+    fetch(`/api/users/stats/${user}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      console.log('Response status:', response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Response data:', data);
+      if (data.code === "1000") {
+        const newUserData = {
+          username: data.result.user.username,
+          exp: data.result.exp,
+          money: data.result.money,
+          items: {
+            congchieng: data.result.congchieng,
+            co: data.result.co,
+            thu: data.result.thu,
+            tranh: data.result.tranh,
+            quanho: data.result.quanho,
+            trongdong: data.result.trongdong
+          }
+        };
+        console.log('New user data:', newUserData);
+        setUserData(newUserData);
+        localStorage.setItem('userData', JSON.stringify(newUserData));
+      } else {
+        console.error('Invalid response code:', data.code);
+        navigate('/');
+      }
+    })
+    .catch(error => {
+      console.error('Error details:', error);
+      navigate('/');
+    });
+  }, [navigate]);
+
+  // Tính toán số lượng vật phẩm đã sở hữu
+  const getItemCount = () => {
+    const items = userData.items;
+    let count = 0;
+    if (items.congchieng) count++;
+    if (items.co) count++;
+    if (items.thu) count++;
+    if (items.tranh) count++;
+    if (items.quanho) count++;
+    if (items.trongdong) count++;
+    return count;
+  };
 
   // Tính toán tên viết tắt từ tên người dùng
   const getInitials = (name) => {
@@ -21,7 +106,7 @@ const ProfilePage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setUserData(prev => ({
       ...prev,
       [name]: value
     }));
@@ -34,6 +119,8 @@ const ProfilePage = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
     navigate('/');
   };
 
@@ -53,21 +140,21 @@ const ProfilePage = () => {
           <div className="profile-sidebar">
             <div className="avatar-container">
               <div className="avatar-placeholder">
-                {getInitials(formData.displayName)}
+                {userData.username.charAt(0).toUpperCase()}
               </div>
             </div>
             <div className="user-stats">
               <div className="stat-item">
                 <span className="stat-label">Vàng:</span>
-                <span className="stat-value">1,000</span>
+                <span className="stat-value">{userData.money}</span>
               </div>
               <div className="stat-item">
                 <span className="stat-label">Vật phẩm:</span>
-                <span className="stat-value">3/20</span>
+                <span className="stat-value">{getItemCount()}/6</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Kinh nghiệm:</span>
-                <span className="stat-value">750</span>
+                <span className="stat-label">EXP:</span>
+                <span className="stat-value">{userData.exp}</span>
               </div>
             </div>
           </div>
@@ -81,36 +168,10 @@ const ProfilePage = () => {
                     type="text"
                     id="displayName"
                     name="displayName"
-                    value={formData.displayName}
+                    value={userData.username}
                     onChange={handleChange}
                     placeholder="Nhập tên hiển thị của bạn"
                   />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    disabled
-                    placeholder="Email của bạn"
-                  />
-                  <span className="field-note">Email không thể thay đổi</span>
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="bio">Giới thiệu</label>
-                  <textarea
-                    id="bio"
-                    name="bio"
-                    value={formData.bio}
-                    onChange={handleChange}
-                    placeholder="Viết một vài dòng về bản thân bạn"
-                    rows="4"
-                  ></textarea>
                 </div>
                 
                 <div className="form-actions">
@@ -127,19 +188,27 @@ const ProfilePage = () => {
             ) : (
               <>
                 <div className="profile-info">
-                  <h2>{formData.displayName}</h2>
-                  <p className="email">{formData.email}</p>
-                  
-                  {formData.bio ? (
-                    <div className="bio">
-                      <h3>Giới thiệu</h3>
-                      <p>{formData.bio}</p>
+                  <h2>{userData.username}</h2>
+                  <div className="items-grid">
+                    <div className={`item-card ${userData.items.congchieng ? 'owned' : ''}`}>
+                      <span>Cồng Chiêng</span>
                     </div>
-                  ) : (
-                    <div className="bio empty">
-                      <p>Chưa có thông tin giới thiệu</p>
+                    <div className={`item-card ${userData.items.co ? 'owned' : ''}`}>
+                      <span>Cờ</span>
                     </div>
-                  )}
+                    <div className={`item-card ${userData.items.thu ? 'owned' : ''}`}>
+                      <span>Thư</span>
+                    </div>
+                    <div className={`item-card ${userData.items.tranh ? 'owned' : ''}`}>
+                      <span>Tranh</span>
+                    </div>
+                    <div className={`item-card ${userData.items.quanho ? 'owned' : ''}`}>
+                      <span>Quan Họ</span>
+                    </div>
+                    <div className={`item-card ${userData.items.trongdong ? 'owned' : ''}`}>
+                      <span>Trống Đồng</span>
+                    </div>
+                  </div>
                 </div>
                 
                 <div className="profile-actions">

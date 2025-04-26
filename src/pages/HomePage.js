@@ -33,12 +33,12 @@ const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
   useEffect(() => {
     const user = localStorage.getItem('username');
     const token = localStorage.getItem('token');
-    if (user && token) {
-      setissignin(true);
-    } else {
+    if (!user || !token) {
       setissignin(false);
       localStorage.removeItem('username');
       localStorage.removeItem('token');
+    } else {
+      setissignin(true);
     }
   }, []);
 
