@@ -184,9 +184,11 @@ useEffect(() => {
         }
            
           {isSignin && 
-            
-            <div className='signin'>{localStorage.getItem('username')}</div> 
-                 
+            <div className='signin'>
+              <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                {localStorage.getItem('username')}
+              </Link>
+            </div> 
           }
 
        
