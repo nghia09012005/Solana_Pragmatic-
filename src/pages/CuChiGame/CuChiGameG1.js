@@ -21,11 +21,9 @@ const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
-<<<<<<< HEAD
+
   const [showMenu, setShowMenu] = useState(false);
-=======
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
->>>>>>> 8f54c945a958b2141f23da8ff15aea8032dd5112
+
   const navigate = useNavigate();
 
   const toggleMenu = (e) => {

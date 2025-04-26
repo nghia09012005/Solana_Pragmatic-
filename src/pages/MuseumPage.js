@@ -203,8 +203,8 @@ const MuseumPage = () => {
   return (
   <div className='museum-page-body'>
     <button className="home-button" onClick={goToHome}>
-      <FaHome />
-      <span> Trang chủ </span>
+      <i className="fas fa-home"></i>
+      {/* <span>Trang chủ</span> */}
     </button>
   <div className="app">  
     <Carousel>  

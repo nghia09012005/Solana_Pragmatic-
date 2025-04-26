@@ -104,6 +104,23 @@
   font-style: italic;
 }
 
+.decode-input input.incorrect::placeholder {
+  color: #ff0000;
+  font-weight: bold;
+  content: "CHƯA CHÍNH XÁC";
+}
+
+.decode-input input.incorrect {
+  border-color: #ff0000;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
 .decode-input input:focus {
   border-color: #ffd700;
   box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
@@ -317,6 +334,22 @@
   font-size: 14px;
 }
 
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.alert-banner.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 .alert-banner::before {
   content: '';
   position: absolute;
@@ -351,17 +384,6 @@
 .close-alert:hover {
   background-color: rgba(139, 69, 19, 0.1);
   transform: rotate(90deg);
-}
-
-@keyframes slideDown {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
 }
 
 @keyframes borderGlow {
@@ -672,4 +694,88 @@
   background: linear-gradient(to right, #654321, #8B4513);
   transform: translateX(-50%) rotateY(90deg);
   border-radius: 5px;
+}
+
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.home-button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #1a471c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.home-button i {
+  font-size: 24px;
+  color: #1a471c;
+}
+
+.home-button:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid #1a471c;
+  border-radius: 10px;
+  padding: 10px 0;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease-out;
+  z-index: 10000;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1a471c;
+}
+
+.menu-item:hover {
+  background-color: rgba(26, 71, 28, 0.1);
+}
+
+.menu-item i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.menu-item span {
+  font-size: 16px;
+  font-weight: 500;
 }
