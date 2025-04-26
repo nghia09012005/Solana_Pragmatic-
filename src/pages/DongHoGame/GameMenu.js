@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaHome } from 'react-icons/fa';
+// Import CSS của GameMenu sau CSS của game để đảm bảo nó ghi đè lên các style mặc định
 import '../../styles/DongHoStyle/GameMenu.css';
 
 const GameMenu = ({ isOpen, onClose }) => {
@@ -13,18 +15,18 @@ const GameMenu = ({ isOpen, onClose }) => {
           </div>
           <ul className="side-menu-list">
             <li className="side-menu-item">
-              <button className="side-menu-link" onClick={() => window.location.href = '/'}>
-                🏠 Quay lại Trang chủ
+              <button className="side-menu-link" onClick={() => window.location.href = '/'}><FaHome />
+                Quay lại Trang chủ
               </button>
             </li>
             <li className="side-menu-item">
-              <button className="side-menu-link" onClick={() => window.location.href = '/museum'}>
-                🏛️ Quay lại Bảo tàng
+              <button className="side-menu-link" onClick={() => window.location.href = '/museum'}><i className="fa fa-university" aria-hidden="true"></i>
+                Quay lại Bảo tàng
               </button>
             </li>
             <li className="side-menu-item">
-              <button className="side-menu-link" onClick={() => window.location.href = '/personalmuseum'}>
-                📦 Đến Bộ sưu tập
+              <button className="side-menu-link" onClick={() => window.location.href = '/personalmuseum'}><i className="fa fa-book" aria-hidden="true"></i>
+                Đến Bộ sưu tập
               </button>
             </li>
           </ul>

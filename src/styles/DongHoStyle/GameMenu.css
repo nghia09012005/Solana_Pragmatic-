@@ -3,9 +3,9 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background: rgba(139, 0, 0, 0.7);
+  background: rgba(180, 0, 0, 0.8); /* Đỏ đậm hơn và đậm hơn */
   color: white;
-  border: 2px solid #8b0000;
+  border: 2px solid #c00000;
   padding: 8px;
   border-radius: 50%;
   width: 40px;
@@ -21,8 +21,8 @@
 }
 
 .menu-button:hover {
-  background: #8b0000;
-  border-color: #8b0000;
+  background: #c00000;
+  border-color: #c00000;
   color: white;
   transform: scale(1.10);
 }
@@ -53,10 +53,10 @@
   left: 0;
   width: 295px;
   height: 100vh;
-  background: rgba(139, 0, 0, 0.45);
+  background: rgba(180, 0, 0, 0.6); /* Đỏ đậm hơn và đậm hơn */
   color: white;
   box-shadow: 2px 0 32px rgba(0,0,0,0.25);
-  border-right: 2.5px solid #8b0000;
+  border-right: 2.5px solid #c00000;
   z-index: 120;
   display: flex;
   flex-direction: column;
@@ -88,7 +88,7 @@
 .close-menu-button {
   background: none;
   border: none;
-  color: #ffcc00;
+  color: #c9a71d;
   font-size: 1.7rem;
   cursor: pointer;
   padding: 4px 8px;
@@ -133,7 +133,7 @@
 }
 
 .side-menu-link:hover {
-  background: #c02020;
+  background: #c00000;
   color: white;
-  box-shadow: 2px 0 16px #c02020;
+  box-shadow: 2px 0 16px #c00000;
 }

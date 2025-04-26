@@ -33,19 +33,6 @@ const CARDS = [
     image: "./images/tranh-dong-ho.png"
   },
   {
-    title: "Dân ca Quan Họ",
-    
-    description: "Quan Họ là sự kết nối giữa các thế hệ, giữa người với người, thể hiện lòng hiếu khách và sự gắn bó với cội nguồn",
-    
-    artist: {
-      name: "Làng Quan Họ",
-      
-      location: "Bắc Ninh, Việt Nam",
-      image: "/images/character/quan-ho.png"
-    },
-    image: "/images/quan-ho.png"
-  },
-  {
     title: "Địa Đạo Củ Chi",
     
     description: "Củ Chi là niềm tự hào, là minh chứng cho sức mạnh của chiến tranh nhân dân.",
@@ -57,6 +44,19 @@ const CARDS = [
       image: "/images/character/dia-dao.png"
     },
     image: "/images/dia-dao.png"
+  },
+  {
+    title: "Ngày giải phóng miền Nam",
+    
+    description: "Ngày 30 tháng 4 là ngày mà dân tộc Việt Nam thể hiện sự kiên cường, bất khuất, một ngày lịch sử không thể nào quên.",
+    
+    artist: {
+      name: "Sài Gòn",
+     
+      location: "Sài Gòn (TPHCM), Việt Nam",
+      image: "/images/character/giai-phong.png"
+    },
+    image: "/images/giai-phong.png"
   },
   {
     title: "Trống Đồng \n Đông Sơn",
@@ -71,17 +71,17 @@ const CARDS = [
     image: "/images/trong-dong-dong-son.png"
   },
   {
-    title: "Ngày giải phóng miền Nam",
+    title: "Dân ca Quan Họ",
     
-    description: "Ngày 30 tháng 4 là ngày mà dân tộc Việt Nam thể hiện sự kiên cường, bất khuất, một ngày lịch sử không thể nào quên.",
+    description: "Quan Họ là sự kết nối giữa các thế hệ, giữa người với người, thể hiện lòng hiếu khách và sự gắn bó với cội nguồn",
     
     artist: {
-      name: "Sài Gòn",
-     
-      location: "Sài Gòn (TPHCM), Việt Nam",
-      image: "/images/character/giai-phong.png"
+      name: "Làng Quan Họ",
+      
+      location: "Bắc Ninh, Việt Nam",
+      image: "/images/character/quan-ho.png"
     },
-    image: "/images/giai-phong.png"
+    image: "/images/quan-ho.png"
   }
 ];
 
