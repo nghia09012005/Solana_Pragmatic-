@@ -35,11 +35,12 @@ function App() {
       <main className="main-content">
         <Routes>
         <Route path="/" element={<HomePage />} />
+        
+        <Route path="/museumpage" element={<MuseumPage />} />
           
           {/* Tây Nguyên Gongs Game
 
           
-          <Route path="/museumpage" element={<MuseumPage />} />
 
   
           <Route path="taynguyengame" element={<TayNguyenGame />} />

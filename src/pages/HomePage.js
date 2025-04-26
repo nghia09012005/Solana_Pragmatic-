@@ -162,7 +162,7 @@ useEffect(() => {
         <ul>
   <li><Link to="/">TRANG CHỦ</Link></li>
   <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
-  <li><Link to="/museum">BỘ SƯU TẬP</Link></li>
+  {/* <li><Link to="/museum">BỘ SƯU TẬP</Link></li> */}
   <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
 </ul>
 
