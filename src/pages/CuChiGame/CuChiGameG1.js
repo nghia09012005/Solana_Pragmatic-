@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
 import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';
 import Usequiz from "./Usequiz";
+import GameMenu from './GameMenu';
 
 // Add a style to control transitions
 const noTransitionStyle = {
@@ -20,7 +21,11 @@ const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
+<<<<<<< HEAD
   const [showMenu, setShowMenu] = useState(false);
+=======
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+>>>>>>> 8f54c945a958b2141f23da8ff15aea8032dd5112
   const navigate = useNavigate();
 
   const toggleMenu = (e) => {
@@ -159,6 +164,7 @@ const CuChiGameG1 = () => {
         <CuChiLoading onLoadingComplete={handleLoadingComplete} />
       ) : (
         <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
+<<<<<<< HEAD
           <div className="menu-container">
             <button className="home-button" onClick={toggleMenu}>
               <i className="fas fa-home"></i>
@@ -177,6 +183,13 @@ const CuChiGameG1 = () => {
             )}
           </div>
           
+=======
+          <button className="menu-button" onClick={(e) => {
+            e.stopPropagation();
+            setIsMenuOpen(true);
+          }}>☰</button>
+          <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+>>>>>>> 8f54c945a958b2141f23da8ff15aea8032dd5112
           <div className="character-wrapper">
             <img src={characterImg} alt="Character" className="character-model" />
 

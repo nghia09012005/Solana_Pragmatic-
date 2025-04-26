@@ -1,5 +1,47 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap'); */
 
+.close-menu-button:hover {
+  background: #D4AF37;
+  color: white;
+}
+
+/* .side-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.side-menu-item {
+  width: 100%;
+}
+
+.side-menu-link {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 18px 28px;
+  font-size: 1.13rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0 14px 14px 0;
+  transition: background 0.14s, color 0.14s;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.side-menu-link:hover {
+  background: #D4AF37;
+  color: white;
+  box-shadow: 2px 0 16px #D4AF37;
+} */
+
 .game-container {
   background-image: url('../../assets/DongHoGame/image/bg.png');
   background-size: cover;

@@ -43,7 +43,9 @@ function App() {
 
           <Route path="/tankgame" element={<TankGame />} />
 
+
           <Route path="taynguyengame" element={<TayNguyenGame />} />
+
 
           <Route path="/bantin" element={<Bantin />} />
 
@@ -58,9 +60,19 @@ function App() {
           <Route path="/cuchigame" element={<CuChiGameG1/>} />
           <Route path="/morse" element={<Morse />} />
 
+
           <Route path="/bantin" element={<Bantin />} />
 
+
           
+          {/* Dong Ho Game */}
+          <Route path="/donghogame" element={<DongHoGame />} />
+          <Route path="/FlipCard" element={<FlipCard />} />
+          <Route path="/museum" element={<MuseumPage />} />
+          <Route path="/personalmuseum" element={<PersonalMuseum />} />
+          
+          {/* <Route path="/profile" element={<ProfilePage />} />  */}
+          <Route path="*" element={<NotFoundPage />} />          
           
           {/* Dong Ho Game */}
           <Route path="/donghogame" element={<DongHoGame />} />
