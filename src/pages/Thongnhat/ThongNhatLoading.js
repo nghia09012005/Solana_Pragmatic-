@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
+import background from '../../assets/Thongnhat/images/hcmcampaign.jpg';
 
 // Animations
 const fadeIn = keyframes`
@@ -115,9 +116,9 @@ const StartButton = styled.button`
 
 const ThongNhatLoading = ({ onLoadingComplete }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const [loadingMessage, setLoadingMessage] = useState("Đang chuẩn bị hành trình...");
+  const [loadingMessage, setLoadingMessage] = useState("BẠN ĐANG QUAY TRỞ LẠI NGÀY 30/4/1975");
   const [loadingComplete, setLoadingComplete] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [showContinue, setShowContinue] = useState(false);
   
   // Define loading messages
   const messageInbox = [
@@ -130,7 +131,7 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
     "BẠN CÓ BIẾT: Tổng thống ngụy quyền Dương Văn Minh đã tuyên bố đầu hàng vô điều kiện vào trưa 30/4.",
     "BẠN CÓ BIẾT: Ngày 30/4 hằng năm được gọi là Ngày Giải phóng miền Nam, thống nhất đất nước.",
     "BẠN CÓ BIẾT: Hơn 3 triệu quân và dân đã tham gia vào Chiến dịch Hồ Chí Minh lịch sử.",
-    "BẠN CÓ BIẾT: Sự kiện 30/4/1975 đánh dấu kết thúc chiến tranh, mở ra thời kỳ hòa bình và thống nhất quốc gia."
+    "BẠN CÓ BIẾT: Sự kiện 30/4/1975 đánh dấu kết thúc chiến tranh, mở ra thới kỳ hòa bình và thống nhất quốc gia."
   ];
   
   useEffect(() => {
@@ -140,11 +141,11 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
     
     const interval = setInterval(() => {
       // Smaller increment for slower progress
-      progress += Math.random() * 45 + 1;
+      progress += Math.random() * 75 + 1;
       
       if (progress >= 100) {
         progress = 100;
-        setLoadingComplete(true);
+        setShowContinue(true);
         clearInterval(interval);
       }
       
@@ -162,15 +163,12 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
   }, []);
 
   const handleStartGame = () => {
-    setIsLoading(false);
-    // Delay to allow fade out animation to complete
-    setTimeout(() => {
-      if (onLoadingComplete) onLoadingComplete();
-    }, 1000);
+    setLoadingComplete(true);
+    if (onLoadingComplete) onLoadingComplete();
   };
 
   return (
-    <LoadingScreen backgroundImage={require('../../assets/Thongnhat/images/Dinhdoclapcali.jpeg')} isLoading={isLoading}>
+    <LoadingScreen backgroundImage={background} isLoading={!loadingComplete}>
       <LogoImage 
         src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
         alt="Thống Nhất Logo" 
@@ -192,14 +190,16 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
         {loadingMessage}
       </LoadingMessage>
       
-      <StartButton 
-        visible={loadingComplete} 
-        onClick={handleStartGame}
-      >
-        Bắt Đầu Hành Trình
-      </StartButton>
+      {showContinue && (
+        <StartButton 
+          visible={true} 
+          onClick={handleStartGame}
+        >
+          Tiếp Tục
+        </StartButton>
+      )}
     </LoadingScreen>
   );
 };
 
-export default ThongNhatLoading; 
+export default ThongNhatLoading;

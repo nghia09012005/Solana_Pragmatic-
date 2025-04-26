@@ -46,7 +46,7 @@ const CARDS = [
     image: "/images/dia-dao.png"
   },
   {
-    title: "Ngày giải phóng miền Nam",
+    title: "Chiến dịch Hồ Chí Minh",
     
     description: "Ngày 30 tháng 4 là ngày mà dân tộc Việt Nam thể hiện sự kiên cường, bất khuất, một ngày lịch sử không thể nào quên.",
     
@@ -126,8 +126,8 @@ const Card = ({ artwork, isActive }) => {
         navigate('/donghogame');
       } else if (artwork.title === "Cồng Chiêng Tây Nguyên") {
         navigate('/taynguyengame');
-      } else if (artwork.title === "Ngày giải phóng miền Nam"){
-        navigate('/tankgame');
+      } else if (artwork.title === "Chiến dịch Hồ Chí Minh"){
+        navigate('/introduction');
       }
        else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });

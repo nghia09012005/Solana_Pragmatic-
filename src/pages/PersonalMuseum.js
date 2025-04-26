@@ -7,7 +7,7 @@ import artifact3 from '../assets/PersonalMuseum/tranh-dong-ho.png';
 import artifact4 from '../assets/PersonalMuseum/cong_chieng.png';
 import museumMusic from '../assets/PersonalMuseum/audio/acoustic.wav';
 import { Link } from 'react-router-dom';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaSave, FaUndo } from 'react-icons/fa';
 
 const addPositions = [
   { top: '60%', left: '15%', scale: 0.5 },
@@ -65,6 +65,9 @@ const PersonalMuseum = () => {
   const [placedArtifacts, setPlacedArtifacts] = useState({});
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedArtifactIndex, setSelectedArtifactIndex] = useState(null); // chỉ số cổ vật đang xem
+  const [showConfirmReset, setShowConfirmReset] = useState(false);
+  const [showSaveSuccess, setShowSaveSuccess] = useState(false);
+  const [originalArtifacts, setOriginalArtifacts] = useState(null); // Lưu trạng thái ban đầu khi tải trang
   const audioRef = useRef(null);
 
   // Initialize audio
@@ -101,14 +104,17 @@ const PersonalMuseum = () => {
           return acc;
         }, {});
         setPlacedArtifacts(restored);
+        setOriginalArtifacts(restored); // Lưu trạng thái ban đầu khi tải trang
       } catch (error) {
         console.error('Lỗi khi load hiện vật:', error);
       }
+    } else {
+      setOriginalArtifacts({});
     }
   }, []);
 
-  // Save artifacts
-  useEffect(() => {
+  // Hàm xử lý lưu thay đổi
+  const handleSaveChanges = () => {
     try {
       const toSave = Object.entries(placedArtifacts).reduce((acc, [key, value]) => {
         acc[key] = {
@@ -118,10 +124,38 @@ const PersonalMuseum = () => {
         return acc;
       }, {});
       localStorage.setItem('museumArtifacts', JSON.stringify(toSave));
+      setOriginalArtifacts({...placedArtifacts}); // Cập nhật trạng thái ban đầu
+      setShowSaveSuccess(true);
+      setTimeout(() => setShowSaveSuccess(false), 2000);
     } catch (error) {
       console.error('Lỗi khi lưu hiện vật:', error);
     }
-  }, [placedArtifacts]);
+  };
+  
+  // Hàm xử lý đặt lại hiện vật
+  const handleResetArtifacts = () => {
+    setShowConfirmReset(true);
+  };
+  
+  // Xác nhận đặt lại hiện vật
+  const confirmReset = () => {
+    if (originalArtifacts) {
+      // Đảm bảo rằng các đối tượng hình ảnh được khôi phục đúng cách
+      const restoredArtifacts = Object.entries(originalArtifacts).reduce((acc, [key, value]) => {
+        acc[key] = {
+          ...value,
+          // Đảm bảo rằng đối tượng hình ảnh được khôi phục từ imageMap
+          image: imageMap[value.imageName] || null,
+        };
+        return acc;
+      }, {});
+      setPlacedArtifacts(restoredArtifacts);
+    } else {
+      // Nếu không có trạng thái ban đầu, đặt lại về rỗng
+      setPlacedArtifacts({});
+    }
+    setShowConfirmReset(false);
+  };
 
   // Get available artifacts (those not yet placed)
   const getAvailableArtifacts = () => {
@@ -166,6 +200,24 @@ const PersonalMuseum = () => {
         <FaHome />
         <span>Trang chủ</span>
       </Link>
+      
+      <div className="museum-controls">
+        <button className="control-button save-button" onClick={handleSaveChanges}>
+          <FaSave />
+          <span>Lưu thay đổi</span>
+        </button>
+        
+        <button className="control-button reset-button" onClick={handleResetArtifacts}>
+          <FaUndo />
+          <span>Đặt lại hiện vật</span>
+        </button>
+      </div>
+      
+      {showSaveSuccess && (
+        <div className="notification success-notification">
+          <p>✅ Đã lưu thay đổi thành công!</p>
+        </div>
+      )}
 
       {addPositions.map((pos, index) => (
         <div
@@ -246,6 +298,20 @@ const PersonalMuseum = () => {
           </div>
         );
       })()}
+      
+      {/* Xác nhận đặt lại hiện vật */}
+      {showConfirmReset && (
+        <div className="confirmation-dialog">
+          <div className="confirmation-content">
+            <h3>Xác nhận đặt lại</h3>
+            <p>Bạn có chắc chắn muốn đặt lại vị trí của tất cả hiện vật về trạng thái đã lưu trước đó không?</p>
+            <div className="confirmation-buttons">
+              <button onClick={() => setShowConfirmReset(false)}>Hủy</button>
+              <button onClick={confirmReset}>Xác nhận</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

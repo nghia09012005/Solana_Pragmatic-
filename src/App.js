@@ -21,6 +21,7 @@ import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
 import ThongTin304 from './pages/Thongnhat/ThongTin304';
 import PersonalMuseum from './pages/PersonalMuseum';
+import Introduction from './pages/Thongnhat/Introduction';
   
 function App() {
   // const { loading } = useAuth();
@@ -65,6 +66,7 @@ function App() {
           <Route path="/FlipCard" element={<FlipCard />} />
           
           <Route path="/profile" element={<ProfilePage />} /> 
+          <Route path="/introduction" element={<Introduction />} />
           {/* <Route path="*" element={<NotFoundPage />} />
 
           <Route path="/personalmuseum" element={<PersonalMuseum />} />  */}

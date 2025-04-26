@@ -164,7 +164,7 @@ const FlipCard = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
-    navigate('/museum'); // Quay về trang chính/bảo tàng
+    navigate('/museumpage'); // Quay về trang chính/bảo tàng
   };
 
   return (

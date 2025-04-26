@@ -20,7 +20,7 @@ const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const navigate = useNavigate();
@@ -161,7 +161,6 @@ const CuChiGameG1 = () => {
         <CuChiLoading onLoadingComplete={handleLoadingComplete} />
       ) : (
         <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
-{/* <<<<<<< HEAD */}
           <div className="menu-container">
             <button className="home-button" onClick={toggleMenu}>
               <i className="fas fa-home"></i>

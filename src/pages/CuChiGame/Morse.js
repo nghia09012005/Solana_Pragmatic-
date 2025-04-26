@@ -231,7 +231,7 @@ const Morse = () => {
                 <i className="fas fa-home"></i>
                 <span>Trang chủ</span>
               </div>
-              <div className="menu-item" onClick={() => handleMenuClick('/museum')}>
+              <div className="menu-item" onClick={() => handleMenuClick('/museumpage')}>
                 <i className="fas fa-museum"></i>
                 <span>Bảo tàng cá nhân</span>
               </div>

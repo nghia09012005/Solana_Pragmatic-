@@ -2289,7 +2289,7 @@ const TayNguyenGongsGame = () => {
     setShowFireworks(false);
     
     // Chuyển hướng về trang bảo tàng
-    window.location.href = '/museum';
+    window.location.href = '/museumpage';
     
     // Nếu không có trang bảo tàng, thông báo cho người dùng
     setTimeout(() => {
