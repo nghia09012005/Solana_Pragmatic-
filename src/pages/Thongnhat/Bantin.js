@@ -12,7 +12,7 @@ const Bantin = () => {
   const bantinAudioRef = useRef(null);
   const backgroundAudioRef = useRef(null);
   const delay = 37000; // 37 giây
-  const backgroundVolume = 1;
+  const backgroundVolume = 0.2;
 
   const [dialogIndex, setDialogIndex] = useState(0);
   const [showNotification, setShowNotification] = useState(false);
@@ -52,20 +52,34 @@ useEffect(() => {
 
     if (bantinAudio) {
       bantinAudio.loop = true;
-      bantinAudio.play();
+      // Thêm xử lý lỗi khi phát nhạc
+      const playBantin = async () => {
+        try {
+          await bantinAudio.play();
+          console.log('Bản tin đã phát');
+        } catch (error) {
+          console.error('Lỗi khi phát bản tin:', error);
+        }
+      };
+      playBantin();
     }
 
-    const playBackground = () => {
+    const playBackground = async () => {
       if (backgroundAudio) {
-        backgroundAudio.volume = backgroundVolume;
-        backgroundAudio.play();
+        try {
+          backgroundAudio.volume = backgroundVolume;
+          await backgroundAudio.play();
+          console.log('Nhạc nền đã phát');
+        } catch (error) {
+          console.error('Lỗi khi phát nhạc nền:', error);
+        }
       }
     };
 
     const handleBackgroundEnd = () => {
       setTimeout(() => {
         playBackground();
-      }, delay); // delay mỗi lần kết thúc
+      }, delay);
     };
 
     const initialDelay = setTimeout(() => {
@@ -73,7 +87,7 @@ useEffect(() => {
         backgroundAudio.addEventListener('ended', handleBackgroundEnd);
         playBackground();
       }
-    }, delay); // delay lần đầu
+    }, delay);
 
     return () => {
       if (bantinAudio) {
