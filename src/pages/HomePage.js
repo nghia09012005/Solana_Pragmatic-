@@ -33,11 +33,12 @@ const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
   useEffect(() => {
     const user = localStorage.getItem('username');
     const token = localStorage.getItem('token');
-    if (user && (token != null || token != "undefined")) {
-      setissignin(true);  // Nếu tồn tại username trong localStorage, coi như đã đăng nhập
-    }
-    else{
+    if (user && token) {
+      setissignin(true);
+    } else {
       setissignin(false);
+      localStorage.removeItem('username');
+      localStorage.removeItem('token');
     }
   }, []);
 

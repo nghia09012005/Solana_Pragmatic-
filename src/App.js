@@ -56,7 +56,6 @@ function App() {
            <Route path="/bantin" element={<Bantin />} />
 
           
-
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />          
           
@@ -67,7 +66,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />
 
-          <Route path="/" element={<PersonalMuseum />} /> 
+          <Route path="/personalmuseum" element={<PersonalMuseum />} /> 
 
         </Routes>
       </main>
