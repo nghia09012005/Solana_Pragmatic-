@@ -1,191 +1,164 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import { useAuth } from '../hooks/useAuth';
+import co from '../assets/PersonalMuseum/Comattran.svg';
+import thu from '../assets/PersonalMuseum/successletter.png';
+import tranh from '../assets/PersonalMuseum/tranh-dong-ho.png';
+import congchieng from '../assets/PersonalMuseum/cong_chieng.png';
 import '../styles/ProfilePage.css';
 
 const ProfilePage = () => {
-  //const { currentUser, logout, updateProfile } = useAuth();
   const navigate = useNavigate();
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    displayName: currentUser?.displayName || currentUser?.username || '',
-    email: currentUser?.email || '',
-    bio: currentUser?.bio || ''
-  });
-  const [message, setMessage] = useState({ text: '', type: '' });
-
-  // Tính toán tên viết tắt từ tên người dùng
-  const getInitials = (name) => {
-    if (!name) return "U";
-    return name.charAt(0).toUpperCase();
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const result = await updateProfile(formData);
-      if (result.success) {
-        setMessage({ text: 'Cập nhật thông tin thành công!', type: 'success' });
-        setIsEditing(false);
-      } else {
-        setMessage({ text: result.message || 'Cập nhật thất bại', type: 'error' });
-      }
-    } catch (error) {
-      setMessage({ text: 'Đã xảy ra lỗi, vui lòng thử lại.', type: 'error' });
+  const [userData, setUserData] = useState({
+    username: '',
+    exp: 0,
+    money: 0,
+    items: {
+      congchieng: false,
+      co: false,
+      thu: false,
+      tranh: false,
+      quanho: false,
+      trongdong: false
     }
-  };
+  });
+
+  useEffect(() => {
+    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+    
+    if (!username || !token) {
+      navigate('/');
+      return;
+    }
+
+    fetch(`/api/users/stats/${username}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.code === "1000") {
+        const newUserData = {
+          username: data.result.user.username,
+          exp: data.result.exp,
+          money: data.result.money,
+          items: {
+            congchieng: data.result.congchieng,
+            co: data.result.co,
+            thu: data.result.thu,
+            tranh: data.result.tranh,
+            quanho: data.result.quanho,
+            trongdong: data.result.trongdong
+          }
+        };
+        setUserData(newUserData);
+        localStorage.setItem('userData', JSON.stringify(newUserData));
+      } else {
+        console.error('Invalid response code:', data.code);
+        navigate('/');
+      }
+    })
+    .catch(error => {
+      console.error('Error details:', error);
+      navigate('/');
+    });
+  }, [navigate]);
 
   const handleLogout = () => {
-    logout();
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
     navigate('/');
   };
-
-  if (!currentUser) {
-    navigate('/login');
-    return null;
-  }
 
   return (
     <div className="profile-page">
       <div className="profile-container">
         <div className="profile-header">
           <h1>Thông tin tài khoản</h1>
-          {message.text && (
-            <div className={`message ${message.type}`}>
-              {message.text}
-            </div>
-          )}
         </div>
 
         <div className="profile-content">
           <div className="profile-sidebar">
             <div className="avatar-container">
-              {currentUser.avatar ? (
-                <img 
-                  src={currentUser.avatar} 
-                  alt={currentUser.displayName || currentUser.username} 
-                  className="avatar-large"
-                />
-              ) : (
-                <div className="avatar-placeholder">
-                  {getInitials(currentUser.displayName || currentUser.username)}
-                </div>
-              )}
+              <div className="avatar-placeholder">
+                {userData.username.charAt(0).toUpperCase()}
+              </div>
             </div>
             <div className="user-stats">
               <div className="stat-item">
                 <span className="stat-label">Vàng:</span>
-                <span className="stat-value">1,000</span>
+                <span className="stat-value">{userData.money}</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Bạc:</span>
-                <span className="stat-value">2,500</span>
+                <span className="stat-label">Vật phẩm:</span>
+                <span className="stat-value">{Object.values(userData.items).filter(value => value === true).length}/6</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Thành tựu:</span>
-                <span className="stat-value">3/20</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-label">Điểm:</span>
-                <span className="stat-value">750</span>
+                <span className="stat-label">EXP:</span>
+                <span className="stat-value">{userData.exp}</span>
               </div>
             </div>
           </div>
 
           <div className="profile-details">
-            {isEditing ? (
-              <form onSubmit={handleSubmit} className="edit-form">
-                <div className="form-group">
-                  <label htmlFor="displayName">Tên hiển thị</label>
-                  <input
-                    type="text"
-                    id="displayName"
-                    name="displayName"
-                    value={formData.displayName}
-                    onChange={handleChange}
-                    placeholder="Nhập tên hiển thị của bạn"
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    disabled
-                    placeholder="Email của bạn"
-                  />
-                  <span className="field-note">Email không thể thay đổi</span>
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="bio">Giới thiệu</label>
-                  <textarea
-                    id="bio"
-                    name="bio"
-                    value={formData.bio}
-                    onChange={handleChange}
-                    placeholder="Viết một vài dòng về bản thân bạn"
-                    rows="4"
-                  ></textarea>
-                </div>
-                
-                <div className="form-actions">
-                  <button type="submit" className="btn-save">Lưu thay đổi</button>
-                  <button 
-                    type="button" 
-                    className="btn-cancel" 
-                    onClick={() => setIsEditing(false)}
-                  >
-                    Hủy
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <>
-                <div className="profile-info">
-                  <h2>{currentUser.displayName || currentUser.username}</h2>
-                  <p className="email">{currentUser.email}</p>
-                  
-                  {currentUser.bio ? (
-                    <div className="bio">
-                      <h3>Giới thiệu</h3>
-                      <p>{currentUser.bio}</p>
-                    </div>
-                  ) : (
-                    <div className="bio empty">
-                      <p>Chưa có thông tin giới thiệu</p>
-                    </div>
-                  )}
-                </div>
-                
-                <div className="profile-actions">
-                  <button 
-                    className="btn-edit" 
-                    onClick={() => setIsEditing(true)}
-                  >
-                    Chỉnh sửa thông tin
-                  </button>
-                  <button 
-                    className="btn-logout" 
-                    onClick={handleLogout}
-                  >
-                    Đăng xuất
-                  </button>
-                </div>
-              </>
-            )}
+            <div className="profile-info">
+              <h2>{userData.username}</h2>
+              <div className="items-grid">
+                {userData.items.congchieng && (
+                  <div className="item-card owned">
+                    <img src={congchieng} alt="Cồng Chiêng" />
+                    <span>Cồng Chiêng</span>
+                  </div>
+                )}
+                {userData.items.co && (
+                  <div className="item-card owned">
+                    <img src={co} alt="Cờ" />
+                    <span>Cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam</span>
+                  </div>
+                )}
+                {userData.items.thu && (
+                  <div className="item-card owned">
+                    <img src={thu} alt="Thư" />
+                    <span>Mật thư từ Địa đạo Củ Chi</span>
+                  </div>
+                )}
+                {userData.items.tranh && (
+                  <div className="item-card owned">
+                    <img src={tranh} alt="Tranh" />
+                    <span>Tranh Đông Hồ</span>
+                  </div>
+                )}
+                {userData.items.quanho && (
+                  <div className="item-card owned">
+                    <img src={co} alt="Quan Họ" />
+                    <span>Quan Họ</span>
+                  </div>
+                )}
+                {userData.items.trongdong && (
+                  <div className="item-card owned">
+                    <img src={co} alt="Trống Đồng" />
+                    <span>Trống Đồng</span>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className="profile-actions">
+              <button 
+                className="btn-logout" 
+                onClick={handleLogout}
+              >
+                Đăng xuất
+              </button>
+            </div>
           </div>
         </div>
       </div>

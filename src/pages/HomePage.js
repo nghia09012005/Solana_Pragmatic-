@@ -33,11 +33,12 @@ const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
   useEffect(() => {
     const user = localStorage.getItem('username');
     const token = localStorage.getItem('token');
-    if (user && (token != null || token != "undefined")) {
-      setissignin(true);  // Nếu tồn tại username trong localStorage, coi như đã đăng nhập
-    }
-    else{
+    if (!user || !token) {
       setissignin(false);
+      localStorage.removeItem('username');
+      localStorage.removeItem('token');
+    } else {
+      setissignin(true);
     }
   }, []);
 
@@ -190,9 +191,11 @@ useEffect(() => {
         }
            
           {isSignin && 
-            
-            <div className='signin'>{localStorage.getItem('username')}</div> 
-                 
+            <div className='signin'>
+              <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                {localStorage.getItem('username')}
+              </Link>
+            </div> 
           }
 
 <div className="hamburger" onClick={toggleMenu}>

@@ -58,7 +58,6 @@ function App() {
            <Route path="/bantin" element={<Bantin />} />
 
           
-
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />          
           
@@ -67,9 +66,13 @@ function App() {
           <Route path="/FlipCard" element={<FlipCard />} />
           
           <Route path="/profile" element={<ProfilePage />} /> 
-          <Route path="*" element={<NotFoundPage />} />
+          {/* <Route path="*" element={<NotFoundPage />} />
 
+<<<<<<< HEAD
           <Route path="/" element={<PersonalMuseum />} /> 
+=======
+          <Route path="/personalmuseum" element={<PersonalMuseum />} />  */}
+>>>>>>> 8727647f4cc2aee315dc69716b5cf20014b46618
 
         </Routes>
       </main>
