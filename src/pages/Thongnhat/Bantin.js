@@ -65,45 +65,33 @@ useEffect(() => {
           bantinAudio.currentTime = 0;
           await bantinAudio.play();
           console.log('Bản tin đã phát');
+
+          // Phát nhạc nền sau 37 giây
+          setTimeout(async () => {
+            if (backgroundAudio) {
+              try {
+                // Đảm bảo audio đã được load
+                if (backgroundAudio.readyState === 0) {
+                  await new Promise((resolve) => {
+                    backgroundAudio.addEventListener('loadeddata', resolve, { once: true });
+                  });
+                }
+                backgroundAudio.volume = backgroundVolume;
+                // Đặt currentTime về 0 trước khi phát
+                backgroundAudio.currentTime = 0;
+                await backgroundAudio.play();
+                console.log('Nhạc nền đã phát sau 37 giây');
+              } catch (error) {
+                console.error('Lỗi khi phát nhạc nền:', error);
+              }
+            }
+          }, 37000); // 37 giây
         } catch (error) {
           console.error('Lỗi khi phát bản tin:', error);
         }
       };
       playBantin();
     }
-
-    const playBackground = async () => {
-      if (backgroundAudio) {
-        try {
-          // Đảm bảo audio đã được load
-          if (backgroundAudio.readyState === 0) {
-            await new Promise((resolve) => {
-              backgroundAudio.addEventListener('loadeddata', resolve, { once: true });
-            });
-          }
-          backgroundAudio.volume = backgroundVolume;
-          // Đặt currentTime về 0 trước khi phát
-          backgroundAudio.currentTime = 0;
-          await backgroundAudio.play();
-          console.log('Nhạc nền đã phát');
-        } catch (error) {
-          console.error('Lỗi khi phát nhạc nền:', error);
-        }
-      }
-    };
-
-    const handleBackgroundEnd = () => {
-      setTimeout(() => {
-        playBackground();
-      }, delay);
-    };
-
-    const initialDelay = setTimeout(() => {
-      if (backgroundAudio) {
-        backgroundAudio.addEventListener('ended', handleBackgroundEnd);
-        playBackground();
-      }
-    }, delay);
 
     return () => {
       if (bantinAudio) {
@@ -115,11 +103,8 @@ useEffect(() => {
       if (backgroundAudio) {
         backgroundAudio.pause();
         backgroundAudio.currentTime = 0;
-        backgroundAudio.removeEventListener('ended', handleBackgroundEnd);
         backgroundAudio.removeEventListener('loadeddata', () => {});
       }
-
-      clearTimeout(initialDelay);
     };
   }, []);
 
