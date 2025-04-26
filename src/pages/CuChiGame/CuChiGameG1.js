@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
 import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';
 import Usequiz from "./Usequiz";
-import GameMenu from './GameMenu';
 
 // Add a style to control transitions
 const noTransitionStyle = {
@@ -23,6 +22,7 @@ const CuChiGameG1 = () => {
   const [audioPlaying, setAudioPlaying] = useState(false);
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
   const navigate = useNavigate();
 
   const toggleMenu = (e) => {

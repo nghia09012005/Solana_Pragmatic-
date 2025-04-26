@@ -118,7 +118,7 @@ const CuChiLoading = ({ onLoadingComplete }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingMessage, setLoadingMessage] = useState("BẠN ĐANG VỀ LẠI ĐỊA ĐẠO CỦ CHI NĂM 1967");
   const [loadingComplete, setLoadingComplete] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [showContinue, setShowContinue] = useState(false);
   
   // Define loading messages
   const messageInbox = [
@@ -145,7 +145,7 @@ const CuChiLoading = ({ onLoadingComplete }) => {
       
       if (progress >= 100) {
         progress = 100;
-        setLoadingComplete(true);
+        setShowContinue(true);
         clearInterval(interval);
       }
       
@@ -163,14 +163,14 @@ const CuChiLoading = ({ onLoadingComplete }) => {
   }, []);
 
   const handleStartGame = () => {
-    // Immediately transition without animation
+    setLoadingComplete(true);
     if (onLoadingComplete) onLoadingComplete();
   };
 
   return (
     <LoadingScreen 
       backgroundImage={require('../../assets/CuChiGame/images/Cuchibackground.png') || 'black'}
-      isLoading={isLoading}
+      isLoading={!loadingComplete}
     >
       <LogoImage 
         src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
@@ -193,12 +193,14 @@ const CuChiLoading = ({ onLoadingComplete }) => {
         {loadingMessage}
       </LoadingMessage>
       
-      <StartButton 
-        visible={loadingComplete} 
-        onClick={handleStartGame}
-      >
-        Bắt Đầu Hành Trình
-      </StartButton>
+      {showContinue && (
+        <StartButton 
+          visible={true} 
+          onClick={handleStartGame}
+        >
+          Tiếp Tục
+        </StartButton>
+      )}
     </LoadingScreen>
   );
 };
