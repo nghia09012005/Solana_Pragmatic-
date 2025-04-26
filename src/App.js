@@ -36,13 +36,13 @@ function App() {
         <Routes>
         <Route path="/" element={<HomePage />} />
           
-          {/* Tây Nguyên Gongs Game
+          {/* Tây Nguyên Gongs Game */}
 
           
-          <Route path="/museumpage" element={<MuseumPage />} />
+           <Route path="/museumpage" element={<MuseumPage />} />
 
   
-          <Route path="taynguyengame" element={<TayNguyenGame />} />
+          <Route path="/taynguyengame" element={<TayNguyenGame />} />
 
   
            <Route path="/tankgame" element={<TankGame />} /> 
@@ -51,7 +51,7 @@ function App() {
           // <Route path="/morse" element={<Morse />} />
           // <Route path="/bantin" element={<Bantin />} />
 
-           */}
+          
           {/* <Route path="/profile" element={<ProfilePage />} />  */}
           {/* <Route path="*" element={<NotFoundPage />} />          
            */}
