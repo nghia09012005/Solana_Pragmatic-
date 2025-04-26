@@ -2332,7 +2332,7 @@ const TayNguyenGongsGame = () => {
                 <SideMenuLink onClick={() => window.location.href = '/'}><i class="fa fa-home" aria-hidden="true"></i> Quay lại Trang chủ</SideMenuLink>
               </SideMenuItem>
               <SideMenuItem>
-                <SideMenuLink onClick={() => window.location.href = '/museum'}><i class="fa fa-university" aria-hidden="true"></i> Quay lại Bảo tàng</SideMenuLink>
+                <SideMenuLink onClick={() => window.location.href = '/museumpage'}><i class="fa fa-university" aria-hidden="true"></i> Quay lại Bảo tàng</SideMenuLink>
               </SideMenuItem>
               <SideMenuItem>
                 <SideMenuLink onClick={() => window.location.href = '/personalmuseum'}><i class="fa fa-book" aria-hidden="true"></i> Đến Bộ sưu tập</SideMenuLink>

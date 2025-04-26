@@ -43,6 +43,7 @@ function App() {
 
           <Route path="/" element={<HomePage />} />
           <Route path="/museumpage" element={<MuseumPage />} />
+          <Route path="/personalmuseum" element={<PersonalMuseum />} />
 
   
           <Route path="/taynguyengame" element={<TayNguyenGame />} />
@@ -54,10 +55,13 @@ function App() {
            <Route path="/cuchigame" element={<CuChiGameG1/>} />
            <Route path="/morse" element={<Morse />} />
            <Route path="/bantin" element={<Bantin />} />
+           <Route path="/thongtin304" element={<ThongTin304 />} />
+           <Route path="/thongnhat" element={<ThongTin304 />} />
 
           
 
           <Route path="/profile" element={<ProfilePage />} /> 
+
           <Route path="*" element={<NotFoundPage />} />          
           
           {/* Dong Ho Game */}
