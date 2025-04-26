@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import { useAuth } from '../hooks/useAuth';
+
 import '../styles/ProfilePage.css';
 
 const ProfilePage = () => {
-  //const { currentUser, logout, updateProfile } = useAuth();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    displayName: currentUser?.displayName || currentUser?.username || '',
-    email: currentUser?.email || '',
-    bio: currentUser?.bio || ''
+    displayName: 'Nguyễn Văn A',
+    email: 'nguyenvana@example.com',
+    bio: 'Yêu thích lịch sử và văn hóa Việt Nam'
   });
   const [message, setMessage] = useState({ text: '', type: '' });
 
@@ -28,30 +27,15 @@ const ProfilePage = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const result = await updateProfile(formData);
-      if (result.success) {
-        setMessage({ text: 'Cập nhật thông tin thành công!', type: 'success' });
-        setIsEditing(false);
-      } else {
-        setMessage({ text: result.message || 'Cập nhật thất bại', type: 'error' });
-      }
-    } catch (error) {
-      setMessage({ text: 'Đã xảy ra lỗi, vui lòng thử lại.', type: 'error' });
-    }
+    setMessage({ text: 'Cập nhật thông tin thành công!', type: 'success' });
+    setIsEditing(false);
   };
 
   const handleLogout = () => {
-    logout();
     navigate('/');
   };
-
-  if (!currentUser) {
-    navigate('/login');
-    return null;
-  }
 
   return (
     <div className="profile-page">
@@ -68,17 +52,9 @@ const ProfilePage = () => {
         <div className="profile-content">
           <div className="profile-sidebar">
             <div className="avatar-container">
-              {currentUser.avatar ? (
-                <img 
-                  src={currentUser.avatar} 
-                  alt={currentUser.displayName || currentUser.username} 
-                  className="avatar-large"
-                />
-              ) : (
-                <div className="avatar-placeholder">
-                  {getInitials(currentUser.displayName || currentUser.username)}
-                </div>
-              )}
+              <div className="avatar-placeholder">
+                {getInitials(formData.displayName)}
+              </div>
             </div>
             <div className="user-stats">
               <div className="stat-item">
@@ -86,15 +62,11 @@ const ProfilePage = () => {
                 <span className="stat-value">1,000</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Bạc:</span>
-                <span className="stat-value">2,500</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-label">Thành tựu:</span>
+                <span className="stat-label">Vật phẩm:</span>
                 <span className="stat-value">3/20</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Điểm:</span>
+                <span className="stat-label">Kinh nghiệm:</span>
                 <span className="stat-value">750</span>
               </div>
             </div>
@@ -155,13 +127,13 @@ const ProfilePage = () => {
             ) : (
               <>
                 <div className="profile-info">
-                  <h2>{currentUser.displayName || currentUser.username}</h2>
-                  <p className="email">{currentUser.email}</p>
+                  <h2>{formData.displayName}</h2>
+                  <p className="email">{formData.email}</p>
                   
-                  {currentUser.bio ? (
+                  {formData.bio ? (
                     <div className="bio">
                       <h3>Giới thiệu</h3>
-                      <p>{currentUser.bio}</p>
+                      <p>{formData.bio}</p>
                     </div>
                   ) : (
                     <div className="bio empty">
