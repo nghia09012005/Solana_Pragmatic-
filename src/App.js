@@ -39,14 +39,10 @@ function App() {
           {/* Tây Nguyên Gongs Game */}
 
           
-<<<<<<< HEAD
           {/* Tây Nguyên Gongs Game */}
 
           <Route path="/" element={<HomePage />} />
           <Route path="/museumpage" element={<MuseumPage />} />
-=======
-           <Route path="/museumpage" element={<MuseumPage />} />
->>>>>>> 3eadbe1e6083d900911b8bc98e91c2ba6ee308ec
 
   
           <Route path="/taynguyengame" element={<TayNguyenGame />} />
@@ -59,15 +55,10 @@ function App() {
            <Route path="/bantin" element={<Bantin />} />
 
           
-<<<<<<< HEAD
+
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />          
           
-=======
-          {/* <Route path="/profile" element={<ProfilePage />} />  */}
-          {/* <Route path="*" element={<NotFoundPage />} />          
-           */}
->>>>>>> 3eadbe1e6083d900911b8bc98e91c2ba6ee308ec
           {/* Dong Ho Game */}
           <Route path="/donghogame" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} />
