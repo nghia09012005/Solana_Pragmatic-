@@ -1,6 +1,6 @@
 import { useState } from "react";
 
- const Usequiz = (questions) => {
+const Usequiz = (questions) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
@@ -8,10 +8,70 @@ import { useState } from "react";
 
   const currentQuestion = questions[currentIndex];
 
-  const selectOption = (option) => {
+  const updateUserMoney = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      const response = await fetch('/api/users/stats/me', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username: username,
+          object: "money",
+          amount: 100
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update money');
+      }
+
+      const data = await response.json();
+      console.log('Money updated:', data);
+    } catch (error) {
+      console.error('Error updating money:', error);
+    }
+  };
+
+  const updateUserExp = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      const response = await fetch('/api/users/stats/me', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username: username,
+          object: "exp",
+          amount: 100
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update exp');
+      }
+
+      const data = await response.json();
+      console.log('Exp updated:', data);
+    } catch (error) {
+      console.error('Error updating exp:', error);
+    }
+  };
+
+  const selectOption = async (option) => {
     setSelectedOption(option);
     if (option === currentQuestion.answer) {
       setScore((prev) => prev + 1);
+      await updateUserMoney(); // Update money
+      await updateUserExp(); // Update exp
     }
   };
 
@@ -43,4 +103,5 @@ import { useState } from "react";
     totalQuestions: questions.length,
   };
 };
+
 export default Usequiz;

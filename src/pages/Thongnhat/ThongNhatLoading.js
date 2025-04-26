@@ -33,7 +33,7 @@ const LoadingScreen = styled.div`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
-    url(${props => props.backgroundImage});
+    url(${props => props.$backgroundImage});
   background-size: cover;
   background-position: center;
   display: flex;
@@ -41,7 +41,7 @@ const LoadingScreen = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  animation: ${props => props.isLoading ? fadeIn : fadeOut} 1s ease-in-out;
+  animation: ${props => props.$isLoading ? fadeIn : fadeOut} 1s ease-in-out;
   color: #FFF8DC;
 `;
 
@@ -104,7 +104,7 @@ const LoadingMessage = styled.p`
   font-size: 1.2rem;
   margin-top: 1rem;
   font-style: italic;
-  opacity: ${props => props.visible ? '1' : '0'};
+  opacity: ${props => props.$visible ? '1' : '0'};
   transition: opacity 0.5s ease;
   text-align: center;
   max-width: 80%;
@@ -122,8 +122,8 @@ const StartButton = styled.button`
   margin-top: 2rem;
   transition: all 0.3s;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  opacity: ${props => props.visible ? '1' : '0'};
-  pointer-events: ${props => props.visible ? 'all' : 'none'};
+  opacity: ${props => props.$visible ? '1' : '0'};
+  pointer-events: ${props => props.$visible ? 'all' : 'none'};
   
   &:hover {
     background-color: rgb(226, 136, 51);
@@ -189,7 +189,7 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
   };
 
   return (
-    <LoadingScreen backgroundImage={background} isLoading={!loadingComplete}>
+    <LoadingScreen $backgroundImage={background} $isLoading={!loadingComplete}>
       <LogoImage 
         src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
         alt="Thống Nhất Logo" 
@@ -213,13 +213,13 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
         <GateIcon src={gateImage} alt="Cổng Dinh Độc Lập" />
       </ProgressBarContainer>
       
-      <LoadingMessage visible={true}>
+      <LoadingMessage $visible={true}>
         {loadingMessage}
       </LoadingMessage>
       
       {showContinue && (
         <StartButton 
-          visible={true} 
+          $visible={true} 
           onClick={handleStartGame}
         >
           Bắt Đầu Hành Trình
