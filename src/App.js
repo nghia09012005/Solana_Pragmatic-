@@ -35,7 +35,7 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
 
 
           {/* <Route path="/" element={<HomePage />} /> */}
@@ -59,8 +59,8 @@ function App() {
           {/* <Route path="/morse" element={<Morse />} /> */}
           
           {/* Dong Ho Game */}
-          {/* <Route path="/" element={<DongHoGame />} />
-          <Route path="/FlipCard" element={<FlipCard />} /> */}
+          <Route path="/" element={<DongHoGame />} />
+          <Route path="/FlipCard" element={<FlipCard />} />
           
           {/* <Route path="/" element={<ProfilePage />} />  */}
           {/* <Route path="*" element={<NotFoundPage />} /> */}
