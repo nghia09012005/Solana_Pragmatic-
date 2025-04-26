@@ -64,7 +64,7 @@ const LoadingBar = styled.div`
   height: 20px;
   background-color: rgba(226, 158, 95, 0.3);
   border-radius: 10px;
-  overflow: hidden;
+  overflow: visible;
   margin-bottom: 2rem;
   border: 2px solid rgb(226, 136, 51);
 `;

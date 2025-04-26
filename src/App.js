@@ -22,6 +22,8 @@ import Bantin from './pages/Thongnhat/Bantin';
 
 import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
+import TankGame2 from './pages/Thongnhat/TankGame2';
+import NarratorScreen from './pages/Thongnhat/NarratorScreen';
   
 function App() {
   // const { loading } = useAuth();
@@ -36,11 +38,10 @@ function App() {
       <main className="main-content">
         <Routes>
 
-         <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         
         <Route path="/museumpage" element={<MuseumPage />} />
 
-          <Route path="/" element={<HomePage />} />
           <Route path="/personalmuseum" element={<PersonalMuseum />} />
 
   
@@ -50,11 +51,21 @@ function App() {
           <Route path="/tankgame" element={<TankGame />} /> 
           <Route path="/bantin" element={<Bantin />} />
 
-            
-{/* 
            <Route path="/cuchigame" element={<CuChiGameG1/>} />
            <Route path="/morse" element={<Morse />} />
-         
+           <Route path="/bantin" element={<Bantin />} />
+           <Route path="/thongtin304" element={<ThongTin304 />} />
+           <Route path="/thongnhat" element={<ThongTin304 />} />
+
+          
+          <Route path="/profile" element={<ProfilePage />} /> 
+
+          <Route path="/tankgame2" element={<TankGame2 />} />
+          <Route path="/narrator" element={<NarratorScreen />} />
+          <Route path="*" element={<NotFoundPage />} />          
+          
+          {/* Dong Ho Game */}
+
           <Route path="/donghogame" element={<DongHoGame />} />
            <Route path="/FlipCard" element={<FlipCard />} /> 
 
@@ -62,9 +73,9 @@ function App() {
 
            <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
-          <Route path="*" element={<NotFoundPage />} />     */}
-          {/* <Route path="/" element={<ProfilePage />} /> 
-           */}
+          <Route path="*" element={<NotFoundPage />} />    
+          <Route path="/" element={<ProfilePage />} /> 
+          
 
 
         </Routes>
