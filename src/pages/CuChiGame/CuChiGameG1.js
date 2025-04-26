@@ -20,10 +20,19 @@ const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
 
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setShowMenu(!showMenu);
+  };
 
-  
+  const handleMenuClick = (path) => {
+    setShowMenu(false);
+    navigate(path);
+  };
+
   const dialogues = [
     'Chào đồng chí! Đây là khu căn cứ địa đạo Củ Chi - nơi đã làm nên những kỳ tích lịch sử!',
     'Chào mừng đồng chí tình báo đã đến đây. Nhiệm vụ của đồng chí là tìm hiểu và khám phá những bí mật của địa đạo này.',
@@ -74,17 +83,29 @@ const CuChiGameG1 = () => {
     totalQuestions,
   } = Usequiz(questions);
 
-// <<<<<<< HEAD
+
   const handleLoadingComplete = () => {
     // Immediately remove loading screen without transition
     setLoading(false);
   };
-// =======
+
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
-// >>>>>>> origin/hompageupdate
+
+  useEffect(() => {
+    const audio = new Audio(audioFile);
+    audio.loop = true;
+    setAudioPlaying(true);
+    audio.play().catch((err) => console.log("Error playing audio:", err));
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
+
 
   const handleClickAnywhere = () => {
     if (!audioPlaying) setAudioPlaying(true);
@@ -137,18 +158,25 @@ const CuChiGameG1 = () => {
       {loading ? (
         <CuChiLoading onLoadingComplete={handleLoadingComplete} />
       ) : (
-// <<<<<<< HEAD
-//         <div className="cuchigameg1-background" style={noTransitionStyle} onClick={handleClickAnywhere}>
-//           {/* Alert thanh thông báo */}
-//           {showAlert && (
-//             <div className="alert-banner">
-//               🎖️ Chào mừng đồng chí đến với chiến trường Củ Chi! <br />
-//               🎖️ Trả lời quizz để nhận thêm exp và vàng 
-//               <button className="close-alert" onClick={() => setShowAlert(false)}>
-//                 ❌
-//               </button>
-// =======
         <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
+          <div className="menu-container">
+            <button className="home-button" onClick={toggleMenu}>
+              <i className="fas fa-home"></i>
+            </button>
+            {showMenu && (
+              <div className="menu-dropdown">
+                <div className="menu-item" onClick={() => handleMenuClick('/')}>
+                  <i className="fas fa-home"></i>
+                  <span>Trang chủ</span>
+                </div>
+                <div className="menu-item" onClick={() => handleMenuClick('/museum')}>
+                  <i className="fas fa-museum"></i>
+                  <span>Bảo tàng cá nhân</span>
+                </div>
+              </div>
+            )}
+          </div>
+          
           <div className="character-wrapper">
             <img src={characterImg} alt="Character" className="character-model" />
 
@@ -161,8 +189,8 @@ const CuChiGameG1 = () => {
           </div>
 
           <div className="image-container">
-            {dialogStep >= 4 && <img src={diadaomap} alt="map" className="map" />}
-            {dialogStep >= 4 && <img src={didaodist} alt="dist" className="dist" />}
+            {dialogStep > 4 && <img src={diadaomap} alt="map" className="map" />}
+            {dialogStep > 5 && <img src={didaodist} alt="dist" className="dist" />}
           </div>
 
           {/* Quiz chỉ hiện từ dialogStep >= 7 và chưa xong */}
@@ -211,12 +239,12 @@ const CuChiGameG1 = () => {
 
 
 
-            <div className="image-container">
+            {/* <div className="image-container">
             <div className="image-container">
                 { dialogStep >= 6  && <img src={diadaomap} alt="map" className="map" />}
                 {  dialogStep >= 5  && <img src={didaodist} alt="dist" className="dist" />}
           </div>
-          </div>
+          </div> */}
 
 
           {/* quiz */}
@@ -254,7 +282,7 @@ const CuChiGameG1 = () => {
           {/* Nhạc nền */}
           
 
-          {audioPlaying && (
+          {/* {audioPlaying && (
 
             <ReactAudioPlayer
               src={audioFile}
@@ -263,7 +291,7 @@ const CuChiGameG1 = () => {
               controls={false}
               onError={() => console.log("Error loading audio")}
             />
-          )} 
+          )}  */}
 
 
         </div>
