@@ -710,6 +710,7 @@ const MapTitle = styled.h2`
   border-radius: 10px;
   border: 1px solid #8B4513;
   white-space: nowrap;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 // Cập nhật CloseMapButton để phù hợp với kích thước bản đồ nhỏ hơn
@@ -755,7 +756,7 @@ const MapBadge = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
   overflow: hidden;
-  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &:hover {
     transform: scale(1.2);
     box-shadow: 0 0 15px rgba(178, 34, 34, 0.8);
@@ -796,7 +797,7 @@ const NextQuestionButton = styled.button`
   margin-left: auto;
   margin-right: auto;
   transition: all 0.2s;
-  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &:hover {
     background-color: #8B0000;
     transform: scale(1.05);
@@ -856,12 +857,14 @@ const InstrumentDetailsHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const InstrumentTitle = styled.h2`
   color: #8B4513;
   margin: 0;
   font-size: 1.8rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const CloseButton = styled.button`
@@ -903,7 +906,7 @@ const InstrumentDescription = styled.p`
   border-radius: 5px;
   scrollbar-width: thin;
   scrollbar-color: #8B4513 #e0e0e0;
-  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -935,7 +938,7 @@ const FinishExploringButton = styled.button`
   z-index: 10;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.2s;
-  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &:hover {
     background-color: #8B0000;
     transform: scale(1.05);
@@ -1013,7 +1016,7 @@ const CarouselButton = styled.button`
   border: none;
   cursor: pointer;
   z-index: 2;
-  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &:hover {
     background-color: rgba(139, 69, 19, 0.9);
   }
@@ -1093,7 +1096,7 @@ const MissionTitle = styled.h2`
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   font-weight: bold;
   position: relative;
-  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &::after {
     content: '';
     position: absolute;
@@ -1112,6 +1115,7 @@ const MissionDescription = styled.p`
   font-size: 1.2rem;
   margin-bottom: 20px;
   line-height: 1.5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  
 `;
 
 const CompletionButton = styled.button`
@@ -1125,7 +1129,7 @@ const CompletionButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &:hover {
     background-color: #388E3C;
     transform: scale(1.05);
