@@ -55,7 +55,7 @@ function App() {
           {/* <Route path="/" element={<HomePage />} /> */}
 
 
-          {/* <Route path="taynguyengame" element={<TayNguyenGame />} />
+           <Route path="taynguyengame" element={<TayNguyenGame />} /> 
 
 
           {/* <Route path="/" element={<HomePage />} /> */}
@@ -69,7 +69,7 @@ function App() {
 
 
 
-           <Route path="/" element={<ThongTin304 />} />
+           {/* <Route path="/" element={<ThongTin304 />} /> */}
            
            <Route path="/tankgame" element={<TankGame />} /> */
 
@@ -85,7 +85,6 @@ function App() {
           
           {/* <Route path="/bantin" element={<Bantin />} /> */}
           {/* Cu Chi Game */}
-<<<<<<< HEAD
           <Route path="/cuchigame" element={<CuChiGameG1 />} />
           <Route path="/morse" element={<Morse />} />
           
@@ -93,12 +92,10 @@ function App() {
           <Route path="/donghogame" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} />
           <Route path="/museum" element={<MuseumPage />} />
-          <Route path="/personalmuseum" element={<Personalmuseum />} />
+          <Route path="/personalmuseum" element={<PersonalMuseum />} />
           
           {/* <Route path="/profile" element={<ProfilePage />} />  */}
-          <Route path="*" element={<NotFoundPage />} />
-=======
-          
+          <Route path="*" element={<NotFoundPage />} />          
           
           {/* Dong Ho Game */}
           {/* <Route path="/" element={<DongHoGame />} />
@@ -108,7 +105,6 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
 
           <Route path="/museum" element={<PersonalMuseum />} /> 
->>>>>>> 3867977a8243fe3c38fd86aaa3aa6c1464c48ed9
 
         </Routes>
       </main>

@@ -17,14 +17,8 @@ const TankGame = () => {
   const [score, setScore] = useState(0); // Điểm số
   const [gameOver, setGameOver] = useState(false); // Trạng thái game over
   const [success, setsucces] = useState(false);
-<<<<<<< HEAD
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-=======
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
-  const explosionRef = useRef(null);
->>>>>>> 3867977a8243fe3c38fd86aaa3aa6c1464c48ed9
 
   useEffect(() => {
     // Initialize background music
@@ -58,23 +52,13 @@ const TankGame = () => {
         .catch(err => console.log("Error playing explosion sound:", err));
     }
   };
-
-  // success
-  const navigate = useNavigate();
-  const handlesuccess = () => {
-    // Điều hướng về trang chủ khi nhấn Restart
-    navigate("/Homepage");
-  };
-
-<<<<<<< HEAD
+  
   // success
   const handlesuccess = () => {
     // Điều hướng về trang chủ khi nhấn Restart
     navigate("/Homepage");
   };
 
-=======
->>>>>>> 3867977a8243fe3c38fd86aaa3aa6c1464c48ed9
   // Di chuyển tank bằng phím mũi tên
   useEffect(() => {
     const handleKeyDown = (e) => {
