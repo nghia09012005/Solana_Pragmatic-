@@ -35,39 +35,37 @@ function App() {
       {/* <Header /> */}
       <main className="main-content">
         <Routes>
+
         <Route path="/" element={<HomePage />} />
         
         <Route path="/museumpage" element={<MuseumPage />} />
 
           <Route path="/" element={<HomePage />} />
-          <Route path="/museumpage" element={<MuseumPage />} />
           <Route path="/personalmuseum" element={<PersonalMuseum />} />
 
   
           <Route path="/taynguyengame" element={<TayNguyenGame />} />
 
-  
-           <Route path="/tankgame" element={<TankGame />} /> 
-           <Route path="/leaderboard" element={<LeaderboardPage />} /> 
+          <Route path="/introduction" element={<Introduction />} />
+          <Route path="/tankgame" element={<TankGame />} /> 
+          <Route path="/bantin" element={<Bantin />} />
+
+           
 
            <Route path="/cuchigame" element={<CuChiGameG1/>} />
            <Route path="/morse" element={<Morse />} />
-           <Route path="/bantin" element={<Bantin />} />
-           
-          
-          <Route path="/profile" element={<ProfilePage />} /> 
-
-          <Route path="*" element={<NotFoundPage />} />          
-          
-          {/* Dong Ho Game */}
+         
           <Route path="/donghogame" element={<DongHoGame />} />
-          <Route path="/FlipCard" element={<FlipCard />} />
-          
+           <Route path="/FlipCard" element={<FlipCard />} /> 
+
+
+
+           <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
-          <Route path="/introduction" element={<Introduction />} />
+          <Route path="*" element={<NotFoundPage />} />    
+          <Route path="/profile" element={<ProfilePage />} /> 
+          
 
-
-     
 
         </Routes>
       </main>
