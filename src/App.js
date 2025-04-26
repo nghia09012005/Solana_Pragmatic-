@@ -22,6 +22,8 @@ import Bantin from './pages/Thongnhat/Bantin';
 import ThongTin304 from './pages/Thongnhat/ThongTin304';
 import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
+import TankGame2 from './pages/Thongnhat/TankGame2';
+import NarratorScreen from './pages/Thongnhat/NarratorScreen';
   
 function App() {
   // const { loading } = useAuth();
@@ -59,6 +61,8 @@ function App() {
           
           <Route path="/profile" element={<ProfilePage />} /> 
 
+          <Route path="/tankgame2" element={<TankGame2 />} />
+          <Route path="/narrator" element={<NarratorScreen />} />
           <Route path="*" element={<NotFoundPage />} />          
           
           {/* Dong Ho Game */}
