@@ -164,7 +164,7 @@ const CuChiGameG1 = () => {
         <CuChiLoading onLoadingComplete={handleLoadingComplete} />
       ) : (
         <div className="cuchigameg1-background" onClick={handleClickAnywhere}>
-<<<<<<< HEAD
+{/* <<<<<<< HEAD */}
           <div className="menu-container">
             <button className="home-button" onClick={toggleMenu}>
               <i className="fas fa-home"></i>
@@ -183,13 +183,13 @@ const CuChiGameG1 = () => {
             )}
           </div>
           
-=======
+{/* =======
           <button className="menu-button" onClick={(e) => {
             e.stopPropagation();
             setIsMenuOpen(true);
           }}>☰</button>
           <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
->>>>>>> 8f54c945a958b2141f23da8ff15aea8032dd5112
+>>>>>>> 8f54c945a958b2141f23da8ff15aea8032dd5112 */}
           <div className="character-wrapper">
             <img src={characterImg} alt="Character" className="character-model" />
 
