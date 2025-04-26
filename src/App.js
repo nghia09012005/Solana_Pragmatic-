@@ -54,8 +54,8 @@ function App() {
            <Route path="/cuchigame" element={<CuChiGameG1/>} />
            <Route path="/morse" element={<Morse />} />
            <Route path="/bantin" element={<Bantin />} />
-           <Route path="/thongtin304" element={<ThongTin304 />} />
-           <Route path="/thongnhat" element={<ThongTin304 />} />
+        
+           
 
           
           <Route path="/profile" element={<ProfilePage />} /> 
@@ -74,7 +74,7 @@ function App() {
            <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />    
-          <Route path="/" element={<ProfilePage />} /> 
+          {/* <Route path="/" element={<ProfilePage />} />  */}
           
 
 
