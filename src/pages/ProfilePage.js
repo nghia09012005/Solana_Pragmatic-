@@ -82,6 +82,9 @@ const ProfilePage = () => {
     <div className="profile-page">
       <div className="profile-container">
         <div className="profile-header">
+          <button className="back-button" onClick={() => navigate('/')}>
+            <i className="fas fa-arrow-left"></i>
+          </button>
           <h1>Thông tin tài khoản</h1>
         </div>
 

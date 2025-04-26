@@ -194,18 +194,22 @@ const Morse = () => {
 
   
     const handleNextDialog = () => {
+      // Nếu đã show book thì không cho phép chuyển dialog
+      if (showBook) return;
+      
       if (dialogStep < dialogues.length - 1) {
         setDialogStep(dialogStep + 1);
       } else {
-        // Khi kết thúc hội thoại, hiển thị quyển sách
+        // Khi đến câu cuối cùng, hiển thị book và không cho chuyển tiếp nữa
         setDialogStep(-1);
-        setShowBook(true); // Show the book after dialogues
+        setShowBook(true);
       }
     };
   
     // Hàm xử lý khi click vào bất kỳ đâu
     const handleClickAnywhere = () => {
-      if (!audioPlaying) {
+      // Chỉ cho phép phát nhạc khi còn trong phần dialog và chưa show book
+      if (!audioPlaying && dialogStep !== -1 && !showBook) {
         setAudioPlaying(true);
       }
     };
@@ -275,7 +279,7 @@ const Morse = () => {
             {/* Alert thanh thông báo */}
             {showAlert && (
               <div className="alert-banner">
-                ️ Chúng ta nhận được mật thư, GIẢI MÃ GẤP!!!!!!!!<br />
+               🎖️ Chúng ta nhận được mật thư, GIẢI MÃ GẤP!!!!!!!!<br />
                 ❌ Công nghệ của ta còn hạn chế nên hãy giải tuần tự để không bị nhiễu sóng!!!!!
                 <button className="close-alert" onClick={() => setShowAlert(false) }>
                   ❌

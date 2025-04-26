@@ -2288,6 +2288,12 @@ const TayNguyenGongsGame = () => {
     setShowCompletion(false);
     setShowFireworks(false);
     
+    // Dừng nhạc nền trước khi rời khỏi trang
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    
     // Chuyển hướng về trang bảo tàng
     window.location.href = '/museumpage';
     

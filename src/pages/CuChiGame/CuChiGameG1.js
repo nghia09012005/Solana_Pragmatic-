@@ -179,13 +179,7 @@ const CuChiGameG1 = () => {
             )}
           </div>
           
-{/* =======
-          <button className="menu-button" onClick={(e) => {
-            e.stopPropagation();
-            setIsMenuOpen(true);
-          }}>☰</button>
-          <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
->>>>>>> 8f54c945a958b2141f23da8ff15aea8032dd5112 */}
+
           <div className="character-wrapper">
             <img src={characterImg} alt="Character" className="character-model" />
 

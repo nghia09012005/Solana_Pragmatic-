@@ -19,7 +19,7 @@ import Morse from './pages/CuChiGame/Morse';
 import FlipCard from './pages/DongHoGame/FlipCard';
 import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
-import ThongTin304 from './pages/Thongnhat/ThongTin304';
+
 import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
   
@@ -53,9 +53,7 @@ function App() {
            <Route path="/cuchigame" element={<CuChiGameG1/>} />
            <Route path="/morse" element={<Morse />} />
            <Route path="/bantin" element={<Bantin />} />
-           <Route path="/thongtin304" element={<ThongTin304 />} />
-           <Route path="/thongnhat" element={<ThongTin304 />} />
-
+           
           
           <Route path="/profile" element={<ProfilePage />} /> 
 
@@ -67,9 +65,9 @@ function App() {
           
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="/introduction" element={<Introduction />} />
-          {/* <Route path="*" element={<NotFoundPage />} />
 
-          <Route path="/personalmuseum" element={<PersonalMuseum />} />  */}
+
+     
 
         </Routes>
       </main>

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import backgroundImage from '../../assets/Thongnhat/images/hcmcampaign.jpg';
 import soldierImage from '../../assets/Thongnhat/images/giai-phong1.png'; // Cần thêm hình ảnh người lính
 import GameMenu from './GameMenu';
 import ThongNhatLoading from './ThongNhatLoading';
+import tankSound from '../../assets/Thongnhat/audio/sound.wav';
 
 // Animations
 const fadeIn = keyframes`
@@ -113,7 +114,6 @@ const GameButton = styled.button`
   transition: all 0.3s ease;
   
   &:hover {
-    background-color: ${props => props.$primary ? "#8B0000" : "#3a7a23"};
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
@@ -152,10 +152,37 @@ const Introduction = () => {
   const [dialogIndex, setDialogIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const audioRef = useRef(null);
   
   const handleLoadingComplete = () => {
     setLoading(false);
   };
+
+  const startAudio = async () => {
+    if (audioRef.current) {
+      try {
+        await audioRef.current.play();
+        console.log("Âm thanh đang phát");
+      } catch (error) {
+        console.log("Lỗi phát âm thanh:", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    // Khởi tạo âm thanh
+    const audio = new Audio(tankSound);
+    audio.volume = 0.5;
+    audio.loop = true;
+    audioRef.current = audio;
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
   
   const dialogs = [
     "Chào đồng chí! Tôi là Đại úy Nguyễn Văn Tập, chỉ huy đơn vị xe tăng trong Chiến dịch Hồ Chí Minh lịch sử.",
@@ -171,11 +198,19 @@ const Introduction = () => {
     if (dialogIndex < dialogs.length - 1) {
       setDialogIndex(dialogIndex + 1);
     } else {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
       navigate('/tankgame');
     }
   };
   
   const handleSkip = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
     navigate('/tankgame');
   };
   
@@ -205,10 +240,16 @@ const Introduction = () => {
               {dialogIndex < dialogs.length - 1 ? (
                 <>
                   <GameButton onClick={handleSkip}>Bỏ qua</GameButton>
-                  <GameButton $primary onClick={handleNextDialog}>Tiếp tục</GameButton>
+                  <GameButton $primary onClick={() => {
+                    startAudio();
+                    handleNextDialog();
+                  }}>Tiếp tục</GameButton>
                 </>
               ) : (
-                <GameButton $primary onClick={handleNextDialog}>Bắt đầu nhiệm vụ</GameButton>
+                <GameButton $primary onClick={() => {
+                  startAudio();
+                  handleNextDialog();
+                }}>Bắt đầu nhiệm vụ</GameButton>
               )}
             </ButtonContainer>
           </DialogBox>
