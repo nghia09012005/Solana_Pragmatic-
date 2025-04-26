@@ -3,7 +3,7 @@ import { useAuth } from './hooks/useAuth';
 import HomePage from './pages/HomePage';
 import MuseumPage from './pages/MuseumPage';
 // import CollectionPage from './pages/CollectionPage';
-// import LeaderboardPage from './pages/LeaderboardPage';
+import LeaderboardPage from './pages/Leaderboard';
 
 // import LoginPage from './pages/LoginPage';
 // import RegisterPage from './pages/RegisterPage';
@@ -46,10 +46,11 @@ function App() {
 
   
            <Route path="/tankgame" element={<TankGame />} /> 
+           <Route path="/leaderboard" element={<LeaderboardPage />} /> 
 
-          // <Route path="/cuchigame" element={<CuChiGameG1/>} />
-          // <Route path="/morse" element={<Morse />} />
-          // <Route path="/bantin" element={<Bantin />} />
+           <Route path="/cuchigame" element={<CuChiGameG1/>} />
+           <Route path="/morse" element={<Morse />} />
+           <Route path="/bantin" element={<Bantin />} />
 
           
           {/* <Route path="/profile" element={<ProfilePage />} />  */}
