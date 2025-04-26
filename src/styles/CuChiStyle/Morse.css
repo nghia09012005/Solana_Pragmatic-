@@ -31,10 +31,10 @@
         padding-right: 600px; /* tạo khoảng cách bên trái */
       } 
       .mtable {
-        width: 200px; /* chỉnh độ rộng theo ý muốn */
-        height: auto; /* giữ tỉ lệ ảnh */
-        margin-bottom: 10px; /* khoảng cách giữa 2 ảnh */
-        margin-top: -300px;
+        width: 200px;
+        height: auto;
+        margin-bottom: 10px;
+        margin-top: -10px;
       }
 
 
@@ -77,31 +77,74 @@
       
 .decode-input {
   display: flex;
-  gap: 10px;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  justify-content: center;
 }
 
 .decode-input input {
-  padding: 8px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 400px;
+  padding: 15px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: 2px solid rgba(139, 69, 19, 0.3);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  color: #8B4513;
+  letter-spacing: 0.5px;
+}
+
+.decode-input input::placeholder {
+  color: rgba(139, 69, 19, 0.5);
+  font-style: italic;
+}
+
+.decode-input input:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  outline: none;
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+.decode-input input:hover {
+  border-color: rgba(139, 69, 19, 0.5);
+  box-shadow: 0 0 8px rgba(139, 69, 19, 0.2);
 }
 
 .decode-input button {
-  padding: 8px 16px;
-  font-size: 1rem;
-  background-color: gold;
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #ffd700, #ffa500);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  color: black;
+  color: #8B4513;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
 }
 
 .decode-input button:hover {
-  background-color: orange;
+  background: linear-gradient(135deg, #ffa500, #ff8c00);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
+.decode-input button:disabled {
+  background: linear-gradient(135deg, #d3d3d3, #a9a9a9);
+  color: #808080;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* overlay */
@@ -461,18 +504,12 @@
 
 .morse-table-container {
   width: 100%;
-  height: 50%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  position: relative;
-  z-index: 1;
+  align-items: center;
   padding: 20px;
-  padding-bottom: 40px;
-  background: rgba(255, 248, 240, 0.9);
-  border: 2px solid rgba(139, 69, 19, 0.3);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .map-container {
@@ -490,18 +527,12 @@
   transition: all 0.3s ease;
 }
 
-.morse-table-container:hover,
-.map-container:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
 .morse-table-container img {
-  width: 400px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  border-radius: 8px;
-  padding: 5px;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .map-container img {
@@ -535,7 +566,7 @@
 }
 
 .audio-group {
-  background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 240, 230, 0.85));
+  background: rgba(255, 248, 240, 0.9);
   padding: 20px;
   border: 1px solid rgba(139, 69, 19, 0.3);
   position: relative;
@@ -548,24 +579,13 @@
   transition: all 0.3s ease;
 }
 
-.audio-group:first-child {
-  border-bottom: 2px solid rgba(139, 69, 19, 0.3);
-  background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 240, 230, 0.85));
-}
-
-.audio-group:last-child {
-  background: linear-gradient(135deg, rgba(255, 240, 230, 0.85), rgba(255, 248, 240, 0.95));
-}
-
 .audio-group button {
   padding: 12px 16px;
   font-size: 1.1rem;
-  background: linear-gradient(135deg, #ffd700, #ffa500);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  color: #8B4513;
   transition: all 0.3s ease;
   width: 100%;
   margin-bottom: 15px;
@@ -575,66 +595,71 @@
 }
 
 .audio-group button:hover {
-  background: linear-gradient(135deg, #ffa500, #ff8c00);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
 }
 
-.decode-input {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  justify-content: center;
+.audio-group:first-child {
+  background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 240, 230, 0.85));
+  border-bottom: 1px solid rgba(139, 69, 19, 0.3);
 }
 
-.decode-input input {
-  padding: 12px;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  border: 2px solid rgba(139, 69, 19, 0.3);
-  width: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s ease;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+.audio-group:last-child {
+  background: linear-gradient(135deg, rgba(240, 248, 255, 0.95), rgba(230, 240, 255, 0.85));
 }
 
-.decode-input input:focus {
+.audio-group:first-child button {
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  color: #8B4513;
+}
+
+.audio-group:last-child button {
+  background: linear-gradient(135deg, #4169e1, #1e90ff);
+  color: white;
+}
+
+.audio-group:first-child button:hover {
+  background: linear-gradient(135deg, #ffa500, #ff8c00);
+}
+
+.audio-group:last-child button:hover {
+  background: linear-gradient(135deg, #1e90ff, #00bfff);
+}
+
+.audio-group:first-child .decode-input input {
+  border-color: rgba(139, 69, 19, 0.3);
+}
+
+.audio-group:last-child .decode-input input {
+  border-color: rgba(65, 105, 225, 0.3);
+}
+
+.audio-group:first-child .decode-input input:focus {
   border-color: #ffd700;
   box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
-  outline: none;
 }
 
-.decode-input button {
-  padding: 12px 16px;
-  font-size: 1.1rem;
+.audio-group:last-child .decode-input input:focus {
+  border-color: #4169e1;
+  box-shadow: 0 0 8px rgba(65, 105, 225, 0.4);
+}
+
+.audio-group:first-child .decode-input button {
   background: linear-gradient(135deg, #ffd700, #ffa500);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
   color: #8B4513;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
 }
 
-.decode-input button:hover {
+.audio-group:last-child .decode-input button {
+  background: linear-gradient(135deg, #4169e1, #1e90ff);
+  color: white;
+}
+
+.audio-group:first-child .decode-input button:hover {
   background: linear-gradient(135deg, #ffa500, #ff8c00);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
 }
 
-.decode-input button:disabled {
-  background: linear-gradient(135deg, #d3d3d3, #a9a9a9);
-  color: #808080;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+.audio-group:last-child .decode-input button:hover {
+  background: linear-gradient(135deg, #1e90ff, #00bfff);
 }
 
 /* Book Spine */

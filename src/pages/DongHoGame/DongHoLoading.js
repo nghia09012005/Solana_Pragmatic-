@@ -87,6 +87,7 @@ const LoadingMessage = styled.p`
   transition: opacity 0.5s ease;
   text-align: center;
   max-width: 80%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const StartButton = styled.button`

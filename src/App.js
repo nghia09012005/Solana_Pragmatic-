@@ -35,41 +35,32 @@ function App() {
       <main className="main-content">
         <Routes>
 
-          {/* <Route path="/" element={<HomePage />} /> */}
-{/* 
-
-          {/* <Route path="/museumpage" element={<MuseumPage />} />
-
-          <Route path="/tankgame" element={<TankGame />} /> */}
           
-          {/* Tây Nguyên Gongs Game */}
+          {/* Tây Nguyên Gongs Game
 
-          {/* <Route path="taynguyengame" element={<TayNguyenGame />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/museumpage" element={<MuseumPage />} />
 
-          {/* <Route path="/bantin" element={<Bantin />} /> 
+  
+          <Route path="taynguyengame" element={<TayNguyenGame />} />
 
-           <Route path="/" element={<ThongTin304 />} />
-           
-           <Route path="/tankgame" element={<TankGame />} /> */}
+  
+           <Route path="/tankgame" element={<TankGame />} /> 
 
-          {/* <Route path="/" element={<HomePage />} /> */}
-          {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
-          {/* <Route path="/RegisterPage" element={<RegisterPage />} /> */}
+          // <Route path="/cuchigame" element={<CuChiGameG1/>} />
+          // <Route path="/morse" element={<Morse />} />
+          // <Route path="/bantin" element={<Bantin />} />
 
-          {/* path="/CuChiGame" sau khi test xong */}
-                    
-          <Route path="/" element={<CuChiGameG1/>} />
-          <Route path="/morse" element={<Morse />} />
-
-          
-          {/* <Route path="/bantin" element={<Bantin />} /> */}
-          
+           */}
+          {/* <Route path="/profile" element={<ProfilePage />} />  */}
+          {/* <Route path="*" element={<NotFoundPage />} />          
+           */}
           {/* Dong Ho Game */}
-          {/* <Route path="/" element={<DongHoGame />} />
-          <Route path="/FlipCard" element={<FlipCard />} /> */}
+          {/* <Route path="/donghogame" element={<DongHoGame />} />
+          <Route path="/FlipCard" element={<FlipCard />} />
           
-          {/* <Route path="/" element={<ProfilePage />} />  */}
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          <Route path="/profile" element={<ProfilePage />} /> 
+          <Route path="*" element={<NotFoundPage />} /> */}
 
           {/* <Route path="/" element={<PersonalMuseum />} />  */}
 

@@ -7,6 +7,7 @@ import flipSound from '../../assets/DongHoGame/audio/flipcard.mp3';
 import congratsSound from '../../assets/DongHoGame/audio/level-win.mp3';
 import nhacNen from '../../assets/DongHoGame/audio/FlipCardnhacnen.mp3';
 import Swal from 'sweetalert2';
+import GameMenu from './GameMenu';
 
 // Import tranh
 import p1BitMatBatDe from '../../assets/DongHoGame/image/p1BitMatBatDe.jpg';
@@ -73,6 +74,7 @@ const FlipCard = () => {
   const [cards, setCards] = useState([]);
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [info, setInfo] = useState('');
   const [completed, setCompleted] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
@@ -167,6 +169,11 @@ const FlipCard = () => {
 
   return (
     <div className="game-container">
+      <button className="menu-button" onClick={(e) => {
+        e.stopPropagation();
+        setIsMenuOpen(true);
+      }}>☰</button>
+      <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       <div className="card-grid">
         {cards.map(card => (
           <div
