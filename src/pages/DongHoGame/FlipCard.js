@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/DongHoStyle/FlipCard.css';
@@ -82,6 +81,61 @@ const FlipCard = () => {
   const audioRef = useRef(new Audio(nhacNen));
   const navigate = useNavigate();
 
+  const updateUserStats = async (object) => {
+    try {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      const response = await fetch('/api/users/stats/me', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username: username,
+          object: object,
+          amount: 50
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to update ${object}`);
+      }
+
+      const data = await response.json();
+      console.log(`${object} updated:`, data);
+    } catch (error) {
+      console.error(`Error updating ${object}:`, error);
+    }
+  };
+
+  const setTranhItem = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      const response = await fetch('/api/users/stats/set', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username: username,
+          item: "tranh"
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to set tranh item');
+      }
+
+      const data = await response.json();
+      console.log('Tranh item set:', data);
+    } catch (error) {
+      console.error('Error setting tranh item:', error);
+    }
+  };
+
   // Shuffle cards
   useEffect(() => {
     const duplicated = [...imageObjects, ...imageObjects];
@@ -93,6 +147,7 @@ const FlipCard = () => {
   useEffect(() => {
     if (matched.length === imageObjects.length && matched.length > 0) {
       new Audio(congratsSound).play();
+      setTranhItem(); // Set the tranh item when all cards are matched
       showCongrats(audioRef, playAgain, returnToMuseum);
     }
   }, [matched]);
@@ -126,7 +181,7 @@ const FlipCard = () => {
   }, [audioStarted]);
 
   // Handle flip logic
-  const handleFlip = (card) => {
+  const handleFlip = async (card) => {
     if (flipped.length === 2 || flipped.find(c => c.id === card.id) || matched.includes(card.img)) return;
 
     new Audio(flipSound).play();
@@ -138,6 +193,9 @@ const FlipCard = () => {
       if (first.img === second.img) {
         setMatched(prev => [...prev, first.img]);
         setInfo(knowledge[first.key]);
+        // Update exp and money when cards are matched
+        await updateUserStats("exp");
+        await updateUserStats("money");
       }
       setTimeout(() => setFlipped([]), 1000);
     }

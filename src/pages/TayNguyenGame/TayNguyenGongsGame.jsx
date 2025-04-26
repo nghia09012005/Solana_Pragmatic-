@@ -18,6 +18,7 @@ import congChiengImage2 from '../../assets/TayNguyenGame/cong_chieng2.jpg';
 import danTrungImage from '../../assets/TayNguyenGame/dan_trung.png';
 import danTrungImage1 from '../../assets/TayNguyenGame/dan_trung1.jpg';
 import danTrungImage2 from '../../assets/TayNguyenGame/dan_trung2.jpg';
+import backgroundMusic from '../../assets/TayNguyenGame/sound/nhac_nen.mp3';
 import { 
   GAME_WIDTH, 
   GAME_HEIGHT,
@@ -1668,6 +1669,34 @@ const TayNguyenGongsGame = () => {
   // Thêm ref cho YouTube iframe
   const youtubeIframeRef = useRef(null);
   
+  const updateUserStats = async (object) => {
+    try {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      const response = await fetch('/api/users/stats/me', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username: username,
+          object: object,
+          amount: 50
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to update ${object}`);
+      }
+
+      const data = await response.json();
+      console.log(`${object} updated:`, data);
+    } catch (error) {
+      console.error(`Error updating ${object}:`, error);
+    }
+  };
+  
   // Loading screen simulation
   useEffect(() => {
     // Define loading messages
@@ -1717,23 +1746,24 @@ const TayNguyenGongsGame = () => {
     // Load and initialize audio
     if (!audioRef.current) {
       try {
-        // Sửa đường dẫn file audio, bỏ process.env.PUBLIC_URL nếu file trong src
-        const audio = new Audio('../../assets/TayNguyenGame/sound/nhac_nen.mp3');
+        // Sử dụng import trực tiếp file âm thanh
+        const audio = new Audio(backgroundMusic);
         audio.loop = true;
         audio.volume = volume;
         audioRef.current = audio;
         
-        // Không tự động phát nhạc
-        audioRef.current.play().then(() => {
-          console.log('Nhạc đã phát');
-          setIsPlaying(true);
-        }).catch((err) => {
-          console.error('Lỗi khi phát nhạc:', err);
-          // Không gây lỗi khi không phát được nhạc
-        });
+        // Thử phát nhạc
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            console.log('Nhạc đã phát');
+            setIsPlaying(true);
+          }).catch((err) => {
+            console.error('Lỗi khi phát nhạc:', err);
+          });
+        }
       } catch (error) {
         console.error("Lỗi khi tạo audio:", error);
-        // Tiếp tục mà không cần audio
       }
     }
     
@@ -1750,17 +1780,24 @@ const TayNguyenGongsGame = () => {
     // Initialize audio when component mounts
     if (!audioRef.current) {
       try {
-        // Sửa đường dẫn file audio, bỏ process.env.PUBLIC_URL nếu file trong src
-        const audio = new Audio('../../assets/TayNguyenGame/sound/nhac_nen.mp3');
+        // Sử dụng import trực tiếp file âm thanh
+        const audio = new Audio(backgroundMusic);
         audio.loop = true;
         audio.volume = volume;
         audioRef.current = audio;
         
-        // Không tự động phát nhạc
-        // audioRef.current.play().catch()...
+        // Thử phát nhạc
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            console.log('Nhạc đã phát');
+            setIsPlaying(true);
+          }).catch((err) => {
+            console.error('Lỗi khi phát nhạc:', err);
+          });
+        }
       } catch (error) {
         console.error("Lỗi khi tạo audio:", error);
-        // Tiếp tục mà không cần audio
       }
     } else {
       audioRef.current.volume = volume;
@@ -1805,20 +1842,21 @@ const TayNguyenGongsGame = () => {
     }
   }, [isPlaying]);
 
-  // Toggle music playback - chỉ xử lý khi người dùng nhấn nút
+  // Toggle music playback - cập nhật hàm xử lý phát nhạc
   const togglePlayMusic = () => {
     if (isPlaying && audioRef.current) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else if (audioRef.current) {
       // Xử lý trực tiếp việc phát nhạc và cập nhật state
-      audioRef.current.play()
-        .then(() => {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
           setIsPlaying(true);
-        })
-        .catch(err => {
+        }).catch(err => {
           console.error('Lỗi khi bật nhạc:', err);
         });
+      }
     }
   };
   
@@ -1971,10 +2009,10 @@ const TayNguyenGongsGame = () => {
   };
 
   // Cập nhật handleMinigameAnswer để kiểm tra khi đã hoàn thành tất cả các mảnh
-  const handleMinigameAnswer = (optionIndex) => {
+  const handleMinigameAnswer = async (optionIndex) => {
     setSelectedOption(optionIndex);
     
-    setTimeout(() => {
+    setTimeout(async () => {
       let piece = "";
       let correct = false;
       
@@ -2005,14 +2043,18 @@ const TayNguyenGongsGame = () => {
         
         setMinigamePieces(updatedPieces);
         
+        // Update user stats for correct answer
+        await updateUserStats("exp");
+        await updateUserStats("money");
+        
         // Show success dialog
         setShowMinigame(false);
         setSelectedOption(null);
         setCurrentDialog(`${piece}_correct`);
         
-        // Kiểm tra xem đã thu thập đủ 3 mảnh chưa
+        // Check if all pieces are collected
         if (updatedPieces.trong_dat && updatedPieces.hoi_lua && updatedPieces.bong_rung) {
-          // Nếu đủ 3 mảnh, hiển thị dialog kết thúc
+          // If all pieces are collected, show completion dialog
           setTimeout(() => {
             setCurrentDialog("all_pieces_collected");
             setGameStage(GAME_STAGES.RONG_HOUSE);
@@ -2169,7 +2211,7 @@ const TayNguyenGongsGame = () => {
   }, [gameStage, videoWatched, showYouTubeMission]);
   
   // Xử lý khi người chơi hoàn thành xem video
-  const handleVideoWatched = () => {
+  const handleVideoWatched = async () => {
     // Dừng video khi người dùng nhấn nút đã xem xong
     if (youtubeIframeRef.current) {
       // Dừng video bằng cách gán src mới không có video
@@ -2177,6 +2219,32 @@ const TayNguyenGongsGame = () => {
       const iframeSrc = iframe.src;
       iframe.src = '';
       iframe.src = iframeSrc.replace('&autoplay=1', '&autoplay=0');
+    }
+    
+    // Fetch item congchieng
+    try {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      const response = await fetch('/api/users/stats/set', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username: username,
+          object: "congchieng"
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to set congchieng item');
+      }
+
+      const data = await response.json();
+      console.log('Congchieng item set:', data);
+    } catch (error) {
+      console.error('Error setting congchieng item:', error);
     }
     
     setVideoWatched(true);
