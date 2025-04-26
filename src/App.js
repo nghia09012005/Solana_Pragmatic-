@@ -63,10 +63,11 @@ function App() {
           <Route path="/donghogame" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} />
           
-          <Route path="/" element={<ProfilePage />} /> 
-          <Route path="*" element={<NotFoundPage />} /> 
 
-          <Route path="/personalmuseum" element={<PersonalMuseum />} /> 
+          <Route path="/profile" element={<ProfilePage />} /> 
+          {/* <Route path="*" element={<NotFoundPage />} />
+
+          <Route path="/personalmuseum" element={<PersonalMuseum />} />  */}
 
         </Routes>
       </main>
