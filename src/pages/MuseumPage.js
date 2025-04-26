@@ -91,7 +91,16 @@ const Card = ({ artwork, isActive }) => {
   const navigate = useNavigate();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Kiểm tra xem game có bị khóa không
+  const isLocked = artwork.title === "Trống Đồng \n Đông Sơn" || artwork.title === "Dân ca Quan Họ";
+
   const handleExpand = () => {
+    // Nếu game bị khóa, không làm gì cả
+    if (isLocked) {
+      alert("Game này hiện đang được phát triển. Vui lòng quay lại sau!");
+      return;
+    }
+
     setIsTransitioning(true);
     
     // Tạo overlay và vortex elements
@@ -131,10 +140,29 @@ const Card = ({ artwork, isActive }) => {
   };
 
   return (
-    <div className={`card ${isActive ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''}`}>
-      <button className="expand-button" onClick={handleExpand}>
-        <BsArrowsFullscreen />
-        Khám phá
+    <div className={`card ${isActive ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''} ${isLocked ? 'locked-card' : ''}`}>
+      {isLocked && (
+        <div className="locked-overlay">
+          <div className="big-lock-icon">
+            🔒</div>
+        </div>
+      )}
+      <button 
+        className={`expand-button ${isLocked ? 'locked' : ''}`} 
+        onClick={handleExpand}
+        title={isLocked ? "Game đang được phát triển" : "Khám phá"}
+      >
+        {isLocked ? (
+          <>
+            <span className="lock-icon">🔒</span>
+            Sắp ra mắt
+          </>
+        ) : (
+          <>
+            <BsArrowsFullscreen />
+            Khám phá
+          </>
+        )}
       </button>
       <img src={artwork.image} alt={artwork.title} className="artwork-image" />
       <div className="artwork-info">
