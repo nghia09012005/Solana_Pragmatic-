@@ -36,7 +36,7 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} />
         
         <Route path="/museumpage" element={<MuseumPage />} />
 
@@ -50,8 +50,8 @@ function App() {
           <Route path="/tankgame" element={<TankGame />} /> 
           <Route path="/bantin" element={<Bantin />} />
 
-           
-
+            */}
+{/* 
            <Route path="/cuchigame" element={<CuChiGameG1/>} />
            <Route path="/morse" element={<Morse />} />
          
@@ -62,8 +62,8 @@ function App() {
 
            <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
-          <Route path="*" element={<NotFoundPage />} />    
-          <Route path="/profile" element={<ProfilePage />} /> 
+          <Route path="*" element={<NotFoundPage />} />     */}
+          <Route path="/" element={<ProfilePage />} /> 
           
 
 

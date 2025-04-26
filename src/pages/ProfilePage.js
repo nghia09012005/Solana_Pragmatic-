@@ -155,13 +155,13 @@ const ProfilePage = () => {
             </div>
             
             <div className="profile-actions">
-              <button 
-                className="btn-logout" 
-                onClick={handleLogout}
-              >
-                Đăng xuất
-              </button>
-            </div>
+  <div className="btn-logout">
+    <button onClick={handleLogout}>
+      Đăng xuất
+    </button>
+  </div>
+</div>
+
           </div>
         </div>
       </div>

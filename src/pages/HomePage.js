@@ -176,7 +176,7 @@ useEffect(() => {
         
 
         {!isSignin &&  
-         <div className="head-right">
+         < div className="head-right">
          <div className="button-box">
        <button onClick={() =>{ setShowSignUp(!showSignUp); setShowSignIn(false);}}> 
              ĐĂNG KÝ
