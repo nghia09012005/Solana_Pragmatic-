@@ -86,7 +86,7 @@
             <div className="social-icons">
               <a href="https://www.facebook.com/trquynh79/" className="facebook"><i className="fab fa-facebook-f"></i></a>
               <a href="https://www.instagram.com/tr.quynh_79/" className="instagram" ><i className="fab fa-instagram"></i></a>
-              <a href="mailto:nguyenngoctrucquynh2005@gmail.com" className="gmail"><i className="fab fa-google"></i></a>x
+              <a href="mailto:nguyenngoctrucquynh2005@gmail.com" className="gmail"><i className="fab fa-google"></i></a>
             </div>
           </div>
 
