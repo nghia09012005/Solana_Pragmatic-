@@ -22,7 +22,9 @@ const CuChiGameG1 = () => {
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
 
+
   const [showMenu, setShowMenu] = useState(false);
+
 
   const navigate = useNavigate();
 
