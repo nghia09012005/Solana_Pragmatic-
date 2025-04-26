@@ -35,11 +35,8 @@ function App() {
       <main className="main-content">
         <Routes>
         <Route path="/" element={<HomePage />} />
-          
-          {/* Tây Nguyên Gongs Game */}
-
-          
-          {/* Tây Nguyên Gongs Game */}
+        
+        <Route path="/museumpage" element={<MuseumPage />} />
 
           <Route path="/" element={<HomePage />} />
           <Route path="/museumpage" element={<MuseumPage />} />
@@ -59,7 +56,6 @@ function App() {
            <Route path="/thongnhat" element={<ThongTin304 />} />
 
           
-
           <Route path="/profile" element={<ProfilePage />} /> 
 
           <Route path="*" element={<NotFoundPage />} />          
@@ -69,9 +65,9 @@ function App() {
           <Route path="/FlipCard" element={<FlipCard />} />
           
           <Route path="/profile" element={<ProfilePage />} /> 
-          <Route path="*" element={<NotFoundPage />} />
+          {/* <Route path="*" element={<NotFoundPage />} />
 
-          {/* <Route path="/" element={<PersonalMuseum />} />  */}
+          <Route path="/personalmuseum" element={<PersonalMuseum />} />  */}
 
         </Routes>
       </main>

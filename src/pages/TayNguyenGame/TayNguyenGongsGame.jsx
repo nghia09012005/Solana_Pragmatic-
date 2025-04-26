@@ -226,6 +226,7 @@ const MenuButton = styled.button`
   height: 40px;
   display: flex;
   align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   justify-content: center;
   cursor: pointer;
   font-size: 1.2rem;
@@ -288,17 +289,21 @@ const SideMenuHeader = styled.div`
 `;
 
 const SideMenuTitle = styled.div`
+
   font-size: 1.3rem;
-  font-weight: bold;
+  font-weight: 700;
   color: white;
   letter-spacing: 1px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 `;
 
 const CloseMenuButton = styled.button`
   background: none;
   border: none;
   color: white;
+  
+
   font-size: 1.7rem;
   cursor: pointer;
   padding: 4px 8px;
@@ -329,10 +334,12 @@ const SideMenuLink = styled.button`
   background: none;
   border: none;
   color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
   text-align: left;
   padding: 18px 28px;
   font-size: 1.13rem;
-  font-weight: 500;
+  font-weight: 400;
   cursor: pointer;
   border-radius: 0 14px 14px 0;
   transition: background 0.14s, color 0.14s;
@@ -1324,6 +1331,7 @@ const CompletionText = styled.p`
   font-size: 1.3rem;
   margin-bottom: 25px;
   line-height: 1.6;
+  
 `;
 
 const ButtonsContainer = styled.div`
@@ -1423,52 +1431,52 @@ const ContinueButton = styled.button`
 const dialogs = {
   // Intro dialogs
   welcome: {
-    speaker: "Trợ lý AI",
+    speaker: "Thổ dân",
     content: "Chào mừng bạn đến với buôn làng M'Nông! Bạn cần tìm ba mảnh Hồn Chiêng trên bản đồ để vào được nhà Rông gặp Già Làng.",
     options: ["Tiếp tục"]
   },
   introduction: {
-    speaker: "Trợ lý AI",
-    content: "Tôi là Ayla, trợ lý AI của bạn. Hãy nhấp vào biểu tượng bản đồ để xem vị trí của ba mảnh Hồn Chiêng: 'Trống Đất', 'Hơi Lửa' và 'Bóng Rừng'. Nhấp vào các biểu tượng trên bản đồ để trả lời câu hỏi.",
+    speaker: "Thổ dân",
+    content: "Tôi là HơBia Blao, dân bản địa ở đây. Hãy nhấp vào biểu tượng bản đồ để xem vị trí của ba mảnh Hồn Chiêng: 'Trống Đất', 'Hơi Lửa' và 'Bóng Rừng'. Nhấp vào các biểu tượng trên bản đồ để trả lời câu hỏi.",
     options: ["Mở bản đồ"]
   },
   
   // Kết quả câu trả lời
   trong_dat_correct: {
-    speaker: "Trợ lý AI",
+    speaker: "HơBia Blao",
     content: "Chính xác! Bạn đã thu thập được mảnh Hồn Chiêng 'Trống Đất'! Hãy tiếp tục tìm các mảnh còn lại trên bản đồ.",
     options: ["Tiếp tục"]
   },
   trong_dat_wrong: {
-    speaker: "Trợ lý AI",
+    speaker: "HơBia Blao",
     content: "Tiếc quá, đáp án chưa chính xác. Hãy thử lại nhé!",
     options: ["Thử lại"]
   },
   
   hoi_lua_correct: {
-    speaker: "Trợ lý AI",
+    speaker: "HơBia Blao",
     content: "Tuyệt vời! Bạn đã thu thập được mảnh Hồn Chiêng 'Hơi Lửa'! Hãy tiếp tục tìm các mảnh còn lại trên bản đồ.",
     options: ["Tiếp tục"]
   },
   hoi_lua_wrong: {
-    speaker: "Trợ lý AI",
+    speaker: "HơBia Blao",
     content: "Chưa đúng rồi. Hãy thử lại lần nữa!",
     options: ["Thử lại"]
   },
   
   bong_rung_correct: {
-    speaker: "Trợ lý AI",
+    speaker: "HơBia Blao",
     content: "Chuẩn không cần chỉnh! Bạn đã thu thập được mảnh Hồn Chiêng 'Bóng Rừng'! Hãy tiếp tục tìm các mảnh còn lại trên bản đồ.",
     options: ["Tiếp tục"]
   },
   bong_rung_wrong: {
-    speaker: "Trợ lý AI",
+    speaker: "HơBia Blao",
     content: "Chưa chính xác. Đừng nản lòng, thử lại nhé!",
     options: ["Thử lại"]
   },
   
   all_pieces_collected: {
-    speaker: "Trợ lý AI",
+    speaker: "HơBia Blao",
     content: "Chúc mừng! Bạn đã thu thập đủ ba Mảnh Hồn Chiêng. Già Làng đang đứng trước cổng nhà Rông chờ bạn.",
     options: ["Đến gặp Già Làng"]
   },
@@ -1541,12 +1549,12 @@ const dialogs = {
     options: ["Bỏ qua"]
   },
   greeting_dialog: {
-    speaker: "Trợ lý AI",
-    content: "Xin chào! Tôi là trợ lý AI, sẵn sàng giúp bạn tìm hiểu về văn hóa cồng chiêng Tây Nguyên. Bạn có muốn biết gì không?",
+    speaker: "Thổ dân",
+    content: "Xin chào! Tôi là  HơBia Blao, sẵn sàng giúp bạn tìm hiểu về văn hóa cồng chiêng Tây Nguyên. Bạn có muốn biết gì không?",
     options: ["Bắt đầu tham quan", "Bỏ qua"]
   },
   message_inbox: {
-    speaker: "Trợ lý AI",
+    speaker: "HơBia Blao",
     content: "",
     options: ["Đã hiểu"]
   },

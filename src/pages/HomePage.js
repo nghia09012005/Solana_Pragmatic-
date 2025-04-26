@@ -33,11 +33,12 @@ const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
   useEffect(() => {
     const user = localStorage.getItem('username');
     const token = localStorage.getItem('token');
-    if (user && (token != null || token != "undefined")) {
-      setissignin(true);  // Nếu tồn tại username trong localStorage, coi như đã đăng nhập
-    }
-    else{
+    if (!user || !token) {
       setissignin(false);
+      localStorage.removeItem('username');
+      localStorage.removeItem('token');
+    } else {
+      setissignin(true);
     }
   }, []);
 
@@ -95,6 +96,11 @@ const handleSignIn = async () => {
     alert("Đăng nhập thất bại. Vui lòng kiểm tra tài khoản hoặc mật khẩu.");
   }
 };
+
+const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
 
 //----------
 
@@ -154,16 +160,18 @@ useEffect(() => {
     <div className="container">
        
 
-      <header>
-        <div className="head-left">
-          <img src="/images/logo.png" alt="logo" />
-        </div>
+       <header>
+  <div className="head-left">
+    <img src="/images/logo.png" alt="logo" />
+  </div>
 
-        <ul>
-  <li><Link to="/">TRANG CHỦ</Link></li>
-  <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
-  <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
-</ul>
+
+
+  <ul className={isMenuOpen ? 'nav-menu active' : 'nav-menu'}>
+    <li><Link to="/">TRANG CHỦ</Link></li>
+    <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
+    <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
+  </ul>
 
         
 
@@ -183,12 +191,16 @@ useEffect(() => {
         }
            
           {isSignin && 
-            
-            <div className='signin'>{localStorage.getItem('username')}</div> 
-                 
+            <div className='signin'>
+              <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                {localStorage.getItem('username')}
+              </Link>
+            </div> 
           }
 
-       
+<div className="hamburger" onClick={toggleMenu}>
+    {isMenuOpen ? '✖' : '☰'}
+  </div>
 
 
       </header>

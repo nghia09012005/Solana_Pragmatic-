@@ -52,6 +52,8 @@ const Morse = () => {
     //   const timer = setTimeout(() => setLoading(false), 3000);
     //   return () => clearTimeout(timer);
     // }, []);
+
+   
     useEffect(() => {
       const audio = new Audio(audioFile);
       audio.loop = true;
@@ -326,14 +328,16 @@ const Morse = () => {
                 alt="Character" 
                 className="character-model" 
               />
-              {/* Hộp thoại */}
-              {dialogStep !== -1 && dialogStep < dialogues.length  &&(
-                <div className="dialog-box">
-                  <p>{dialogues[dialogStep]}</p>
-                  <button onClick={handleNextDialog}>Tiếp tục</button>
-                </div>
-              )}
-            </div>
+                {/* Hộp thoại */}
+                {dialogStep !== -1 && dialogStep < dialogues.length  &&(
+                  <div className="dialog-box"
+                    
+                    onClick={handleNextDialog}>
+                    <p>{dialogues[dialogStep]}</p>
+                  </div>
+                )}
+              </div>
+
 
             {/* morse table */}
 

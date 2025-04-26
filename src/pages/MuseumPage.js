@@ -143,7 +143,8 @@ const Card = ({ artwork, isActive }) => {
     <div className={`card ${isActive ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''} ${isLocked ? 'locked-card' : ''}`}>
       {isLocked && (
         <div className="locked-overlay">
-          <div className="big-lock-icon">🔒</div>
+          <div className="big-lock-icon">
+            🔒</div>
         </div>
       )}
       <button 
