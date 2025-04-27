@@ -162,7 +162,7 @@ useEffect(() => {
         },
         body: JSON.stringify({
           username: username,
-          item: co
+          item: "co"
         })
       });
 
