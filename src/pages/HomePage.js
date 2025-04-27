@@ -171,10 +171,10 @@ useEffect(() => {
 
 
   <ul className={isMenuOpen ? 'nav-menu active' : 'nav-menu'}>
-    <li><Link to="/" onClick={() => {
+    <li><a href="/" onClick={() => {
         setShowSignIn(false);
         setShowSignUp(false);
-      }}>TRANG CHỦ</Link></li>
+      }}>TRANG CHỦ</a></li>
     <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
     <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
   </ul>
