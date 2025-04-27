@@ -154,7 +154,7 @@ useEffect(() => {
         return;
       }
 
-      const response = await fetch('/api/users/stats/set', {
+      const response = await fetch('https://wda-be-1.onrender.com/api/users/stats/set', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
