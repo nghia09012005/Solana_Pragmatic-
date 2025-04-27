@@ -66,8 +66,8 @@ function App() {
           {/* <Route path="/donghogame" element={<DongHoGame />} /> */}
           {/* <Route path="/FlipCard" element={<FlipCard />} /> */}
           
-          <Route path="/profile" element={<ProfilePage />} /> 
-          <Route path="/introduction" element={<Introduction />} />
+          {/* <Route path="/profile" element={<ProfilePage />} />  */}
+          {/* <Route path="/introduction" element={<Introduction />} /> */}
           {/* <Route path="*" element={<NotFoundPage />} />
 
           <Route path="/" element={<ProfilePage />} /> 
