@@ -145,7 +145,6 @@ const TankGame = () => {
   }, []);
 
   // useEffect đếm ngược thời gian, không động vào audio nữa
-  if (score >= BOUND) setsucces(true);
   useEffect(() => {
     let timer;
     if (!gameOver && !success && timeLeft > 0) {
