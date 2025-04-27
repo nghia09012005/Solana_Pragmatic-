@@ -232,7 +232,7 @@ function HomePage() {
 
       <div className="gold-line"></div>
 
-      <TransitionCover show={showCover} color="#1a2a38" />
+      <TransitionCover show={showCover} />
       <section className="background">
         <img
           className="homepage-background parallax" data-speed="4"
