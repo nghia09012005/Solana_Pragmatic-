@@ -17,6 +17,9 @@ const Bantin = () => {
   const [dialogIndex, setDialogIndex] = useState(0);
   const [showNotification, setShowNotification] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [showCharacter, setShowCharacter] = useState(true);
+  const [showText, setShowText] = useState(true);
+  const [showFlag, setShowFlag] = useState(false);
 
   const navigate = useNavigate();
 const dialogues = [
@@ -51,7 +54,7 @@ useEffect(() => {
     const backgroundAudio = backgroundAudioRef.current;
 
     if (bantinAudio) {
-      bantinAudio.loop = true;
+      bantinAudio.loop = false;
       // Thêm xử lý lỗi khi phát nhạc
       const playBantin = async () => {
         try {
@@ -65,6 +68,40 @@ useEffect(() => {
           bantinAudio.currentTime = 0;
           await bantinAudio.play();
           console.log('Bản tin đã phát');
+
+          // Thêm event listener cho khi audio kết thúc
+          bantinAudio.addEventListener('ended', () => {
+            console.log('Bản tin đã kết thúc');
+            setShowFlag(true);
+            setShowNotification(true);
+          });
+
+          // Hiển thị alert trong 5 giây
+          const alertElement = document.createElement('div');
+          alertElement.style.position = 'fixed';
+          alertElement.style.top = '20px';
+          alertElement.style.left = '50%';
+          alertElement.style.transform = 'translateX(-50%)';
+          alertElement.style.backgroundColor = 'rgba(218, 37, 29, 0.9)';
+          alertElement.style.color = '#FFD700';
+          alertElement.style.padding = '15px 30px';
+          alertElement.style.borderRadius = '8px';
+          alertElement.style.fontSize = '18px';
+          alertElement.style.fontWeight = 'bold';
+          alertElement.style.zIndex = '1000';
+          alertElement.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+          alertElement.style.border = '2px solid #FFD700';
+          alertElement.textContent = 'Nghe hết bản tin để nhận vật phẩm';
+          document.body.appendChild(alertElement);
+
+          // Tự động xóa alert sau 5 giây
+          setTimeout(() => {
+            alertElement.style.opacity = '0';
+            alertElement.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => {
+              document.body.removeChild(alertElement);
+            }, 500);
+          }, 5000);
 
           // Phát nhạc nền sau 37 giây
           setTimeout(async () => {
@@ -98,6 +135,7 @@ useEffect(() => {
         bantinAudio.pause();
         bantinAudio.currentTime = 0;
         bantinAudio.removeEventListener('loadeddata', () => {});
+        bantinAudio.removeEventListener('ended', () => {});
       }
 
       if (backgroundAudio) {
@@ -158,15 +196,18 @@ useEffect(() => {
       className="video-background"
     />
         {/* Hình ảnh nhân vật */}
-        <img src={character} alt="Character" className="character-image" />
-        <div className="dialogue-box">
-  <p>{dialogues[dialogIndex]}</p>
-</div>
+        {/* {showCharacter && (
+          <img src={character} alt="Character" className="character-image" />
+        )}
+        {showText && (
+          <div className="dialogue-box">
+            <p>{dialogues[dialogIndex]}</p>
+          </div>
+        )} */}
 
     <div className="bantin-content">
-
-        {/* Hiển thị cờ khi dialogIndex là 9 */}
-      {dialogIndex >11 && (
+        {/* Hiển thị cờ khi bản tin kết thúc */}
+      {showFlag && (
         <img src={flag} alt="Vietnam Flag" onClick={handleFlagClick} className="flag-image" />
       )}
       
