@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Hành trình di sản - A time-travel museum experience of Vietnamese heritage",
   "main": "index.js",
-  "proxy": "http://localhost:8080",
+  "proxy": "http://wda-be.clever-possibility.up.railway.app",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
