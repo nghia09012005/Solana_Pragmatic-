@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import backgroundImage from '../../assets/Thongnhat/images/hcmcampaign.jpg';
 import soldierImage from '../../assets/Thongnhat/images/giai-phong1.png'; // Cần thêm hình ảnh người lính
 import GameMenu from './GameMenu';
-import ThongNhatLoading from './ThongNhatLoading';
-import tankSound from '../../assets/Thongnhat/audio/sound.wav';
+// import ThongNhatLoading from './ThongNhatLoading';
 
 // Animations
 const fadeIn = keyframes`
@@ -114,6 +113,7 @@ const GameButton = styled.button`
   transition: all 0.3s ease;
   
   &:hover {
+    background-color: ${props => props.$primary ? "#8B0000" : "#3a7a23"};
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
@@ -148,70 +148,35 @@ const MenuButton = styled.button`
 `;
 
 const Introduction = () => {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [dialogIndex, setDialogIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const audioRef = useRef(null);
   
   const handleLoadingComplete = () => {
     setLoading(false);
   };
-
-  const startAudio = async () => {
-    if (audioRef.current) {
-      try {
-        await audioRef.current.play();
-        console.log("Âm thanh đang phát");
-      } catch (error) {
-        console.log("Lỗi phát âm thanh:", error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    // Khởi tạo âm thanh
-    const audio = new Audio(tankSound);
-    audio.volume = 0.5;
-    audio.loop = true;
-    audioRef.current = audio;
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-    };
-  }, []);
   
   const dialogs = [
-    "Chào đồng chí! Tôi là Đại úy Nguyễn Văn Tập, chỉ huy đơn vị xe tăng trong Chiến dịch Hồ Chí Minh lịch sử.",
-    "Hôm nay là ngày 26 tháng 4 năm 1975. Chiến dịch Hồ Chí Minh đã bắt đầu! Nhiệm vụ của chúng ta là tiến vào Sài Gòn, giải phóng miền Nam, thống nhất đất nước.",
-    "Đồng chí sẽ điều khiển xe tăng T-54 số hiệu 390.",
-    "Nhiệm vụ của đồng chí là điều khiển xe tăng tiến về phía Dinh Độc Lập, vượt qua các chướng ngại vật và phá hủy các mục tiêu quân sự trên đường đi.",
-    "Sử dụng phím mũi tên trái/phải để di chuyển xe tăng, và phím Space để bắn đạn. Hãy cẩn thận với các chướng ngại vật - đụng phải chúng sẽ làm nhiệm vụ thất bại!",
-    "Đồng chí cần phải tiêu diệt và đạt được ít nhất 304 điểm để hoàn thành nhiệm vụ và tiến vào Dinh Độc Lập.",
-    "Đây là nhiệm vụ quan trọng, đồng chí! Thành công của đồng chí sẽ góp phần vào chiến thắng vĩ đại của dân tộc ta. Tiến lên vì một Việt Nam thống nhất!",
+    "Chúc mừng đồng chí đã vượt qua thử thách đầu tiên!",
+    "Rõ ràng đây là một thử thách vô cùng khó khăn, nhưng đồng chí đã rất bản lĩnh để vượt qua!",
+    "Được tin tình báo, quân địch đã huy động thêm lực lượng để gia tăng áp lực cho chúng ta",
+    "Nhiệm vụ của đồng chí là tiếp tục di chuyển xe tăng, phá hủy các mục tiêu quân sự trên đường đi.",
+    "Ngoài chướng ngại vật chúng đã chuẩn bị sẵn, những loại vũ khí của chúng bao gồm xe tăng, máy bay chiến đấu có thể tấn công chúng ta. Hãy cẩn thận!",
+    "Đồng chí cần phải tiêu diệt và đạt được ít nhất 500 điểm trong vòng 2 phút để hoàn thành nhiệm vụ và tiến vào Dinh Độc Lập.",
+    "Đây là nhiệm vụ quan trọng, đồng chí! Thành công của đồng chí sẽ góp phần vào chiến thắng vĩ đại của dân tộc ta. Tranh thủ từng phút, từng giờ, xốc tới mặt trận, giải phóng miền Nam, quyết chiến và toàn thắng!",
   ];
   
   const handleNextDialog = () => {
     if (dialogIndex < dialogs.length - 1) {
       setDialogIndex(dialogIndex + 1);
     } else {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-      navigate('/tankgame');
+      navigate('/tankgame2');
     }
   };
   
   const handleSkip = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-    navigate('/tankgame');
+    navigate('/tankgame2');
   };
   
   const toggleMenu = (e) => {
@@ -221,9 +186,9 @@ const Introduction = () => {
   
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <ThongNhatLoading onLoadingComplete={handleLoadingComplete} />
-      ) : (
+      ) : ( */}
         <IntroContainer onClick={() => setIsMenuOpen(false)}>
           <MenuButton onClick={toggleMenu}>☰</MenuButton>
           <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
@@ -240,21 +205,15 @@ const Introduction = () => {
               {dialogIndex < dialogs.length - 1 ? (
                 <>
                   <GameButton onClick={handleSkip}>Bỏ qua</GameButton>
-                  <GameButton $primary onClick={() => {
-                    startAudio();
-                    handleNextDialog();
-                  }}>Tiếp tục</GameButton>
+                  <GameButton $primary onClick={handleNextDialog}>Tiếp tục</GameButton>
                 </>
               ) : (
-                <GameButton $primary onClick={() => {
-                  startAudio();
-                  handleNextDialog();
-                }}>Bắt đầu nhiệm vụ</GameButton>
+                <GameButton $primary onClick={handleNextDialog}>Bắt đầu nhiệm vụ</GameButton>
               )}
             </ButtonContainer>
           </DialogBox>
         </IntroContainer>
-      )}
+      {/* )} */}
     </>
   );
 };

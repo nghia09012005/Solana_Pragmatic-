@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../../styles/Thongnhat/TankGame.css"; // Import CSS file
+import "../../styles/Thongnhat/TankGame2.css"; // Overlay & popup styles
 import styled, { keyframes } from 'styled-components';
 import tankImage from '../../assets/Thongnhat/images/tankfinal.png'; // Đảm bảo đường dẫn hình ảnh đúng
 import tankSound from '../../assets/Thongnhat/audio/sound.wav';
 import obstacle from '../../assets/Thongnhat/images/obstacle.png';
 import explosionGif from '../../assets/Thongnhat/images/explosion.gif';
+import helicopter from '../../assets/Thongnhat/images/helicopter.gif';
 import bullet from '../../assets/Thongnhat/images/bullet.png';
 import explo from '../../assets/Thongnhat/audio/explosion.wav';
 import flagImage from '../../assets/Thongnhat/images/Comattran.svg'; // Cờ giải phóng
 import enemyTankImage from '../../assets/Thongnhat/images/tank.png'; // Xe tăng địch
 import { useNavigate } from "react-router-dom";
 import GameMenu from './GameMenu';
-import NarratorScreen from './NarratorScreen';
 
 
-const BOUND = 304; // 390 số hiệu xe tank tông dinh độc lập
+const BOUND = 2000;
 
 // Animation for dialog (slide in from bottom)
 const slideIn = keyframes`
@@ -67,7 +68,7 @@ const ButtonContainer = styled.div`
   background-color: rgba(255, 250, 240, 0.96);
 `;
 const GameButton = styled.button`
-  background-color: #2c5e1a;
+  background-color: ${props => props.$primary ? "#B22222" : "#2c5e1a"};
   color: white;
   border: none;
   padding: 10px 22px;
@@ -79,7 +80,7 @@ const GameButton = styled.button`
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0,0,0,0.09);
   &:hover {
-    background-color: #3a7a23;
+    background-color: ${props => props.$primary ? "#8B0000" : "#3a7a23"};
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.13);
   }
@@ -89,21 +90,24 @@ const GameButton = styled.button`
 `;
 
 const TankGame = () => {
-  const [timeLeft, setTimeLeft] = useState(60); // thời gian còn lại (giây)
+  const [timeLeft, setTimeLeft] = useState(120); // thời gian còn lại (giây)
 
   const [tankPosition, setTankPosition] = useState(50); // Vị trí tank (%)
   const [bullets, setBullets] = useState([]); // Danh sách đạn
   const [obstacles, setObstacles] = useState([]); // Danh sách chướng ngại vật
   const [score, setScore] = useState(0); // Điểm số
-  const [health, setHealth] = useState(100); // Máu của xe tăng
+  const [health, setHealth] = useState(100); // Máu của xe tăng (0-100%)
   const [gameOver, setGameOver] = useState(false); // Trạng thái game over
   const [success, setsucces] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [enemyTanks, setEnemyTanks] = useState([]); // Danh sách xe tăng địch
+  const [helicopters, setHelicopters] = useState([]); // Danh sách máy bay địch
+  const [enemyBullets, setEnemyBullets] = useState([]); // Đạn của địch
+  const [reviveCount, setReviveCount] = useState(3); // Số lần hồi sinh còn lại
   const audioRef = useRef(null);
   const explosionRef = useRef(null);
   const navigate = useNavigate();
-
 
 
   const initializeAudio = () => {
@@ -153,13 +157,132 @@ const TankGame = () => {
         setsucces(true);
       } else {
         setGameOver(true);
-        // Không hiện NarratorScreen khi thua, chỉ cho chơi lại
       }
     }
     return () => {
       clearInterval(timer);
     };
   }, [gameOver, success, timeLeft]);
+
+  // Sinh xe tăng địch và máy bay địch
+  useEffect(() => {
+    if (gameOver || success) return;
+    // Sinh xe tăng địch mỗi 2.5-4s
+    const tankInterval = setInterval(() => {
+      setEnemyTanks(prev => [...prev, {
+        id: Date.now() + Math.random(),
+        x: Math.random() * 90,
+        y: 0,
+        direction: Math.random() > 0.5 ? 1 : -1, // trái/phải
+        lastFire: Date.now(),
+        health: 3 // Xe tăng địch có 3 máu
+      }]);
+    }, 2500 + Math.random() * 1500);
+    // Sinh máy bay địch mỗi 5-7s
+    const heliInterval = setInterval(() => {
+      setHelicopters(prev => [...prev, {
+        id: Date.now() + Math.random(),
+        x: Math.random() * 90,
+        y: 0,
+        direction: Math.random() > 0.5 ? 1 : -1, // trái/phải
+        lastFire: Date.now(),
+        health: 2 // Máy bay địch có 2 máu
+      }]);
+    }, 5000 + Math.random() * 2000);
+    return () => {
+      clearInterval(tankInterval);
+      clearInterval(heliInterval);
+    };
+  }, [gameOver, success]);
+
+  // Di chuyển xe tăng địch (chỉ đi thẳng xuống)
+  useEffect(() => {
+    if (gameOver || success) return;
+    const moveEnemyInterval = setInterval(() => {
+      setEnemyTanks(prev => prev
+        .map(tank => ({
+          ...tank,
+          y: tank.y + 2 // chỉ tăng y, x giữ nguyên
+        }))
+        .filter(tank => tank.y < 100)
+      );
+    }, 60);
+    return () => clearInterval(moveEnemyInterval);
+  }, [gameOver, success]);
+
+  // Di chuyển máy bay địch (chỉ đi thẳng xuống)
+  useEffect(() => {
+    if (gameOver || success) return;
+    const moveHeliInterval = setInterval(() => {
+      setHelicopters(prev => prev
+        .map(heli => ({
+          ...heli,
+          y: heli.y + 2 // chỉ tăng y, x giữ nguyên
+        }))
+        .filter(heli => heli.y < 100)
+      );
+    }, 60);
+    return () => clearInterval(moveHeliInterval);
+  }, [gameOver, success]);
+
+  // Địch bắn đạn
+  useEffect(() => {
+    if (gameOver || success) return;
+    // Xe tăng địch bắn
+    enemyTanks.forEach(tank => {
+      if (Date.now() - tank.lastFire > 1500) {
+        setEnemyBullets(prev => [...prev, {
+          id: Date.now() + Math.random(),
+          x: tank.x,
+          y: tank.y + 10,
+          type: 'tank'
+        }]);
+        tank.lastFire = Date.now();
+      }
+    });
+    // Máy bay địch bắn
+    helicopters.forEach(heli => {
+      if (Date.now() - heli.lastFire > 1800) {
+        setEnemyBullets(prev => [...prev, {
+          id: Date.now() + Math.random(),
+          x: heli.x,
+          y: heli.y + 10,
+          type: 'heli'
+        }]);
+        heli.lastFire = Date.now();
+      }
+    });
+  }, [enemyTanks, helicopters, gameOver, success]);
+
+  // Di chuyển đạn địch
+  useEffect(() => {
+    if (gameOver || success) return;
+    const moveEnemyBullets = setInterval(() => {
+      setEnemyBullets(prev => prev.map(b => ({ ...b, y: b.y + (b.type === 'tank' ? 3 : 4) }))
+        .filter(b => b.y < 100));
+    }, 50);
+    return () => clearInterval(moveEnemyBullets);
+  }, [gameOver, success]);
+
+  // Va chạm đạn địch với xe tăng người chơi
+  useEffect(() => {
+    if (gameOver || success) return;
+    enemyBullets.forEach(bullet => {
+      if (Math.abs(bullet.x - tankPosition) < 6 && bullet.y > 70) {
+        setEnemyBullets(prev => prev.filter(b => b.id !== bullet.id));
+        setHealth(prev => {
+          const dmg = bullet.type === 'tank' ? 10 : 30; // Tank: 10, Heli: 30
+          const newHealth = prev - dmg;
+          playExplosionSound();
+          if (newHealth <= 0) {
+            setGameOver(true);
+            return 0;
+          }
+          return newHealth;
+        });
+      }
+    });
+  }, [enemyBullets, tankPosition, gameOver, success]);
 
   // Function to play explosion sound
   const playExplosionSound = () => {
@@ -314,6 +437,87 @@ const TankGame = () => {
     }
   };
 
+  // Xử lý va chạm đạn người chơi với xe tăng địch và máy bay địch (theo máu)
+  useEffect(() => {
+    if (gameOver || success) return;
+    let now = Date.now();
+    let bulletUsed = new Set();
+    // Đạn người chơi với xe tăng địch
+    setEnemyTanks(prev => prev.map(tank => {
+      if (tank.hit) return tank;
+      let hitBulletId = null;
+      let newHealth = tank.health;
+      bullets.forEach(bullet => {
+        if (
+          bullet.x >= tank.x - 3 && bullet.x <= tank.x + 10 &&
+          bullet.y >= tank.y && bullet.y <= tank.y + 10
+        ) {
+          if (!hitBulletId) hitBulletId = bullet.id;
+          newHealth -= 1;
+        }
+      });
+      if (hitBulletId) {
+        if (newHealth <= 0) {
+          bulletUsed.add(hitBulletId);
+          setScore(prevScore => prevScore + 60); // +60 điểm khi tiêu diệt xe tăng
+          playExplosionSound();
+          setTimeout(() => {
+            setEnemyTanks(prevTanks => prevTanks.filter(t => t.id !== tank.id));
+          }, 400);
+          return { ...tank, health: 0, hit: true, explosionTime: now };
+        } else {
+          bulletUsed.add(hitBulletId);
+          return { ...tank, health: newHealth };
+        }
+      }
+      return tank;
+    }));
+    // Đạn người chơi với máy bay địch
+    setHelicopters(prev => prev.map(heli => {
+      if (heli.hit) return heli;
+      let hitBulletId = null;
+      let newHealth = heli.health;
+      bullets.forEach(bullet => {
+        if (
+          bullet.x >= heli.x - 3 && bullet.x <= heli.x + 12 &&
+          bullet.y >= heli.y && bullet.y <= heli.y + 10
+        ) {
+          if (!hitBulletId) hitBulletId = bullet.id;
+          newHealth -= 1;
+        }
+      });
+      if (hitBulletId) {
+        if (newHealth <= 0) {
+          bulletUsed.add(hitBulletId);
+          setScore(prevScore => prevScore + 50); // +50 điểm khi tiêu diệt máy bay
+          playExplosionSound();
+          setTimeout(() => {
+            setHelicopters(prevHelis => prevHelis.filter(h => h.id !== heli.id));
+          }, 400);
+          return { ...heli, health: 0, hit: true, explosionTime: now };
+        } else {
+          bulletUsed.add(hitBulletId);
+          return { ...heli, health: newHealth };
+        }
+      }
+      return heli;
+    }));
+    // Xóa đạn đã bắn trúng địch
+    if (bulletUsed.size > 0) {
+      setBullets(prevBullets => prevBullets.filter(b => !bulletUsed.has(b.id)));
+    }
+  }, [bullets, gameOver, success]);
+
+  // Xóa địch đã nổ khỏi màn hình sau 400ms
+  useEffect(() => {
+    if (gameOver || success) return;
+    const cleanExplosion = setInterval(() => {
+      setEnemyTanks(prev => prev.filter(tank => !(tank.hit && Date.now() - tank.explosionTime > 400)));
+      setHelicopters(prev => prev.filter(heli => !(heli.hit && Date.now() - heli.explosionTime > 400)));
+    }, 200);
+    return () => clearInterval(cleanExplosion);
+  }, [gameOver, success]);
+
   return (
     <div className="tank-container" onClick={() => setIsMenuOpen(false)} style={{ position: 'relative' }}>
       <button className="menu-button" onClick={(e) => {
@@ -327,19 +531,156 @@ const TankGame = () => {
             <p key={obs.id}>Vị trí chướng ngại vật: x: {obs.x}, y: {obs.y}</p>
           ))} */}
 
-          {/* Vẽ Tank */}
-          <div
-            className="tank"
-            style={{
-              left: `${tankPosition}%`,
-              transform: "translateX(-50%)",
-              backgroundImage: `url(${tankImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              width: "150px",
-              height: "150px",
-            }}
-          ></div>
+           {/* Vẽ Tank */}
+           <div
+             className="tank"
+             style={{
+               left: `${tankPosition}%`,
+               transform: "translateX(-50%)",
+               backgroundImage: `url(${tankImage})`,
+               backgroundSize: "cover",
+               backgroundPosition: "center",
+               width: "150px",
+               height: "150px",
+               zIndex: 5,
+             }}
+           ></div>
+
+           {/* Vẽ xe tăng địch */}
+           {enemyTanks.map((tank) => (
+        <React.Fragment key={tank.id}>
+          {!tank.hit && (
+            <>
+              <img
+                src={enemyTankImage}
+                alt="enemy-tank"
+                className="enemy-tank"
+                style={{
+                  left: `${tank.x}%`,
+                  top: `${tank.y}%`,
+                  width: "100px",
+                  height: "100px",
+                  position: "absolute",
+                  zIndex: 6,
+                  transform: tank.direction === -1 ? 'scaleX(-1)' : 'scaleX(1)'
+                }}
+              />
+              {/* Hiển thị máu xe tăng địch */}
+              <div style={{
+                position: 'absolute',
+                left: `${tank.x + 2}%`,
+                top: `calc(${tank.y}% - 10px)`,
+                width: '40px',
+                height: '8px',
+                background: '#333',
+                borderRadius: '4px',
+                border: '1px solid #fff',
+                zIndex: 7,
+                overflow: 'hidden',
+              }}>
+                <div style={{
+                  width: `${(tank.health / 3) * 100}%`,
+                  height: '100%',
+                  background: tank.health === 3 ? '#4CAF50' : tank.health === 2 ? '#FFC107' : '#F44336',
+                  transition: 'width 0.2s',
+                }}></div>
+              </div>
+            </>
+          )} 
+          {tank.hit && (
+            <img
+              src={explosionGif}
+              alt="explosion"
+              className="explosion"
+              style={{
+                left: `${tank.x}%`,
+                top: `${tank.y}%`,
+                width: "60px",
+                height: "60px",
+                position: "absolute",
+                zIndex: 6
+              }}
+            />
+          )}
+        </React.Fragment>
+      ))}
+           {/* Vẽ máy bay địch */}
+           {helicopters.map((heli) => (
+        <React.Fragment key={heli.id}>
+          {!heli.hit && (
+            <>
+              <img
+                src={helicopter}
+                alt="helicopter"
+                className="helicopter"
+                style={{
+                  left: `${heli.x}%`,
+                  top: `${heli.y}%`,
+                  width: "100px",
+                  height: "100px",
+                  position: "absolute",
+                  zIndex: 7
+                }}
+              />
+              {/* Hiển thị máu máy bay địch */}
+              <div style={{
+                position: 'absolute',
+                left: `${heli.x + 2}%`,
+                top: `calc(${heli.y}% - 10px)`,
+                width: '30px',
+                height: '8px',
+                background: '#333',
+                borderRadius: '4px',
+                border: '1px solid #fff',
+                zIndex: 8,
+                overflow: 'hidden',
+              }}>
+                <div style={{
+                  width: `${(heli.health / 2) * 100}%`,
+                  height: '100%',
+                  background: heli.health === 2 ? '#4CAF50' : '#F44336',
+                  transition: 'width 0.2s',
+                }}></div>
+              </div>
+            </>
+          )}
+          {heli.hit && (
+            <img
+              src={explosionGif}
+              alt="explosion"
+              className="explosion"
+              style={{ left: `${heli.x}%`, top: `${heli.y}%` }}
+            />
+          )}
+          {heli.hit && (
+            <img
+              src={explosionGif}
+              alt="explosion"
+              className="explosion"
+              style={{ left: `${heli.x}%`, top: `${heli.y}%` }}
+            />
+          )}
+        </React.Fragment>
+      ))}
+
+            {/* Vẽ đạn địch */}
+           {enemyBullets.map((b) => (
+             <div
+               key={b.id}
+               className="enemy-bullet"
+               style={{
+                 left: `${b.x}%`,
+                 top: `${b.y}%`,
+                 width: b.type === 'heli' ? "30px" : "20px",
+                 height: b.type === 'heli' ? "30px" : "20px",
+                 backgroundImage: `url(${bullet})`,
+                 backgroundSize: "cover",
+                 position: "absolute",
+                 zIndex: 7,
+                 filter: b.type === 'heli' ? 'drop-shadow(0 0 8px #B22222)' : 'none',
+               }}
+             ></div>
+           ))}
 
           {/* Vẽ Đạn */}
           {bullets.map((bullet) => (
@@ -453,72 +794,70 @@ const TankGame = () => {
                 letterSpacing: '0.5px',
                 textShadow: '1px 1px 2px #000',
               }}>
-                Mục tiêu bị hạ: <span style={{ color: '#FF6B6B' }}>{score}</span> / {BOUND}
+                Mục tiêu đã hạ: <span style={{ color: '#FF6B6B' }}>{score}</span> / {BOUND}
               </div>
             </div>
           </div>
           
-          {/* Thanh máu và cờ giải phóng */}
+           {/* Thanh máu và cờ giải phóng */}
+           <div style={{
+             position: 'absolute',
+             top: '20px',
+             right: '20px',
+             display: 'flex',
+             alignItems: 'center',
+             backgroundColor: 'rgba(0, 0, 0, 0.7)',
+             padding: '10px 15px',
+             borderRadius: '15px',
+             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+             border: '2px solid #2c5e1a',
+           }}>
+             {/* Cờ giải phóng */}
+             <div style={{
+               width: '40px',
+               height: '40px',
+               marginRight: '15px',
+               backgroundImage: `url(${flagImage})`,
+               backgroundSize: 'contain',
+               backgroundRepeat: 'no-repeat',
+               backgroundPosition: 'center',
+             }}></div>
+             {/* Thanh máu dạng progress bar */}
           <div style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',
             display: 'flex',
-            alignItems: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            padding: '10px 15px',
-            borderRadius: '15px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-            border: '2px solid #2c5e1a',
+            flexDirection: 'column',
+            width: '200px',
           }}>
-            {/* Cờ giải phóng */}
             <div style={{
-              width: '40px',
-              height: '40px',
-              marginRight: '15px',
-              backgroundImage: `url(${flagImage})`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-            }}></div>
-            
-            {/* Thanh máu */}
+              fontSize: '14px',
+              color: '#fff',
+              marginBottom: '5px',
+              fontWeight: 'bold',
+              fontFamily: "'Roboto Condensed', 'Arial Narrow', sans-serif",
+              letterSpacing: '0.5px',
+              textShadow: '1px 1px 2px #000',
+            }}>Hồi sinh còn lại: <span style={{color:'#FFD700'}}>{reviveCount}</span></div>
             <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: '200px',
+              width: '100%',
+              height: '15px',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              borderRadius: '10px',
+              overflow: 'hidden',
+              border: '1px solid #fff',
+              boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.5)',
             }}>
               <div style={{
-                fontSize: '14px',
-                color: '#fff',
-                marginBottom: '5px',
-                fontWeight: 'bold',
-                fontFamily: "'Roboto Condensed', 'Arial Narrow', sans-serif",
-                letterSpacing: '0.5px',
-                textShadow: '1px 1px 2px #000',
+                width: `${health}%`,
+                height: '100%',
+                background: `linear-gradient(to right, 
+                  ${health > 60 ? '#4CAF50' : health > 30 ? '#FFC107' : '#F44336'}, 
+                  ${health > 60 ? '#2E7D32' : health > 30 ? '#FF8F00' : '#B71C1C'})`,
+                transition: 'width 0.3s ease-in-out, background 0.3s ease-in-out',
+                boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3)',
               }}></div>
-              
-              <div style={{
-                width: '100%',
-                height: '15px',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                borderRadius: '10px',
-                overflow: 'hidden',
-                border: '1px solid #fff',
-                boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.5)',
-              }}>
-                <div style={{
-                  width: `${health}%`,
-                  height: '100%',
-                  background: `linear-gradient(to right, 
-                    ${health > 60 ? '#4CAF50' : health > 30 ? '#FFC107' : '#F44336'}, 
-                    ${health > 60 ? '#2E7D32' : health > 30 ? '#FF8F00' : '#B71C1C'})`,
-                  transition: 'width 0.3s ease-in-out, background 0.3s ease-in-out',
-                  boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3)',
-                }}></div>
-              </div>
             </div>
-          </div>
+          </div> 
+           </div>
 
           {/* Game Over */}
           {gameOver && (
@@ -528,30 +867,42 @@ const TankGame = () => {
                 {timeLeft === 0 ? 'Hết giờ! Bạn đã không hoàn thành nhiệm vụ.' : 'Xe tăng của bạn đã bị phá hủy!'}
                 <br />
                 Mục tiêu đã hạ: <span style={{ color: '#FF6B6B', fontWeight:'bold' }}>{score}</span> / {BOUND}
+                <br />
+                <span style={{ color: '#bfa600', fontWeight: 500 }}>Hồi sinh còn lại: <b>{reviveCount}</b></span>
               </DialogContent>
               <ButtonContainer>
                 <GameButton onClick={restartGame}>CHƠI LẠI</GameButton>
+                {reviveCount > 0 && (
+                  <GameButton $primary onClick={() => {
+                    setHealth(100);
+                    setGameOver(false);
+                    setReviveCount(c => c - 1);
+                  }}>HỒI SINH ({reviveCount})</GameButton>
+                )}
               </ButtonContainer>
             </DialogBox>
           )}
+
 
 
           {/* Success  */}
           {success && (
             <DialogBox>
-              <DialogHeader>NHIỆM VỤ HOÀN THÀNH!</DialogHeader>
+              <DialogHeader style={{color:'#388e3c'}}>NHIỆM VỤ HOÀN THÀNH!</DialogHeader>
               <DialogContent>
-                THỐNG NHẤT CẬN KỀ, TIẾN LÊN THÔI!!!!
+                <span style={{ color: '#FFD700', fontWeight:600 }}>THỐNG NHẤT CẬN KỀ, TIẾN LÊN THÔI!</span>
                 <br />
                 Mục tiêu đã hạ: <span style={{ color: '#4CAF50', fontWeight:'bold' }}>{score}</span> / {BOUND}
               </DialogContent>
               <ButtonContainer>
-                <GameButton onClick={restartGame}>CHƠI LẠI</GameButton>
-                <GameButton $primary onClick={() => navigate('/narrator')}>TIẾP TỤC</GameButton>
+                <GameButton $primary onClick={handlesuccess}>TỚI DINH ĐỘC LẬP</GameButton>
               </ButtonContainer>
             </DialogBox>
           )}
-        </div>
-      );
-    }
-  export default TankGame;
+
+
+    </div>
+  );
+};
+
+export default TankGame;

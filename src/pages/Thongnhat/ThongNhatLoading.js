@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import background from '../../assets/Thongnhat/images/hcmcampaign.jpg';
+import tankImage from '../../assets/Thongnhat/images/loadingHCMCampaign.png';
+import gateImage from '../../assets/Thongnhat/images/congdinhdoclap.png';
 
 // Animations
 const fadeIn = keyframes`
@@ -31,7 +33,7 @@ const LoadingScreen = styled.div`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
-    url(${props => props.backgroundImage});
+    url(${props => props.$backgroundImage});
   background-size: cover;
   background-position: center;
   display: flex;
@@ -39,7 +41,7 @@ const LoadingScreen = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  animation: ${props => props.isLoading ? fadeIn : fadeOut} 1s ease-in-out;
+  animation: ${props => props.$isLoading ? fadeIn : fadeOut} 1s ease-in-out;
   color: #FFF8DC;
 `;
 
@@ -59,35 +61,54 @@ const LoadingTitle = styled.div`
   filter: drop-shadow(0 0 3px white) drop-shadow(0 0 3px white) drop-shadow(0 0 15px rgba(250, 250, 248, 0.7));
 `;
 
-const LoadingBar = styled.div`
+const ProgressBarContainer = styled.div`
   width: 60%;
   max-width: 500px;
   height: 20px;
-  background-color: rgba(226, 158, 95, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  border: 2px solid rgb(226, 136, 51);
+  margin: 2rem auto 1rem auto;
+  overflow: visible;
+  box-shadow: 0 2px 8px rgba(44, 94, 26, 0.2);
+  position: relative;
 `;
 
-const LoadingProgress = styled.div`
-  width: ${props => props.progress}%;
+const ProgressBar = styled.div`
   height: 100%;
-  background: linear-gradient(90deg, rgb(226, 136, 51), rgb(226, 136, 51));
-  background-size: 1000px 100%;
-  animation: ${shimmer} 2s infinite linear;
-  border-radius: 8px;
-  transition: width 0.5s ease-out;
+  background: linear-gradient(90deg, #2c5e1a 60%, #7dbb3a 100%);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+`;
+
+const TankIcon = styled.img`
+  position: absolute;
+  top: -32px;
+  left: 0;
+  width: 90px;
+  height: 60px;
+  z-index: 2;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+const GateIcon = styled.img`
+  position: absolute;
+  right: -35px;
+  top: -18px;
+  width: 70px;
+  height: 56px;
+  z-index: 2;
 `;
 
 const LoadingMessage = styled.p`
   font-size: 1.2rem;
   margin-top: 1rem;
   font-style: italic;
-  opacity: ${props => props.visible ? '1' : '0'};
+  opacity: ${props => props.$visible ? '1' : '0'};
   transition: opacity 0.5s ease;
   text-align: center;
   max-width: 80%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const StartButton = styled.button`
@@ -101,8 +122,8 @@ const StartButton = styled.button`
   margin-top: 2rem;
   transition: all 0.3s;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  opacity: ${props => props.visible ? '1' : '0'};
-  pointer-events: ${props => props.visible ? 'all' : 'none'};
+  opacity: ${props => props.$visible ? '1' : '0'};
+  pointer-events: ${props => props.$visible ? 'all' : 'none'};
   
   &:hover {
     background-color: rgb(226, 136, 51);
@@ -168,7 +189,7 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
   };
 
   return (
-    <LoadingScreen backgroundImage={background} isLoading={!loadingComplete}>
+    <LoadingScreen $backgroundImage={background} $isLoading={!loadingComplete}>
       <LogoImage 
         src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
         alt="Thống Nhất Logo" 
@@ -182,20 +203,26 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
         />
       </LoadingTitle>
       
-      <LoadingBar>
-        <LoadingProgress progress={loadingProgress} />
-      </LoadingBar>
+      <ProgressBarContainer>
+        <ProgressBar style={{ width: `${loadingProgress}%` }} />
+        <TankIcon
+          src={tankImage}
+          alt="Tank"
+          style={{ left: `calc(${loadingProgress}% - 30px)` }}
+        />
+        <GateIcon src={gateImage} alt="Cổng Dinh Độc Lập" />
+      </ProgressBarContainer>
       
-      <LoadingMessage visible={true}>
+      <LoadingMessage $visible={true}>
         {loadingMessage}
       </LoadingMessage>
       
       {showContinue && (
         <StartButton 
-          visible={true} 
+          $visible={true} 
           onClick={handleStartGame}
         >
-          Tiếp Tục
+          Bắt Đầu Hành Trình
         </StartButton>
       )}
     </LoadingScreen>

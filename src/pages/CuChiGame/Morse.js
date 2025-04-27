@@ -79,6 +79,8 @@ const Morse = () => {
     const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
     const [receiveoverlay, setrece] = useState(false);
 
+
+    
     //
     // fire
     useEffect(() => {
@@ -108,12 +110,15 @@ const Morse = () => {
     useEffect(() => {
       if (sgfinish && hnfinish) {
         // Chờ một khoảng thời gian trước khi hiển thị overlay letter và bắn pháo bông
-        const timeout = setTimeout(() => {
+        const timeout = setTimeout(async () => {
           // Bắt đầu bắn pháo bông
           fireConfetti();
     
           // Hiển thị overlay letter
           setrece(true); // Hiển thị overlay letter
+
+          // Set the co item
+          await setCoItem();
         }, 3000); // Đặt thời gian delay 3 giây (bạn có thể điều chỉnh thời gian này)
     
         // Dọn dẹp timeout khi component unmount hoặc trạng thái thay đổi
@@ -148,7 +153,63 @@ const Morse = () => {
     
     //
 
-    const handleSubmitSG = () => {
+    const updateUserStats = async (object) => {
+      try {
+        const token = localStorage.getItem('token');
+        const username = localStorage.getItem('username');
+        const response = await fetch('/api/users/stats/me', {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            username: username,
+            object: object,
+            amount: 200
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to update ${object}`);
+        }
+
+        const data = await response.json();
+        console.log(`${object} updated:`, data);
+      } catch (error) {
+        console.error(`Error updating ${object}:`, error);
+      }
+    };
+
+    const setCoItem = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const username = localStorage.getItem('username');
+        const response = await fetch('/api/users/stats/set', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            username: username,
+            item: "thu"
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to set co item');
+        }
+
+        const data = await response.json();
+        console.log('Co item set:', data);
+      } catch (error) {
+        console.error('Error setting co item:', error);
+      }
+    };
+
+    const handleSubmitSG = async () => {
       const words = inputSG.trim().split(/\s+/);
       const upperWords = words.map(w => w.toUpperCase());
       
@@ -159,6 +220,8 @@ const Morse = () => {
         setShowAlert(false);
         setShowSuccessOverlay(true);
         setSgIncorrect(false);
+        await updateUserStats("money");
+        await updateUserStats("exp");
       } else {
         sethint1(true);
         sethint2(false);
@@ -170,7 +233,7 @@ const Morse = () => {
       }
     };
     
-    const handleSubmitHN = () => {
+    const handleSubmitHN = async () => {
       const words = inputHN.trim().split(/\s+/);
       const upperWords = words.map(w => w.toUpperCase());
       
@@ -181,6 +244,8 @@ const Morse = () => {
         setsgalert(false);
         setShowSuccessOverlay(true);
         setHnIncorrect(false);
+        await updateUserStats("money");
+        await updateUserStats("exp");
       } else {
         sethint2(true);
         sethint1(false);
@@ -194,18 +259,22 @@ const Morse = () => {
 
   
     const handleNextDialog = () => {
+      // Nếu đã show book thì không cho phép chuyển dialog
+      if (showBook) return;
+      
       if (dialogStep < dialogues.length - 1) {
         setDialogStep(dialogStep + 1);
       } else {
-        // Khi kết thúc hội thoại, hiển thị quyển sách
+        // Khi đến câu cuối cùng, hiển thị book và không cho chuyển tiếp nữa
         setDialogStep(-1);
-        setShowBook(true); // Show the book after dialogues
+        setShowBook(true);
       }
     };
   
     // Hàm xử lý khi click vào bất kỳ đâu
     const handleClickAnywhere = () => {
-      if (!audioPlaying) {
+      // Chỉ cho phép phát nhạc khi còn trong phần dialog và chưa show book
+      if (!audioPlaying && dialogStep !== -1 && !showBook) {
         setAudioPlaying(true);
       }
     };
@@ -264,7 +333,7 @@ const Morse = () => {
                 {/* Letter overlay */}
                 <div className="letter-overlay">
                   <img src={letter} alt="Success Letter" className="letter-img" />
-                  <Link to="/museum" className="button-overlay">
+                  <Link to="/museumpage" className="button-overlay">
                     Trở lại bảo tàng
                   </Link>
                 </div>
@@ -273,15 +342,15 @@ const Morse = () => {
             {/*  */}
 
             {/* Alert thanh thông báo */}
-            {showAlert && (
+            {/* {showAlert && (
               <div className="alert-banner">
-                ️ Chúng ta nhận được mật thư, GIẢI MÃ GẤP!!!!!!!!<br />
+               🎖️ Chúng ta nhận được mật thư, GIẢI MÃ GẤP!!!!!!!!<br />
                 ❌ Công nghệ của ta còn hạn chế nên hãy giải tuần tự để không bị nhiễu sóng!!!!!
                 <button className="close-alert" onClick={() => setShowAlert(false) }>
                   ❌
                 </button>
               </div>
-            )}
+            )} */}
 
             {showhint1 && (
               <div className="alert-banner">
@@ -339,58 +408,6 @@ const Morse = () => {
                 )}
               </div>
 
-
-            {/* morse table */}
-
-            {/* <div className="image-container">
-=======
-
-                {!(sgfinish && hnfinish) && (<img src={morsetable} alt="mtable" className="mtable" />)}
-            </div> */}
-
-            {/*  */}
-
-
-            <div className="audio-buttons">
-      {/* Cặp 1: Mật mã từ Sài Gòn */}
-      {/* <div className="audio-group">
-      <button onClick={() => new Audio(m1).play()}>Mật mã từ Sài Gòn</button>
-      <div className="decode-input">
-        <input
-          type="text"
-          placeholder="Giải mã gấp!!!"
-          value={inputSG}
-          onChange={(e) => setInputSG(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && !sgfinish) {
-              handleSubmitSG();
-            }
-          }}
-          style={{
-            borderColor: sgfinish ? 'green' : 'initial',
-            opacity: sgfinish ? 0.5 : 1, // làm mờ khi hoàn thành
-            pointerEvents: sgfinish ? 'none' : 'auto' // không cho chỉnh khi đã xong
-          }}
-        />
-        <button onClick={handleSubmitSG} disabled={sgfinish}>
-          Submit
-        </button>
-        {!sgfinish && inputSG && (
-          <p style={{ color: 'red', fontSize: '20px' }}>
-            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
-          </p>
-        )}
-        {sgfinish && (
-          <p style={{ color: 'green', fontSize: '20px', opacity: 0.5 }}>
-            ✅ Đã giải mã thành công!
-          </p>
-        )}
-      </div>
-    </div> */}
-
-
-    </div>
-         
             {/* Nhạc nền */}
             {audioPlaying && (
               <ReactAudioPlayer
@@ -408,10 +425,11 @@ const Morse = () => {
         {/* Book Container */}
         {dialogStep === -1 && showBook && (
           <div className="book-container">
+            
             <div className={`book ${isBookOpen ? 'open' : ''}`}>
               <div className="book-cover" onClick={() => setIsBookOpen(true)}>
                 <h2>Mật Thư</h2>
-                <p>Nhấn để mở sách và giải mã mật thư</p>
+                <p>Nhấn để mở và giải mã mật thư</p>
               </div>
               <div className="book-content">
                 {/* Left Page - Morse Table and Map */}
@@ -451,16 +469,16 @@ const Morse = () => {
                           }}
                         />
                         <button onClick={handleSubmitSG} disabled={sgfinish}>
-                          Submit
+                          Kiểm tra
                         </button>
                         {!sgfinish && inputSG && (
                           <p style={{ color: 'red', fontSize: '14px' }}>
-                            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                             Nhanh chóng, chính xác, bảo mật tuyệt đối!
                           </p>
                         )}
                         {sgfinish && (
                           <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
-                            ✅ Đã giải mã thành công!
+                           Đã giải mã thành công!
                           </p>
                         )}
                       </div>
@@ -490,16 +508,16 @@ const Morse = () => {
                           }}
                         />
                         <button onClick={handleSubmitHN} disabled={hnfinish}>
-                          Submit
+                          Kiểm tra
                         </button>
                         {!hnfinish && inputHN && (
                           <p style={{ color: 'red', fontSize: '14px' }}>
-                            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                             Nhanh chóng, chính xác, bảo mật tuyệt đối!
                           </p>
                         )}
                         {hnfinish && (
                           <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
-                            ✅ Đã giải mã thành công!
+                             Đã giải mã thành công!
                           </p>
                         )}
                       </div>

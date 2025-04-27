@@ -20,14 +20,13 @@ const CuChiGameG1 = () => {
   const [loading, setLoading] = useState(true);
   const [dialogStep, setDialogStep] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const navigate = useNavigate();
 
   const toggleMenu = (e) => {
     e.stopPropagation();
-    setIsMenuOpen(!isMenuOpen);
+    setShowMenu(!showMenu);
   };
 
   const handleMenuClick = (path) => {
@@ -46,8 +45,6 @@ const CuChiGameG1 = () => {
     'Địa đạo này bắt đầu từ thời kháng chiến chống Pháp, nhưng đến thời chống Mỹ mới thực sự phát triển mạnh mẽ. Đặc biệt là sau những cuộc càn quét lớn của địch, nó càng được mở rộng và hoàn thiện hơn.',
     'Biệt danh "Làng ngầm trong lòng đất" không phải ngẫu nhiên mà có. Nơi đây là cả một thế giới ngầm, nơi quân và dân ta sống, chiến đấu, và làm nên lịch sử!',
     'Những kỳ tích này sẽ mãi mãi là niềm tự hào của dân tộc ta. Hãy cùng nhau tìm hiểu và ghi nhớ những trang sử hào hùng này!',
-    'Bây giờ, đồng chí hãy thử trả lời một số câu hỏi để xem đã hiểu rõ về địa đạo Củ Chi chưa nhé!',
-    'Chúc đồng chí hoàn thành tốt nhiệm vụ! Hãy cho tôi thấy sự hiểu biết của đồng chí về địa đạo Củ Chi!'
   ];
 
   const questions = [
@@ -129,32 +126,6 @@ const CuChiGameG1 = () => {
     }
   };
 
-
-// phát nhạc liên tục
-// useEffect(() => {
-//   const audio = new Audio(audioFile);
-//   audio.loop = true;
-
-//   audio.play().catch((err) => console.log("Error playing audio:", err));
-
-//   // return () => {
-//   //   audio.pause();        // 👈 Dừng nhạc
-//   //   audio.currentTime = 0; // 👈 Reset về đầu (tuỳ chọn)
-//   // };
-// }, []);
-
-
-//
-
-
-  // // Hàm xử lý khi click vào bất kỳ đâu
-  // const handleClickAnywhere = () => {
-  //   if (!audioPlaying) {
-  //     setAudioPlaying(true);
-  //   }
-  // };
-
-
   return (
     <>
       {loading ? (
@@ -179,13 +150,7 @@ const CuChiGameG1 = () => {
             )}
           </div>
           
-{/* =======
-          <button className="menu-button" onClick={(e) => {
-            e.stopPropagation();
-            setIsMenuOpen(true);
-          }}>☰</button>
-          <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
->>>>>>> 8f54c945a958b2141f23da8ff15aea8032dd5112 */}
+
           <div className="character-wrapper">
             <img src={characterImg} alt="Character" className="character-model" />
 
