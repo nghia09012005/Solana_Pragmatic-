@@ -55,6 +55,7 @@ const LoadingTitle = styled.div`
   height: auto;
   margin-bottom: 3rem;
   text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   filter: drop-shadow(0 0 3px white) drop-shadow(0 0 3px white) drop-shadow(0 0 15px rgba(250, 250, 248, 0.7));
 `;
 
@@ -88,6 +89,7 @@ const LoadingMessage = styled.p`
   text-align: center;
   max-width: 80%;
   color: #d5d5d5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const StartButton = styled.button`
