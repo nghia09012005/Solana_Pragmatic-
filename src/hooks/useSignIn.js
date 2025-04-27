@@ -9,7 +9,7 @@ const useSignIn = () => {
     setMessage("");  // Reset message trước khi thực hiện yêu cầu
 
     try {
-      const response = await fetch('/api/signin', {
+      const response = await fetch('https://wda-be-1.onrender.com/api/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
