@@ -12,7 +12,7 @@ const Usequiz = (questions) => {
     try {
       const token = localStorage.getItem('token');
       const username = localStorage.getItem('username');
-      const response = await fetch('/api/users/stats/me', {
+      const response = await fetch('https://wda-be-1.onrender.com/api/users/stats/me', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -41,7 +41,7 @@ const Usequiz = (questions) => {
     try {
       const token = localStorage.getItem('token');
       const username = localStorage.getItem('username');
-      const response = await fetch('/api/users/stats/me', {
+      const response = await fetch('https://wda-be-1.onrender.com/api/users/stats/me', {
         method: 'POST',
         mode: 'cors',
         headers: {
