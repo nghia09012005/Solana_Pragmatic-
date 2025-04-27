@@ -1139,6 +1139,15 @@ body:has(.overlay) .background button {
 
 /* Responsive mobile */
 @media (max-width: 768px) {
+  .signin-page-box, .signup-page-box {
+    width: 95vw;
+    max-width: 99vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+  }
+
   .hamburger {
     display: block;
     font-size: 30px;
