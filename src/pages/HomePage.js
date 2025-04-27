@@ -70,7 +70,7 @@ const handleSignUp = async () => {
 
   if (!success) {
     // Nếu đăng ký thất bại, hiển thị lỗi
-    alert(message || "Đăng ký thất bại. Tên người dùng đã tồn tại.");
+    alert(message || "Đăng ký thất bại. Tên người dùng đã tồn tại hoặc thông tin bị thiếu.");
   } else {
     // Nếu đăng ký thành công, có thể điều hướng hoặc thực hiện thao tác khác
     alert("Đăng ký thành công!");

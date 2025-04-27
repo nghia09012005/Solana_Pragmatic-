@@ -112,7 +112,7 @@ const Leaderboard = () => {
 
       <div className="leaderboard-tabs">
         <button className="tab-button active">
-          Bảng Xếp Hạng Toàn Cầu
+          <span>Bảng Xếp Hạng Toàn Cầu</span>
         </button>
       </div>
 
