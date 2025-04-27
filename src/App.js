@@ -75,7 +75,6 @@ function App() {
           {/* <Route path="/" element={<ProfilePage />} />  */}
           
 
-
         </Routes>
       </main>
       {/* <Footer /> */}
