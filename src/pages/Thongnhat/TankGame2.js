@@ -425,6 +425,7 @@ const TankGame = () => {
     setObstacles([]);
     setScore(0);
     setHealth(100); // Khôi phục máu về 100%
+    setTimeLeft(60); // Reset thời gian về 60 giây
     setGameOver(false);
     setsucces(false);
     
