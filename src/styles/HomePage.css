@@ -1084,7 +1084,7 @@ body:has(.overlay) .background button {
   text-align: justify;
   justify-content: center;
   font-size: large;
-  margin-left: 50px;
+  margin-left: auto;
   margin-bottom: 100px;
  
 }
