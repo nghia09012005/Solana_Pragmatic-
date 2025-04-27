@@ -1,0 +1,42 @@
+.transition-cover {
+  position: fixed;
+  z-index: 9999;
+  top: -100vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #1a2a38;
+  color: #ffd700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.98;
+  pointer-events: none;
+  transition: none;
+  animation: none;
+}
+
+.transition-cover.show {
+  animation: dropDown 0.6s cubic-bezier(.87,.01,.37,.99) forwards,
+             flyUp 0.7s 0.7s cubic-bezier(.87,.01,.37,.99) forwards;
+}
+
+@keyframes dropDown {
+  from { top: -100vh; }
+  to   { top: 0; }
+}
+@keyframes flyUp {
+  from { top: 0; }
+  to   { top: -100vh; }
+}
+
+.cover-logo {
+  width: 120px;
+  margin-bottom: 24px;
+}
+.cover-title {
+  font-size: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+}

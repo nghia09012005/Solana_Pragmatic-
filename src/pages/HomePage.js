@@ -1,34 +1,46 @@
 import '../styles/HomePage.css'; 
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-// import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import useSignIn from '../hooks/useSignIn';
 import useSignUp from '../hooks/useSignUp';
 
 import Footer from '../components/layout/Footer';
-
+import TransitionCover from "../components/TransitionCover";
+import TransitionLink from "../components/TransitionLink";
 
 function HomePage() {
+  const [showCover, setShowCover] = useState(false);
+  const [nextPath, setNextPath] = useState("");
+  const navigate = useNavigate();
+
+  const handleNavigate = (path) => {
+    setNextPath(path);
+    setShowCover(true);
+    setTimeout(() => {
+      navigate(path);
+      setShowCover(false);
+    }, 1300); // tổng thời gian hiệu ứng (drop + fly)
+  };
+
   const [isVisible, setIsVisible] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false); // Thêm state cho signin box
   const [showSignUp, setShowSignUp] = useState(false); // Thêm state này
   const [isSignin, setissignin] = useState(false);
 
   // signup var 
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
-const [passwordAgain, setPasswordAgain] = useState("");
-const { signUp, loading, message } = useSignUp();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
+  const { signUp, loading, message } = useSignUp();
   //----------
 
-//signin var
-const [signinUsername, setSigninUsername] = useState("");
-const [signinPassword, setSigninPassword] = useState("");
-const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
-//----------
+  //signin var
+  const [signinUsername, setSigninUsername] = useState("");
+  const [signinPassword, setSigninPassword] = useState("");
+  const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
+  //----------
 
-
-// check khi reload trang
+  // check khi reload trang
   // Kiểm tra đăng nhập khi reload trang
   useEffect(() => {
     const user = localStorage.getItem('username');
@@ -42,7 +54,7 @@ const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
     }
   }, []);
 
-//-------------
+  //-------------
 
   
   const switchToSignUp = () => {
@@ -59,98 +71,97 @@ const { signIn, loading: loadingSignIn, message: messageSignIn } = useSignIn();
     }, 300);
   };
 
-// handle signup
-const handleSignUp = async () => {
-  if (password !== passwordAgain) {
-    alert("Mật khẩu không khớp");
-    return;
-  }
+  // handle signup
+  const handleSignUp = async () => {
+    if (password !== passwordAgain) {
+      alert("Mật khẩu không khớp");
+      return;
+    }
 
-  const success = await signUp({ username, password });
+    const success = await signUp({ username, password });
 
-  if (!success) {
-    // Nếu đăng ký thất bại, hiển thị lỗi
-    alert(message || "Đăng ký thất bại. Tên người dùng đã tồn tại hoặc thông tin bị thiếu.");
-    switchToSignUp();
-    return ;
-  } else {
-    // Nếu đăng ký thành công, có thể điều hướng hoặc thực hiện thao tác khác
-    alert("Đăng ký thành công!");
-  }
-  switchToSignIn();
+    if (!success) {
+      // Nếu đăng ký thất bại, hiển thị lỗi
+      alert(message || "Đăng ký thất bại. Tên người dùng đã tồn tại hoặc thông tin bị thiếu.");
+      switchToSignUp();
+      return ;
+    } else {
+      // Nếu đăng ký thành công, có thể điều hướng hoặc thực hiện thao tác khác
+      alert("Đăng ký thành công!");
+    }
+    switchToSignIn();
 
-};
-//--------------
-
-
-//handle signin
-const handleSignIn = async () => {
-  const result = await signIn({ username: signinUsername, password: signinPassword });
-
-  if (result.success) {
-    // Lưu token và username vào localStorage
-    // localStorage.setItem('username', signinUsername);
-    // localStorage.setItem('token', result.token);  // result.token là token nhận được từ API
-    setissignin(true); // Đánh dấu người dùng đã đăng nhập
-    setShowSignIn(false);
-    setShowSignUp(false);
-
-  } else {
-    alert("Đăng nhập thất bại. Vui lòng kiểm tra tài khoản hoặc mật khẩu.");
-  }
-};
-
-const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-
-//----------
-
-useEffect(() => {
-  const handleMouseMove = (e) => {
-    requestAnimationFrame(() => {
-      const icons = document.querySelectorAll('.tech-icon');
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-      
-      icons.forEach(icon => {
-        const speed = parseFloat(icon.getAttribute('data-speed'));
-        const rect = icon.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        // Calculate distance with easing
-        const distanceX = (mouseX - centerX) * 0.1;
-        const distanceY = (mouseY - centerY) * 0.1;
-        
-        // Apply smooth movement
-        const translateX = distanceX * speed;
-        const translateY = distanceY * speed;
-        
-        icon.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
-      });
-    });
   };
+  //--------------
 
-  // Throttle the mousemove event
-  let ticking = false;
-  const throttledMouseMove = (e) => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        handleMouseMove(e);
-        ticking = false;
-      });
-      ticking = true;
+  //handle signin
+  const handleSignIn = async () => {
+    const result = await signIn({ username: signinUsername, password: signinPassword });
+
+    if (result.success) {
+      // Lưu token và username vào localStorage
+      // localStorage.setItem('username', signinUsername);
+      // localStorage.setItem('token', result.token);  // result.token là token nhận được từ API
+      setissignin(true); // Đánh dấu người dùng đã đăng nhập
+      setShowSignIn(false);
+      setShowSignUp(false);
+
+    } else {
+      alert("Đăng nhập thất bại. Vui lòng kiểm tra tài khoản hoặc mật khẩu.");
     }
   };
 
-  window.addEventListener('mousemove', throttledMouseMove);
-  
-  return () => {
-    window.removeEventListener('mousemove', throttledMouseMove);
-  };
-}, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+
+  //----------
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      requestAnimationFrame(() => {
+        const icons = document.querySelectorAll('.tech-icon');
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        icons.forEach(icon => {
+          const speed = parseFloat(icon.getAttribute('data-speed'));
+          const rect = icon.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          
+          // Calculate distance with easing
+          const distanceX = (mouseX - centerX) * 0.1;
+          const distanceY = (mouseY - centerY) * 0.1;
+          
+          // Apply smooth movement
+          const translateX = distanceX * speed;
+          const translateY = distanceY * speed;
+          
+          icon.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+        });
+      });
+    };
+
+    // Throttle the mousemove event
+    let ticking = false;
+    const throttledMouseMove = (e) => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleMouseMove(e);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('mousemove', throttledMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', throttledMouseMove);
+    };
+  }, []);
 
 
   useEffect(() => {
@@ -175,7 +186,11 @@ useEffect(() => {
         setShowSignIn(false);
         setShowSignUp(false);
       }}>TRANG CHỦ</a></li>
-    <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
+    <li>
+      <TransitionLink to="/personalmuseum" onShowCover={() => setShowCover(true)}>
+        BỘ SƯU TẬP
+      </TransitionLink>
+    </li>
     <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
   </ul>
 
@@ -217,6 +232,7 @@ useEffect(() => {
 
       <div className="gold-line"></div>
 
+      <TransitionCover show={showCover} color="#1a2a38" />
       <section className="background">
         <img
           className="homepage-background parallax" data-speed="4"
@@ -237,10 +253,9 @@ useEffect(() => {
         <h3 className={`fade-in-text  ${isVisible ? 'visible' : ''}`}>
         Hóa thân thành người gìn giữ ký ức, vượt qua thử thách ảo ảnh, thu thập mảnh ghép di sản và viết tiếp câu chuyện của quá khứ bằng công nghệ.
         </h3>
-         <Link to="/museum"> 
-          <button >KHÁM PHÁ NGAY!</button>
-        </Link> 
-        
+        <TransitionLink to="/museum" onShowCover={() => setShowCover(true)}>
+          <button>KHÁM PHÁ NGAY!</button>
+        </TransitionLink>
         <div></div>
       </section>
 

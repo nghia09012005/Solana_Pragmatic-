@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Loading from './Loading';
+import Loading from './CuChiLoading';
 import '../../styles/CuChiStyle/Morse.css';
 import ReactAudioPlayer from 'react-audio-player';
 import audioFile from '../../assets/CuChiGame/audio/morse.wav'; // Import tệp âm thanh
