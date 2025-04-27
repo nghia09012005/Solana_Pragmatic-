@@ -1,11 +1,47 @@
 /* Tổng thể */
 .leaderboard-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  color: white;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a); /* nền đen gradient */
+  color: #ffd700; /* vàng ánh kim */
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Orbitron', 'Arial', sans-serif;
+  
+  /* hiệu ứng chiều sâu */
+  box-shadow: inset 0 0 50px #000000, inset 0 0 100px #0d0d0d;
+  
+  /* giảm bớt hiệu ứng phát sáng cho chữ */
+  text-shadow: 0 0 2px #ffd700;
+
+  position: relative;
+  overflow: hidden;
 }
+
+/* Ánh sáng tỏa ra từ giữa - giảm bớt độ sáng */
+.leaderboard-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+  filter: blur(50px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+@keyframes drift {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  100% {
+    transform: rotate(360deg) translate(0, 0);
+  }
+}
+
 
 /* Header */
 .leaderboard-header {
@@ -16,8 +52,8 @@
 }
 
 .back-button {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #FFD700;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -26,24 +62,26 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: white;
+  color: #FFD700;
   margin-right: 20px;
 }
 
 .back-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 215, 0, 0.2);
   transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
+/* Tiêu đề - giảm hiệu ứng đổ bóng */
 .leaderboard-header h1 {
   font-size: 2.5rem;
   margin: 0;
-  background: linear-gradient(45deg, #4CAF50, #2196F3);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #FFD700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
 }
 
+/* Tab với style mới - chỉ đổi viền theo style btn-logout */
 .leaderboard-tabs {
   display: flex;
   gap: 10px;
@@ -52,46 +90,145 @@
 }
 
 .tab-button {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  color: white;
+  position: relative;
+  width: 240px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(to right, 
+    #00ffe0, 
+    #ffe666, 
+    #00b894,
+    #00ffe0
+  );
+  background-size: 300%;
+  animation: animationGradient 5s linear infinite;
+  clip-path: polygon(0 0, 82% 0, 100% 34%, 100% 80%, 100% 99%, 0 100%, 0% 80%, 0% 20%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 0;
+  border: none;
 }
 
-.tab-button:hover, .tab-button.active {
-  background: linear-gradient(45deg, #4CAF50, #2196F3);
+.tab-button::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background: #0e0c15; /* nền tối */
+  border-radius: 10px;
+  clip-path: polygon(0 0, 82% 0, 100% 34%, 100% 80%, 100% 99%, 0 100%, 0% 80%, 0% 20%);
+  z-index: 1;
 }
 
+/* Giảm hiệu ứng đổ bóng cho chữ trong tab */
+.tab-button span {
+  position: relative;
+  z-index: 2;
+  color: #FFD700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  transition: 0.3s;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+.tab-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 224, 0.7), 0 0 25px rgba(255, 230, 102, 0.5);
+}
+
+/* Giảm hiệu ứng khi hover tab */
+.tab-button:hover span {
+  color: #00ffe0;
+  text-shadow: 0 0 5px #00ffe0;
+}
+
+.tab-button.active {
+  background: linear-gradient(to right, 
+    #00ffe0, 
+    #ffe666, 
+    #00b894,
+    #00ffe0
+  );
+  background-size: 300%;
+  animation: animationGradient 5s linear infinite;
+}
+
+/* Giảm hiệu ứng cho tab đang active */
+.tab-button.active span {
+  color: #00ffe0;
+  text-shadow: 0 0 5px #00ffe0;
+  font-weight: bold;
+}
+
+/* Nội dung bảng */
 .leaderboard-content {
   max-width: 800px;
   margin: 0 auto;
 }
 
 .leaderboard-table {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
   overflow: hidden;
   transition: all 0.3s ease;
+  background: linear-gradient(to right, 
+    #FFD700, 
+    #FFC107, 
+    #FF8F00,
+    #FFD700
+  );
+  background-size: 300%;
+  animation: animationGradient 5s linear infinite;
+  clip-path: polygon(0 0, 96% 0, 100% 4%, 100% 96%, 96% 100%, 0 100%, 0% 80%, 0% 4%);
+  padding: 3px;
+}
+
+.leaderboard-table::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background: #0e0c15; /* nền tối */
+  border-radius: 12px;
+  clip-path: polygon(0 0, 96% 0, 100% 4%, 100% 96%, 96% 100%, 0 100%, 0% 80%, 0% 4%);
+  z-index: 1;
 }
 
 .leaderboard-table:hover {
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.5);
   transform: translateY(-5px);
 }
 
+/* Giảm hiệu ứng đổ bóng trên header của bảng */
 .table-header {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 80px 1fr 100px 100px;
   padding: 15px 20px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: bold;
+  color: #FFD700;
+  border-bottom: 2px solid #FFD700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
 }
 
 .table-body {
+  position: relative;
+  z-index: 2;
   max-height: 500px;
   overflow-y: auto;
 }
@@ -105,16 +242,49 @@
   animation: slideIn 0.5s ease-out forwards;
   opacity: 0;
   transform: translateX(-20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 .table-row:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 215, 0, 0.1);
+  box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.1);
 }
 
 .rank-col {
   display: flex;
   justify-content: center;
+  position: relative;
+}
+
+/* Thêm huy chương cho top 3 - CHỈ HIỆN TRONG BẢNG XẾP HẠNG TOÀN CẦU */
+.leaderboard-content > .leaderboard-table .table-row:nth-child(1) .rank-col::before {
+  content: "🥇";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  filter: drop-shadow(0 0 5px gold);
+}
+
+.leaderboard-content > .leaderboard-table .table-row:nth-child(2) .rank-col::before {
+  content: "🥈";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  filter: drop-shadow(0 0 5px silver);
+}
+
+.leaderboard-content > .leaderboard-table .table-row:nth-child(3) .rank-col::before {
+  content: "🥉";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  filter: drop-shadow(0 0 5px #CD7F32);
 }
 
 .rank-number {
@@ -124,23 +294,112 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   font-weight: bold;
+  
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
+/* Special styling for top 3 rank numbers - giảm hiệu ứng đổ bóng */
+.leaderboard-content > .leaderboard-table .table-row:nth-child(1) .rank-number {
+  background: rgba(255, 215, 0, 0.3);
+  color: #FFD700;
+  border-color: #FFD700;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+.leaderboard-content > .leaderboard-table .table-row:nth-child(2) .rank-number {
+  background: rgba(192, 192, 192, 0.3);
+  color: #C0C0C0;
+  border-color: #C0C0C0;
+  box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
+}
+
+.leaderboard-content > .leaderboard-table .table-row:nth-child(3) .rank-number {
+  background: rgba(205, 127, 50, 0.3);
+  color: #CD7F32;
+  border-color: #CD7F32;
+  box-shadow: 0 0 5px rgba(205, 127, 50, 0.3);
+}
+
+/* Giảm hiệu ứng gradient và đổ bóng cho tên người dùng */
 .name-col {
   font-weight: 600;
+  background: linear-gradient(to right, #FFD700, #FFC107);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 3px rgba(255, 215, 0, 0.2);
+  position: relative;
+  padding-left: 5px;
+  transition: all 0.3s ease;
+  position: relative;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Giảm hiệu ứng cho top ranks */
+.table-row:nth-child(1) .name-col {
+  background: linear-gradient(to right, #FFD700, #FFC800);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+  font-weight: bold;
+  letter-spacing: 0.7px;
+}
+
+.table-row:nth-child(2) .name-col {
+  background: linear-gradient(to right, #C0C0C0, #E0E0E0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 5px rgba(192, 192, 192, 0.4);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.table-row:nth-child(3) .name-col {
+  background: linear-gradient(to right, #CD7F32, #E8A87C);
+  -webkit-background-clip: text;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 5px rgba(205, 127, 50, 0.4);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Màu trắng nhạt hơn cho người dùng hạng dưới 3 */
+.table-row:nth-child(n+4) .name-col {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+}
+
+/* Giảm hiệu ứng khi hover tên */
+.name-col:hover {
+  transform: translateX(3px);
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
 }
 
 .score-col {
   font-weight: bold;
-  color: #4CAF50;
+  color: #FFD700;
 }
 
 .time-col {
-  color: #2196F3;
+  color: #FFC107;
 }
 
+/* Hiệu ứng slide cho bảng */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -149,6 +408,12 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes animationGradient {
+  to {
+    background-position: 300%;
   }
 }
 
@@ -163,47 +428,190 @@
 }
 
 .table-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #4CAF50, #2196F3);
+  background: linear-gradient(45deg, #FFD700, #FFC107);
   border-radius: 4px;
 }
 
 .table-body::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #2196F3, #4CAF50);
+  background: linear-gradient(45deg, #FFC107, #FF8F00);
 }
 
+/* Rank hiện tại của người dùng */
 .current-user-rank {
   margin-top: 40px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  position: relative;
+  background: linear-gradient(to right, 
+    #FFD700, 
+    #FFC107, 
+    #FF8F00,
+    #FFD700
+  );
+  background-size: 300%;
+  animation: animationGradient 5s linear infinite;
+  border-radius: 15px;
+  clip-path: polygon(0 0, 96% 0, 100% 4%, 100% 96%, 96% 100%, 0 100%, 0% 80%, 0% 4%);
+  padding: 3px;
+  overflow: hidden;
 }
 
+.current-user-rank::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background: #0e0c15; /* nền tối */
+  border-radius: 12px;
+  clip-path: polygon(0 0, 96% 0, 100% 4%, 100% 96%, 96% 100%, 0 100%, 0% 80%, 0% 4%);
+  z-index: 1;
+}
+
+.current-user-rank:hover {
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 25px rgba(255, 215, 0, 0.6);
+  transform: translateY(-5px);
+}
+
+/* Giảm hiệu ứng cho tiêu đề bảng xếp hạng của bạn */
 .current-user-rank h2 {
-  color: white;
+  color: #FFD700;
   text-align: center;
-  font-size: 1.8em;
+  font-size: 2em;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin-bottom: 20px;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+  font-weight: bold;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
 }
 
+/* Fix the style for the leaderboard table inside current user rank section */
 .current-user-rank .leaderboard-table {
+  position: relative;
   margin-top: 10px;
+  background: none;
+  padding: 0;
+  clip-path: none;
+  animation: none;
+  z-index: 2;
+  border: none;
+  box-shadow: none;
+}
+
+.current-user-rank .leaderboard-table::after {
+  content: none;
+}
+
+.current-user-rank .leaderboard-table:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.current-user-rank .table-header {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Remove medal from current user's rank section */
+.current-user-rank .rank-col::before {
+  content: none !important;
 }
 
 .current-user-row {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   transform: scale(1);
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
   opacity: 1 !important;
   animation: none !important;
   transform: translateX(0) !important;
   border-bottom: none;
 }
 
-.current-user-row:hover {
+/* .current-user-row:hover {
   transform: scale(1.02) !important;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+} */
+
+/* Fix styling for the current user's username */
+.current-user-rank .name-col {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: inherit;
+  text-shadow: none;
 }
+
+/* Override any other styling that might be affecting the current user's name */
+.current-user-row .name-col {
+  position: relative !important;
+  padding-left: 5px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Giảm hiệu ứng cho top ranks trong bảng xếp hạng cá nhân */
+/* Rank 1 styling (gold) - match with global leaderboard */
+.current-user-row[style*="border-left: 4px solid #FFD700"] .name-col {
+  background: linear-gradient(to right, #FFD700, #FFC800) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4) !important;
+  font-weight: bold !important;
+  letter-spacing: 0.7px !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+/* Rank 2 styling (silver) - match with global leaderboard */
+.current-user-row[style*="border-left: 4px solid #C0C0C0"] .name-col {
+  background: linear-gradient(to right, #C0C0C0, #E0E0E0) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  text-shadow: 0 0 5px rgba(192, 192, 192, 0.4) !important;
+  font-weight: bold !important;
+  letter-spacing: 0.5px !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+/* Rank 3 styling (bronze) - match with global leaderboard */
+.current-user-row[style*="border-left: 4px solid #CD7F32"] .name-col {
+  background: linear-gradient(to right, #CD7F32, #E8A87C) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  text-shadow: 0 0 5px rgba(205, 127, 50, 0.4) !important;
+  font-weight: bold !important;
+  letter-spacing: 0.5px !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+/* Default styling for other ranks - match exactly with global leaderboard style for ranks below 3 */
+.current-user-row[style*="border-left: 4px solid #4CAF50"] .name-col {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-shadow: none !important;
+  font-weight: normal !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+/* Match hover effect with global leaderboard */
+.current-user-row .name-col:hover {
+  transform: translateX(3px) !important;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* Crown for current user */
+/* .current-user-row .name-col::after {
+  content: "👑";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+} */
