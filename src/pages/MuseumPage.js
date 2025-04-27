@@ -227,7 +227,7 @@ const Carousel = ({ children }) => {
 
 const MuseumPage = () => {
   const navigate = useNavigate();
-
+if(!localStorage.getItem('username') || !localStorage.getItem('username') ){navigate("/");}
   const goToHome = () => {
     navigate('/');
   };
