@@ -72,7 +72,7 @@ function App() {
            <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />    
-          <Route path="/" element={<ProfilePage />} /> 
+          {/* <Route path="/" element={<ProfilePage />} />  */}
           
 
 
