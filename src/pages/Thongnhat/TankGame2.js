@@ -90,7 +90,7 @@ const GameButton = styled.button`
 `;
 
 const TankGame = () => {
-  const [timeLeft, setTimeLeft] = useState(120); // thời gian còn lại (giây)
+  const [timeLeft, setTimeLeft] = useState(60); // thời gian còn lại (giây)
 
   const [tankPosition, setTankPosition] = useState(50); // Vị trí tank (%)
   const [bullets, setBullets] = useState([]); // Danh sách đạn
@@ -145,6 +145,7 @@ const TankGame = () => {
   }, []);
 
   // useEffect đếm ngược thời gian, không động vào audio nữa
+  if (score >= BOUND) setsucces(true);
   useEffect(() => {
     let timer;
     if (!gameOver && !success && timeLeft > 0) {

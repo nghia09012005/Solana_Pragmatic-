@@ -3,9 +3,9 @@ import bantin from '../../assets/Thongnhat/audio/bantin.wav';
 import backgroundbantin from '../../assets/Thongnhat/audio/backgroundbantin.wav';
 import vidbackground from '../../assets/Thongnhat/video/backgroundvid.mp4';
 import "../../styles/Thongnhat/Bantin.css";
-import character from '../../assets/Thongnhat/images/giai-phong1.png';
 import flag from '../../assets/Thongnhat/images/Comattran.png';
 import { useNavigate } from 'react-router-dom';
+import GameMenu from './GameMenu';
 
 
 const Bantin = () => {
@@ -18,6 +18,7 @@ const Bantin = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [showCharacter, setShowCharacter] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showText, setShowText] = useState(true);
   const [showFlag, setShowFlag] = useState(false);
 
@@ -129,13 +130,13 @@ useEffect(() => {
     }
 
     return () => {
+      // Cleanup audio listeners và trạng thái
       if (bantinAudio) {
         bantinAudio.pause();
         bantinAudio.currentTime = 0;
         bantinAudio.removeEventListener('loadeddata', () => {});
         bantinAudio.removeEventListener('ended', () => {});
       }
-
       if (backgroundAudio) {
         backgroundAudio.pause();
         backgroundAudio.currentTime = 0;
@@ -179,11 +180,12 @@ useEffect(() => {
   };
 
   return (
-    <div className="bantin-container" onClick={() => {
-      if (dialogIndex < dialogues.length - 1) {
-        setDialogIndex(dialogIndex + 1);
-      }
-    }}>
+    <div className="bantin-container">
+      {/* Nút mở menu góc trái trên */}
+      <button className="menu-button" onClick={() => setIsMenuOpen(true)} style={{position:'absolute', top:20, left:20, zIndex:110}} title="Mở menu">☰</button>
+      {/* Menu giống các game khác */}
+      <GameMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+
     {/* Video nền */}
     <video
       autoPlay
@@ -222,7 +224,7 @@ useEffect(() => {
   <div className="overlay" onClick={() => setShowOverlay(false)}>
     <div className="overlay-content">
       <p>Nhận vật phẩm cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam thành công !!!!!!</p>
-      <button onClick={() => navigate("/museumpage")}>Quay về</button>
+      <button onClick={() => navigate("/museum")}>Quay về</button>
     </div>
   </div>
 )}
