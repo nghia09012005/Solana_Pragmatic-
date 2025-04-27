@@ -321,7 +321,7 @@ const Morse = () => {
                 <i className="fas fa-home"></i>
                 <span>Trang chủ</span>
               </div>
-              <div className="menu-item" onClick={() => handleMenuClick('/museumpage')}>
+              <div className="menu-item" onClick={() => handleMenuClick('/museum')}>
                 <i className="fas fa-museum"></i>
                 <span>Bảo tàng cá nhân</span>
               </div>
@@ -343,7 +343,7 @@ const Morse = () => {
                 {/* Letter overlay */}
                 <div className="letter-overlay">
                   <img src={letter} alt="Success Letter" className="letter-img" />
-                  <Link to="/museumpage" className="button-overlay">
+                  <Link to="/museum" className="button-overlay">
                     Trở lại bảo tàng
                   </Link>
                 </div>

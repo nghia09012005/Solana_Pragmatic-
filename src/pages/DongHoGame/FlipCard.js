@@ -194,8 +194,8 @@ const FlipCard = () => {
         setMatched(prev => [...prev, first.img]);
         setInfo(knowledge[first.key]);
         // Update exp and money when cards are matched
-        await updateUserStats("exp");
-        await updateUserStats("money");
+        // await updateUserStats("exp");
+        // await updateUserStats("money");
       }
       setTimeout(() => setFlipped([]), 1000);
     }
@@ -222,7 +222,7 @@ const FlipCard = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
-    navigate('/museumpage'); // Quay về trang chính/bảo tàng
+    navigate('/museum'); // Quay về trang chính/bảo tàng
   };
 
   return (
