@@ -2233,7 +2233,7 @@ const TayNguyenGongsGame = () => {
         },
         body: JSON.stringify({
           username: username,
-          object: "congchieng"
+          item: "congchieng"
         })
       });
 
