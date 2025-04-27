@@ -222,7 +222,7 @@ useEffect(() => {
   <div className="overlay" onClick={() => setShowOverlay(false)}>
     <div className="overlay-content">
       <p>Nhận vật phẩm cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam thành công !!!!!!</p>
-      <button onClick={() => navigate("/museumpage")}>Quay về</button>
+      <button onClick={() => navigate("/museum")}>Quay về</button>
     </div>
   </div>
 )}
