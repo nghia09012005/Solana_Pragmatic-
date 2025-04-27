@@ -79,6 +79,8 @@ const Morse = () => {
     const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
     const [receiveoverlay, setrece] = useState(false);
 
+
+    
     //
     // fire
     useEffect(() => {
@@ -340,7 +342,7 @@ const Morse = () => {
             {/*  */}
 
             {/* Alert thanh thông báo */}
-            {showAlert && (
+            {/* {showAlert && (
               <div className="alert-banner">
                🎖️ Chúng ta nhận được mật thư, GIẢI MÃ GẤP!!!!!!!!<br />
                 ❌ Công nghệ của ta còn hạn chế nên hãy giải tuần tự để không bị nhiễu sóng!!!!!
@@ -348,7 +350,7 @@ const Morse = () => {
                   ❌
                 </button>
               </div>
-            )}
+            )} */}
 
             {showhint1 && (
               <div className="alert-banner">
@@ -423,10 +425,11 @@ const Morse = () => {
         {/* Book Container */}
         {dialogStep === -1 && showBook && (
           <div className="book-container">
+            
             <div className={`book ${isBookOpen ? 'open' : ''}`}>
               <div className="book-cover" onClick={() => setIsBookOpen(true)}>
                 <h2>Mật Thư</h2>
-                <p>Nhấn để mở sách và giải mã mật thư</p>
+                <p>Nhấn để mở và giải mã mật thư</p>
               </div>
               <div className="book-content">
                 {/* Left Page - Morse Table and Map */}
@@ -466,16 +469,16 @@ const Morse = () => {
                           }}
                         />
                         <button onClick={handleSubmitSG} disabled={sgfinish}>
-                          Submit
+                          Kiểm tra
                         </button>
                         {!sgfinish && inputSG && (
                           <p style={{ color: 'red', fontSize: '14px' }}>
-                            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                             Nhanh chóng, chính xác, bảo mật tuyệt đối!
                           </p>
                         )}
                         {sgfinish && (
                           <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
-                            ✅ Đã giải mã thành công!
+                           Đã giải mã thành công!
                           </p>
                         )}
                       </div>
@@ -505,16 +508,16 @@ const Morse = () => {
                           }}
                         />
                         <button onClick={handleSubmitHN} disabled={hnfinish}>
-                          Submit
+                          Kiểm tra
                         </button>
                         {!hnfinish && inputHN && (
                           <p style={{ color: 'red', fontSize: '14px' }}>
-                            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                             Nhanh chóng, chính xác, bảo mật tuyệt đối!
                           </p>
                         )}
                         {hnfinish && (
                           <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
-                            ✅ Đã giải mã thành công!
+                             Đã giải mã thành công!
                           </p>
                         )}
                       </div>
