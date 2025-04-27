@@ -98,6 +98,7 @@ const StartButton = styled.button`
   border-radius: 50px;
   cursor: pointer;
   font-size: 1.5rem;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif  ;
   margin-top: 2rem;
   transition: all 0.3s;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -105,7 +106,7 @@ const StartButton = styled.button`
   pointer-events: ${props => props.visible ? 'all' : 'none'};
   
   &:hover {
-    background-color: rgb(255, 53, 2);
+    background-color: #8B0000;
     transform: scale(1.05);
   }
   

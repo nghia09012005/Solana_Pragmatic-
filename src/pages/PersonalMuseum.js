@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/PersonalMuseum.css';
 import museumbg from '../assets/PersonalMuseum/museum1.png';
-import artifact1 from '../assets/PersonalMuseum/Comattran.svg';
+import artifact1 from '../assets/PersonalMuseum/Comattran.png';
 import artifact2 from '../assets/PersonalMuseum/successletter.png';
 import artifact3 from '../assets/PersonalMuseum/tranh-dong-ho.png';
 import artifact4 from '../assets/PersonalMuseum/cong_chieng.png';

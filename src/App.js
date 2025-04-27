@@ -40,7 +40,7 @@ function App() {
 
         <Route path="/" element={<HomePage />} />
         
-        <Route path="/museumpage" element={<MuseumPage />} />
+        <Route path="/museum" element={<MuseumPage />} />
 
           <Route path="/personalmuseum" element={<PersonalMuseum />} />
 

@@ -186,7 +186,11 @@ const Card = ({ artwork, isActive }) => {
 };  
 
 const Carousel = ({ children }) => {  
-  const [active, setActive] = useState(0);  
+  // Khôi phục vị trí carousel từ localStorage (nếu có)
+  const [active, setActive] = useState(() => {
+    const saved = localStorage.getItem('museum-carousel-index');
+    return saved !== null ? Number(saved) : 0;
+  });
   const count = React.Children.count(children);  
 
   return (  

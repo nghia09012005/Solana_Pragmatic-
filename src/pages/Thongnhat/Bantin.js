@@ -4,7 +4,7 @@ import backgroundbantin from '../../assets/Thongnhat/audio/backgroundbantin.wav'
 import vidbackground from '../../assets/Thongnhat/video/backgroundvid.mp4';
 import "../../styles/Thongnhat/Bantin.css";
 import character from '../../assets/Thongnhat/images/giai-phong1.png';
-import flag from '../../assets/Thongnhat/images/Comattran.svg';
+import flag from '../../assets/Thongnhat/images/Comattran.png';
 import { useNavigate } from 'react-router-dom';
 
 
