@@ -32,7 +32,7 @@ const ProfilePage = () => {
     }
 
     try {
-      const response = await fetch(`/api/users/stats/${username}`, {
+      const response = await fetch(`https://wda-be-1.onrender.com/api/users/stats/${username}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
