@@ -195,7 +195,7 @@
   100% { transform: translateY(50%) rotate(360deg); }
 }
 
-/* Thêm hiệu ứng nhiễu */
+/* Thêm hiệu ứng nhiễu
 .cyberpunk-loader::after {
   content: '';
   position: absolute;
@@ -204,5 +204,5 @@
   opacity: 0.05;
   mix-blend-mode: overlay;
   pointer-events: none;
-}
+} */
 
