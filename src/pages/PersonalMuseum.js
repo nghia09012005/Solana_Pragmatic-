@@ -8,7 +8,7 @@ import artifact4 from '../assets/PersonalMuseum/cong_chieng.png';
 import museumMusic from '../assets/PersonalMuseum/audio/acoustic.mp3';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft, FaSave, FaUndo } from 'react-icons/fa';
-
+import { useNavigate } from 'react-router-dom';
 const addPositions = [
   { top: '60%', left: '15%', scale: 0.5 },
   { top: '35%', left: '25%', scale: 0.5 },
@@ -69,6 +69,9 @@ const PersonalMuseum = () => {
   const [showSaveSuccess, setShowSaveSuccess] = useState(false);
   const [originalArtifacts, setOriginalArtifacts] = useState(null); // Lưu trạng thái ban đầu khi tải trang
   const audioRef = useRef(null);
+
+  const navigate = useNavigate();
+  if(!localStorage.getItem('username') || !localStorage.getItem('username') ){navigate("/");}
 
   // Initialize audio
   useEffect(() => {
