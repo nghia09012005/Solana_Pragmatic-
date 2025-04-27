@@ -219,8 +219,8 @@
 }
 
 .back-button {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #FFD700;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -229,23 +229,22 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: white;
+  color: #FFD700;
   margin-right: 20px;
 }
 
 .back-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 215, 0, 0.2);
   transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
 /* Tiêu đề */
 .leaderboard-header h1 {
   font-size: 2.5rem;
   margin: 0;
-  background: linear-gradient(45deg, #ffd700, #ffa500); /* Gold */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 /* Tab */
@@ -258,24 +257,25 @@
 
 .tab-button {
   padding: 10px 20px;
-  border: none;
+  border: 2px solid #FFD700;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: rgba(255, 215, 0, 0.1);
+  color: #FFD700;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1rem;
 }
 
 .tab-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
 }
 
 .tab-button.active {
-  background: linear-gradient(45deg, #ffd700, #ffa500); /* Gold */
+  background: linear-gradient(45deg, #FFD700, #FFA500);
   color: #1a1a2e;
   font-weight: bold;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
 }
 
 /* Nội dung bảng */
@@ -285,19 +285,21 @@
 }
 
 .leaderboard-table {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border: 2px solid #FFD700;
 }
 
 .table-header {
   display: grid;
   grid-template-columns: 80px 1fr 100px 100px;
   padding: 15px 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   font-weight: bold;
-  color: #ffd700; /* Gold */
+  color: #FFD700;
+  border-bottom: 2px solid #FFD700;
 }
 
 .table-body {
@@ -314,10 +316,11 @@
   animation: slideIn 0.5s ease-out forwards;
   opacity: 0;
   transform: translateX(-20px);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 .table-row:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 215, 0, 0.1);
 }
 
 .rank-col {
@@ -332,21 +335,24 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   font-weight: bold;
+  color: #FFD700;
+  border: 2px solid #FFD700;
 }
 
 .name-col {
   font-weight: 500;
+  color: #FFD700;
 }
 
 .score-col {
   font-weight: bold;
-  color: #4CAF50; /* Green color for scores */
+  color: #FFD700;
 }
 
 .time-col {
-  color: #888;
+  color: #FFD700;
 }
 
 /* Hiệu ứng slide cho bảng */
@@ -367,26 +373,27 @@
 }
 
 .table-body::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
 
 .table-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #ffd700, #ffa500); /* Gold scrollbar thumb */
+  background: linear-gradient(45deg, #FFD700, #FFA500);
   border-radius: 4px;
 }
 
 .table-body::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #ffa500, #ff8c00); /* Darker gold thumb */
+  background: linear-gradient(45deg, #FFA500, #FF8C00);
 }
 
 /* Rank hiện tại của người dùng */
 .current-user-rank {
   margin-top: 40px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  border: 2px solid #FFD700;
 }
 
 .current-user-rank h2 {
@@ -400,14 +407,14 @@
 }
 
 .current-user-row {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   transform: scale(1.02);
   transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
 .current-user-row:hover {
   transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.5);
 }
