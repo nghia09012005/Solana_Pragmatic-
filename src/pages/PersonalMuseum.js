@@ -5,7 +5,7 @@ import artifact1 from '../assets/PersonalMuseum/Comattran.svg';
 import artifact2 from '../assets/PersonalMuseum/successletter.png';
 import artifact3 from '../assets/PersonalMuseum/tranh-dong-ho.png';
 import artifact4 from '../assets/PersonalMuseum/cong_chieng.png';
-import museumMusic from '../assets/PersonalMuseum/audio/acoustic.wav';
+import museumMusic from '../assets/PersonalMuseum/audio/acoustic.mp3';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft, FaSave, FaUndo } from 'react-icons/fa';
 
