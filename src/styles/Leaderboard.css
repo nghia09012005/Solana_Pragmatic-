@@ -4,20 +4,19 @@
   background: linear-gradient(135deg, #0a0a0a, #1a1a1a); /* nền đen gradient */
   color: #ffd700; /* vàng ánh kim */
   padding: 20px;
-  font-family: 'Orbitron', 'Arial', sans-serif; /* font cyberpunk thêm vibe */
-
+  font-family: 'Orbitron', 'Arial', sans-serif;
+  
   /* hiệu ứng chiều sâu */
   box-shadow: inset 0 0 50px #000000, inset 0 0 100px #0d0d0d;
   
-  /* chữ phát sáng nhẹ */
-  text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
+  /* giảm bớt hiệu ứng phát sáng cho chữ */
+  text-shadow: 0 0 2px #ffd700;
 
-  /* chuẩn bị hiệu ứng ánh sáng ở giữa */
   position: relative;
   overflow: hidden;
 }
 
-/* Ánh sáng tỏa ra từ giữa */
+/* Ánh sáng tỏa ra từ giữa - giảm bớt độ sáng */
 .leaderboard-container::after {
   content: "";
   position: absolute;
@@ -26,9 +25,9 @@
   transform: translate(-50%, -50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
-  filter: blur(50px); /* làm ánh sáng mờ mịn */
-  opacity: 0.5;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+  filter: blur(50px);
+  opacity: 0.3;
   pointer-events: none;
   z-index: 0;
 }
@@ -73,12 +72,13 @@
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
-/* Tiêu đề */
+/* Tiêu đề - giảm hiệu ứng đổ bóng */
 .leaderboard-header h1 {
   font-size: 2.5rem;
   margin: 0;
   color: #FFD700;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
 }
 
 /* Tab với style mới - chỉ đổi viền theo style btn-logout */
@@ -110,6 +110,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   padding: 0;
   border: none;
 }
@@ -127,15 +128,16 @@
   z-index: 1;
 }
 
+/* Giảm hiệu ứng đổ bóng cho chữ trong tab */
 .tab-button span {
   position: relative;
   z-index: 2;
   color: #FFD700;
-  font-family: 'Roboto Mono', monospace;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   transition: 0.3s;
   font-weight: bold;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
 }
 
 .tab-button:hover {
@@ -143,9 +145,10 @@
   box-shadow: 0 0 15px rgba(0, 255, 224, 0.7), 0 0 25px rgba(255, 230, 102, 0.5);
 }
 
+/* Giảm hiệu ứng khi hover tab */
 .tab-button:hover span {
   color: #00ffe0;
-  text-shadow: 0 0 10px #00ffe0, 0 0 20px #ffe666;
+  text-shadow: 0 0 5px #00ffe0;
 }
 
 .tab-button.active {
@@ -159,9 +162,10 @@
   animation: animationGradient 5s linear infinite;
 }
 
+/* Giảm hiệu ứng cho tab đang active */
 .tab-button.active span {
   color: #00ffe0;
-  text-shadow: 0 0 10px #00ffe0, 0 0 20px #ffe666;
+  text-shadow: 0 0 5px #00ffe0;
   font-weight: bold;
 }
 
@@ -207,6 +211,7 @@
   transform: translateY(-5px);
 }
 
+/* Giảm hiệu ứng đổ bóng trên header của bảng */
 .table-header {
   position: relative;
   z-index: 2;
@@ -214,10 +219,11 @@
   grid-template-columns: 80px 1fr 100px 100px;
   padding: 15px 20px;
   background: rgba(0, 0, 0, 0.5);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: bold;
   color: #FFD700;
   border-bottom: 2px solid #FFD700;
-  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
 }
 
 .table-body {
@@ -290,55 +296,57 @@
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
   font-weight: bold;
+  
   color: #FFD700;
   border: 2px solid #FFD700;
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
-/* Special styling for top 3 rank numbers */
+/* Special styling for top 3 rank numbers - giảm hiệu ứng đổ bóng */
 .leaderboard-content > .leaderboard-table .table-row:nth-child(1) .rank-number {
   background: rgba(255, 215, 0, 0.3);
   color: #FFD700;
   border-color: #FFD700;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
 }
 
 .leaderboard-content > .leaderboard-table .table-row:nth-child(2) .rank-number {
   background: rgba(192, 192, 192, 0.3);
   color: #C0C0C0;
   border-color: #C0C0C0;
-  box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+  box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
 }
 
 .leaderboard-content > .leaderboard-table .table-row:nth-child(3) .rank-number {
   background: rgba(205, 127, 50, 0.3);
   color: #CD7F32;
   border-color: #CD7F32;
-  box-shadow: 0 0 15px rgba(205, 127, 50, 0.5);
+  box-shadow: 0 0 5px rgba(205, 127, 50, 0.3);
 }
 
-/* Enhanced styling for all usernames in global ranking */
+/* Giảm hiệu ứng gradient và đổ bóng cho tên người dùng */
 .name-col {
   font-weight: 600;
   background: linear-gradient(to right, #FFD700, #FFC107);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  text-shadow: 0 0 3px rgba(255, 215, 0, 0.2);
   position: relative;
   padding-left: 5px;
   transition: all 0.3s ease;
   position: relative;
-  font-family: 'Roboto Mono', monospace;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Special color styling for top ranks */
+/* Giảm hiệu ứng cho top ranks */
 .table-row:nth-child(1) .name-col {
   background: linear-gradient(to right, #FFD700, #FFC800);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
   font-weight: bold;
   letter-spacing: 0.7px;
 }
@@ -348,7 +356,8 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
+  text-shadow: 0 0 5px rgba(192, 192, 192, 0.4);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: bold;
   letter-spacing: 0.5px;
 }
@@ -356,26 +365,29 @@
 .table-row:nth-child(3) .name-col {
   background: linear-gradient(to right, #CD7F32, #E8A87C);
   -webkit-background-clip: text;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 15px rgba(205, 127, 50, 0.7);
+  text-shadow: 0 0 5px rgba(205, 127, 50, 0.4);
   font-weight: bold;
   letter-spacing: 0.5px;
 }
 
-/* Màu trắng nhạt cho người dùng hạng dưới 3 */
+/* Màu trắng nhạt hơn cho người dùng hạng dưới 3 */
 .table-row:nth-child(n+4) .name-col {
   background: none;
   -webkit-background-clip: unset;
   background-clip: unset;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: normal;
 }
 
+/* Giảm hiệu ứng khi hover tên */
 .name-col:hover {
   transform: translateX(3px);
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.7);
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
 }
 
 .score-col {
@@ -461,12 +473,14 @@
   transform: translateY(-5px);
 }
 
+/* Giảm hiệu ứng cho tiêu đề bảng xếp hạng của bạn */
 .current-user-rank h2 {
   color: #FFD700;
   text-align: center;
   font-size: 2em;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin-bottom: 20px;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
   font-weight: bold;
   letter-spacing: 1px;
   position: relative;
@@ -516,72 +530,88 @@
   border-bottom: none;
 }
 
-.current-user-row:hover {
+/* .current-user-row:hover {
   transform: scale(1.02) !important;
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-}
+} */
 
 /* Fix styling for the current user's username */
 .current-user-rank .name-col {
-  /* Remove all properties from here to avoid conflict */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: inherit;
+  text-shadow: none;
 }
 
 /* Override any other styling that might be affecting the current user's name */
 .current-user-row .name-col {
-  /* Use the same color styling based on the user's rank in the global leaderboard */
-  font-weight: bold !important;
-  letter-spacing: 0.5px !important;
   position: relative !important;
+  padding-left: 5px !important;
+  transition: all 0.3s ease !important;
 }
 
-/* Rank 1 styling (gold) */
+/* Giảm hiệu ứng cho top ranks trong bảng xếp hạng cá nhân */
+/* Rank 1 styling (gold) - match with global leaderboard */
 .current-user-row[style*="border-left: 4px solid #FFD700"] .name-col {
   background: linear-gradient(to right, #FFD700, #FFC800) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.7) !important;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4) !important;
+  font-weight: bold !important;
+  letter-spacing: 0.7px !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
 
-/* Rank 2 styling (silver) */
+/* Rank 2 styling (silver) - match with global leaderboard */
 .current-user-row[style*="border-left: 4px solid #C0C0C0"] .name-col {
   background: linear-gradient(to right, #C0C0C0, #E0E0E0) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
-  text-shadow: 0 0 15px rgba(192, 192, 192, 0.7) !important;
+  text-shadow: 0 0 5px rgba(192, 192, 192, 0.4) !important;
+  font-weight: bold !important;
+  letter-spacing: 0.5px !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
 
-/* Rank 3 styling (bronze) */
+/* Rank 3 styling (bronze) - match with global leaderboard */
 .current-user-row[style*="border-left: 4px solid #CD7F32"] .name-col {
   background: linear-gradient(to right, #CD7F32, #E8A87C) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
-  text-shadow: 0 0 15px rgba(205, 127, 50, 0.7) !important;
+  text-shadow: 0 0 5px rgba(205, 127, 50, 0.4) !important;
+  font-weight: bold !important;
+  letter-spacing: 0.5px !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
 
-/* Default styling for other ranks - changed to white */
+/* Default styling for other ranks - match exactly with global leaderboard style for ranks below 3 */
 .current-user-row[style*="border-left: 4px solid #4CAF50"] .name-col {
   background: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-shadow: none !important;
+  font-weight: normal !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
 
+/* Match hover effect with global leaderboard */
 .current-user-row .name-col:hover {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8) !important;
-  transform: translateX(3px);
+  transform: translateX(3px) !important;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.4) !important;
 }
 
 /* Crown for current user */
-.current-user-row .name-col::after {
+/* .current-user-row .name-col::after {
   content: "👑";
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 16px;
-}
+} */
