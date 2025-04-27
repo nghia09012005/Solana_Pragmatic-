@@ -142,17 +142,80 @@
   box-shadow: 2px 0 16px #006A4E;
 }
 
+/**
+ * Container for the tank game
+ * 
+ * Chiếm toàn bộ chiêù rộng và cao màn hình
+ * Màu nền là #2d2d2d
+ * Hiển thị flexbox, căn chỉnh nội dung vào trung tâm màn hình
+ * Ảnh nền là ảnh nền trong game
+ */
 .tank-container {
-  width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
-  height: 100vh; /* Chiếm toàn bộ chiều cao màn hình */
-  background-color: #2d2d2d;
   position: relative;
+  width: 100vw;
+  max-width: 1600px;
+  height: 100vh;
+  background-color: #2d2d2d;
   overflow: hidden;
-  border: none; /* Loại bỏ border nếu không cần thiết */
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../../assets/Thongnhat/images/Dinhdoclapcali.jpeg"); /* hoặc ảnh nền khác */
+  margin: 0 auto;
+}
+
+.background-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26vw;
+  height: 100vh;
+  background: url("../../assets/Thongnhat/images/background_left.png") repeat-y left top;
+  background-size: cover;
+  z-index: 0;
+  animation: road-move-side 2.4s linear infinite;
+}
+
+.background-center {
+  position: absolute;
+  top: -10vh;
+  left: 26vw;
+  width: 48vw;
+  height: 120vh;
+  background: url("../../assets/Thongnhat/images/background_center.png") repeat-y center top;
+  background-size: cover;
+  z-index: 0;
+  animation: road-move 4s linear infinite;
+}
+
+@keyframes road-move {
+  0% {
+    background-position-y: 100%;
+  }
+  100% {
+    background-position-y: 0%;
+  }
+}
+
+@keyframes road-move-side {
+  0% {
+    background-position-y: 100%;
+  }
+  100% {
+    background-position-y: 0%;
+  }
+}
+
+.background-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 26vw;
+  height: 100vh;
+  background: url("../../assets/Thongnhat/images/background_right.png") repeat-y right top;
+  background-size: cover;
+  z-index: 0;
+  animation: road-move-side 2.4s linear infinite;
 }
 
 /* Tank */

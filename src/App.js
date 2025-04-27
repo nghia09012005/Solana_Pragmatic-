@@ -54,8 +54,6 @@ function App() {
            <Route path="/cuchigame" element={<CuChiGameG1/>} />
            <Route path="/morse" element={<Morse />} />
            <Route path="/bantin" element={<Bantin />} />
-        
-           
 
           
           <Route path="/profile" element={<ProfilePage />} /> 
@@ -76,7 +74,6 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />    
           {/* <Route path="/" element={<ProfilePage />} />  */}
           
-
 
         </Routes>
       </main>

@@ -167,28 +167,28 @@ const TankGame = () => {
   // Sinh xe tăng địch và máy bay địch
   useEffect(() => {
     if (gameOver || success) return;
-    // Sinh xe tăng địch mỗi 2.5-4s
+    // Sinh xe tăng địch mỗi 1-2s
     const tankInterval = setInterval(() => {
       setEnemyTanks(prev => [...prev, {
         id: Date.now() + Math.random(),
-        x: Math.random() * 90,
+        x: 30 + Math.random() * 40,
         y: 0,
         direction: Math.random() > 0.5 ? 1 : -1, // trái/phải
         lastFire: Date.now(),
         health: 3 // Xe tăng địch có 3 máu
       }]);
-    }, 2500 + Math.random() * 1500);
-    // Sinh máy bay địch mỗi 5-7s
+    }, 1000 + Math.random() * 1000);
+    // Sinh máy bay địch mỗi 2.5-4s
     const heliInterval = setInterval(() => {
       setHelicopters(prev => [...prev, {
         id: Date.now() + Math.random(),
-        x: Math.random() * 90,
+        x: 30 + Math.random() * 40,
         y: 0,
         direction: Math.random() > 0.5 ? 1 : -1, // trái/phải
         lastFire: Date.now(),
         health: 2 // Máy bay địch có 2 máu
       }]);
-    }, 5000 + Math.random() * 2000);
+    }, 2500 + Math.random() * 1500);
     return () => {
       clearInterval(tankInterval);
       clearInterval(heliInterval);
@@ -304,10 +304,10 @@ const TankGame = () => {
   // Di chuyển tank bằng phím mũi tên
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "ArrowLeft" && tankPosition > 0) {
-        setTankPosition((prev) => Math.max(prev - 5, 0));
-      } else if (e.key === "ArrowRight" && tankPosition < 100) {
-        setTankPosition((prev) => Math.min(prev + 5, 100));
+      if (e.key === "ArrowLeft" && tankPosition > 30) {
+        setTankPosition((prev) => Math.max(prev - 5, 30));
+      } else if (e.key === "ArrowRight" && tankPosition < 70) {
+        setTankPosition((prev) => Math.min(prev + 5, 70));
       } else if (e.key === " " && !gameOver) {
         fireBullet(); // Bắn đạn khi nhấn phím cách
       }
@@ -323,7 +323,7 @@ const TankGame = () => {
     const obstacleInterval = setInterval(() => {
       setObstacles((prev) => [
         ...prev,
-        { id: Date.now(), x: Math.random() * 90, y: 0 },
+        { id: Date.now(), x: 30 + Math.random() * 40, y: 0 },
       ]);
     }, 2000);
 
@@ -425,6 +425,7 @@ const TankGame = () => {
     setObstacles([]);
     setScore(0);
     setHealth(100); // Khôi phục máu về 100%
+    setTimeLeft(60); // Reset thời gian về 60 giây
     setGameOver(false);
     setsucces(false);
     
@@ -520,6 +521,11 @@ const TankGame = () => {
 
   return (
     <div className="tank-container" onClick={() => setIsMenuOpen(false)} style={{ position: 'relative' }}>
+      {/* Layered backgrounds */}
+      <div className="background-left"></div>
+      <div className="background-center"></div>
+      <div className="background-right"></div>
+
       <button className="menu-button" onClick={(e) => {
         e.stopPropagation();
         setIsMenuOpen(true);

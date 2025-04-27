@@ -202,7 +202,7 @@ const TankGame = () => {
         ...prev,
         { id: Date.now(), x: Math.random() * 90, y: 0 },
       ]);
-    }, 2000);
+    }, 1000); // tăng tần suất, 1s xuất hiện 1 vật cản
 
     const moveObstaclesInterval = setInterval(() => {
       setObstacles((prev) =>
@@ -238,8 +238,8 @@ const TankGame = () => {
     bullets.forEach((b) => {
       obstacles.forEach((obs) => {
         if (
-          Math.abs(b.x - obs.x) < 7 &&
-          Math.abs(b.y - obs.y) < 7 &&
+          Math.abs(b.x - obs.x) < 14 &&
+          Math.abs(b.y - obs.y) < 14 &&
           !obs.isExploding
         ) {
           // Va chạm: xóa đạn, phát nổ chướng ngại vật, tăng điểm
@@ -262,7 +262,7 @@ const TankGame = () => {
       if (
         obs.y >= 85 && // Khi chướng ngại vật gần tới phần dưới của màn hình
         obs.y <= 95 && // Chạm vào khu vực thấp nhất gần tank
-        Math.abs(obs.x - tankPosition) < 5 &&
+        Math.abs(obs.x - tankPosition) < 20 && // tăng vùng va chạm gấp đôi
         obs.y + 10 >= 85 && obs.y <= 95 && // Chạm vào tank (có thể điều chỉnh khoảng cách nếu cần)
         !gameOver // Chỉ xử lý va chạm khi game chưa kết thúc
       ) {
@@ -302,6 +302,7 @@ const TankGame = () => {
     setObstacles([]);
     setScore(0);
     setHealth(100); // Khôi phục máu về 100%
+    setTimeLeft(60); // Reset thời gian về 60 giây
     setGameOver(false);
     setsucces(false);
     
@@ -316,6 +317,11 @@ const TankGame = () => {
 
   return (
     <div className="tank-container" onClick={() => setIsMenuOpen(false)} style={{ position: 'relative' }}>
+      {/* Layered backgrounds */}
+      <div className="background-left"></div>
+      <div className="background-center"></div>
+      <div className="background-right"></div>
+
       <button className="menu-button" onClick={(e) => {
         e.stopPropagation();
         setIsMenuOpen(true);
@@ -331,13 +337,14 @@ const TankGame = () => {
           <div
             className="tank"
             style={{
-              left: `${tankPosition}%`,
+              left: `${Math.max(30, Math.min(tankPosition, 70))}%`, // Giới hạn tank ta trong vùng center
               transform: "translateX(-50%)",
               backgroundImage: `url(${tankImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              width: "150px",
-              height: "150px",
+              width: "180px", // phóng to 1.2 lần
+              height: "180px", // phóng to 1.2 lần
+              zIndex: 15
             }}
           ></div>
 
@@ -347,15 +354,15 @@ const TankGame = () => {
             key={bullet.id}
             className="bullet"
             style={{
-              left: `${bullet.x}%`,
+              left: `${Math.max(30, Math.min(bullet.x, 70))}%`, // chỉ cho đạn xuất hiện trong vùng center
               top: `${bullet.y}%`,
-              // Chỉ định đúng đường dẫn ảnh
-              backgroundImage: `url(${bullet})`, // Đảm bảo rằng bulletImage là đường dẫn hình ảnh đúng
+              backgroundImage: `url(${bullet})`,
               backgroundSize: "cover",
-              width: "30px",
-              height: "30px",
+              width: "36px", // phóng to 1.2 lần
+              height: "36px", // phóng to 1.2 lần
               position: "absolute",
-              }}
+              zIndex: 13
+            }}
             ></div>
           ))}
 
@@ -367,10 +374,10 @@ const TankGame = () => {
                 src={explosionGif}
                 alt="Explosion"
                 style={{
-                  left: `${obs.x}%`,
+                  left: `${Math.max(30, Math.min(obs.x, 70))}%`, // chỉ cho vật cản xuất hiện trong vùng center
                   top: `${obs.y}%`,
-                  width: "150px",
-                  height: "150px",
+                  width: "180px",
+                  height: "180px",
                   position: "absolute",
                   pointerEvents: 'none',
                   zIndex: 10,
@@ -381,13 +388,14 @@ const TankGame = () => {
                 key={obs.id}
                 className="obstacle"
                 style={{
-                  left: `${obs.x}%`,
+                  left: `${Math.max(30, Math.min(obs.x, 70))}%`, // chỉ cho vật cản xuất hiện trong vùng center
                   top: `${obs.y}%`,
-                  width: "150px",
-                  height: "100px",
+                  width: "180px", // phóng to 1.2 lần
+                  height: "120px", // phóng to 1.2 lần
                   backgroundImage: `url(${obstacle})`,
                   backgroundSize: "cover",
                   position: "absolute",
+                  zIndex: 12
                 }}
               ></div>
             )
