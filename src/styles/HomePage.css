@@ -1080,7 +1080,7 @@ body:has(.overlay) .background button {
   margin-top: 300px; 
   
   height: auto;
-  width: 1440px;
+  width:1200px;
   text-align: justify;
   justify-content: center;
   font-size: large;
