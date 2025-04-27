@@ -231,4 +231,43 @@
       transform: translateX(100%) rotate(45deg);
     }
   }
+
+  /* Alert styling for "Nghe hết bản tin để nhận vật phẩm" */
+  .alert-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(218, 37, 29, 0.95);
+    color: #FFD700;
+    padding: 20px 40px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    border: 3px solid #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+    text-align: center;
+  }
   
+  .alert-notification.show {
+    opacity: 1;
+    top: 30px;
+  }
+  
+  .alert-notification.blink {
+    animation: blinkAlert 1s infinite alternate;
+  }
+  
+  @keyframes blinkAlert {
+    0% {
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    }
+    100% {
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+    }
+  }
