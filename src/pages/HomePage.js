@@ -70,7 +70,9 @@ const handleSignUp = async () => {
 
   if (!success) {
     // Nếu đăng ký thất bại, hiển thị lỗi
-    alert(message || "Đăng ký thất bại. Tên người dùng đã tồn tại.");
+    alert(message || "Đăng ký thất bại. Tên người dùng đã tồn tại hoặc thông tin bị thiếu.");
+    switchToSignUp();
+    return ;
   } else {
     // Nếu đăng ký thành công, có thể điều hướng hoặc thực hiện thao tác khác
     alert("Đăng ký thành công!");
@@ -92,6 +94,7 @@ const handleSignIn = async () => {
     setissignin(true); // Đánh dấu người dùng đã đăng nhập
     setShowSignIn(false);
     setShowSignUp(false);
+
   } else {
     alert("Đăng nhập thất bại. Vui lòng kiểm tra tài khoản hoặc mật khẩu.");
   }
@@ -168,7 +171,10 @@ useEffect(() => {
 
 
   <ul className={isMenuOpen ? 'nav-menu active' : 'nav-menu'}>
-    <li><Link to="/">TRANG CHỦ</Link></li>
+    <li><Link to="/" onClick={() => {
+        setShowSignIn(false);
+        setShowSignUp(false);
+      }}>TRANG CHỦ</Link></li>
     <li><Link to="/personalmuseum">BỘ SƯU TẬP</Link></li>
     <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
   </ul>

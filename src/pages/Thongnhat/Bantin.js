@@ -17,6 +17,9 @@ const Bantin = () => {
   const [dialogIndex, setDialogIndex] = useState(0);
   const [showNotification, setShowNotification] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [showCharacter, setShowCharacter] = useState(true);
+  const [showText, setShowText] = useState(true);
+  const [showFlag, setShowFlag] = useState(false);
 
   const navigate = useNavigate();
 const dialogues = [
@@ -51,7 +54,7 @@ useEffect(() => {
     const backgroundAudio = backgroundAudioRef.current;
 
     if (bantinAudio) {
-      bantinAudio.loop = true;
+      bantinAudio.loop = false;
       // Thêm xử lý lỗi khi phát nhạc
       const playBantin = async () => {
         try {
@@ -65,6 +68,58 @@ useEffect(() => {
           bantinAudio.currentTime = 0;
           await bantinAudio.play();
           console.log('Bản tin đã phát');
+
+          // Thêm event listener cho khi audio kết thúc
+          bantinAudio.addEventListener('ended', () => {
+            console.log('Bản tin đã kết thúc');
+            setShowFlag(true);
+            setShowNotification(true);
+          });
+
+          // Hiển thị alert trong 5 giây
+          const alertElement = document.createElement('div');
+          alertElement.style.position = 'fixed';
+          alertElement.style.top = '20px';
+          alertElement.style.left = '50%';
+          alertElement.style.transform = 'translateX(-50%)';
+          alertElement.style.backgroundColor = 'rgba(218, 37, 29, 0.95)';
+          alertElement.style.color = '#FFD700';
+          alertElement.style.padding = '20px 40px';
+          alertElement.style.borderRadius = '12px';
+          alertElement.style.fontSize = '20px';
+          alertElement.style.fontWeight = 'bold';
+          alertElement.style.zIndex = '1000';
+          alertElement.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.7)';
+          alertElement.style.border = '3px solid #FFD700';
+          alertElement.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
+          alertElement.style.letterSpacing = '1px';
+          alertElement.style.opacity = '0';
+          alertElement.style.transition = 'all 0.5s ease-out';
+          alertElement.textContent = 'Nghe hết bản tin để nhận vật phẩm';
+          document.body.appendChild(alertElement);
+
+          // Thêm hiệu ứng xuất hiện
+          setTimeout(() => {
+            alertElement.style.opacity = '1';
+            alertElement.style.top = '30px';
+          }, 100);
+
+          // Thêm hiệu ứng nhấp nháy
+          const blinkInterval = setInterval(() => {
+            alertElement.style.boxShadow = alertElement.style.boxShadow === '0 0 20px rgba(255, 215, 0, 0.7)' 
+              ? '0 0 30px rgba(255, 215, 0, 0.9)' 
+              : '0 0 20px rgba(255, 215, 0, 0.7)';
+          }, 1000);
+
+          // Tự động xóa alert sau 5 giây
+          setTimeout(() => {
+            clearInterval(blinkInterval);
+            alertElement.style.opacity = '0';
+            alertElement.style.top = '20px';
+            setTimeout(() => {
+              document.body.removeChild(alertElement);
+            }, 500);
+          }, 5000);
 
           // Phát nhạc nền sau 37 giây
           setTimeout(async () => {
@@ -98,6 +153,7 @@ useEffect(() => {
         bantinAudio.pause();
         bantinAudio.currentTime = 0;
         bantinAudio.removeEventListener('loadeddata', () => {});
+        bantinAudio.removeEventListener('ended', () => {});
       }
 
       if (backgroundAudio) {
@@ -158,15 +214,18 @@ useEffect(() => {
       className="video-background"
     />
         {/* Hình ảnh nhân vật */}
-        <img src={character} alt="Character" className="character-image" />
-        <div className="dialogue-box">
-  <p>{dialogues[dialogIndex]}</p>
-</div>
+        {/* {showCharacter && (
+          <img src={character} alt="Character" className="character-image" />
+        )}
+        {showText && (
+          <div className="dialogue-box">
+            <p>{dialogues[dialogIndex]}</p>
+          </div>
+        )} */}
 
     <div className="bantin-content">
-
-        {/* Hiển thị cờ khi dialogIndex là 9 */}
-      {dialogIndex >11 && (
+        {/* Hiển thị cờ khi bản tin kết thúc */}
+      {showFlag && (
         <img src={flag} alt="Vietnam Flag" onClick={handleFlagClick} className="flag-image" />
       )}
       

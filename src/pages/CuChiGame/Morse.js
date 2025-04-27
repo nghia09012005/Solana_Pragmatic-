@@ -11,6 +11,7 @@ import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
 import m1 from '../../assets/CuChiGame/audio/CUCHICON.wav';
 import m2 from '../../assets/CuChiGame/audio/SAIGONMAT.wav';
 import confetti from 'canvas-confetti';
+import Swal from 'sweetalert2';
 import letter from '../../assets/CuChiGame/images/successletter.png';
 import { Link } from 'react-router-dom';
 
@@ -79,31 +80,32 @@ const Morse = () => {
     const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
     const [receiveoverlay, setrece] = useState(false);
 
-
-    
     //
     // fire
     useEffect(() => {
       let interval;
       if (showSuccessOverlay) {
-        fireConfetti(); // Bắt đầu bắn pháo bông
-        interval = setInterval(fireConfetti, 250); // Tiếp tục bắn pháo bông mỗi 250ms
-    
-        // Sau 3 giây ẩn overlay và dừng pháo bông
-        const timeout = setTimeout(() => {
+        fireConfetti();
+        interval = setInterval(fireConfetti, 250);
+        // SweetAlert2 popup
+        Swal.fire({
+          icon: 'success',
+          title: 'Hoàn thành giải mã!',
+          text: 'Chúc mừng bạn đã giải mã thành công!',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          customClass: {
+            popup: 'swal2-morse-success',
+          },
+        }).then(() => {
           setShowSuccessOverlay(false);
-          clearInterval(interval); // Hủy bắn pháo bông khi overlay bị ẩn
-        }, 3000);
-    
-        // Dọn dẹp timeout và interval khi component unmount hoặc showSuccessOverlay thay đổi
+        });
+        // Dọn dẹp interval khi component unmount hoặc showSuccessOverlay thay đổi
         return () => {
-          clearTimeout(timeout);
           clearInterval(interval);
         };
       }
-      // Nếu showSuccessOverlay không có giá trị true, hãy hủy pháo bông
       return () => clearInterval(interval);
-    
     }, [showSuccessOverlay]);
 
     // letter 
@@ -218,8 +220,17 @@ const Morse = () => {
         setsgalert(true);
         sethnalert(false);
         setShowAlert(false);
-        setShowSuccessOverlay(true);
         setSgIncorrect(false);
+        Swal.fire({
+          icon: 'success',
+          title: 'Hoàn thành giải mã!',
+          text: 'Chúc mừng bạn đã giải mã thành công!',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          customClass: {
+            popup: 'swal2-morse-success',
+          },
+        });
         await updateUserStats("money");
         await updateUserStats("exp");
       } else {
@@ -242,8 +253,17 @@ const Morse = () => {
         sethnalert(true);
         setShowAlert(false);
         setsgalert(false);
-        setShowSuccessOverlay(true);
         setHnIncorrect(false);
+        Swal.fire({
+          icon: 'success',
+          title: 'Hoàn thành giải mã!',
+          text: 'Chúc mừng bạn đã giải mã thành công!',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          customClass: {
+            popup: 'swal2-morse-success',
+          },
+        });
         await updateUserStats("money");
         await updateUserStats("exp");
       } else {
@@ -314,16 +334,6 @@ const Morse = () => {
         ) : (
           <div className="Morse-background" onClick={handleNextDialog}>
 
-            {/* overlay */}
-            {showSuccessOverlay && (
-              <div className="success-overlay">
-                <div className="success-content">
-                  ✅ Hoàn thành giải mã!
-                </div>
-              </div>
-            )}
-            {/*  */}
-
             {/* letter overlay */}
             {receiveoverlay && (
               <>
@@ -342,53 +352,18 @@ const Morse = () => {
             {/*  */}
 
             {/* Alert thanh thông báo */}
-            {/* {showAlert && (
-              <div className="alert-banner">
-               🎖️ Chúng ta nhận được mật thư, GIẢI MÃ GẤP!!!!!!!!<br />
-                ❌ Công nghệ của ta còn hạn chế nên hãy giải tuần tự để không bị nhiễu sóng!!!!!
-                <button className="close-alert" onClick={() => setShowAlert(false) }>
-                  ❌
-                </button>
-              </div>
-            )} */}
-
-            {showhint1 && (
-              <div className="alert-banner">
-                🎖️GỢI Ý: {hint[0]}
-                <button className="close-alert" onClick={() => sethint1(false) }>
-                  ❌
-                </button>
-              </div>
+            {(showhint1 || showhint2) && (
+              <>
+                <div className="alert-overlay" onClick={() => { sethint1(false); sethint2(false); }} />
+                <div className="alert-banner">
+                  {showhint1 && <>{hint[0]}</>}
+                  {showhint2 && <>{hint[1]}</>}
+                  <button className="close-alert" onClick={() => { sethint1(false); sethint2(false); }}>
+                    ❌
+                  </button>
+                </div>
+              </>
             )}
-            {showhint2 && (
-              <div className="alert-banner">
-                🎖️GỢI Ý: {hint[1]}
-                <button className="close-alert" onClick={() => sethint2(false) }>
-                  ❌
-                </button>
-              </div>
-            )}
-
-
-            {sgalert && (
-              <div className="alert-banner">
-                🎖️ GIẢI MÃ THÀNH CÔNG MẬT MÃ TỪ SÀI GÒN !!!!!!!!<br />
-                
-                <button className="close-alert" onClick={() => setsgalert(false)}>
-                  ❌
-                </button>
-              </div>
-            )}    
-
-            {hnalert && (
-              <div className="alert-banner">
-                🎖️ GIẢI MÃ THÀNH CÔNG MẬT MÃ TỪ HÀ NỘI !!!!!!!!<br />
-                
-                <button className="close-alert" onClick={() => sethnalert(false)}>
-                  ❌
-                </button>
-              </div>
-            )}   
 
 
             {/* Nhân vật */}
@@ -425,11 +400,10 @@ const Morse = () => {
         {/* Book Container */}
         {dialogStep === -1 && showBook && (
           <div className="book-container">
-            
             <div className={`book ${isBookOpen ? 'open' : ''}`}>
               <div className="book-cover" onClick={() => setIsBookOpen(true)}>
                 <h2>Mật Thư</h2>
-                <p>Nhấn để mở và giải mã mật thư</p>
+                <p>Nhấn để mở sách và giải mã mật thư</p>
               </div>
               <div className="book-content">
                 {/* Left Page - Morse Table and Map */}
@@ -457,7 +431,8 @@ const Morse = () => {
                           value={inputSG}
                           onChange={(e) => setInputSG(e.target.value)}
                           onKeyDown={(e) => {
-                            if (e.key === 'Enter' && !sgfinish) {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
                               handleSubmitSG();
                             }
                           }}
@@ -469,16 +444,16 @@ const Morse = () => {
                           }}
                         />
                         <button onClick={handleSubmitSG} disabled={sgfinish}>
-                          Kiểm tra
+                          Giải mã
                         </button>
                         {!sgfinish && inputSG && (
                           <p style={{ color: 'red', fontSize: '14px' }}>
-                             Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
                           </p>
                         )}
                         {sgfinish && (
                           <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
-                           Đã giải mã thành công!
+                            ✅ Đã giải mã thành công!
                           </p>
                         )}
                       </div>
@@ -496,7 +471,8 @@ const Morse = () => {
                           value={inputHN}
                           onChange={(e) => setInputHN(e.target.value)}
                           onKeyDown={(e) => {
-                            if (e.key === 'Enter' && !hnfinish) {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
                               handleSubmitHN();
                             }
                           }}
@@ -508,16 +484,16 @@ const Morse = () => {
                           }}
                         />
                         <button onClick={handleSubmitHN} disabled={hnfinish}>
-                          Kiểm tra
+                          Giải mã
                         </button>
                         {!hnfinish && inputHN && (
                           <p style={{ color: 'red', fontSize: '14px' }}>
-                             Nhanh chóng, chính xác, bảo mật tuyệt đối!
+                            🎖️ Nhanh chóng, chính xác, bảo mật tuyệt đối!
                           </p>
                         )}
                         {hnfinish && (
                           <p style={{ color: 'green', fontSize: '14px', opacity: 0.5 }}>
-                             Đã giải mã thành công!
+                            ✅ Đã giải mã thành công!
                           </p>
                         )}
                       </div>
