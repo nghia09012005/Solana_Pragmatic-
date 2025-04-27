@@ -106,7 +106,7 @@ const StartButton = styled.button`
   pointer-events: ${props => props.visible ? 'all' : 'none'};
   
   &:hover {
-    background-color: rgb(255, 53, 2);
+    background-color: #8B0000;
     transform: scale(1.05);
   }
   

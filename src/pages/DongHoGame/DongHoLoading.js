@@ -105,7 +105,7 @@ const StartButton = styled.button`
   pointer-events: ${props => props.visible ? 'all' : 'none'};
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &:hover {
-    background-color: rgb(226, 136, 51);
+    background-color: #8B0000;
     transform: scale(1.05);
   }
   
