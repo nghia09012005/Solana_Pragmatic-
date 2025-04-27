@@ -82,22 +82,40 @@ useEffect(() => {
           alertElement.style.top = '20px';
           alertElement.style.left = '50%';
           alertElement.style.transform = 'translateX(-50%)';
-          alertElement.style.backgroundColor = 'rgba(218, 37, 29, 0.9)';
+          alertElement.style.backgroundColor = 'rgba(218, 37, 29, 0.95)';
           alertElement.style.color = '#FFD700';
-          alertElement.style.padding = '15px 30px';
-          alertElement.style.borderRadius = '8px';
-          alertElement.style.fontSize = '18px';
+          alertElement.style.padding = '20px 40px';
+          alertElement.style.borderRadius = '12px';
+          alertElement.style.fontSize = '20px';
           alertElement.style.fontWeight = 'bold';
           alertElement.style.zIndex = '1000';
-          alertElement.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
-          alertElement.style.border = '2px solid #FFD700';
+          alertElement.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.7)';
+          alertElement.style.border = '3px solid #FFD700';
+          alertElement.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
+          alertElement.style.letterSpacing = '1px';
+          alertElement.style.opacity = '0';
+          alertElement.style.transition = 'all 0.5s ease-out';
           alertElement.textContent = 'Nghe hết bản tin để nhận vật phẩm';
           document.body.appendChild(alertElement);
 
+          // Thêm hiệu ứng xuất hiện
+          setTimeout(() => {
+            alertElement.style.opacity = '1';
+            alertElement.style.top = '30px';
+          }, 100);
+
+          // Thêm hiệu ứng nhấp nháy
+          const blinkInterval = setInterval(() => {
+            alertElement.style.boxShadow = alertElement.style.boxShadow === '0 0 20px rgba(255, 215, 0, 0.7)' 
+              ? '0 0 30px rgba(255, 215, 0, 0.9)' 
+              : '0 0 20px rgba(255, 215, 0, 0.7)';
+          }, 1000);
+
           // Tự động xóa alert sau 5 giây
           setTimeout(() => {
+            clearInterval(blinkInterval);
             alertElement.style.opacity = '0';
-            alertElement.style.transition = 'opacity 0.5s ease-out';
+            alertElement.style.top = '20px';
             setTimeout(() => {
               document.body.removeChild(alertElement);
             }, 500);
