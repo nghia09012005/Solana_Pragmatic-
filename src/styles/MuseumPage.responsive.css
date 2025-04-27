@@ -1,0 +1,198 @@
+/* Responsive cho MuseumPage - dồn hết vào file này */
+
+/* Responsive landscape cho mobile/tablet */
+@media (orientation: landscape) and (max-width: 992px) {
+  .museum-page-body {
+    flex-direction: row !important;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 24px 10px 24px;
+    min-height: 100vh;
+    gap: 24px;
+    box-sizing: border-box;
+  }
+  .header {
+    height: 42px;
+    min-height: 42px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin: 0 0 8px 0;
+    font-size: 1.1em;
+    width: fit-content;
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+  .carousel {
+    width: 60vw;
+    height: 60vh;
+    min-width: 250px;
+    min-height: 180px;
+    margin: 0 18px 0 0;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    padding: 0 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .card-container {
+    border-radius: 18px;
+    margin: 0 0 0 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 18px;
+    min-width: 0;
+  }
+  .card {
+    font-size: 1em;
+    padding: 12px 10px;
+    margin: 0;
+    border-radius: 14px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 170px;
+    max-width: 220px;
+    flex: 1 1 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .carousel-controls {
+    gap: 10px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    right: 8px;
+    top: 0;
+  }
+  .carousel-controls button, .carousel-controls .control {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f7f7f7;
+    font-size: 1.1em;
+    color: #222;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.10);
+    border: none;
+    cursor: pointer;
+    margin: 6px 0;
+    transition: background 0.15s;
+  }
+  .carousel-controls button:active,
+  .carousel-controls button:hover,
+  .carousel-controls .control:active,
+  .carousel-controls .control:hover {
+    background: #e0e0e0;
+  }
+}
+
+/* Responsive portrait/mobile (vẫn giữ lại nếu người dùng xoay dọc) */
+@media (max-width: 576px) {
+  .museum-page-body {
+    padding: 8px 4px 16px 4px;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  .header {
+    height: 48px;
+    min-height: 48px;
+    padding: 4px 8px;
+    border-radius: 14px 14px 18px 18px;
+    margin: 0 0 12px 0;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    width: fit-content;
+    left: 0;
+    top: 0;
+  }
+  .header svg, .header img, .header .icon {
+    width: 28px;
+    height: 28px;
+  }
+  .carousel {
+    width: 97vw;
+    height: 66vw;
+    min-width: 150px;
+    min-height: 180px;
+    margin: 0 auto 18px auto;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    padding: 0 2px;
+  }
+  .card-container {
+    border-radius: 22px;
+    margin: 0 0 14px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.73);
+    backdrop-filter: blur(4px);
+  }
+  .card {
+    font-size: 1.15em;
+    padding: 22px 10px 18px 10px;
+    margin: 0 0 16px 0;
+    border-radius: 20px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.11);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 92vw;
+    max-width: 420px;
+    min-width: 0;
+  }
+  .card h2, .card .date, .card .quote {
+    font-size: 1.12em;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .artist-info, .details {
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 2px;
+  }
+  .carousel-controls {
+    gap: 18px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .carousel-controls button, .carousel-controls .control {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f7f7f7;
+    font-size: 1.3em;
+    color: #222;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.10);
+    border: none;
+    cursor: pointer;
+    margin: 0 2px;
+    position: relative;
+    top: 0;
+    transition: background 0.15s;
+  }
+  .carousel-controls button:active,
+  .carousel-controls button:hover,
+  .carousel-controls .control:active,
+  .carousel-controls .control:hover {
+    background: #e0e0e0;
+  }
+}

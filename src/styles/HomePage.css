@@ -1165,9 +1165,13 @@ body:has(.overlay) .background button {
   }
   
   .signin{
-    margin-left: auto;
+    margin: auto;
+    left: 5px;
   }
- 
+  
+.tinh-nang-chinh{
+  margin-top:50px;
+}
   .feature-grid {
     grid-template-columns: 1fr; /* 1 cột trên điện thoại */
   
