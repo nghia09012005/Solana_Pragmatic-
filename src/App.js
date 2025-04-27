@@ -54,8 +54,6 @@ function App() {
            <Route path="/cuchigame" element={<CuChiGameG1/>} />
            <Route path="/morse" element={<Morse />} />
            <Route path="/bantin" element={<Bantin />} />
-        
-           
 
           
           <Route path="/profile" element={<ProfilePage />} /> 

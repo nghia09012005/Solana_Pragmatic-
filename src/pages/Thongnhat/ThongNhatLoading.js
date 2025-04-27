@@ -93,8 +93,8 @@ const TankIcon = styled.img`
 
 const GateIcon = styled.img`
   position: absolute;
-  right: -35px;
-  top: -18px;
+  right: -45px;
+  top: -23px;
   width: 70px;
   height: 56px;
   z-index: 2;
