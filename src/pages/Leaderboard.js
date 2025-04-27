@@ -29,6 +29,7 @@ const Leaderboard = () => {
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to fetch leaderboard data');
+        navigate("/");
       }
       return response.json();
     })
