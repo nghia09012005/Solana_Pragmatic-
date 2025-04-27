@@ -444,7 +444,7 @@ const Morse = () => {
                           }}
                         />
                         <button onClick={handleSubmitSG} disabled={sgfinish}>
-                          Submit
+                          Giải mã
                         </button>
                         {!sgfinish && inputSG && (
                           <p style={{ color: 'red', fontSize: '14px' }}>
@@ -484,7 +484,7 @@ const Morse = () => {
                           }}
                         />
                         <button onClick={handleSubmitHN} disabled={hnfinish}>
-                          Submit
+                          Giải mã
                         </button>
                         {!hnfinish && inputHN && (
                           <p style={{ color: 'red', fontSize: '14px' }}>
