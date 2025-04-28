@@ -16,7 +16,6 @@ Dự án "Hành trình di sản" là một trò chơi mô phỏng du hành thờ
 ### Yêu cầu
 
 - Node.js (v14+)
-- MongoDB
 - NPM hoặc Yarn
 
 ### Cài đặt
@@ -32,21 +31,10 @@ cd heritage-journey
 npm install
 ```
 
-3. Cài đặt các dependencies cho backend:
-```
-cd server
-npm install
-```
-
-4. Tạo file .env:
-```
-MONGODB_URI=mongodb+srv://atlas-sample-dataset-load-67fa9b9a4e33ef2959cb8b47:Minhtienhuynh5@wda2025.jpb6d3u.mongodb.net/heritage-journey?retryWrites=true&w=majority&appName=WDA2025
-JWT_SECRET=your_jwt_secret
-```
 
 5. Chạy ứng dụng ở chế độ development:
 ```
-npm run dev
+npm start
 ```
 
 ## Công nghệ sử dụng
@@ -54,13 +42,9 @@ npm run dev
 ### Frontend
 - HTML5 & CSS3
 - React.js
-- WebGL & Three.js
-- Socket.IO Client
 
-### Backend
-- Node.js với Express.js
-- MongoDB
-- Socket.IO
+
+
 
 ## Đóng góp
 
