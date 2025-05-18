@@ -30,7 +30,7 @@ Dự án "Hành trình di sản" là một trò chơi mô phỏng du hành thờ
 
 1. Clone repository:
 ```
-git clone https://github.com/your-username/heritage-journey.git
+https://github.com/nghia09012005/Solana_Pragmatic-.git
 cd heritage-journey
 ```
 
