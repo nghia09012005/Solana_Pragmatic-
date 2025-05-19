@@ -10,15 +10,16 @@ const useSignUp = () => {
     setError(null);
   
     try {
-      const response = await fetch('https://wda-be-1.onrender.com/api/signup', {
+      const response = await fetch('api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
       });
-  
+      
       const result = await response.json();
+
       setLoading(false);
   
       //Kiểm tra theo "code"

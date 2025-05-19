@@ -79,7 +79,7 @@ function HomePage() {
     }
 
     const success = await signUp({ username, password });
-
+    console.log(success)
     if (!success) {
       // Nếu đăng ký thất bại, hiển thị lỗi
       alert(message || "Đăng ký thất bại. Tên người dùng đã tồn tại hoặc thông tin bị thiếu.");
