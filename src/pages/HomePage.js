@@ -185,13 +185,13 @@ function HomePage() {
     <li><a href="/" onClick={() => {
         setShowSignIn(false);
         setShowSignUp(false);
-      }}>TRANG CHỦ</a></li>
+      }}>Home</a></li>
     <li>
       <TransitionLink to="/personalmuseum" onShowCover={() => setShowCover(true)}>
-        BỘ SƯU TẬP
+        Collection
       </TransitionLink>
     </li>
-    <li><Link to="/leaderboard">BẢNG XẾP HẠNG</Link></li>
+    <li><Link to="/leaderboard">Leaderboard</Link></li>
   </ul>
 
         
@@ -200,12 +200,12 @@ function HomePage() {
          < div className="head-right">
          <div className="button-box">
        <button onClick={() =>{ setShowSignUp(!showSignUp); setShowSignIn(false);}}> 
-             ĐĂNG KÝ
+             SIGN UP
          </button> 
          </div>
          <div className="button-box">
          <button onClick={() => {setShowSignIn(!showSignIn); setShowSignUp(false); }}> 
-             ĐĂNG NHẬP
+            SIGN IN
          </button> 
          </div>
          </div>
@@ -230,31 +230,20 @@ function HomePage() {
 
 
 
-      <div className="gold-line"></div>
 
       <TransitionCover show={showCover} />
       <section className="background">
-        <img
-          className="homepage-background parallax" data-speed="4"
-          src="/images/homepage-background.png"
-          alt=""
-        />
-        <img
-          className="homepage-background-effect"
-          src="/images/ground.png"
-          alt=""
-        />
-      
-
-        
+       
 
         <h1 className={`fade-in-text ${isVisible ? 'visible' : ''}`}>
-          Hành trình mở khóa di sản  Bạn đã sẵn sàng?</h1>
+          This is</h1>
+
+          
         <h3 className={`fade-in-text  ${isVisible ? 'visible' : ''}`}>
-        Hóa thân thành người gìn giữ ký ức, vượt qua thử thách ảo ảnh, thu thập mảnh ghép di sản và viết tiếp câu chuyện của quá khứ bằng công nghệ.
+        Viet Nam.
         </h3>
         <TransitionLink to="/museum" onShowCover={() => setShowCover(true)}>
-          <button>KHÁM PHÁ NGAY!</button>
+          <button>Start Your Journey!</button>
         </TransitionLink>
         <div></div>
       </section>
@@ -265,20 +254,20 @@ function HomePage() {
       { showSignUp && (
         <div className="signup-page-box">
           <div className="signup-page">
-            <h1>ĐĂNG KÝ</h1>
+            <h1>SIGN UP</h1>
             <h3>
-            <input type="text" placeholder="Tên tài khoản" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <input type="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <input type="password" placeholder="Nhập lại mật khẩu" value={passwordAgain} onChange={(e) => setPasswordAgain(e.target.value)} />
+            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" placeholder="Confirm password" value={passwordAgain} onChange={(e) => setPasswordAgain(e.target.value)} />
             </h3>
             <div>
-            Bạn đã có tài khoản?{" "}
+            Have an account?{" "}
             <span onClick={switchToSignIn} style={{ cursor: 'pointer', color: '#9b7b23' }}>
-              Đăng nhập ngay
+              Sign in
             </span>
           </div>
           <button onClick={handleSignUp} disabled={loading}>
-             {loading ? "Đang đăng ký..." : "ĐĂNG KÝ"}
+             {loading ? "Signing up..." : "SIGN UP"}
           </button>
           </div>
         </div>
@@ -287,112 +276,79 @@ function HomePage() {
      {showSignIn && (
         <div className="signin-page-box">
           <div className="signin-page">
-            <h1>ĐĂNG NHẬP</h1>
+            <h1>SIGN IN</h1>
             <h3>
               <input 
           type="text" 
-          placeholder="Tên tài khoản" 
+          placeholder="username" 
           value={signinUsername} 
           onChange={(e) => setSigninUsername(e.target.value)} 
         />
         <input 
           type="password" 
-          placeholder="Mật khẩu" 
+          placeholder="password" 
           value={signinPassword} 
           onChange={(e) => setSigninPassword(e.target.value)} 
         />
             </h3>
             <div>
-              Bạn chưa có tài khoản?{" "}
+              No account yet??{" "}
               <span 
                 onClick={switchToSignUp}
                 style={{ cursor: 'pointer', color: '#9b7b23' }}
               >
-                Đăng ký ngay
+                Sign up
               </span>
             </div>
             <button onClick={handleSignIn} disabled={loadingSignIn}>
-        {loadingSignIn ? "Đang đăng nhập..." : "ĐĂNG NHẬP"}
+        {loadingSignIn ? "Signing in..." : "SIGN IN"}
       </button>
           </div>
         </div>
       )}
 
-<img
-          className="tong-quan"
-          src="/images/tong-quan.png"
-          alt=""
-        />
-       <img
-          className="tinh-nang-chinh"
-          src="/images/tinh-nang-chinh.png"
-          alt=""
-        />
-      
 
       <section className='feature'>
-     
-      
-
-        <div className="feature-gradient"
-        ></div>
-
+  <h1>FEATURES</h1>
   <div className="feature-grid">
     <div className="feature-card">
-      <h3>Chế độ du hành thời gian</h3>
-      <p>Cho phép người chơi có thể tương tác với các cổ vật tự bộ sưu tập và được đưa trở về thời điểm mà cổ vật được tạo ra.</p>
+      <h3> Teleport mode</h3>
+      <p>Teleport Mode allows users to instantly move to popular tourist destinations within the app. This feature helps save time and offers a seamless, immersive way to explore key attractions quickly and easily.</p>
     </div>
 
     <div className="feature-card">
-      <h3>Cốt truyện và mini game tương tác</h3>
-      <p>Trò chơi xây dựng một cốt truyện lịch sử xoay quanh bảo vật cổ, với đầy đủ những câu chuyện truyền thuyết.</p>
+      <h3>Interactive Storyline and Minigames</h3>
+      <p>Engage with an exciting storyline that unfolds as you progress. Enjoy fun and interactive minigames that challenge your skills and deepen your immersion in the adventure.</p>
     </div>
 
     <div className="feature-card">
-      <h3>Khám phá môi trường ảo</h3>
-      <p>Trò chơi mô phỏng không gian bảo tàng và tái hiện chân thật các địa điểm lịch sử, cho phép người chơi tự do khám phá.</p>
+      <h3>Education Mode</h3>
+      <p>Discover cultural and historical insights about each destination through guided content and interactive exploration.</p>
     </div>
 
     <div className="feature-card">
-      <h3>Chế độ giáo dục</h3>
-      <p>Các bài học nhỏ nhằm cung cấp kiến thức về lịch sử, văn hóa. Tích hợp quiz và thông tin tham khảo để người chơi có thể nâng cao hiểu biết của mình</p>
+      <h3>Blockchain Integration</h3>
+      <p>Enhances transparency and security by using blockchain to verify achievements, track progress, or store unique digital collectibles.</p>
     </div>
 
     <div className="feature-card">
-      <h3>Hệ thống nhân vật đa dạng</h3>
-      <p>Người chơi có thể được tùy chỉnh và thay đổi nhân vật, trang phục truyền thống gắn liền với bản sắc dân tộc và lịch sử Việt Nam</p>
+      <h3>Diverse Character System</h3>
+      <p>Choose from a variety of unique characters, each with their own style, background, and role in the story.
+
+</p>
     </div>
 
     <div className="feature-card">
-      <h3>Bảo Tàng Cá Nhân</h3>
-      <p>Cho phép người chơi xây dựng một bảo tàng ảo riêng, trưng bày các cổ vật đã mở khóa trong quá trình chơivà chia sẻ với cộng đồng hoặc bạn bè.</p>
+      <h3>Tourism Promotion</h3>
+      <p>Promote travel by showcasing cultural landmarks and unique local attractions through engaging stories and interactive experiences. Inspire users to explore and appreciate real destinations with rich history and heritage.</p>
             </div>
             </div>
-        </section>
-
-        <section className='cong-nghe'>
-        <img
-    className="cong-nghe-header"
-    src="/images/cong-nghe.png"
-    alt=""
-  />
-  <img
-    className="cong-nghe-1"
-    src="/images/background-cong-nghe-1.png"
-    alt=""
-  />
-  
    
-
 </section>
 
-<img className='info'
-src="/images/goldframe.png" alt="goldframe" />
 
 
 
-<img className='last'
-src="/images/last-page.png" alt="lastpage" />
 
 <Footer />
 </div>

@@ -126,19 +126,20 @@ html, body {
 .container{
   display: flex;  /* Thay đổi từ fixed thành flex */
   flex-direction: column;
-  
+
   position: relative;
   /* overflow-x: hidden; */
   margin: 0;
   padding: 0;
   /* align-items: center;
   justify-content: center; Căn giữa nội dung */
-   background: #000000; /* Màu nền đen */;
+   background:url('/public/images/vietnam.png') no-repeat center center fixed ;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
   font-family: monospace;
   color: lightgray;
+  background-size:100%;
   min-height: 100vh;
   /* overflow-x: hidden;  */
   overflow-y: auto;
@@ -146,66 +147,26 @@ html, body {
   
 }
 
-/* header{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  display:flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 30px;
-  border:0.5px solid rgb(218, 165, 32);
-  z-index: 999 ;
-  
-} */
-
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3); /* hoặc 0.4 nếu muốn tối hơn */
+  z-index: 0;
+  height: calc(100% - 315px); 
+}
 header {
   position: fixed;
-  top: 0;
+  top: 5%;
   left: 0;
   right: 0;
   
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 30px;
-   background: rgba(21, 19, 12, 0.6); /* Làm mờ background */
-   backdrop-filter: blur(8px); /* Làm mờ background */
-  z-index: 1001;
-
  
-}
-
-/* Thêm border dưới có hiệu ứng phát sáng */
-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-      90deg,
-      transparent,
-      #ffd700,
-      #ff8c00,
-      #ffd700,
-      transparent
-  );
-  animation: borderLight 2s infinite;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-}
-
-@keyframes borderLight {
-  0%, 100% {
-      opacity: 0.5;
-      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-  }
-  50% {
-      opacity: 1;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-  }
+   
+  z-index: 1001;
 }
 
 .head-left{
@@ -214,16 +175,16 @@ header::after {
 }
 
 .head-left img{
-  height: 60px;
-  margin-right: 15px;
-  margin-left: 20px;
+  height: 50px;
+  margin-right: 200px;
+  margin-left: 10px;
 }
 
 header ul{
   display: flex;
   justify-content: space-between;
-  width: 40%;
-  gap: 50px;
+  width: 80%;
+  gap: 30px;
 }
 
 header ul li{
@@ -232,19 +193,18 @@ header ul li{
 
 header a{
   text-decoration: none;
-  color:gray;
-  font-weight: 900;
-  font-size: 16px;
+  color:rgb(255, 255, 255);
+  
+  font-size: 20px;
   transition: 0.3s;
-  font-family: monospace  ; 
-}
+  font-family:MONTSERAT;}
 
 header a:hover {
   color: white;
   background: rgba(0, 0, 0, 0.2);  /* Giảm opacity của background */
   /* border: 1px solid rgba(0, 207, 255, 0.3);  Border màu xanh mờ */
   padding: 6px 16px;
-  font-size: 14px;
+  font-size: 15px;
   border-radius: 3px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -252,7 +212,7 @@ header a:hover {
   z-index: 1;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 0 15px rgba(0, 207, 255, 0.3);  /* Thêm glow effect */
+  box-shadow: 0 0 15px #faff00;  /* Thêm glow effect */
 }
 
 header a:hover::before {
@@ -264,8 +224,8 @@ header a:hover::before {
   height: 6px;
   background: radial-gradient(
       circle at center,
-      rgba(0, 207, 255, 0.8) 0%,
-      rgba(0, 207, 255, 0.4) 50%,
+      rgba(255, 238, 0, 0.8) 0%,
+      rgba(242, 255, 0, 0.4) 50%,
       transparent 100%
   );
   opacity: 0;
@@ -285,7 +245,7 @@ header a:hover::before {
   left: 0;
   width: 100%;
   height: 6px;
-  background: radial-gradient(circle at center, #00cfff 40%, transparent 80%);
+  background: radial-gradient(circle at center, #f6ff00 40%, transparent 80%);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -298,7 +258,9 @@ header a:hover:hover::before {
   display: flex;
   align-items: center;
   position: relative;
+  margin-left: 150px;
   z-index: 1001;
+  margin-right: 50px;
 }
 
 
@@ -306,14 +268,13 @@ header a:hover:hover::before {
   position: relative;
   width: 100px;
   height: 45px;
-  margin-left: 25px;
+  margin-left: 20px;
   background: linear-gradient(to right, 
-      #00aaa7,
-      #7f42a7,   
-      #6600c5,    
-      #1f2b9c,
-      #2a45ff,    
-      #00aaa7
+      #faff00,   /* vàng chanh nổi bật */
+  #96c93d,   /* xanh lá dịu */
+  #00b09b,   /* xanh ngọc */
+  #00a3ff,   /* xanh biển sáng */
+  #faff00    /* quay lại vàng chanh */
 );
 
   border-radius: 10px;
@@ -323,60 +284,39 @@ header a:hover:hover::before {
 }
 
 
-.button-box a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.button-box button {
+.head-right button {
   position: absolute;
   inset: 3px;
-  width: calc(100% - 6px);
-  height: calc(100% - 6px);
   border: none;
-  background-color: rgb(14 12 21);
-  color: lightgray;
-  border-radius: 8px;
+  background: linear-gradient(
+    270deg,
+    #f4a261,
+    #ffe066,
+    #c7e8a9,
+    #f4a261
+  );
+  background-size: 400% 400%;
+  animation: animationGradient 5s linear infinite;
+  color: #2f2f2f;
+  border-radius: 10px;
   clip-path: polygon(0 0, 82% 0, 100% 34%, 100% 80%, 100% 99%, 0 100%, 0% 80%, 0% 20%);
   cursor: pointer;
   transition: 0.3s;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 16px;
-}
-
-/* cái nút sign in chuyển động  */
-@keyframes animationGradient{
-  to{
-      background-position: 200%;
-  }
-}
-/* @font-face {
-  font-family: 'monospace';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('monospace'), url(https://fonts.gstatic.com/s/robotomono/v13/L0x5DF4xlVMF-BfR8bXMIjhLq38.woff2) format('woff2');
-} */
-.head-right button{
-  position: absolute;
-  inset: 3px 3px 3px 3px;
-  border: none;
-  background-color: rgb(14 12 21);
-  color: lightgray;
-  border-radius: 10px;
-  clip-path: polygon(0 0, 82% 0, 100% 34%, 100% 80%, 100% 99%, 0 100%, 0% 80%, 0% 20%)  ;
-  /* //https://bennettfeely.com/clippy/ */
-  cursor: pointer;
-  transition:0.3s;
   font-family: monospace;
   font-size: 15px;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
 }
-
-.head-right button:hover{
-  color: #00e1ff;  /* Màu xanh sáng khi hover */
-  text-shadow: 0 0 10px rgba(0, 225, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);}
+@keyframes animationGradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.head-right button:hover {
+  color:#3d88c9;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
 
 .background{
   position:relative;
@@ -387,56 +327,38 @@ header a:hover:hover::before {
   overflow: hidden;
   display:flex ;
   flex-direction: column;
-  align-items: flex-start; /* Căn trái nội dung */
+  align-items: center;
   padding: 0;    /* Reset padding */
   margin: 0;  
 }
 
-.homepage-background {
-  position: absolute;
-  width: 100%;
-  height: 100%;  /* Thêm height 100% */
-  top: 0;
-  left: 0;  /* Thêm left 0 */
-  object-fit: cover;
-  object-position: center;  /* Thêm object-position */
-  transform: scale(1.0); 
-}
 
-.homepage-background-effect{
-  position: absolute;
-  width: 90%;
-  top: 15%;   
-  
-  opacity: 0.5;
-  filter: blur(8px);
-}
 
 .background h1{
   position: absolute;
-  top:15%;
+  top:10%;
  
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 45px;
+  font-family:montserat;  
+  font-size: 70px;
   max-width: 650px;
   /* text-align: center; */
-  color: white;
+  color: rgb(206, 198, 198);
  opacity: 1;
   padding-left: 60px;
   z-index: 2;
   font-weight: 700;
-  text-align: left;
+ 
+  text-align: center;
 }
 
 .background h3{
   position: absolute;
-  top: 35%;
-  font-size: 17px;
+  top: 15%;
+  font-size: 120px;
   max-width: 650px;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  text-align: left;
-  color: rgb(142, 141, 141);
-  font-weight: 500;
+  font-family:montserat;
+  color: rgb(255, 255, 255);
+  font-weight: 900;
   padding-left: 60px;
   opacity: 1;
   z-index: 2;
@@ -450,14 +372,15 @@ body:has(.overlay) .background button {
 
 .background button{
   position: relative;
-  top: 48%;
-  left: 200px;    
-  width: 180px;
+  
+  left: 30px;    
+  width: 300px;
   height: 80px;
+  justify-content: center;
   background: linear-gradient(to right, #ffffff, #f8f8f8);
   color: #333;
   font-family: monospace;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   border: none;
   border-radius: 10px;
@@ -466,6 +389,7 @@ body:has(.overlay) .background button {
   transition: all 0.3s ease;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  font-family: montserat;
 }
 
 .background button:hover {
@@ -845,17 +769,6 @@ body:has(.overlay) .background button {
   text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
 }
 
-/* Thêm styles cho overlay */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Giảm opacity xuống 0.5 */
-  z-index: 999;
-  animation: overlayFadeIn 0.3s ease forwards;
-}
 
 @keyframes overlayFadeIn {
   0% {
@@ -875,54 +788,19 @@ body:has(.overlay) .background button {
 }
 
 
-/* .signin-page-box::before,
-.signup-page-box::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  padding: 40px;
-  height: 280px;
-  background-image: url('/public/images/sign-in-sign-up-box.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  transform: translate(-50%, -50%);
-  opacity: 0.8;
-  z-index: 0;
-
-} */
-
-/*FEATURE*/
-.tinh-nang-chinh{
-  position: relative;
-  top:-180px;
-  padding: 50px 0;
-  width: 21.5%;
-  left:25px; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(0, 0, 0);
-}
-
-
 
 
 .feature{
   position: relative;
-  background-image: url('/public/images/background-feature.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+  
   margin-top: -250px;
   padding: 50px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(0, 0, 0);
+  background-color: transparent;
+  margin-bottom: 250px;
 }
 
 @media (max-width: 700px) {
@@ -931,11 +809,11 @@ body:has(.overlay) .background button {
   }
 }
 
-
-
-
-
-
+.feature h1{
+  font-family: montse;
+ font-size: 100px;
+  font-weight: bold;
+}
 
 .feature-grid {
   display: grid;
@@ -943,7 +821,7 @@ body:has(.overlay) .background button {
   gap: 30px;
   padding: 0 50px;
   margin-top:0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif  ;
+  font-family: montse;
   font-size: 20px;
   margin-left: 3%;
 }
@@ -953,11 +831,7 @@ body:has(.overlay) .background button {
   padding: 30px;
   border: 1px solid rgba(218, 165, 32, 0.3);
   border-radius: 15px;
-  background: linear-gradient(
-    145deg,
-    rgba(0, 0, 0, 0.95),
-    rgba(21, 20, 12, 0.98)
-  );
+ background: #F1F8E9;
   transition: all 0.3s ease;
   width: 90%;
   height: auto;
@@ -994,7 +868,7 @@ body:has(.overlay) .background button {
 }
 
 .feature-card h3 {
-  color: #DAA520;
+  color: #795548;
   font-size: 29px;
   margin-bottom: 35px;
   position: relative;
@@ -1006,7 +880,7 @@ body:has(.overlay) .background button {
 }
 
 .feature-card p {
-  color: #999;
+  color: #4E4E4E ;
   font-size: 17px;
   line-height: 1.6;
   position: relative;
@@ -1028,11 +902,11 @@ body:has(.overlay) .background button {
 }
 
  .feature-card:nth-child(3)::before {
-  background-image: url('/public/images/museum.png');
+  background-image: url('/public/images/education.png');
 }
 
 .feature-card:nth-child(4)::before {
-  background-image: url('/public/images/education.png');
+  background-image: url('/public/images/blockchain.jpeg');
 }
 
 .feature-card:nth-child(5)::before {
@@ -1040,51 +914,9 @@ body:has(.overlay) .background button {
 }
 
 .feature-card:nth-child(6)::before {
-  background-image: url('/public/images/personal-museum.png');
+  background-image: url('/public/images/travel.jpg');
 }
  
-
-.tong-quan {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  top:-120px;
-  display: flex;
-  flex-direction: column;
-
-}
-
-.cong-nghe {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  margin-bottom: auto;
-}
-
-.cong-nghe-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  width: 20%;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-
-}
-
-.cong-nghe-1 {
-  position: absolute;
-  top: 39.5%;
-  left: 5%;
-  width:90%;
-  height: 100%;
-  z-index: 1;
-
-}
 
 .info {
   position: relative;
