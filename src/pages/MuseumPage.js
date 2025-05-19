@@ -5,94 +5,95 @@ import { FaHome } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/MuseumPage.css';
 
-const CARDS = [
+const DaNangCARDS = [
   {
-    title: "Cồng Chiêng Tây Nguyên",
+    title: "Dragon Bridge",
     
-    description: "Tiếng cồng chiêng ngân vang, hồn thiêng núi rừng thức giấc, kết nối cộng đồng, vọng mãi ngàn đời.",
+    description: "Dragon Bridge is Da Nang’s iconic attraction, where a giant steel dragon lights up the night sky by breathing fire and water every weekend.",
     
     artist: {
-      name: "Tây Nguyên",
-      year: "Truyền thống lâu đời",
-      location: "Tây Nguyên, Việt Nam",
-      image: "./images/character/cong-chieng.png"
-    },
-    image: "./images/cong-chieng.png"
-  },
-  {
-    title: "Tranh Đông Hồ",
-    
-    description: "Mỗi bức tranh Đông Hồ là một thông điệp, một ước vọng về cuộc sống tốt đẹp và sự may mắn cho gia đình, cộng đồng.",
-    
-    artist: {
-      name: "Làng Đông Hồ",
-      
-      location: "Song Hồ, Thuận Thành, Bắc Ninh, Việt Nam",
-      image: "/images/character/tranh-dong-ho.png"
-    },
-    image: "./images/tranh-dong-ho.png"
-  },
-  {
-    title: "Địa Đạo Củ Chi",
-    
-    description: "Củ Chi là niềm tự hào, là minh chứng cho sức mạnh của chiến tranh nhân dân.",
-    
-    artist: {
-      name: "Củ Chi",
-      
-      location: "xã Phú Mỹ Hưng, huyện Củ Chi, TP.HCM, Việt Nam",
-      image: "/images/character/dia-dao.png"
-    },
-    image: "/images/dia-dao.png"
-  },
-  {
-    title: "Chiến dịch Hồ Chí Minh",
-    
-    description: "Ngày 30 tháng 4 là ngày mà dân tộc Việt Nam thể hiện sự kiên cường, bất khuất, một ngày lịch sử không thể nào quên.",
-    
-    artist: {
-      name: "Sài Gòn",
+      name: "Da Nang",
      
-      location: "Sài Gòn (TPHCM), Việt Nam",
-      image: "/images/character/giai-phong.png"
+      location: "Da Nang, Viet Nam",
+      image: "./images/character/dragon-bridge.png"
     },
-    image: "/images/giai-phong.png"
+    image: "./images/dragon-bridge.png"
   },
   {
-    title: "Trống Đồng \n Đông Sơn",
-  
-    description: "Trống đồng Đông Sơn là biểu tượng của sự thịnh vượng và văn minh của dân tộc Việt Nam trong suốt chiều dài lịch sử.",
+    title: "Ba Na Hills",
+    
+    description: "Ba Na Hills is a magical mountain resort in Da Nang, famous for its cool climate, French village charm, and the stunning Golden Bridge held up by giant stone hands.",
     
     artist: {
-      name: "Đông Sơn",
-      location: "xã Đông Sơn, tỉnh Thanh Hóa, Việt Nam",
+      name: "Truong Son Mountains",
+      
+      location: "Da Nang, Viet Nam",
+      image: "/images/character/ba-na.png"
+    },
+    image: "./images/ba-na.png"
+  },
+  {
+    title: "Marble Mountains",
+    
+    description: "Beneath the sacred peaks of Marble Mountains in Da Nang, where legend meets the sky, the five elements—metal, wood, water, fire, and earth—dance in eternal balance, guarding ancient mysteries whispered by the winds and carved into stone through countless ages.",
+    
+    artist: {
+      name: "Da Nang",
+      
+      location: "Da Nang, Viet Nam",
+      image: "/images/character/ngu-hanh.png"
+    },
+    image: "/images/ngu-hanh.png"
+  },
+  {
+    title: "Hoi An",
+  
+    description: "Bathed in golden lantern light, Hoi An feels like a step into a dream. With its ancient alleys, whispered legends, and glowing riverside nights, this enchanting town holds a timeless, almost mystical charm that lingers long after you leave.",
+    
+    artist: {
+      name: "Hoi An Ancient Town",
+      location: "Quang Nam, Viet Nam",
       image: "/images/character/trong-dong-dong-son.png"
     },
-    image: "/images/trong-dong-dong-son.png"
+    image: "/images/hoi-an.png"
   },
   {
-    title: "Dân ca Quan Họ",
+    title: "Linh Ung Pagoda",
     
-    description: "Quan Họ là sự kết nối giữa các thế hệ, giữa người với người, thể hiện lòng hiếu khách và sự gắn bó với cội nguồn",
+    description: "Perched high on Son Tra Mountain, Linh Ung Pagoda shrouds itself in mist and mystery. Locals believe the giant Lady Buddha watches over fishermen and calms the storms — a sacred, otherworldly place where the spiritual and the mystical quietly intertwine.",
     
     artist: {
-      name: "Làng Quan Họ",
+      name: "son Tra Mountain",
+     
+      location: "Da Nang, Viet Nam",
+      image: "/images/character/giai-phong.png"
+    },
+    image: "/images/chua-linh-ung.png"
+  },
+  
+  {
+    title: "My Son Sanctuary",
+    
+    description: "Deep in the jungle, My Son Sanctuary stands as a mysterious echo of the Champa Kingdom — sacred, weathered, and wrapped in ancient whispers.",
+    
+    artist: {
+      name: "Quang Nam",
       
-      location: "Bắc Ninh, Việt Nam",
+      location: "Quang Nam, Viet Nam",
       image: "/images/character/quan-ho.png"
     },
-    image: "/images/quan-ho.png"
+    image: "/images/thanh-dia-my-son.jpg"
   }
 ];
 
 const MAX_VISIBILITY = 3;  
 
-const Card = ({ artwork, isActive }) => {
+const DaNangCard = ({ artwork, isActive }) => {
   const navigate = useNavigate();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Kiểm tra xem game có bị khóa không
-  const isLocked = artwork.title === "Trống Đồng \n Đông Sơn" || artwork.title === "Dân ca Quan Họ";
+  const isLocked = artwork.title === "Linh Ung Pagoda" || artwork.title === "My Son Sanctuary";
 
   const handleExpand = () => {
     // Nếu game bị khóa, không làm gì cả
@@ -115,16 +116,16 @@ const Card = ({ artwork, isActive }) => {
     // Kích hoạt hiệu ứng
     requestAnimationFrame(() => {
       overlay.classList.add('active');
-      document.querySelector('.card.active').classList.add('transitioning');
+      document.querySelector('.da-nang-card.active').classList.add('transitioning');
     });
 
     // Chuyển hướng sau khi animation hoàn thành
     setTimeout(() => {
-      if (artwork.title === "Địa Đạo Củ Chi") {
+      if (artwork.title === "Dragon Bridge") {
         navigate('/cuchigame');
-      } else if (artwork.title === "Tranh Đông Hồ") {
+      } else if (artwork.title === "Ba Na Hills") {
         navigate('/donghogame');
-      } else if (artwork.title === "Cồng Chiêng Tây Nguyên") {
+      } else if (artwork.title === "Marble ") {
         navigate('/taynguyengame');
       } else if (artwork.title === "Chiến dịch Hồ Chí Minh"){
         navigate('/introduction');
@@ -140,7 +141,7 @@ const Card = ({ artwork, isActive }) => {
   };
 
   return (
-    <div className={`card ${isActive ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''} ${isLocked ? 'locked-card' : ''}`}>
+    <div className={`da-nang-card ${isActive ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''} ${isLocked ? 'locked-da-nang-card' : ''}`}>
       {isLocked && (
         <div className="locked-overlay">
           <div className="big-lock-icon">
@@ -185,7 +186,7 @@ const Card = ({ artwork, isActive }) => {
   );
 };  
 
-const Carousel = ({ children }) => {  
+const DaNangCarousel = ({ children }) => {  
   // Khôi phục vị trí carousel từ localStorage (nếu có)
   const [active, setActive] = useState(() => {
     const saved = localStorage.getItem('museum-carousel-index');
@@ -194,7 +195,7 @@ const Carousel = ({ children }) => {
   const count = React.Children.count(children);  
 
   return (  
-    <div className="carousel">  
+    <div className="da-nang-carousel">  
       {active > 0 && (  
         <button className="nav left" onClick={() => setActive((i) => i - 1)}>  
           <TiChevronLeftOutline />  
@@ -202,7 +203,7 @@ const Carousel = ({ children }) => {
       )}  
       {React.Children.map(children, (child, i) => (  
         <div  
-          className="card-container"  
+          className="da-nang-card-container"  
           style={{  
             "--active": i === active ? 1 : 0,  
             "--offset": (active - i) / 3,  
@@ -239,15 +240,15 @@ if(!localStorage.getItem('username') || !localStorage.getItem('username') ){navi
       {/* <span>Trang chủ</span> */}
     </button>
   <div className="app">  
-    <Carousel>  
-      {CARDS.map((artwork, i) => (  
-        <Card  
+    <DaNangCarousel>  
+      {DaNangCARDS.map((artwork, i) => (  
+        <DaNangCard  
           key={i}
           artwork={artwork}  
           isActive={i === 0}  
         />    
       ))}  
-    </Carousel>  
+    </DaNangCarousel>  
   </div>  
   </div>
 );  
