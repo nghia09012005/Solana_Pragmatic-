@@ -3,12 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import useSignIn from '../hooks/useSignIn';
 import useSignUp from '../hooks/useSignUp';
-
+import { TiChevronLeftOutline, TiChevronRightOutline } from "react-icons/ti";
+import { BsArrowsFullscreen } from "react-icons/bs";
 import Footer from '../components/layout/Footer';
 import TransitionCover from "../components/TransitionCover";
 import TransitionLink from "../components/TransitionLink";
 
 function HomePage() {
+  // Thêm ở đầu function HomePage
+const carouselRef = React.useRef(null);
+const scrollToCarousel = () => {
+  if (carouselRef.current) {
+    carouselRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+};
   const [showCover, setShowCover] = useState(false);
   const [nextPath, setNextPath] = useState("");
   const navigate = useNavigate();
@@ -115,7 +123,225 @@ function HomePage() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-
+  const CARDS = [
+    {
+      title: "Da Nang",
+      
+      description: "Da Nang is a breathtaking coastal gem of Vietnam, where golden beaches meet misty mountains and every corner promises a new adventure waiting to be uncovered.",
+      
+      artist: {
+        name: "Central",
+       
+        location: "Viet Nam",
+        image: "./images/character/vietnam.png"
+      },
+      image: "./images/da-nang.png"
+    },
+    {
+      title: "Ho Chi Minh City",
+      
+      description: "A vibrant fusion of tradition and modernity, Ho Chi Minh City pulses with energy—its bustling markets, dynamic street life, and hidden alleyway cafés invite you to discover stories at every corner",
+      artist: {
+        name: "Southern",
+        
+        location: "Viet Nam",
+        image: "/images/character/vietnam.png"
+      },
+      image: "./images/ho-chi-minh.png"
+    },
+    {
+      title: "Da Lat",
+      
+      description: "Nestled in Vietnam’s central highlands, Da Lat enchants with its cool mountain air, pine-covered hills, and romantic charm—a dreamy escape where every misty morning feels like a fairytale waiting to unfold.",
+      
+      artist: {
+        name: "Central",
+        
+        location: "Viet Nam",
+        image: "/images/character/vietnam.png"
+      },
+      image: "/images/da-lat.png"
+    },
+    {
+      title: "Hue",
+    
+      description: "Graceful and poetic, Hue whispers tales of emperors and ancient dynasties—its imperial citadel, peaceful rivers, and timeless charm invite you to step back into Vietnam’s royal past.",
+      
+      artist: {
+        name: "Central",
+        location: "Viet Nam",
+        image: "/images/character/vietnam.png"
+      },
+      image: "/images/hue.png"
+    },
+    {
+      title: "Ninh Binh",
+      
+      description: "With towering limestone cliffs, winding rivers, and ancient pagodas, Ninh Binh feels like a hidden paradise—where nature and history create a landscape straight out of a legend.",
+      artist: {
+        name: "Northern",
+       
+        location: "Viet Nam",
+        image: "/images/character/vietnam.png"
+      },
+      image: "/images/ninh-binh.png"
+    },
+    
+    {
+      title: "Ha Noi",
+      
+      description: "Hanoi, Vietnam’s vibrant capital, blends centuries-old architecture with bustling street life—where tranquil lakes, ancient temples, and lively markets create a city full of stories waiting to be discovered.",
+      
+      artist: {
+        name: "Northern",
+        
+        location: "Viet Nam",
+        image: "/images/character/vietnam.png"
+      },
+      image: "/images/ha-noi.png"
+    }
+  ];
+  
+  const MAX_VISIBILITY = 3;  
+  
+  const Card = ({ artwork, isActive }) => {
+    const navigate = useNavigate();
+    const [isTransitioning, setIsTransitioning] = useState(false);
+  
+    // Kiểm tra xem game có bị khóa không
+    const isLocked = artwork.title === "Linh Ung Pagoda" || artwork.title === "My Son Sanctuary";
+  
+    const handleExpand = () => {
+      // Nếu game bị khóa, không làm gì cả
+      if (isLocked) {
+        alert("Game này hiện đang được phát triển. Vui lòng quay lại sau!");
+        return;
+      }
+  
+      setIsTransitioning(true);
+      
+      // Tạo overlay và vortex elements
+      const overlay = document.createElement('div');
+      overlay.className = 'transition-overlay';
+      document.body.appendChild(overlay);
+  
+      const vortex = document.createElement('div');
+      vortex.className = 'vortex';
+      document.body.appendChild(vortex);
+  
+      // Kích hoạt hiệu ứng
+      requestAnimationFrame(() => {
+        overlay.classList.add('active');
+        document.querySelector('.card.active').classList.add('transitioning');
+      });
+  
+      // Chuyển hướng sau khi animation hoàn thành
+      setTimeout(() => {
+        if (artwork.title === "Da Nang") {
+          navigate('/museum');
+        } else if (artwork.title === "Ba Na Hills") {
+          navigate('/donghogame');
+        } else if (artwork.title === "Marble ") {
+          navigate('/taynguyengame');
+        } else if (artwork.title === "Chiến dịch Hồ Chí Minh"){
+          navigate('/introduction');
+        }
+         else {
+          navigate(`/artwork/${artwork.id}`, { state: { artwork } });
+        }
+        
+        // Dọn dẹp elements
+        overlay.remove();
+        vortex.remove();
+      }, 2000);
+    };
+  
+    return (
+      <div className={`card ${isActive ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''} ${isLocked ? 'locked-card' : ''}`}>
+        {isLocked && (
+          <div className="locked-overlay">
+            <div className="big-lock-icon">
+              🔒</div>
+          </div>
+        )}
+        <button 
+          className={`expand-button ${isLocked ? 'locked' : ''}`} 
+          onClick={handleExpand}
+          title={isLocked ? "Game đang được phát triển" : "Khám phá"}
+        >
+          {isLocked ? (
+            <>
+              <span className="lock-icon">🔒</span>
+              Sắp ra mắt
+            </>
+          ) : (
+            <>
+              <BsArrowsFullscreen />
+              Khám phá
+            </>
+          )}
+        </button>
+        <img src={artwork.image} alt={artwork.title} className="artwork-image" />
+        <div className="artwork-info">
+          <h2>{artwork.title}</h2>
+          
+          <p className="quote">"{artwork.description}"</p>
+          <div className="details">
+            
+          </div>  
+          <div className="artist-info">
+            <img src={artwork.artist.image} alt={artwork.artist.name} className="artist-image" />
+            <div className="artist-details">
+              <h3>{artwork.artist.name}</h3>
+             
+              <p>{artwork.artist.location}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };  
+  
+  const Carousel = ({ children }) => {  
+    // Khôi phục vị trí carousel từ localStorage (nếu có)
+    const [active, setActive] = useState(() => {
+      const saved = localStorage.getItem('museum-carousel-index');
+      return saved !== null ? Number(saved) : 0;
+    });
+    const count = React.Children.count(children);  
+  
+    return (  
+      <div className="carousel">  
+        {active > 0 && (  
+          <button className="nav left" onClick={() => setActive((i) => i - 1)}>  
+            <TiChevronLeftOutline />  
+          </button>  
+        )}  
+        {React.Children.map(children, (child, i) => (  
+          <div  
+            className="card-container"  
+            style={{  
+              "--active": i === active ? 1 : 0,  
+              "--offset": (active - i) / 3,  
+              "--direction": Math.sign(active - i),  
+              "--abs-offset": Math.abs(active - i) / 3,  
+              "pointer-events": active === i ? "auto" : "none",  
+              opacity: Math.abs(active - i) >= MAX_VISIBILITY ? "0" : "1",  
+              display: Math.abs(active - i) > MAX_VISIBILITY ? "none" : "block",  
+            }}  
+          >  
+            {React.cloneElement(child, { isActive: i === active })}
+          </div>  
+        ))}  
+        {active < count - 1 && (  
+          <button className="nav right" onClick={() => setActive((i) => i + 1)}>  
+            <TiChevronRightOutline />  
+          </button>  
+        )}  
+      </div>  
+    );  
+  };  
+  
   //----------
 
   useEffect(() => {
@@ -242,11 +468,23 @@ function HomePage() {
         <h3 className={`fade-in-text  ${isVisible ? 'visible' : ''}`}>
         Viet Nam.
         </h3>
-        <TransitionLink to="/museum" onShowCover={() => setShowCover(true)}>
-          <button>Start Your Journey!</button>
-        </TransitionLink>
+        <button type="button" onClick={scrollToCarousel}>
+  Start Your Journey!
+</button>
         <div></div>
       </section>
+
+      <div className="app" ref={carouselRef}>  
+    <Carousel>  
+      {CARDS.map((artwork, i) => (  
+        <Card  
+          key={i}
+          artwork={artwork}  
+          isActive={i === 0}  
+        />    
+      ))}  
+    </Carousel>  
+  </div>  
 
 
       {(showSignIn || showSignUp) && <div className="overlay"></div>}
