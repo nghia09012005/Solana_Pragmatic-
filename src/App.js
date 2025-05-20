@@ -26,19 +26,14 @@ import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
   
 function App() {
-  // const { loading } = useAuth();
-
-  // if (loading) {
-  //   return <LoadingScreen />;
-  // }
-
+  
   return (
     <div className="app">
       {/* <Header /> */}
       <main className="main-content">
         <Routes>
 
-        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<HomePage />} />
         
         <Route path="/museum" element={<MuseumPage />} />
 

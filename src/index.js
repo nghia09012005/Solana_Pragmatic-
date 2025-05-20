@@ -12,6 +12,10 @@ import {
 } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 
+// Quan trọng: import styles cho Wallet Adapter UI modal
+import '@solana/wallet-adapter-react-ui/styles.css';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+
 const endpoint = clusterApiUrl('devnet');
 const wallets = [new PhantomWalletAdapter()];
 
@@ -22,7 +26,9 @@ root.render(
     <BrowserRouter>
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
-          <App />
+          <WalletModalProvider>
+            <App />
+          </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>
     </BrowserRouter>

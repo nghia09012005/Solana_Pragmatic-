@@ -19,7 +19,7 @@ const Leaderboard = () => {
       return;
     }
 
-    fetch('https://wda-be-1.onrender.com/api/users/uswst', {
+    fetch('api/users/uswst', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
