@@ -159,11 +159,11 @@ const connectPhantomWallet = async () => {
             </div>
             <div className="user-stats">
               <div className="stat-item">
-                <span className="stat-label">Vàng:</span>
+                <span className="stat-label">Gold:</span>
                 <span className="stat-value">{userData.money}</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Vật phẩm:</span>
+                <span className="stat-label">Certification:</span>
                 <span className="stat-value">{Object.values(userData.items).filter(v => v).length}/6</span>
               </div>
               <div className="stat-item">
@@ -172,7 +172,7 @@ const connectPhantomWallet = async () => {
               </div>
               {phantomPubKey && (
                 <div className="stat-item">
-                  <span className="stat-label">Ví Phantom:</span>
+                  <span className="stat-label">Wallet:</span>
                   <span className="stat-value">{phantomPubKey.slice(0, 6)}...{phantomPubKey.slice(-6)}</span>
                 </div>
               )}
@@ -225,11 +225,11 @@ const connectPhantomWallet = async () => {
             <div className="profile-actions">
               {!phantomPubKey && (
                 <button className="btn-connect-phantom" onClick={connectPhantomWallet}>
-                  Kết nối ví Phantom
+                  Connect Wallet
                 </button>
               )}
               <div className="btn-logout">
-                <button onClick={handleLogout}>Đăng xuất</button>
+                <button onClick={handleLogout}>Log out</button>
               </div>
             </div>
           </div>
