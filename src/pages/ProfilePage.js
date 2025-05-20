@@ -8,6 +8,7 @@ import '../styles/ProfilePage.css';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     username: '',
     exp: 0,
@@ -22,6 +23,9 @@ const ProfilePage = () => {
     }
   });
 
+  // State lưu public key ví Phantom
+  const [phantomPubKey, setPhantomPubKey] = useState(null);
+
   const fetchUserData = async () => {
     const username = localStorage.getItem('username');
     const token = localStorage.getItem('token');
@@ -32,7 +36,7 @@ const ProfilePage = () => {
     }
 
     try {
-      const response = await fetch(`api/users/stats/${username}`, {
+      const response = await fetch(`http://localhost:8080/api/users/stats/${username}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -41,7 +45,10 @@ const ProfilePage = () => {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        navigate('/');
+        return;
       }
 
       const data = await response.json();
@@ -73,11 +80,63 @@ const ProfilePage = () => {
 
   useEffect(() => {
     fetchUserData();
-  });
+  
+    const checkPhantom = () => {
+      if (window.solana && window.solana.isPhantom) {
+        window.solana.on('connect', () => {
+          setPhantomPubKey(window.solana.publicKey.toString());
+        });
+        window.solana.on('disconnect', () => {
+          setPhantomPubKey(null);
+        });
+  
+        if (window.solana.isConnected) {
+          setPhantomPubKey(window.solana.publicKey.toString());
+        }
+      }
+    };
+  
+    // Gọi khi trang đã load hoàn toàn
+    if (document.readyState === 'complete') {
+      checkPhantom();
+    } else {
+      window.addEventListener('load', checkPhantom);
+    }
+  
+    return () => {
+      window.removeEventListener('load', checkPhantom);
+    };
+  }, []);
+  
+
+  // Hàm kết nối ví Phantom khi user bấm nút
+// Thay thế hàm này trong component của bạn
+const connectPhantomWallet = async () => {
+  if (window.solana && window.solana.isPhantom) {
+    try {
+      const resp = await window.solana.connect();
+      setPhantomPubKey(resp.publicKey.toString());
+      console.log('Đã kết nối ví Phantom:', resp.publicKey.toString());
+      // Có thể gọi thêm API hoặc update UI ở đây
+    } catch (err) {
+      console.error('User rejected the connection', err);
+    }
+  } else {
+    if (window.confirm('Bạn chưa cài Phantom Wallet hoặc chưa đăng nhập. Bạn có muốn cài đặt ngay không?')) {
+      window.open('https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa', '_blank');
+    }
+    
+    
+  }
+};
+
 
   const handleLogout = () => {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
+    if (window.solana && window.solana.isPhantom && window.solana.isConnected) {
+      window.solana.disconnect();
+    }
     navigate('/');
   };
 
@@ -105,12 +164,18 @@ const ProfilePage = () => {
               </div>
               <div className="stat-item">
                 <span className="stat-label">Vật phẩm:</span>
-                <span className="stat-value">{Object.values(userData.items).filter(value => value === true).length}/6</span>
+                <span className="stat-value">{Object.values(userData.items).filter(v => v).length}/6</span>
               </div>
               <div className="stat-item">
                 <span className="stat-label">EXP:</span>
                 <span className="stat-value">{userData.exp}</span>
               </div>
+              {phantomPubKey && (
+                <div className="stat-item">
+                  <span className="stat-label">Ví Phantom:</span>
+                  <span className="stat-value">{phantomPubKey.slice(0, 6)}...{phantomPubKey.slice(-6)}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -156,15 +221,17 @@ const ProfilePage = () => {
                 )}
               </div>
             </div>
-            
-            <div className="profile-actions">
-  <div className="btn-logout">
-    <button onClick={handleLogout}>
-      Đăng xuất
-    </button>
-  </div>
-</div>
 
+            <div className="profile-actions">
+              {!phantomPubKey && (
+                <button className="btn-connect-phantom" onClick={connectPhantomWallet}>
+                  Kết nối ví Phantom
+                </button>
+              )}
+              <div className="btn-logout">
+                <button onClick={handleLogout}>Đăng xuất</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -172,4 +239,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage; 
+export default ProfilePage;

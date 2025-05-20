@@ -27,9 +27,10 @@ html, body {
 
 
 .signin {
-  position: fixed;
+  /* position: fixed; */
+  margin-right: 200px;
   top: 0.5px;
-  right: 100px;
+  left: 100px;
   padding: 7px 15px;
   border-radius: 12px;
   font-weight: 500;
