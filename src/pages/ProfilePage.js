@@ -79,7 +79,7 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
-    fetchUserData();
+    // fetchUserData();
   
     const checkPhantom = () => {
       if (window.solana && window.solana.isPhantom) {
@@ -224,9 +224,11 @@ const connectPhantomWallet = async () => {
 
             <div className="profile-actions">
               {!phantomPubKey && (
-                <button className="btn-connect-phantom" onClick={connectPhantomWallet}>
-                  Connect Wallet
+                <div className="btn-connect-phantom">
+                <button onClick={connectPhantomWallet}>
+                  Kết nối ví Phantom
                 </button>
+                </div>
               )}
               <div className="btn-logout">
                 <button onClick={handleLogout}>Log out</button>

@@ -22,8 +22,8 @@ const Header = () => {
       <div className="header-container">
         <div className="logo">
           <Link to="/">
-            <img src="/images/icons/logo.png" alt="Hành trình di sản" />
-            <img src="/images/icons/logo-font.png" alt="Hành trình di sản" />
+            <img src="/images/icons/logo.png" alt="VNTOUR" />
+            <img src="/images/icons/logo-font.png" alt="VNTOUR" />
           </Link>
         </div>
 

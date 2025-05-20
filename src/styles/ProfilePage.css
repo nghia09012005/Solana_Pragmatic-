@@ -161,13 +161,16 @@
 }
 
 .profile-actions {
-  position: absolute;  /* Đảm bảo nó sẽ được định vị ở góc phải */
-  top: 30rem;          /* Đẩy xuống dưới */
-  right: 5rem;            /* Căn sang phải */
-  text-align: right;   /* Căn các phần tử bên trong về phía phải */
+  display: flex;
+  flex-direction: row;
+  gap: 20px;           /* Khoảng cách giữa 2 nút */
+  left: 48rem;
+  align-items:center;
+  position: absolute;    /* Bỏ position: absolute để không bị lệch */
+  top:30rem;
   
 }
-.btn-logout {
+.btn-logout, .btn-connect-phantom {
   position: relative;
   width: 120px;
   height: 50px;
@@ -186,7 +189,7 @@
   overflow: hidden;
 }
 
-.btn-logout::after {
+.btn-logout::after, .btn-connect-phantom::after {
   content: "";
   position: absolute;
   top: 3px;
@@ -199,7 +202,7 @@
   z-index: 1;
 }
 
-.btn-logout button {
+.btn-logout button, .btn-connect-phantom button {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -215,7 +218,7 @@
   transition: 0.3s;
 }
 
-.btn-logout button:hover {
+.btn-logout button:hover, .btn-connect-phantom button:hover {
   color: #00ffe0;
   text-shadow: 0 0 10px #00ffe0, 0 0 20px #ffe666;
   box-shadow: 0 0 15px #00ffe0, 0 0 25px #ffe666;
@@ -270,15 +273,16 @@
   /* Đảm bảo nút đăng xuất ở giữa trên màn hình nhỏ */
   .profile-actions {
     position: absolute;
-    top: 85%;          /* Đẩy nút đăng xuất xuống dưới */
-    left: 50%;         /* Căn giữa */
+    top: 87%;          /* Đẩy nút đăng xuất xuống dưới */
+   left:64%;         /* Căn giữa */
     transform: translateX(-50%);  /* Căn chính giữa */
     text-align: center;
+    width: 110%;
   }
 
-  .btn-logout {
+  .btn-logout, .btn-connect-phantom {
     padding: 12px 20px;
-    font-size: 16px;
-    width: auto;       /* Để nút có thể tự động co giãn */
+    
+    width: auto;   
   }
 }

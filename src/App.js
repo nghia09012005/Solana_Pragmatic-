@@ -38,7 +38,7 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} /> */}
         
         <Route path="/museum" element={<MuseumPage />} />
 
@@ -56,7 +56,8 @@ function App() {
            <Route path="/bantin" element={<Bantin />} />
 
           
-          <Route path="/profile" element={<ProfilePage />} /> 
+          {/* <Route path="/profile" element={<ProfilePage />} />  */}
+          <Route path="/" element={<ProfilePage />} /> 
 
           <Route path="/tankgame2" element={<TankGame2 />} />
           <Route path="/narrator" element={<NarratorScreen />} />

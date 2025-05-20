@@ -530,7 +530,7 @@ const scrollToCarousel = () => {
         />
             </h3>
             <div>
-              No account yet??{" "}
+              No account yet?{" "}
               <span 
                 onClick={switchToSignUp}
                 style={{ cursor: 'pointer', color: '#9b7b23' }}
