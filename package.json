@@ -1,7 +1,7 @@
 {
-  "name": "heritage-journey",
-  "version": "1.0.0",
-  "description": "Hành trình di sản - A time-travel museum experience of Vietnamese heritage",
+  "name": "VNTour",
+  "version": "2.0.1",
+  "description": "VNTour - A time-travel museum experience of Vietnamese heritage",
   "main": "index.js",
   "proxy": "http://localhost:8080",
   "scripts": {
@@ -11,12 +11,15 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@metaplex-foundation/js": "^0.14.1",
     "@mui/material": "^7.0.2",
+    "@solana/spl-token": "^0.4.13",
     "@solana/wallet-adapter-base": "^0.9.26",
     "@solana/wallet-adapter-react": "^0.15.38",
     "@solana/wallet-adapter-react-ui": "^0.9.38",
     "@solana/wallet-adapter-wallets": "^0.19.36",
-    "@solana/web3.js": "^1.98.2",
+    "@solana/web3.js": "^1.71.0",
+    "@walletconnect/relay-auth": "^1.1.0",
     "animate.css": "^4.1.1",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.6",
@@ -56,8 +59,10 @@
   "devDependencies": {
     "@craco/craco": "^7.1.0",
     "assert": "^2.1.0",
+    "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.1",
+    "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0"
   }

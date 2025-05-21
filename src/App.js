@@ -24,7 +24,8 @@ import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
 import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
-  
+import SendTokenTest from './pages/SendTokenTest';  
+
 function App() {
   
   return (
@@ -33,7 +34,8 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<SendTokenTest />} />
         
         <Route path="/museum" element={<MuseumPage />} />
 
