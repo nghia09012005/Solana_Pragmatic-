@@ -52,13 +52,7 @@ async function sendTokenSPL({ clientPublicKeyString, amount, network = "devnet" 
     admin.publicKey
   );
 
-  // Lấy hoặc tạo ATA client
-  const clientTokenAccount = await getOrCreateAssociatedTokenAccount(
-    connection,
-    admin,
-    mint,
-    clientPublicKey
-  );
+
 
   // Gửi token
   const signature = await transfer(
