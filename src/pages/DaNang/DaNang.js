@@ -3,7 +3,7 @@ import { TiChevronLeftOutline, TiChevronRightOutline } from "react-icons/ti";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import { FaHome } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import '../styles/MuseumPage.css';
+import '../../styles/DaNang.css';
 
 const DaNangCARDS = [
   {
@@ -11,7 +11,7 @@ const DaNangCARDS = [
     
     description: "Dragon Bridge is Da Nang’s iconic attraction, where a giant steel dragon lights up the night sky by breathing fire and water every weekend.",
     
-    artist: {
+    artist: { 
       name: "Da Nang",
      
       location: "Da Nang, Viet Nam",

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth';
 import HomePage from './pages/HomePage';
-import MuseumPage from './pages/MuseumPage';
+import DaNang from './pages/DaNang/DaNang';
 // import CollectionPage from './pages/CollectionPage';
 import LeaderboardPage from './pages/Leaderboard';
 
@@ -35,7 +35,7 @@ function App() {
 
         <Route path="/" element={<HomePage />} />
         
-        <Route path="/museum" element={<MuseumPage />} />
+        <Route path="/danang" element={<DaNang />} />
 
           <Route path="/personalmuseum" element={<PersonalMuseum />} />
 
