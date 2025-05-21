@@ -125,7 +125,7 @@ html, body {
 }
 
 .container{
-  
+  overflow: hidden;
 
   position: relative;
   /* overflow-x: hidden; */
@@ -137,7 +137,7 @@ html, body {
   background-attachment: fixed;
   margin: 0;
   padding: 0;
-  
+ background-size: cover;
   color: lightgray;
   background-size:100%;
   min-height: 100vh;
@@ -1447,6 +1447,7 @@ body:has(.overlay) .background button {
 .overlay,
 .overlay.active {
   display: none;
+ 
 }
 
 @keyframes slideUp {
@@ -1673,67 +1674,129 @@ body:has(.overlay) .background button {
 
 
 /* Responsive mobile */
-@media (max-width: 768px) {
-  .signin-page-box, .signup-page-box {
-    width: 95vw;
-    max-width: 99vw;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-  }
-
-  .hamburger {
-    display: block;
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
-    z-index: 1100;
-    margin-left: 5px;
-  }
-
-  
-  .nav-menu {
+@media (max-width: 900px) {
+ 
+  header ul.nav-menu {
     position: absolute;
     top: 70px;
     right: 0;
-    background-color: black;
+    background: rgba(79, 79, 79, 0.95);
     flex-direction: column;
-    width: 200px;
-    padding: 10px;
+    width: 220px;
+    padding: 20px 0 20px 0;
     display: none;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    z-index: 1100;
+    gap: 0;
   }
-
-  .nav-menu.active {
+  header ul.nav-menu.active {
     display: flex;
   }
-  
-  .signin{
-    margin: auto;
-    left: 5px;
+  header ul.nav-menu li {
+    width: 80%;
+    text-align: left;
+    padding: 12px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  
-.tinh-nang-chinh{
-  margin-top:50px;
+  .hamburger {
+    display: block;
+    font-size: 32px;
+    cursor: pointer;
+    color: white;
+    z-index: 1200;
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+  .head-left img {
+    margin-right: 20px;
+    height: 40px;
+  }
+  .head-right {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  header {
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+
+.container{
+  background: url('/public/images/vietnam-portrait.png');
+  width: 100%;
+  height: auto;
 }
+.feature h1 {
+    font-size: 36px !important;
+  }
   .feature-grid {
-    grid-template-columns: 1fr; /* 1 cột trên điện thoại */
-  
+    grid-template-columns: 1fr 1fr ;
+    padding: 0 10px;
+    gap: 18px;
     margin-left: 0;
   }
-
   .feature-card {
-    width: 100%; /* Đảm bảo mỗi thẻ chiếm hết chiều rộng màn hình */
-    padding: 60px; /* Giảm padding để tiết kiệm không gian */
-    height: 100%;
-  }
-  
-  .cong-nghe-1{
     width: 100%;
-    height: auto;
+    padding: 24px;
+    font-size: 16px;
   }
+  .carousel {
+    width: 68vw;
+    height: 80vw;
 
-  .info{
-    margin: 0;
+  }}
+@media (max-width: 700px) {
+  .background h1 {
+    font-size: 42px !important;
+    padding-left: 0;
+    max-width: 95vw;
+    text-align: center;
+    left: 0;
+    position: static;
+    margin-top: 20px;
+    margin-bottom: 0;
   }
+  .background h3 {
+    font-size: 50px !important;
+    padding-left: 0;
+    max-width: 95vw;
+    text-align: center;
+    left: 0;
+    position: static;
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+  .background button {
+    width: 50vw;
+    font-size: 18px;
+    left: 0;
+    margin: 0 auto 40px auto;
+    display: block;
+  }
+  .carousel {
+    width: 68vw;
+    height: 80vw;
+    min-width: 0;
+    min-height: 200px;
+    max-width: 100vw;
+    margin-top: 20px;
+  }
+  .feature h1 {
+    font-size: 36px !important;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr 1fr ;
+    padding: 0 10px;
+    gap: 18px;
+    margin-left: 0;
+  }
+  .feature-card {
+    width: 100%;
+    padding: 24px;
+    font-size: 16px;
+  }
+  .container{
+  background: url('/public/images/vietnam-portrait.png');
+ 
+}
 }

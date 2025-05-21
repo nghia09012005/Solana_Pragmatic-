@@ -238,7 +238,7 @@ const scrollToCarousel = () => {
       // Chuyển hướng sau khi animation hoàn thành
       setTimeout(() => {
         if (artwork.title === "Da Nang") {
-          navigate('/museum');
+          navigate('/danang');
         } else if (artwork.title === "Ba Na Hills") {
           navigate('/donghogame');
         } else if (artwork.title === "Marble ") {

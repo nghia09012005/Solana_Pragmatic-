@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth';
 import HomePage from './pages/HomePage';
-import MuseumPage from './pages/MuseumPage';
+import DaNang from './pages/DaNang/DaNang';
 // import CollectionPage from './pages/CollectionPage';
 import LeaderboardPage from './pages/Leaderboard';
 
@@ -10,7 +10,7 @@ import LeaderboardPage from './pages/Leaderboard';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
-
+import CauRong from './pages/DaNang/CauRong/CauRong';
 import DongHoGame from './pages/DongHoGame/DongHoGameG1';
 import TayNguyenGame from './pages/TayNguyenGame';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
@@ -37,7 +37,7 @@ function App() {
         {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/" element={<SendTokenTest />} />
         
-        <Route path="/museum" element={<MuseumPage />} />
+        <Route path="/danang" element={<DaNang />} />
 
           <Route path="/personalmuseum" element={<PersonalMuseum />} />
 
@@ -65,7 +65,7 @@ function App() {
           <Route path="/donghogame" element={<DongHoGame />} />
            <Route path="/FlipCard" element={<FlipCard />} /> 
 
-
+<Route path="/caurong" element={<CauRong />} /> 
 
            <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
