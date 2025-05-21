@@ -122,7 +122,7 @@ const DaNangCard = ({ artwork, isActive }) => {
     // Chuyển hướng sau khi animation hoàn thành
     setTimeout(() => {
       if (artwork.title === "Dragon Bridge") {
-        navigate('/cuchigame');
+        navigate('/caurong');
       } else if (artwork.title === "Ba Na Hills") {
         navigate('/donghogame');
       } else if (artwork.title === "Marble ") {

@@ -10,7 +10,7 @@ import LeaderboardPage from './pages/Leaderboard';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
-
+import CauRong from './pages/DaNang/CauRong/CauRong';
 import DongHoGame from './pages/DongHoGame/DongHoGameG1';
 import TayNguyenGame from './pages/TayNguyenGame';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
@@ -63,7 +63,7 @@ function App() {
           <Route path="/donghogame" element={<DongHoGame />} />
            <Route path="/FlipCard" element={<FlipCard />} /> 
 
-
+<Route path="/caurong" element={<CauRong />} /> 
 
            <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
