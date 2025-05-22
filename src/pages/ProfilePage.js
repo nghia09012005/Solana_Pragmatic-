@@ -39,7 +39,7 @@ const ProfilePage = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/api/users/stats/${username}`, {
+      const response = await fetch(`api/users/stats/${username}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -85,6 +85,14 @@ const ProfilePage = () => {
     fetchUserData();
  
   }, []);
+
+  
+  useEffect(() => {
+    if (connected && publicKey) {
+      localStorage.setItem('Wallet', publicKey.toString());
+    }
+  }, [connected, publicKey]);
+  
   
 
 

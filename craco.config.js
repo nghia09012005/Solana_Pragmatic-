@@ -9,6 +9,9 @@ module.exports = {
         assert: require.resolve('assert/'),
         buffer: require.resolve('buffer/'),
         process: require.resolve('process/browser.js'),
+        // Thêm 2 dòng này để fix lỗi
+        zlib: require.resolve('browserify-zlib'),
+        path: require.resolve('path-browserify'),
       };
 
       webpackConfig.plugins.push(
