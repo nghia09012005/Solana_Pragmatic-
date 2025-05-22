@@ -25,6 +25,7 @@ import Introduction from './pages/Thongnhat/Introduction';
 import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
 import SendTokenTest from './pages/SendTokenTest';  
+import VoucherMarketplace from './pages/VoucherMarket';
 
 function App() {
   
@@ -34,8 +35,9 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        {/* <Route path="/" element={<HomePage />} /> */}
-        <Route path="/" element={<SendTokenTest />} />
+
+        <Route path="/" element={<HomePage />} />
+        <Route path="/vouchermarket" element={<VoucherMarketplace />} />
         
         <Route path="/danang" element={<DaNang />} />
 

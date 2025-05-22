@@ -34,6 +34,14 @@ const ProfilePage = () => {
     const token = localStorage.getItem('token');
     
     if (!username || !token) {
+      if (connected) {
+        try {
+          await disconnect();
+          console.log('Wallet disconnected');
+        } catch (error) {
+          console.error('Error disconnecting wallet:', error);
+        }
+      }
       navigate('/');
       return;
     }
