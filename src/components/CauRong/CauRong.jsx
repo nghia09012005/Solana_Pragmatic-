@@ -1,10 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import Swal from 'sweetalert2';
+import winSound from '../../assets/sounds/win.mp3';
+import loseSound from '../../assets/sounds/lose.mp3';
 
 const gravity = 2;
 
 function DragonGame() {
-    
+      // Thêm một biến state để lưu đã thắng chưa
+const [hasWon, setHasWon] = useState(false);
+  const playSound = (src) => {
+    const audio = new Audio(src);
+
+    audio.play();
+  };
 const [canvasWidth, setCanvasWidth] = useState(window.innerWidth);
 const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
   const canvasRef = useRef(null);
@@ -75,16 +83,30 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
 
       for (let obs of obstacles) {
         if (isColliding(dragonRect, obs)) {
-          alert("Bạn đã thua!");
-          window.location.reload();
-          return;
+          playSound(loseSound);
+Swal.fire({
+  icon: 'error',
+  title: 'Bạn đã thua!',
+  text: 'Hãy thử lại để chinh phục điểm cao hơn!',
+  confirmButtonText: 'Chơi lại',
+  background: '#222',
+  color: '#fff'
+}).then(() => window.location.reload());
+return;
         }
       }
       for (let obs of obstaclesTop) {
         if (isColliding(dragonRect, obs)) {
-          alert("Bạn đã thua!");
-          window.location.reload();
-          return;
+          playSound(loseSound);
+Swal.fire({
+  icon: 'error',
+  title: 'Bạn đã thua!',
+  text: 'Hãy thử lại để chinh phục điểm cao hơn!',
+  confirmButtonText: 'Chơi lại',
+  background: '#222',
+  color: '#fff'
+}).then(() => window.location.reload());
+return;
         }
       }
 
@@ -202,6 +224,22 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
       animationId = requestAnimationFrame(gameLoop);
     }
     animationId = requestAnimationFrame(gameLoop);
+
+
+// Trong gameLoop:
+      if (!hasWon && score >= 500) {
+        setHasWon(true);
+        playSound(winSound);
+        Swal.fire({
+          icon: 'success',
+          title: 'Chúc mừng!',
+          text: 'Bạn đã đạt 500 điểm và chiến thắng!',
+          confirmButtonText: 'Chơi lại',
+          background: '#f7e9a0',
+          color: '#222'
+        }).then(() => window.location.reload());
+        return;
+      } 
     return () => cancelAnimationFrame(animationId);
   }, [isJumping]);
 
