@@ -1,5 +1,5 @@
 {
-  "name": "VNTour",
+  "name": "vntour",
   "version": "2.0.1",
   "description": "VNTour - A time-travel museum experience of Vietnamese heritage",
   "main": "index.js",
@@ -41,7 +41,7 @@
     "react-transition-group": "^4.4.5",
     "styled-components": "^6.1.17",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.19.1",
+    "sweetalert2": "^11.21.2",
     "three": "^0.155.0",
     "web-vitals": "^5.0.1"
   },
