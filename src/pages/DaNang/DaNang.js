@@ -60,10 +60,10 @@ const DaNangCARDS = [
 
   
   {
-    title: "Điện Hải cổ thành",
-    description: "Điện Hải cổ thành là một điểm du lịch nổi bật ở Đà Nẵng, Việt Nam. Đây là một điểm tham quan hấp dẫn với các công trình kiến trúc độc đáo và lịch sử hào hùng.",
+    title: "Dien Hai Ancient Citadel",
+    description: "Dien Hai Ancient Citadel is a historic military fortress in Da Nang, Vietnam. Built in the early 19th century by the Nguyen Dynasty, it was vital in defending against French and Spanish attacks in the mid-1800s. Though largely damaged, it stands as a significant reminder of Vietnam's past and its resistance.",
     artist: {
-      name: "Điện Hải cổ thành",
+      name: "Dien Hai Ancient Citadel",
       location: "Đà Nẵng, Việt Nam",
       image: "images/character/dia-dao1.png"
     },
@@ -142,7 +142,7 @@ const DaNangCard = ({ artwork, isActive }) => {
         navigate('/taynguyengame');
       } else if (artwork.title === "Chiến dịch Hồ Chí Minh"){
         navigate('/introduction');
-      } else if (artwork.title === "Điện Hải cổ thành"){
+      } else if (artwork.title === "Dien Hai Ancient Citadel"){
         navigate('/dienhaicothanh');
       } else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });
