@@ -1,0 +1,406 @@
+/* Tank Game Styles */
+
+/* Container cho game - chiếm toàn màn hình */
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInMenu {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+/* Menu Styles */
+.menu-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 106, 78, 0.7);  /* Màu xanh lá cho chủ đề Thống Nhất */
+  color: white;
+  border: 2px solid #006A4E;
+  padding: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 120;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+  transition: background 0.18s, border 0.18s, color 0.18s, transform 0.18s;
+}
+
+.menu-button:hover {
+  background: #006A4E;
+  border-color: #004C38;
+  color: white;
+  transform: scale(1.10);
+}
+
+.menu-button:active {
+  transform: scale(0.97);
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(21, 19, 12, 0.68);
+  z-index: 110;
+  animation: fadeInOverlay 0.19s;
+  backdrop-filter: blur(2px);
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 295px;
+  height: 100vh;
+  background: rgba(0, 106, 78, 0.45);  /* Màu xanh lá cho chủ đề Thống Nhất */
+  color: white;
+  box-shadow: 2px 0 32px rgba(0,0,0,0.25);
+  border-right: 2.5px solid #006A4E;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(6px);
+  animation: slideInMenu 0.22s cubic-bezier(.65,.05,.36,1);
+}
+
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 18px 10px 18px;
+  border-bottom: 1.5px solid #006A4E;
+}
+
+.side-menu-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.close-menu-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.7rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.13s, color 0.13s;
+}
+
+.close-menu-button:hover {
+  background: #006A4E;
+  color: white;
+}
+
+.side-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.side-menu-item {
+  width: 100%;
+}
+
+.side-menu-link {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 18px 28px;
+  font-size: 1.13rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0 14px 14px 0;
+  transition: background 0.14s, color 0.14s;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.side-menu-link:hover {
+  background: #006A4E;
+  color: white;
+  box-shadow: 2px 0 16px #006A4E;
+}
+
+/**
+ * Container for the tank game
+ * 
+ * Chiếm toàn bộ chiêù rộng và cao màn hình
+ * Màu nền là #2d2d2d
+ * Hiển thị flexbox, căn chỉnh nội dung vào trung tâm màn hình
+ * Ảnh nền là ảnh nền trong game
+ */
+.tank-container {
+  position: relative;
+  width: 100vw;
+  max-width: 1600px;
+  height: 100vh;
+  background-color: #2d2d2d;
+  overflow: hidden;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.background-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26vw;
+  height: 100vh;
+  background: url("../../assets/Thongnhat/images/background_left.png") repeat-y left top;
+  background-size: cover;
+  z-index: 0;
+  animation: road-move-side 2.4s linear infinite;
+}
+
+.background-center {
+  position: absolute;
+  top: -10vh;
+  left: 26vw;
+  width: 48vw;
+  height: 120vh;
+  background: url("../../assets/Thongnhat/images/background_center.png") repeat-y center top;
+  background-size: cover;
+  z-index: 0;
+  animation: road-move 4s linear infinite;
+}
+
+@keyframes road-move {
+  0% {
+    background-position-y: 100%;
+  }
+  100% {
+    background-position-y: 0%;
+  }
+}
+
+@keyframes road-move-side {
+  0% {
+    background-position-y: 100%;
+  }
+  100% {
+    background-position-y: 0%;
+  }
+}
+
+.background-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 26vw;
+  height: 100vh;
+  background: url("../../assets/Thongnhat/images/background_right.png") repeat-y right top;
+  background-size: cover;
+  z-index: 0;
+  animation: road-move-side 2.4s linear infinite;
+}
+
+/* Tank */
+.tank {
+  position: absolute;
+  bottom: 5%;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../assets/Thongnhat/images/tank.png");
+  background-size: contain; /* Hoặc 'cover' tùy theo yêu cầu */
+  background-position: center;
+  background-repeat: no-repeat; /* Đảm bảo hình ảnh không bị lặp lại */
+ 
+}
+/* Bullet */
+.bullet {
+  position: absolute;
+  width: 8px;
+  height: 20px;
+  background-image: url("../../assets/Thongnhat/images/bullet.png"); /* Đảm bảo đường dẫn hình ảnh đúng */
+  background-size: cover;
+  transform: translateX(-50%);
+  z-index: 1; /* Đảm bảo đạn hiển thị trên cùng */
+}
+/* Obstacle */
+.obstacle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../assets/Thongnhat/images/obstacle.png"); /* Đảm bảo đường dẫn hình ảnh đúng */
+  background-size: cover; /* Hoặc 'contain' tùy theo yêu cầu */
+  z-index: 0; /* Đảm bảo chướng ngại vật nằm dưới đạn */
+  border-radius: 5px; /* Nếu muốn chướng ngại vật có góc bo tròn */
+}
+
+/* Score Text */
+.score-text {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  font-size: 30px;
+}
+
+/* Game Over Screen */
+.game-over {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.75);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000; /* Đảm bảo Game Over luôn hiển thị trên các phần khác */
+}
+
+/* Nội dung Game Over */
+.game-over-content {
+text-align: center;
+color: white;
+animation: fadeIn 0.5s ease-in-out; /* Hiệu ứng hiển thị */
+}
+
+/* Hiệu ứng fadeIn */
+@keyframes fadeIn {
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+.game-over h2 {
+font-size: 36px;
+margin-bottom: 20px;
+}
+
+.game-over p {
+font-size: 24px;
+margin-bottom: 20px;
+}
+
+.game-over button {
+background-color: #4CAF50;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 18px;
+}
+
+.game-over button:hover {
+background-color: #45a049;
+}
+
+/* Success */
+/* Success Container */
+.success {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Nền mờ tối */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Đảm bảo hiển thị trên tất cả các phần tử khác */
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  animation: fadeIn 1s ease-out; /* Hiệu ứng mờ dần khi hiện lên */
+}
+
+/* Nội dung của success */
+.success-content {
+  text-align: center;
+  padding: 20px;
+  background-color: #28a745; /* Màu xanh cho sự thành công */
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.5s ease-out; /* Hiệu ứng bật lên */
+}
+
+/* Tạo hiệu ứng fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Tạo hiệu ứng bounceIn */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Thêm kiểu cho tiêu đề */
+.success h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase; /* Tăng độ nổi bật */
+}
+
+/* Thêm kiểu cho phần điểm số */
+.success p {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: normal;
+  color: #fff;
+}
+
+/* Thêm kiểu cho nút (nếu có) */
+.success button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: none;
+  color: #28a745;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Thêm hiệu ứng hover cho nút */
+.success button:hover {
+  background-color: #28a745;
+  color: white;
+}

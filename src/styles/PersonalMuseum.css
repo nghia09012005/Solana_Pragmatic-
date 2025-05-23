@@ -1,0 +1,798 @@
+ @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+  
+  .museum-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size:cover;
+    background-position: center;
+  }
+  
+  .add-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid #333;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .add-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+  }
+  
+  .placed-artifact {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    animation: artifactAppear 0.8s ease-out, float 3s ease-in-out infinite;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+    transition: all 0.3s ease;
+    transform-origin: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .placed-artifact:hover {
+    transform: translateY(-8px);
+  }
+  
+  
+  
+  .placed-artifact .artifact-image {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+  
+  .placed-artifact .artifact-image:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    filter: brightness(1.1);
+  }
+  
+  @keyframes artifactAppear {
+    0% {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  
+  
+  .artifact-position {
+    transition: all 0.5s ease;
+  }
+  
+  .remove-artifact {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff4d4d, #ff0000);
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+  }
+  
+  .remove-artifact:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+  }
+  
+  .artifact-image {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px;
+  }
+  
+  .artifact-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .artifact-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 240, 230, 0.85));
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 320px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    animation: menuSlideIn 0.5s ease-out;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  @keyframes menuSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(139, 69, 19, 0.2);
+    position: relative;
+  }
+  
+  .menu-header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.5), transparent);
+  }
+  
+  .menu-header h3 {
+    color: #8B4513;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-header button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #8B4513;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .menu-header button:hover {
+    background-color: rgba(139, 69, 19, 0.1);
+    transform: rotate(90deg);
+  }
+  
+  .menu-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 15px 0;
+    animation: contentFadeIn 0.5s ease-out 0.2s both;
+  }
+  
+  @keyframes contentFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .artifact-item {
+    text-align: center;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.7), rgba(255, 240, 230, 0.5));
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .artifact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .artifact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-color: rgba(139, 69, 19, 0.4);
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.9), rgba(255, 240, 230, 0.7));
+  }
+  
+  .artifact-item:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .artifact-item img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+  }
+  
+  .artifact-item:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 215, 0, 0.5);
+  }
+  
+  .artifact-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #8B4513;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
+  }
+  
+.home-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.home-button svg {
+  transition: all 0.3s ease;
+}
+
+.home-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.home-button:hover svg {
+  transform: translateX(-5px);
+}
+
+.home-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+  .museum-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+
+  .home-button,
+  .control-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 240, 230, 0.85));
+    border: 2px solid rgba(139, 69, 19, 0.3);
+    border-radius: 50px;
+    color: #8B4513;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .home-button svg {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .home-button:hover svg {
+    transform: scale(1.1);
+  }
+
+  .home-button:active,
+  .control-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .save-button {
+    background: linear-gradient(135deg, rgba(240, 248, 255, 0.95), rgba(230, 240, 255, 0.85));
+    border-color: rgba(70, 130, 180, 0.3);
+    color: #4682B4;
+  }
+
+  .save-button:hover {
+    background: linear-gradient(135deg, rgba(240, 248, 255, 1), rgba(230, 240, 255, 0.95));
+    border-color: rgba(70, 130, 180, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .save-button svg {
+    color: #4682B4;
+  }
+
+  .reset-button {
+    background: linear-gradient(135deg, rgba(255, 240, 240, 0.95), rgba(255, 230, 230, 0.85));
+    border-color: rgba(178, 34, 34, 0.3);
+    color: #B22222;
+  }
+
+  .reset-button:hover {
+    background: linear-gradient(135deg, rgba(255, 240, 240, 1), rgba(255, 230, 230, 0.95));
+    border-color: rgba(178, 34, 34, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .reset-button svg {
+    color: #B22222;
+  }
+
+  /* Notification styles */
+  .notification {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 2000;
+    animation: notificationSlideIn 0.5s ease-out, notificationSlideOut 0.5s ease-in 1.5s forwards;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  @keyframes notificationSlideIn {
+    0% { opacity: 0; transform: translate(-50%, -20px); }
+    100% { opacity: 1; transform: translate(-50%, 0); }
+  }
+
+  @keyframes notificationSlideOut {
+    0% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -20px); }
+  }
+
+  .success-notification {
+    background: linear-gradient(135deg, rgba(240, 255, 240, 0.95), rgba(230, 255, 230, 0.85));
+    border: 2px solid rgba(46, 139, 87, 0.3);
+    color: #2E8B57;
+  }
+
+  .success-notification p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .artifact-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 18, 4, 0.5);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    animation: popupFadeIn 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  @keyframes popupFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .artifact-popup-content {
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 240, 230, 0.9));
+    backdrop-filter: blur(10px);
+    padding: 0;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18), 0 10px 20px rgba(139, 69, 19, 0.1);
+    width: 650px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    animation: menuSlideIn 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .artifact-popup-content .menu-header {
+    background: linear-gradient(90deg, rgba(139, 69, 19, 0.1), rgba(139, 69, 19, 0.05));
+    border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+    padding: 18px 25px;
+    margin-bottom: 0;
+  }
+
+  .artifact-popup-content .menu-header h3 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #8B4513;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.3);
+    position: relative;
+    display: inline-block;
+  }
+
+  .artifact-popup-content .menu-header button {
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+    color: #8B4513;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .artifact-popup-content .menu-header button:hover {
+    background-color: rgba(139, 69, 19, 0.15);
+    transform: rotate(90deg);
+  }
+
+  .popup-content {
+    padding: 25px 28px;
+    animation: contentFadeIn 0.6s ease-out 0.2s both;
+    overflow: auto;
+    max-height: calc(90vh - 80px);
+  }
+
+  .artifact-detail-item {
+    text-align: center;
+    padding: 22px 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.8), rgba(255, 240, 230, 0.6));
+    border: 1px solid rgba(139, 69, 19, 0.15);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.08);
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .artifact-detail-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+    transform: translateX(-100%);
+    transition: transform 1.2s ease;
+  }
+
+  .artifact-detail-item:hover::before {
+    transform: translateX(100%);
+  }
+
+  .popup-image {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 16px;
+    margin: 5px auto 15px auto;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.15);
+    transition: all 0.4s ease;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+  }
+
+  .artifact-detail-item:hover .popup-image {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.15);
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Dancing+Script:wght@700&display=swap');
+
+  .popup-title {
+    font-family: 'Dancing Script', 'Charm', cursive;
+    color: #8B4513;
+    margin: 10px 0 20px 0;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 3px rgba(139, 69, 19, 0.25);
+    letter-spacing: 1px;
+    text-align: center;
+    background: linear-gradient(135deg, #8B4513, #D2691E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 5px 0;
+    position: relative;
+  }
+  
+  .popup-title::before {
+    content: '❀';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #D2691E;
+    opacity: 0.7;
+  }
+  
+  .popup-title::after {
+    content: '❀';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #D2691E;
+    opacity: 0.7;
+  }
+  
+  .artifact-popup-content .menu-header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="4" viewBox="0 0 20 4"><path d="M0,2 Q5,0 10,2 T20,2" fill="none" stroke="rgba(139,69,19,0.5)" stroke-width="1"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 20px 4px;
+  }
+
+  .popup-desc {
+    color: #6d3b0d;
+    font-size: 1.05rem;
+    margin: 12px 0;
+    font-weight: 500;
+    text-align: justify;
+    line-height: 1.6;
+    letter-spacing: 0.2px;
+    padding: 0 15px;
+    white-space: pre-line;
+    text-indent: 0;
+  }
+  
+  .popup-desc p {
+    margin: 0 0 10px 0;
+    text-indent: 20px;
+  }
+
+  .popup-message {
+    font-style: italic;
+    color: #b36b1a;
+    margin-top: 16px;
+    font-size: 1.05rem;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    padding: 0 15px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(139, 69, 19, 0.1);
+    padding-top: 12px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  @media (max-width: 600px) {
+    .artifact-popup-content {
+      width: 95vw;
+    }
+    .artifact-popup-content .menu-header {
+      padding: 15px 15px 10px 15px;
+    }
+    .artifact-popup-content .menu-header h3 {
+      font-size: 1.3rem;
+    }
+    
+    .artifact-popup-content .menu-header h3::before,
+    .artifact-popup-content .menu-header h3::after {
+      display: none;
+    }
+    .popup-content {
+      padding: 0 12px 15px 12px;
+    }
+    .popup-image {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 10px;
+      padding: 6px;
+    }
+    .popup-title {
+      font-size: 1.5rem;
+      margin: 5px 0 10px 0;
+    }
+    
+    .popup-title::before,
+    .popup-title::after {
+      font-size: 0.9rem;
+    }
+    .popup-desc {
+      font-size: 0.9rem;
+      padding: 0 10px;
+      text-indent: 15px;
+    }
+    .popup-message {
+      font-size: 0.9rem;
+      margin-left: 15px;
+      margin-right: 15px;
+      padding-top: 8px;
+    }
+    .artifact-detail-item {
+      padding: 15px 12px;
+      max-height: 60vh;
+    }
+  }
+  
+  /* Confirmation dialog styles */
+  .confirmation-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 18, 4, 0.5);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    animation: popupFadeIn 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .confirmation-content {
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 240, 230, 0.9));
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18), 0 10px 20px rgba(139, 69, 19, 0.1);
+    width: 450px;
+    max-width: 90vw;
+    border: 2px solid rgba(139, 69, 19, 0.4);
+    animation: menuSlideIn 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+  }
+
+  .confirmation-content h3 {
+    color: #8B4513;
+    margin: 0 0 15px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.3);
+  }
+
+  .confirmation-content p {
+    color: #654321;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+
+  .confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .confirmation-buttons button {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .confirmation-buttons button:first-child {
+    background: linear-gradient(135deg, #f8f8f8, #e8e8e8);
+    color: #555;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .confirmation-buttons button:last-child {
+    background: linear-gradient(135deg, #B22222, #8B0000);
+    color: white;
+    border-color: rgba(139, 0, 0, 0.3);
+  }
+
+  .confirmation-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .confirmation-buttons button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }

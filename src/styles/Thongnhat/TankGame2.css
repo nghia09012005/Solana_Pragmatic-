@@ -1,0 +1,77 @@
+/* Popup nền giấy cổ và overlay đẹp cho TankGame2 */
+.tankgame2-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(251, 243, 221, 0.98);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s;
+}
+
+.tankgame2-popup {
+  background: #fbf3dd;
+  border: 3px solid #d7ccc8;
+  border-radius: 18px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  padding: 40px 36px 32px 36px;
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #4e342e;
+  position: relative;
+}
+
+.tankgame2-popup h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6d4c41;
+  margin-bottom: 12px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.08);
+}
+
+.tankgame2-popup p {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+  color: #795548;
+}
+
+.tankgame2-popup .tankgame2-btn {
+  margin: 0 10px;
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.tankgame2-btn-restart {
+  background: #2e7d32;
+  color: #fff;
+}
+.tankgame2-btn-restart:hover {
+  background: #388e3c;
+}
+.tankgame2-btn-revive {
+  background: #ffd600;
+  color: #4e342e;
+}
+.tankgame2-btn-revive:hover {
+  background: #ffe082;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.tankgame2-popup .tankgame2-revive-count {
+  font-size: 1rem;
+  color: #bfa600;
+  margin-bottom: 8px;
+  font-weight: 500;
+}

@@ -1,0 +1,1009 @@
+/* background */
+@keyframes moveBackground {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 1000px 0; /* Di chuyển ngang */
+    }
+  }
+  
+  .Morse-background {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../assets/CuChiGame/images/morsebackground.png');
+    background-size: auto 100%; /* Chiều cao fix toàn màn, chiều ngang tự động */
+    /* background-repeat: repeat-x; */
+    /* animation: moveBackground 30s linear infinite; */
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 2rem;
+  }
+
+  /* morsetable */
+    .image-container-morse {
+        display: flex;
+        /* flex-direction: column; hoặc row nếu muốn nằm ngang */
+        align-items: flex-start; /* canh trái */
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        padding-right: 600px; /* tạo khoảng cách bên trái */
+      } 
+      .mtable {
+        width: 200px;
+        height: auto;
+        margin-bottom: 10px;
+        margin-top: -10px;
+      }
+
+
+      /* audio button */
+      .audio-buttons {
+        position: absolute;
+        left: 40px; /* giữ lề trái */
+        bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-weight: bold;
+        color: white;
+      }
+      
+      .audio-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* giữ các phần tử con căn trái */
+        gap: 5px;
+        background-color: rgba(0, 0, 0, 0); /* bỏ màu nền xanh nếu không cần */
+      }
+      
+      .audio-group > button {
+        padding: 8px 16px;
+        font-size: 1rem;
+        background-color: gold;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        color: black;
+        transition: background-color 0.3s ease;
+      }
+      
+      .audio-group > button:hover {
+        background-color: orange;
+      }
+
+      
+.decode-input {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  justify-content: center;
+}
+
+.decode-input input {
+  padding: 15px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: 2px solid rgba(139, 69, 19, 0.3);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  color: #8B4513;
+  letter-spacing: 0.5px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.decode-input input::placeholder {
+  color: rgba(139, 69, 19, 0.5);
+  font-style: italic;
+}
+
+.decode-input input.incorrect::placeholder {
+  color: #ff0000;
+  font-weight: bold;
+  content: "CHƯA CHÍNH XÁC";
+}
+
+.decode-input input.incorrect {
+  border-color: #ff0000;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.decode-input input:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  outline: none;
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+.decode-input input:hover {
+  border-color: rgba(139, 69, 19, 0.5);
+  box-shadow: 0 0 8px rgba(139, 69, 19, 0.2);
+}
+
+.decode-input button {
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #8B4513;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
+}
+
+.decode-input button:hover {
+  background: linear-gradient(135deg, #ffa500, #ff8c00);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
+.decode-input button:disabled {
+  background: linear-gradient(135deg, #d3d3d3, #a9a9a9);
+  color: #808080;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* overlay */
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 2s forwards 1.5s;
+}
+
+.success-content {
+  background: #ffffff;
+  padding: 30px 50px;
+  border-radius: 20px;
+  font-size: 28px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  color: green;
+  box-shadow: 0 0 20px #00ff77;
+  animation: zoomFade 1.5s ease-out;
+}
+.close-overlay-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@keyframes zoomFade {
+  0% {
+    transform: scale(0.5) translateY(-50px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* letter overlay */
+/* Lớp phủ mờ phía sau letter overlay */
+.letter-overlay-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 9998;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* letter overlay */
+.letter-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  animation: slideUp 0.5s ease-out;
+}
+
+.letter-img {
+  width: 400px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+}
+
+.letter-img:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Button giống như button thông thường */
+.button-overlay {
+  background: linear-gradient(135deg, #ff4d4d, #ff0000);
+  color: white;
+  padding: 15px 40px;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Hiệu ứng khi hover vào button */
+.button-overlay:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+
+/* Hiệu ứng khi nhấn vào button */
+.button-overlay:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(255, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Alert Overlay */
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 42, 60, 0.38);
+  z-index: 1999;
+  animation: overlayFadeIn 0.25s ease;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Morse Page Fade-in */
+.morse-fadein {
+  opacity: 0;
+  filter: blur(8px);
+  animation: morseFadeInSmooth 0.9s cubic-bezier(.22,1.1,.36,1) 0s forwards;
+}
+
+@keyframes morseFadeInSmooth {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.97);
+    filter: blur(12px);
+    box-shadow: 0 18px 48px 0 rgba(30,144,255,0.09);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.02);
+    filter: blur(2px);
+    box-shadow: 0 8px 32px 0 rgba(30,144,255,0.07);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    box-shadow: none;
+  }
+}
+
+/* Alert Banner */
+.alert-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  min-width: 270px;
+  max-width: 94vw;
+  width: fit-content;
+  padding: 34px 48px 30px 38px;
+  background: linear-gradient(120deg,rgba(240,248,255,0.96),rgba(220,235,255,0.92) 80%,#f7fbff 100%);
+  border-radius: 22px;
+  border: 1.5px solid #a2d2ff;
+  box-shadow: 0 16px 48px 0 rgba(30,144,255,0.15), 0 4px 18px 0 rgba(0,0,0,0.11);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-size: 1.26rem;
+  font-weight: 700;
+  color: #124076;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  z-index: 2000;
+  animation: dialogPopIn 0.32s cubic-bezier(.68,-0.55,.27,1.55);
+  box-sizing: border-box;
+  letter-spacing: 0.01em;
+  text-align: left;
+  margin: 0;
+  border-bottom: 2.5px solid #a2d2ff44;
+  border-top: 1.5px solid #eaf4ff;
+  position: fixed;
+  backdrop-filter: blur(18px) saturate(1.18);
+}
+
+.alert-banner .alert-icon {
+  font-size: 2.1em;
+  color: #51b3ff;
+  margin-right: 12px;
+  filter: drop-shadow(0 2px 10px #b7eaff90);
+  user-select: none;
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+
+@keyframes dialogPopIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -54%) scale(0.88);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -48%) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+
+@keyframes dialogFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.close-alert {
+  background: rgba(255,255,255,0.65);
+  border: 1.5px solid #a2d2ff;
+  font-size: 1.28em;
+  cursor: pointer;
+  color: #4a90e2;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  box-shadow: 0 2px 8px 0 rgba(30,144,255,0.09);
+  transition: background 0.16s, color 0.14s, box-shadow 0.18s, transform 0.14s;
+}
+.close-alert:hover, .close-alert:focus {
+  background: #eaf4ff;
+  color: #0070c9;
+  box-shadow: 0 0 0 4px #b7eaff60, 0 4px 18px 0 rgba(30,144,255,0.14);
+  transform: scale(1.18);
+}
+
+@media (max-width: 600px) {
+  .alert-banner {
+    max-width: 99vw;
+    padding: 14px 7px 12px 7px;
+    font-size: 1.04rem;
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .alert-banner .alert-icon {
+    margin: 0 0 7px 0;
+    font-size: 1.4em;
+  }
+  .close-alert {
+    width: 28px;
+    height: 28px;
+    top: 7px;
+    right: 7px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .alert-banner {
+    max-width: 98vw;
+    padding: 10px 18px 10px 10px;
+    font-size: 0.98rem;
+    border-radius: 8px;
+  }
+}
+
+@keyframes alertFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+
+
+
+@media (max-width: 600px) {
+  .alert-banner {
+    max-width: 98vw;
+    padding: 9px 12px 9px 10px;
+    font-size: 0.98rem;
+    border-radius: 9px;
+    border-left-width: 5px;
+  }
+}
+
+@keyframes alertFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-18px) scale(0.98);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(2px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.alert-banner.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.close-alert {
+  background: none;
+  border: none;
+  font-size: 1.18em;
+  cursor: pointer;
+  color: #4a90e2;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 14px;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  transition: background 0.18s, color 0.18s, transform 0.14s;
+}
+.close-alert:hover, .close-alert:focus {
+  background: #eaf4ff;
+  color: #0070c9;
+  transform: scale(1.18);
+}
+
+
+.close-alert:hover {
+  background-color: rgba(30, 144, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+
+@keyframes borderGlow {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Book Container */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.book-container {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 500px;
+  perspective: 2000px;
+  z-index: 100;
+  perspective: 1000px;
+  animation: popIn 0.8s ease forwards;
+  transform-origin: center;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  transform-origin: center;
+}
+
+.book.open {
+  transform: rotateY(-180deg);
+}
+
+.book-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(139, 69, 19, 0.9); /* nâu đất trong suốt nhẹ */
+  border: 3px solid #e0ac69; /* viền vàng đất vintage */
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* bóng mờ */
+  backdrop-filter: blur(4px); /* nhẹ nhàng mà nổi bật */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
+  
+}
+
+.book-cover::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 8px;
+}
+
+.book-cover h2 {
+  color: #ffd700;
+  font-size: 44px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.book-cover p {
+  color: #fff;
+  font-size: 26px;
+  text-align: center;
+  padding: 0 20px;
+  line-height: 1.5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.book-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f4e1c1, #e1b199); /* Background chung với gradient */
+  border-radius: 20px; 
+ 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  display: flex;
+  overflow: hidden;
+}
+
+/* Left Page (Morse Table) */
+.book-page-left {
+  width: 50%;
+  height: 100%;
+  padding: 0;
+  background: #f4e1c1; /* Màu nền nhẹ nhàng, vàng nhạt */
+  border-right: 1px solid rgba(139, 69, 19, 0.2); /* Đường viền mỏng với màu nâu nhẹ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: 20px; /* Bo góc trên trái */
+  border-bottom-left-radius: 20px; /* Bo góc dưới trái */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ */
+}
+
+.book-page-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 48%, #e0e0e0 49%, #e0e0e0 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, #e0e0e0 49%, #e0e0e0 51%, transparent 52%);
+  background-size: 30px 30px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.book-page-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0.05) 0%, transparent 50%),
+    linear-gradient(to right, rgba(0,0,0,0.05) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
+}
+
+.morse-table-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.map-container {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  background: rgba(255, 248, 240, 0.9);
+  border: 2px solid rgba(139, 69, 19, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px; /* Bo góc cho container bản đồ */
+  transition: all 0.3s ease;
+}
+
+.morse-table-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.map-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+
+/* Right Page (Answer Section) */
+.book-page-right {
+  width: 50%;
+  height: 100%;
+  padding: 0;
+  background: #f4e1c1; /* Màu nền nhẹ nhàng, vàng cam pastel */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  position: relative;
+  border-top-right-radius: 20px; /* Bo góc phần trên phải */
+  border-bottom-right-radius: 20px; /* Bo góc phần dưới phải */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ cho trang */
+}
+
+.audio-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+
+.audio-group {
+  background: rgba(255, 255, 255, 0.9); /* Màu nền trắng mờ */
+  padding: 20px;
+  border: 1px solid rgba(139, 69, 19, 0.2); /* Đường viền nâu nhẹ */
+  position: relative;
+  overflow: hidden;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 12px; /* Bo góc cho các nhóm */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ */
+}
+
+.audio-group button {
+  padding: 12px 18px;
+  font-size: 1.1rem;
+  border: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 10px; /* Bo góc cho nút */
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 15px;
+  background: #8B4513; /* Nâu đậm cho nền nút */
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Bóng nhẹ */
+}
+
+.audio-group button:hover {
+  background: #a0522d; /* Màu nâu sáng hơn khi hover */
+  transform: translateY(-2px); /* Di chuyển nhẹ khi hover */
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.2); /* Bóng khi hover */
+}
+
+.audio-group:first-child {
+  background: #fff9f0 ; /* Màu nền vàng nhạt nhẹ */
+}
+
+.audio-group:last-child {
+  background: #fff9f0; /* Màu nền cam nhạt nhẹ */
+}
+
+.audio-group:first-child button {
+  background: #8B4513;
+}
+
+.audio-group:last-child button {
+  background: #D2691E; /* Màu cam nâu cho nút cuối */
+}
+
+.audio-group:first-child button:hover {
+  background: #a0522d;
+}
+
+.audio-group:last-child button:hover {
+  background: #f4a300; /* Màu cam sáng hơn khi hover */
+}
+
+.audio-group:first-child .decode-input input {
+  border-color: rgba(139, 69, 19, 0.2);
+  border-radius: 10px; /* Bo góc cho input */
+  padding: 10px;
+}
+
+.audio-group:last-child .decode-input input {
+  border-color: rgba(139, 69, 19, 0.2);
+  border-radius: 10px; /* Bo góc cho input */
+  padding: 10px;
+}
+
+.audio-group:first-child .decode-input input:focus {
+  border-color: #8B4513;
+  box-shadow: 0 0 8px rgba(139, 69, 19, 0.4);
+}
+
+.audio-group:last-child .decode-input input:focus {
+  border-color: #D2691E;
+  box-shadow: 0 0 8px rgba(255, 165, 0, 0.4); /* Đổi màu khi focus */
+}
+
+.audio-group:first-child .decode-input button {
+  background: #8B4513;
+  color: white;
+  border-radius: 10px; /* Bo góc cho button */
+  padding: 10px;
+}
+
+.audio-group:last-child .decode-input button {
+  background: #D2691E;
+  color: white;
+  border-radius: 10px; /* Bo góc cho button */
+  padding: 10px;
+}
+
+.audio-group:first-child .decode-input button:hover {
+  background: #a0522d;
+}
+
+.audio-group:last-child .decode-input button:hover {
+  background: #f4a300;
+}
+
+
+/* Book Spine */
+.book-spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(to right, #654321, #8B4513);
+  transform: translateX(-50%) rotateY(90deg);
+  border-radius: 5px;
+}
+
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.home-button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #1a471c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.home-button i {
+  font-size: 24px;
+  color: #1a471c;
+}
+
+.home-button:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 40px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid #1a471c;
+  border-radius: 10px;
+  padding: 10px 0;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease-out;
+  z-index: 10000;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1a471c;
+}
+
+.menu-item:hover {
+  background-color: rgba(26, 71, 28, 0.1);
+}
+
+.menu-item i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.menu-item span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a471c;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
