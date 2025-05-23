@@ -26,5 +26,3 @@ yarn-error.log*
 .vscode/
 *.sublime-project
 *.sublime-workspace 
-public/videos/*.webm
-public/videos/*.mp4 
