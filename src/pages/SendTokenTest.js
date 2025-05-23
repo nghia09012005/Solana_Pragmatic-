@@ -1,10 +1,11 @@
 import React, { useState, useCallback } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import sendTokenSPL from "../hooks/sendTokenSPL";
+import sendTokenFromUserToAdmin from "../hooks/sendTokenFromUserToAdmin";
 
 
 
-const SendTokenTest = () => {
+const SendTokenTest =  () => {
   const wallet = useWallet();
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,11 +20,8 @@ const SendTokenTest = () => {
     setResult("");
 
     try {
-      const signature = await sendTokenSPL({
-        clientPublicKeyString: wallet.publicKey.toBase58(),
-        amount: 1 * 1_000_000, // gửi 1 token, giả sử token có 6 decimals
-        network: "devnet",
-      });
+      const signature = await sendTokenFromUserToAdmin( 1);
+
       setResult(`✅ Gửi thành công! Tx signature: ${signature}`);
     } catch (error) {
       setResult("❌ Gửi thất bại: " + error.message);

@@ -57,6 +57,19 @@ const DaNangCARDS = [
     },
     image: "/images/hoi-an.png"
   },
+
+  
+  {
+    title: "Dien Hai Ancient Citadel",
+    description: "Dien Hai Ancient Citadel is a historic military fortress in Da Nang, Vietnam. Built in the early 19th century by the Nguyen Dynasty, it was vital in defending against French and Spanish attacks in the mid-1800s. Though largely damaged, it stands as a significant reminder of Vietnam's past and its resistance.",
+    artist: {
+      name: "Dien Hai Ancient Citadel",
+      location: "Đà Nẵng, Việt Nam",
+      image: "images/character/dia-dao1.png"
+    },
+    image: "/images/thanh-dien-hai.jpg"
+  },
+
   {
     title: "Linh Ung Pagoda",
     
@@ -83,7 +96,7 @@ const DaNangCARDS = [
       image: "/images/character/quan-ho.png"
     },
     image: "/images/thanh-dia-my-son.jpg"
-  }
+  },
 ];
 
 const MAX_VISIBILITY = 3;  
@@ -129,8 +142,9 @@ const DaNangCard = ({ artwork, isActive }) => {
         navigate('/taynguyengame');
       } else if (artwork.title === "Chiến dịch Hồ Chí Minh"){
         navigate('/introduction');
-      }
-       else {
+      } else if (artwork.title === "Dien Hai Ancient Citadel"){
+        navigate('/dienhaicothanh');
+      } else {
         navigate(`/artwork/${artwork.id}`, { state: { artwork } });
       }
       

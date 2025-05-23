@@ -286,3 +286,20 @@
     width: auto;   
   }
 }
+
+/* backbutton */
+.back-button {
+  background: none;
+  border: none;
+  color: #FFD700;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: scale(1.1);
+}
