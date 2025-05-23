@@ -11,6 +11,7 @@ import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 import CauRong from './pages/DaNang/CauRong/CauRong';
+import CauRongGame from './pages/DaNang/CauRong/Game';
 import DongHoGame from './pages/DongHoGame/DongHoGameG1';
 import TayNguyenGame from './pages/TayNguyenGame';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
@@ -34,10 +35,12 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        {/* <Route path="/" element={<HomePage />} /> */}
-        <Route path="/" element={<SendTokenTest />} />
+        ư
+        {/* <Route path="/" element={<SendTokenTest />} /> */}
+         <Route path="/" element={<HomePage />} /> 
         
         <Route path="/danang" element={<DaNang />} />
+        <Route path="/cauronggame" element={<CauRongGame />} />
 
           <Route path="/personalmuseum" element={<PersonalMuseum />} />
 
@@ -70,7 +73,7 @@ function App() {
            <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />    
-          {/* <Route path="/" element={<ProfilePage />} />  */}
+         
           
 
         </Routes>
