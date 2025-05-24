@@ -474,7 +474,13 @@ function HomePage() {
                 
                 <a href="/">
                 <div className="head-left">
+<<<<<<< HEAD
                     <img src="/images/logo.webp" alt="logo" href="/" />
+=======
+                <a href="/">
+  <img src="/images/logo.webp" alt="logo" />
+</a>
+>>>>>>> 044c70e1bc938523826d100f0d822262660c5464
                 </div>
                 </a>
 
