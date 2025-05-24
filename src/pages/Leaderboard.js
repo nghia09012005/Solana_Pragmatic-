@@ -96,7 +96,7 @@ const Leaderboard = () => {
   if (loading) {
     return (
       <div className="leaderboard-container">
-        <div className="loading">Đang tải dữ liệu...</div>
+        <div className="loading">Loading...</div>
       </div>
     );
   }
@@ -108,19 +108,19 @@ const Leaderboard = () => {
         <button className="back-button" onClick={handleBack}>
           <i className="fas fa-arrow-left"></i>
         </button>
-        <h1>Bảng Xếp Hạng</h1>
+        <h1>Leaderboard</h1>
       </div>
 
       <div className="leaderboard-tabs">
         <button className="tab-button active">
-          <span>Bảng Xếp Hạng Toàn Cầu</span>
+          <span>Global Leaderboard</span>
         </button>
       </div>
 
       <div className="leaderboard-content">
         <div className="leaderboard-table">
           <div className="table-header">
-            <div className="rank-col">Hạng</div>
+            <div className="rank-col">Rank</div>
             <div className="name-col">Tên Người Chơi</div>
             <div className="score-col">Vàng</div>
             <div className="time-col">Vật Phẩm</div>
