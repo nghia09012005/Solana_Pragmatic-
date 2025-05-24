@@ -371,29 +371,203 @@ header a:hover:hover::before {
 
 .background-text{
   position: absolute;
-  top:20%;
+  top: 20%;
   max-width: 100%;
-  /* text-align: center; */
   color: rgb(255, 255, 255);
   opacity: 1;
   padding-left: 60px;
   z-index: 2;
   font-weight: 700;
- 
   text-align: center;
   line-height: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 .background-text h1{
-  font-size: 70px;
+  font-size: clamp(2rem, 5vw, 70px);
   font-weight: 400;
+  margin-bottom: 1rem;
 }
 
 .background-text h3{
-  font-size: 140px;
+  font-size: clamp(3rem, 10vw, 140px);
   font-family: 'Cantata One', serif;
 }
 
+/* Media Queries for background-text */
+@media screen and (max-width: 1200px) {
+  .background-text {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .background-text {
+    top: 15%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .background-text h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel {
+    width: 90vw;
+    height: 90vw;
+    margin-top: 20px;
+  }
+
+  .nav.left {
+    left: -2rem;
+  }
+
+  .nav.right {
+    right: -2rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .background-text {
+    top: 10%;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 15vh;
+  }
+  .background-text .fade-in-text.visible{
+    height: 50%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .background-text {
+    top: 10%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .background-text h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem) !important;
+    margin-bottom: 0.3rem;
+  }
+
+  .background-text h3 {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  .background button {
+    z-index: 1000;
+    width: 80%;
+    height: 60px;
+    font-size: 18px;
+    left: 0;
+    margin: 0 auto;
+    font-weight: 1000;
+  }
+
+  .carousel {
+    width: 95vw;
+    height: 95vw;
+    margin-top: 10px;
+  }
+
+  .nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .nav.left {
+    left: -1.5rem;
+  }
+
+  .nav.right {
+    right: -1.5rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+    gap: 15px;
+  }
+
+  .feature-card {
+    padding: 20px;
+  }
+
+  .feature-card h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .feature-card p {
+    font-size: 15px;
+  }
+
+  .head-left img {
+    height: 35px;
+    margin-right: 10px;
+  }
+
+  .head-right {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .button-box {
+    width: 80px;
+    height: 35px;
+    margin-left: 10px;
+  }
+
+  .head-right button {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .background-text .fade-in-text.visible{
+    font-size: 50%;
+  }
+}
+/* Additional mobile optimizations */
+@media screen and (max-width: 360px) {
+  .background-text h1 {
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem) !important;
+  }
+
+  .background-text h3 {
+    font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+  }
+
+  .background button {
+    width: 90%;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .carousel {
+    width: 100vw;
+    height: 100vw;
+  }
+
+  .feature-card {
+    padding: 15px;
+  }
+
+  .feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+  }
+}
 
 body:has(.overlay) .background h1,
 body:has(.overlay) .background h3,

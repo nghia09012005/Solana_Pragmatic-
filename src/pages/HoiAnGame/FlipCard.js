@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/HoiAnStyle/FlipCard.css';
-import nhanvat from '../../assets/HoiAnGame/images/nhanvat.png';
+import nhanvat from '../../assets/HoiAnGame/images/nhanvat.webp';
 import flipSound from '../../assets/HoiAnGame/sounds/flipcard.mp3';
 import congratsSound from '../../assets/HoiAnGame/sounds/level-win.mp3';
 import nhacNen from '../../assets/HoiAnGame/sounds/nhacnen.mp3';
@@ -9,14 +9,14 @@ import Swal from 'sweetalert2';
 import GameMenu from './GameMenu';
 
 // Import tranh
-import p1chuacau from '../../assets/HoiAnGame/images/chuacau.png';
-import p2lantern from '../../assets/HoiAnGame/images/lantern.png';
-import p3miquang from '../../assets/HoiAnGame/images/miquang.png';
-import p4tankyhouse from '../../assets/HoiAnGame/images/tankyhouse.png';
-import p5hoai from '../../assets/HoiAnGame/images/hoai-river.png';
-import p6thanhha from '../../assets/HoiAnGame/images/thanhha.png';
-import p7maudich from '../../assets/HoiAnGame/images/maudich.png';
-import p8silk from '../../assets/HoiAnGame/images/silk.png';
+import p1chuacau from '../../assets/HoiAnGame/images/chuacau.webp';
+import p2lantern from '../../assets/HoiAnGame/images/lantern.webp';
+import p3miquang from '../../assets/HoiAnGame/images/miquang.webp';
+import p4tankyhouse from '../../assets/HoiAnGame/images/tankyhouse.webp';
+import p5hoai from '../../assets/HoiAnGame/images/hoai-river.webp';
+import p6thanhha from '../../assets/HoiAnGame/images/thanhha.webp';
+import p7maudich from '../../assets/HoiAnGame/images/maudich.webp';
+import p8silk from '../../assets/HoiAnGame/images/silk.webp';
 
 // Thông tin tranh
 const knowledge = {
