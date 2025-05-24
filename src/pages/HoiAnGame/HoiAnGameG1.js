@@ -21,15 +21,15 @@ const HoiAnGame = () => {
   const navigate = useNavigate();
 
   const texts = [
-    'Xin chào! Em vừa đặt chân đến phố cổ Hội An – một di sản văn hóa thế giới đã tồn tại hàng trăm năm!',
-    'Hội An từng là một thương cảng quốc tế nhộn nhịp vào thế kỷ 16-18, nơi giao thoa văn hóa giữa Việt Nam, Nhật Bản, Trung Hoa và phương Tây.',
-    'Phố cổ nổi bật với kiến trúc mái ngói âm dương, nhà gỗ cổ và những con đường nhỏ rợp bóng đèn lồng.',
-    'Một biểu tượng đặc trưng là Chùa Cầu – cây cầu gỗ được người Nhật xây từ thế kỷ 17.',
-    'Vào mỗi đêm rằm, phố cổ tắt đèn điện, thắp sáng bằng đèn lồng – tạo nên khung cảnh huyền ảo như cổ tích.',
-    'Ẩm thực Hội An rất phong phú: từ cao lầu, bánh mì, đến chè bắp Cẩm Nam, tất cả đều mang đậm hương vị miền Trung.',
-    'Hội An không chỉ là điểm đến du lịch mà còn là nơi lưu giữ tinh thần văn hóa truyền thống của dân tộc.',
-    'Giờ thì hãy bắt đầu hành trình khám phá phố cổ qua một trò chơi thú vị nhé!'
-  ];
+  "Hello there! I’ve just arrived in Hội An Ancient Town – a UNESCO World Heritage Site with centuries of history!",
+  "Back in the 16th to 18th centuries, Hội An was a bustling international trading port where Vietnamese, Japanese, Chinese, and Western cultures met and blended.",
+  "The Old Town stands out with its yin-yang tiled roofs, ancient wooden houses, and narrow streets adorned with lanterns.",
+  "One iconic landmark is the Japanese Covered Bridge – a wooden bridge built by the Japanese community in the 17th century.",
+  "On every full moon night, the electric lights are turned off and the entire town glows under the soft light of colorful lanterns – creating a scene straight out of a fairy tale.",
+  "Hội An's cuisine is incredibly rich: from 'cao lầu' noodles and Vietnamese baguettes to sweet corn pudding from Cẩm Nam – all bursting with the flavors of Central Vietnam.",
+  "Hội An is not just a travel destination – it’s a living museum that preserves the traditional cultural spirit of the Vietnamese people.",
+  "Now, let’s begin our journey through the Ancient Town with a fun and exciting game!"
+];
 
   const handleLoadingComplete = () => {
     setLoading(false);

@@ -122,17 +122,18 @@ const HoiAnLoading = ({ onLoadingComplete }) => {
   
   // Define loading messages
 const messageInbox = [
-  "BẠN CÓ BIẾT: Hội An là một đô thị cổ được UNESCO công nhận là Di sản Văn hóa Thế giới từ năm 1999.",
-  "BẠN CÓ BIẾT: Phố cổ Hội An từng là một thương cảng sầm uất vào thế kỷ 16–17, thu hút thương nhân Nhật Bản, Trung Quốc và phương Tây.",
-  "BẠN CÓ BIẾT: Hội An nổi tiếng với những ngôi nhà cổ mái ngói âm dương và kiến trúc kết hợp Á – Âu.",
-  "BẠN CÓ BIẾT: Chùa Cầu là biểu tượng đặc trưng của Hội An, do thương nhân Nhật Bản xây dựng vào đầu thế kỷ 17.",
-  "BẠN CÓ BIẾT: Mỗi đêm rằm, Hội An tổ chức lễ hội hoa đăng lung linh trên sông Hoài.",
-  "BẠN CÓ BIẾT: Ẩm thực Hội An nổi tiếng với món cao lầu, mì Quảng, bánh bao, bánh vạc và cơm gà.",
-  "BẠN CÓ BIẾT: Phố cổ Hội An không có đèn tín hiệu giao thông để giữ nguyên vẻ yên bình xưa cũ.",
-  "BẠN CÓ BIẾT: Hội An là nơi duy nhất ở Việt Nam còn duy trì nghề làm đèn lồng thủ công truyền thống.",
-  "BẠN CÓ BIẾT: Hội An có hơn 1.000 di tích kiến trúc được bảo tồn nguyên vẹn qua nhiều thế kỷ.",
-  "BẠN CÓ BIẾT: Người dân Hội An rất thân thiện và hiếu khách, góp phần tạo nên sức hút đặc biệt cho du khách."
+  "DID YOU KNOW: Hội An is an ancient town recognized by UNESCO as a World Cultural Heritage Site since 1999?",
+  "DID YOU KNOW: In the 16th–17th centuries, Hội An was a bustling international trading port that attracted merchants from Japan, China, and Western countries?",
+  "DID YOU KNOW: Hội An is famous for its old houses with yin-yang tiled roofs and a unique blend of Asian and European architecture?",
+  "DID YOU KNOW: The Japanese Covered Bridge, a symbol of Hội An, was built by Japanese traders in the early 17th century?",
+  "DID YOU KNOW: Every full moon night, Hội An holds a magical lantern festival on the Hoài River?",
+  "DID YOU KNOW: Hội An’s cuisine is well-known for dishes like 'cao lầu', 'mì Quảng', white rose dumplings, and chicken rice?",
+  "DID YOU KNOW: The Old Town of Hội An has no traffic lights to preserve its peaceful, old-world charm?",
+  "DID YOU KNOW: Hội An is the only place in Vietnam that still maintains the traditional craft of handmade lanterns?",
+  "DID YOU KNOW: Hội An has over 1,000 historical architectural sites that have been preserved through the centuries?",
+  "DID YOU KNOW: The people of Hội An are known for their friendliness and hospitality, making it especially charming to visitors?"
 ];
+
 
   
   useEffect(() => {
