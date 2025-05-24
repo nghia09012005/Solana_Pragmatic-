@@ -74,6 +74,7 @@ function App() {
           <Route path="/donghogame" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} /> 
           <Route path="/dienhaicothanh" element=  {<DienHai />} />
+          <Route path="/testgame" element=  {<TestGame />} />
 
           <Route path="/caurong" element={<CauRong />} /> 
 
