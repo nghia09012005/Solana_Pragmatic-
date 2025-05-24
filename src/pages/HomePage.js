@@ -9,6 +9,7 @@ import Footer from '../components/layout/Footer';
 import TransitionCover from "../components/TransitionCover";
 import TransitionLink from "../components/TransitionLink";
 
+
 function HomePage() {
   // Thêm ở đầu function HomePage
 const carouselRef = React.useRef(null);
@@ -411,13 +412,19 @@ const scrollToCarousel = () => {
     <li><a href="/" onClick={() => {
         setShowSignIn(false);
         setShowSignUp(false);
-      }}>Home</a></li>
+      }}>Home</a>
+      </li>
     <li>
       <TransitionLink to="/personalmuseum" onShowCover={() => setShowCover(true)}>
         Collection
       </TransitionLink>
     </li>
-    <li><Link to="/leaderboard">Leaderboard</Link></li>
+    <li>
+      <Link to="/leaderboard">Leaderboard</Link>
+    </li>
+    <li>
+      <Link to="/vouchermarket">MarketPlace</Link>
+    </li>
   </ul>
 
         

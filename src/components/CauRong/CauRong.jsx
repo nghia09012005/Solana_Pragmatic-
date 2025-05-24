@@ -1,13 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
+import Swal from 'sweetalert2';
+import winSound from '../../assets/sounds/win.mp3';
+import loseSound from '../../assets/sounds/lose.mp3';
+import shootSound from '../../assets/sounds/shoot.mp3';
+import bgMusic from '../../assets/CauRong/sounds/nhacnen.mp3'; // Đường dẫn nhạc nền
 
-
-const gravity = 2;
+const gravity = 3 ;
 
 function DragonGame() {
-    
-const [canvasWidth, setCanvasWidth] = useState(window.innerWidth);
-const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
+  const [hasWon, setHasWon] = useState(false);
+  const [canvasWidth, setCanvasWidth] = useState(window.innerWidth);
+  const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
+
   const canvasRef = useRef(null);
+  const lastTimeRef = useRef(null);
 
   const positionY = useRef(200);
   const velocity = useRef(0);
@@ -18,18 +24,38 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
   const [fireballs, setFireballs] = useState([]);
   const [explosions, setExplosions] = useState([]);
   const [score, setScore] = useState(0);
-
-  const [tick, setTick] = useState(0);
-  useEffect(() => {
-  const handleResize = () => {
-    setCanvasWidth(window.innerWidth);
-    setCanvasHeight(window.innerHeight);
+ const audioRef = useRef(null);
+  // Hàm phát âm thanh
+  const playSound = (src) => {
+    const audio = new Audio(src);
+    audio.play();
   };
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+   useEffect(() => {
+    // Tự động phát nhạc khi component mount
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5;
+      audioRef.current.play().catch(() => {});
+    }
+    // Dừng nhạc khi unmount
+    return () => {
+      if (audioRef.current) audioRef.current.pause();
+    };
+  }, []);
 
 
+  // Xử lý resize
+  useEffect(() => {
+    
+    const handleResize = () => {
+      setCanvasWidth(window.innerWidth);
+      setCanvasHeight(window.innerHeight);
+    };
+    window.addEventListener("resize", handleResize);
+    
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Xử lý phím nhảy và bắn
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Space") setIsJumping(true);
@@ -38,6 +64,7 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
           ...prev,
           { x: 140, y: positionY.current + 180 / 2 - 50 / 2, width: 100, height: 50 },
         ]);
+        playSound(shootSound);
       }
     };
     const handleKeyUp = (e) => {
@@ -51,6 +78,7 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
     };
   }, []);
 
+  // Xử lý logic game & render
   useEffect(() => {
     let animationId;
 
@@ -63,56 +91,114 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
       );
     }
 
-    function gameLoop() {
-      if (isJumping) velocity.current = -20;
+    // Tạo ảnh để vẽ nhanh
+    const background = new Image();
+    background.src = "/images/caurong-background.png";
+
+    const dragonImg = new Image();
+    dragonImg.src = "/images/dragon.png";
+
+    const fireballImg = new Image();
+    fireballImg.src = "/images/fireball.png";
+
+    const ghostImg = new Image();
+    ghostImg.src = "/images/ghost.png";
+
+    const cloudImg = new Image();
+    cloudImg.src = "/images/cloud.png";
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function gameLoop(time) {
+      if (!lastTimeRef.current) lastTimeRef.current = time;
+      const delta = (time - lastTimeRef.current) / 1000;
+      lastTimeRef.current = time;
+
+      if (hasWon) return; // dừng khi thắng
+
+      // Cập nhật vị trí rồng
+      if (isJumping) velocity.current = -15;
       else velocity.current += gravity;
+
       positionY.current = Math.min(
         canvasHeight - 250,
-        Math.max(0, positionY.current + velocity.current)
+        Math.max(0, positionY.current + velocity.current * delta * 60)
       );
 
-      const dragonRect = { x: 100, y: positionY.current, width: 220, height: 180 };
+      const dragonRect = { x: 100, y: positionY.current, width: 200, height: 150 };
 
+      // Kiểm tra va chạm
       for (let obs of obstacles) {
         if (isColliding(dragonRect, obs)) {
-          alert("Bạn đã thua!");
-          window.location.reload();
+          playSound(loseSound);
+          Swal.fire({
+            icon: 'error',
+            title: 'Bạn đã thua!',
+            text: 'Hãy thử lại để chinh phục điểm cao hơn!',
+            confirmButtonText: 'Chơi lại',
+            background: '#222',
+            color: '#fff'
+          }).then(() => window.location.reload());
           return;
         }
       }
       for (let obs of obstaclesTop) {
         if (isColliding(dragonRect, obs)) {
-          alert("Bạn đã thua!");
-          window.location.reload();
+          playSound(loseSound);
+          Swal.fire({
+            icon: 'error',
+            title: 'Bạn đã thua!',
+            text: 'Hãy thử lại để chinh phục điểm cao hơn!',
+            confirmButtonText: 'Chơi lại',
+            background: '#222',
+            color: '#fff'
+          }).then(() => window.location.reload());
           return;
         }
       }
 
+      // Cập nhật vị trí obstacles
       setObstacles((prev) =>
         prev
-          .map((obs) => ({ ...obs, x: obs.x - 7 }))
+          .map((obs) => ({ ...obs, x: obs.x - 4 }))
           .filter((obs) => obs.x + obs.width > 0)
       );
       setObstaclesTop((prev) =>
         prev
-          .map((obs) => ({ ...obs, x: obs.x - 7 }))
+          .map((obs) => ({ ...obs, x: obs.x - 4 }))
           .filter((obs) => obs.x + obs.width > 0)
       );
+
+      // Cập nhật vị trí đạn
       setFireballs((prev) =>
         prev
-          .map((f) => ({ ...f, x: f.x + 30 }))
+          .map((f) => ({ ...f, x: f.x + 20 }))
           .filter((f) => f.x < canvasWidth)
       );
 
+      // Thêm chướng ngại vật mới
       if (Math.random() < 0.01) {
         setObstacles((prev) => [
           ...prev,
           {
             x: canvasWidth,
             y: canvasHeight - 250,
-            width: 200,
-            height: 200,
-            image: "/images/ghost.png",
+            width: 150,
+            height: 150,
+            image: "ghost",
           },
         ]);
       }
@@ -122,13 +208,14 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
           {
             x: canvasWidth,
             y: 50,
-            width: 250,
-            height: 200,
-            image: "/images/cloud.png",
+            width: 200,
+            height: 130,
+            image: "cloud",
           },
         ]);
       }
 
+      // Xử lý va chạm đạn với chướng ngại vật
       setFireballs((prevFireballs) => {
         let updatedFireballs = [...prevFireballs];
         setObstaclesTop((prevClouds) => {
@@ -141,6 +228,7 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
                 fire.y < cloud.y + cloud.height &&
                 fire.y + fire.height > cloud.y
               ) {
+                playSound(shootSound);
                 setExplosions((prev) => [
                   ...prev,
                   {
@@ -168,6 +256,7 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
                 fire.y < obs.y + obs.height &&
                 fire.y + fire.height > obs.y
               ) {
+                playSound(shootSound);
                 setExplosions((prev) => [
                   ...prev,
                   {
@@ -188,117 +277,86 @@ const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
         return updatedFireballs;
       });
 
+      // Cập nhật explosion
       setExplosions((prev) =>
         prev
-          .map((ex) => ({
-            ...ex,
-            radius: ex.radius + 2,
-            alpha: ex.alpha - 0.05,
-          }))
+          .map((ex) => ({ ...ex, radius: ex.radius + 5, alpha: ex.alpha - 0.05 }))
           .filter((ex) => ex.alpha > 0)
       );
 
-      setTick((t) => t + 1);
-      animationId = requestAnimationFrame(gameLoop);
-    }
-    animationId = requestAnimationFrame(gameLoop);
-    return () => cancelAnimationFrame(animationId);
-  }, [isJumping]);
+      // Kiểm tra điều kiện thắng (điểm >= 100)
+      if (score >= 500 && !hasWon) {
+        setHasWon(true);
+        playSound(winSound);
+        Swal.fire({
+          icon: 'success',
+          title: 'Bạn đã chiến thắng!',
+          text: 'Chúc mừng bạn đã chinh phục thử thách!',
+          confirmButtonText: 'Chơi lại',
+          background: '#222',
+          color: '#fff'
+        }).then(() => window.location.reload());
+        return;
+      }
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+      // Vẽ canvas
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
 
-    const background = new window.Image();
-    background.src = "/images/caurong-background.png";
-
-    const dragon = new window.Image();
-    dragon.src = "/images/dragon.png";
-
-    const fireballImg = new window.Image();
-fireballImg.src = "/images/fireball.png";
-
-
-    const imgCache = {};
-
-    const render = () => {
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-      // Vẽ background trước
-      if (background.complete) {
-        ctx.drawImage(background, 0, 0, canvasWidth, canvasHeight);
-      }
-
-      // Vẽ obstacles dưới
-      obstacles.forEach((obs) => {
-        if (!imgCache[obs.image]) {
-          imgCache[obs.image] = new window.Image();
-          imgCache[obs.image].src = obs.image;
-        }
-        if (imgCache[obs.image].complete) {
-          ctx.drawImage(imgCache[obs.image], obs.x, obs.y, obs.width, obs.height);
-        }
-      });
-
-      // Vẽ obstacles trên (mây)
-      obstaclesTop.forEach((obs) => {
-        if (!imgCache[obs.image]) {
-          imgCache[obs.image] = new window.Image();
-          imgCache[obs.image].src = obs.image;
-        }
-        if (imgCache[obs.image].complete) {
-          ctx.drawImage(imgCache[obs.image], obs.x, obs.y, obs.width, obs.height);
-        }
-      });
+      // Vẽ background
+      ctx.drawImage(background, 0, 0, canvasWidth, canvasHeight);
 
       // Vẽ rồng
-      if (dragon.complete) {
-        ctx.drawImage(dragon, 100, positionY.current, 220, 180);
-      }
+      ctx.drawImage(dragonImg, dragonRect.x, dragonRect.y, dragonRect.width, dragonRect.height);
 
-      // Vẽ fireballs
-      fireballs.forEach((f) => {
-       
-        if (fireballImg.complete) {
-    ctx.drawImage(fireballImg, f.x, f.y, f.width, f.height);
-  } else {
-    ctx.fillStyle = "orange";
-    ctx.fillRect(f.x, f.y, f.width, f.height);
-  }
+      // Vẽ obstacles dưới (ghost)
+      obstacles.forEach((obs) => {
+        ctx.drawImage(ghostImg, obs.x, obs.y, obs.width, obs.height);
       });
 
-      // Vẽ explosions
+      // Vẽ obstacles trên (cloud)
+      obstaclesTop.forEach((obs) => {
+        ctx.drawImage(cloudImg, obs.x, obs.y, obs.width, obs.height);
+      });
+
+      // Vẽ đạn lửa
+      fireballs.forEach((fire) => {
+        ctx.drawImage(fireballImg, fire.x, fire.y, fire.width, fire.height);
+      });
+
+      // Vẽ explosion
       explosions.forEach((ex) => {
         ctx.beginPath();
         ctx.arc(ex.x, ex.y, ex.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 0, 0, ${ex.alpha})`;
+        ctx.fillStyle = `rgba(255, 165, 0, ${ex.alpha})`;
         ctx.fill();
       });
 
-      // Vẽ điểm số
-      // Trong hàm render() thay phần vẽ điểm số bằng đoạn này:
+     ctx.save();
 
-ctx.save();
+// Thiết lập font, màu chữ, bóng đổ nhẹ cho chữ
+ctx.font = "bold 28px system-ui";
+ctx.fillStyle = "#FFD700";  // màu vàng gold sáng
+ctx.shadowColor = "rgba(0,0,0,0.5)";
+ctx.shadowOffsetX = 3;
+ctx.shadowOffsetY = 3;
+ctx.shadowBlur = 5;
 
-// Thiết lập font, màu chữ và bóng đổ
-ctx.font = "bold 24px Arial";
-ctx.fillStyle = "#fff";  // chữ màu trắng
-ctx.shadowColor = "rgba(0,0,0,0.7)";
-ctx.shadowOffsetX = 2;
-ctx.shadowOffsetY = 2;
-ctx.shadowBlur = 4;
-
-// Vẽ nền hộp bo góc phía sau số điểm
-const padding = 10;
+// Chuẩn bị text và kích thước hộp
+const paddingX = 20;
+const paddingY = 12;
 const text = "Score: " + score;
 const textWidth = ctx.measureText(text).width;
-const boxWidth = textWidth + padding * 2;
-const boxHeight = 40;
-const boxX = 10;
-const boxY = 10;
-const radius = 10;
+const boxWidth = textWidth + paddingX * 2;
+const boxHeight = 50;
+const boxX = 20;
+const boxY = 20;
+const radius = 15;
 
-// Hàm vẽ hình chữ nhật bo góc
+// Hàm vẽ hình chữ nhật bo góc (giữ lại)
 function roundRect(ctx, x, y, width, height, radius) {
   ctx.beginPath();
   ctx.moveTo(x + radius, y);
@@ -314,40 +372,43 @@ function roundRect(ctx, x, y, width, height, radius) {
   ctx.fill();
 }
 
-// Vẽ nền hộp màu đen mờ
-ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+// Vẽ nền hộp gradient màu đen đến xám đen
+const grad = ctx.createLinearGradient(boxX, boxY, boxX, boxY + boxHeight);
+grad.addColorStop(0, "#222");  // màu đen xám đậm
+grad.addColorStop(1, "#555");  // màu xám nhạt hơn
+ctx.fillStyle = grad;
 roundRect(ctx, boxX, boxY, boxWidth, boxHeight, radius);
 
-// Vẽ chữ điểm số trên nền hộp
-ctx.fillStyle = "#fff";
-ctx.fillText(text, boxX + padding, boxY + 28);
-ctx.font="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
+// Vẽ viền sáng nhẹ quanh khung
+ctx.lineWidth = 2;
+ctx.strokeStyle = "rgba(255, 215, 0, 0.8)";  // màu vàng gold nhạt
+ctx.stroke();
+
+// Vẽ chữ điểm số lên trên
+ctx.fillStyle = "#FFD700";
+ctx.fillText(text, boxX + paddingX, boxY + boxHeight / 2 + 10);
 
 ctx.restore();
 
-    };
 
-    background.onload = () => {
-      render();
-    };
-    dragon.onload = () => {
-      render();
-    };
+      animationId = requestAnimationFrame(gameLoop);
+    }
 
-    render();
-  }, [tick, obstacles, fireballs, explosions, obstaclesTop, score]);
+    animationId = requestAnimationFrame(gameLoop);
+    return () => cancelAnimationFrame(animationId);
+  }, [canvasWidth, canvasHeight, isJumping, score, hasWon, obstacles, obstaclesTop, fireballs, explosions]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={canvasWidth}
-      height={canvasHeight}
-      style={{  display: "block",
-    position: "fixed",
-    top: 0,
-    left: 0,
-    zIndex: 0, }}
-    />
+    <>
+    <audio ref={audioRef} src={bgMusic} loop autoPlay style={{ display: "none" }} />
+      <canvas
+        ref={canvasRef}
+        width={canvasWidth}
+        height={canvasHeight}
+        style={{ display: "block", margin: "0 auto", background: "#222" }}
+      />
+     
+    </>
   );
 }
 

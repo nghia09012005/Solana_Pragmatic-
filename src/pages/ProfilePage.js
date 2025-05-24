@@ -34,12 +34,20 @@ const ProfilePage = () => {
     const token = localStorage.getItem('token');
     
     if (!username || !token) {
+      if (connected) {
+        try {
+          await disconnect();
+          console.log('Wallet disconnected');
+        } catch (error) {
+          console.error('Error disconnecting wallet:', error);
+        }
+      }
       navigate('/');
       return;
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/api/users/stats/${username}`, {
+      const response = await fetch(`api/users/stats/${username}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -85,6 +93,14 @@ const ProfilePage = () => {
     fetchUserData();
  
   }, []);
+
+  
+  useEffect(() => {
+    if (connected && publicKey) {
+      localStorage.setItem('Wallet', publicKey.toString());
+    }
+  }, [connected, publicKey]);
+  
   
 
 

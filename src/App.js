@@ -11,10 +11,12 @@ import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 import CauRong from './pages/DaNang/CauRong/CauRong';
+import CauRongGame from './pages/DaNang/CauRong/Game';
 import DongHoGame from './pages/DongHoGame/DongHoGameG1';
 import TayNguyenGame from './pages/TayNguyenGame';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
 import Morse from './pages/CuChiGame/Morse';
+import DienHai from './pages/DaNang/DienHai/DienHai';
 
 import FlipCard from './pages/DongHoGame/FlipCard';
 import TankGame from './pages/Thongnhat/TankGame';
@@ -24,8 +26,16 @@ import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
 import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
+<<<<<<< HEAD
 import BaNaHill from './pages/BaNaHills/BaNaHills'
   
+=======
+import SendTokenTest from './pages/SendTokenTest';  
+import VoucherMarketplace from './pages/VoucherMarket';
+
+import TestGame from './pages/DaNang/DienHai/minigames/TestGame';
+
+>>>>>>> 49067a5f4d079bf810858577c7081b1b93ef371a
 function App() {
   
   return (
@@ -34,9 +44,12 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        <Route path="/" element={<HomePage />} />
+        
+        {/* <Route path="/" element={<SendTokenTest />} /> */}
+         <Route path="/" element={<HomePage />} /> 
         
         <Route path="/danang" element={<DaNang />} />
+        <Route path="/cauronggame" element={<CauRongGame />} />
 
           <Route path="/personalmuseum" element={<PersonalMuseum />} />
 
@@ -62,14 +75,15 @@ function App() {
           {/* Dong Ho Game */}
 
           <Route path="/donghogame" element={<DongHoGame />} />
-           <Route path="/FlipCard" element={<FlipCard />} /> 
+          <Route path="/FlipCard" element={<FlipCard />} /> 
+          <Route path="/dienhaicothanh" element=  {<DienHai />} />
 
-<Route path="/caurong" element={<CauRong />} /> 
+          <Route path="/caurong" element={<CauRong />} /> 
 
-           <Route path="/leaderboard" element={<LeaderboardPage />} /> 
+          <Route path="/leaderboard" element={<LeaderboardPage />} /> 
           <Route path="/profile" element={<ProfilePage />} /> 
           <Route path="*" element={<NotFoundPage />} />    
-          {/* <Route path="/" element={<ProfilePage />} />  */}
+         
           
 
         </Routes>
@@ -81,8 +95,3 @@ function App() {
 }
 
 export default App; 
-
-
-
-
-
