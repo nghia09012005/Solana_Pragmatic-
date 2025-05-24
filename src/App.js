@@ -26,8 +26,8 @@ import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
 import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
+
 import BaNaHill from './pages/BaNaHills/BaNaHills'
-  
 import SendTokenTest from './pages/SendTokenTest';  
 import VoucherMarketplace from './pages/VoucherMarket';
 
@@ -41,10 +41,10 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        
+        <Route path="/" element={<VoucherMarketplace />} /> 
         {/* <Route path="/" element={<SendTokenTest />} /> */}
-         <Route path="/" element={<HomePage />} /> 
-        
+         {/* <Route path="/" element={<HomePage />} /> 
+         */}
         <Route path="/danang" element={<DaNang />} />
         <Route path="/cauronggame" element={<CauRongGame />} />
 
@@ -83,7 +83,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />    
          
           
-
+  <Route path="/testgame" element={<TestGame />} /> 
         </Routes>
       </main>
       {/* <Footer /> */}
