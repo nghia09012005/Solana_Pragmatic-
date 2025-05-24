@@ -173,7 +173,7 @@ const messageInbox = [
   };
 
   return (
-    <LoadingScreen backgroundImage={require('../../assets/HoiAnGame/images/bg.png')} isLoading={isLoading}>
+    <LoadingScreen backgroundImage={require('../../assets/HoiAnGame/images/bg.webp')} isLoading={isLoading}>
       <LogoImage 
         src={`${process.env.PUBLIC_URL}/images/icons/logo.webp`} 
         alt="Tranh Đông Hồ Logo" 
