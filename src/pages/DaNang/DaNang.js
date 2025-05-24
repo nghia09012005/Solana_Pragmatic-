@@ -140,8 +140,8 @@ const DaNangCard = ({ artwork, isActive }) => {
         navigate('/donghogame');
       } else if (artwork.title === "Marble ") {
         navigate('/taynguyengame');
-      } else if (artwork.title === "Chiến dịch Hồ Chí Minh"){
-        navigate('/introduction');
+      } else if (artwork.title === "Hoi An"){
+        navigate('/hoiangame');
       } else if (artwork.title === "Dien Hai Ancient Citadel"){
         navigate('/dienhaicothanh');
       } else {
