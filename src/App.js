@@ -12,13 +12,13 @@ import NotFoundPage from './pages/NotFoundPage';
 
 import CauRong from './pages/DaNang/CauRong/CauRong';
 import CauRongGame from './pages/DaNang/CauRong/Game';
-import DongHoGame from './pages/DongHoGame/DongHoGameG1';
+import HoiAnGame from './pages/HoiAnGame/HoiAnGameG1';
 import TayNguyenGame from './pages/TayNguyenGame';
 import CuChiGameG1 from './pages/CuChiGame/CuChiGameG1';
 import Morse from './pages/CuChiGame/Morse';
 import DienHai from './pages/DaNang/DienHai/DienHai';
-
-import FlipCard from './pages/DongHoGame/FlipCard';
+import BaNaHill from './pages/BaNaHills/BaNaHills';
+import FlipCard from './pages/HoiAnGame/FlipCard';
 import TankGame from './pages/Thongnhat/TankGame';
 import Bantin from './pages/Thongnhat/Bantin';
 
@@ -39,10 +39,10 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        <Route path="/" element={<VoucherMarketplace />} /> 
+        {/* <Route path="/" element={<VoucherMarketplace />} />  */}
         {/* <Route path="/" element={<SendTokenTest />} /> */}
-         {/* <Route path="/" element={<HomePage />} /> 
-         */}
+         <Route path="/" element={<HomePage />} /> 
+        
         <Route path="/danang" element={<DaNang />} />
         <Route path="/cauronggame" element={<CauRongGame />} />
 
@@ -67,9 +67,9 @@ function App() {
           <Route path="/narrator" element={<NarratorScreen />} />
           <Route path="*" element={<NotFoundPage />} />          
           
-          {/* Dong Ho Game */}
+        
 
-          <Route path="/donghogame" element={<DongHoGame />} />
+          <Route path="/hoiangame" element={<HoiAnGame />} />
           <Route path="/FlipCard" element={<FlipCard />} /> 
           <Route path="/dienhaicothanh" element=  {<DienHai />} />
 
