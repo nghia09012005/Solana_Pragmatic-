@@ -121,9 +121,9 @@ const Leaderboard = () => {
         <div className="leaderboard-table">
           <div className="table-header">
             <div className="rank-col">Rank</div>
-            <div className="name-col">Tên Người Chơi</div>
-            <div className="score-col">Vàng</div>
-            <div className="time-col">Vật Phẩm</div>
+            <div className="name-col">Username</div>
+            <div className="score-col">Gold</div>
+            <div className="time-col">Certification</div>
           </div>
           <div className="table-body">
             {leaderboardData.map((player) => (
