@@ -6,7 +6,7 @@ import CauRongLoading from './CauRongLoading';
 import GameMenu from './GameMenu';
 
 // Import ảnh
-import nhanvat from '../../../assets/CauRong/images/dragon-bridge1.png';
+import nhanvat from '../../../assets/CauRong/images/dragon-bridge1.webp';
 
 
 

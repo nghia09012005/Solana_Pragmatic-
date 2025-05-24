@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { styled, keyframes } from 'styled-components';
-import villageBackground from '../../assets/TayNguyenGame/village-background.png';
-import insideNhaRong from '../../assets/TayNguyenGame/inside_nha_rong.png';
-import characterSprite from '../../assets/TayNguyenGame/character.png';
-import elderSprite from '../../assets/TayNguyenGame/elder.png';
-import assistantSprite from '../../assets/TayNguyenGame/cong-chieng1.png';
-import mapImage from '../../assets/TayNguyenGame/map.png';
-import trongDatImage from '../../assets/TayNguyenGame/trong_dat.png';
-import hoiLuaImage from '../../assets/TayNguyenGame/hoi_lua.png';
-import bongRungImage from '../../assets/TayNguyenGame/bong_rung.png';
-import danDaImage from '../../assets/TayNguyenGame/dan_da.png';
-import danDaImage1 from '../../assets/TayNguyenGame/dan_da1.jpg';
-import danDaImage2 from '../../assets/TayNguyenGame/dan_da2.png';
-import congChiengImage from '../../assets/TayNguyenGame/cong_chieng.png';
-import congChiengImage1 from '../../assets/TayNguyenGame/cong_chieng1.jpg';
-import congChiengImage2 from '../../assets/TayNguyenGame/cong_chieng2.jpg';
-import danTrungImage from '../../assets/TayNguyenGame/dan_trung.png';
-import danTrungImage1 from '../../assets/TayNguyenGame/dan_trung1.jpg';
-import danTrungImage2 from '../../assets/TayNguyenGame/dan_trung2.jpg';
+import villageBackground from '../../assets/TayNguyenGame/village-background.webp';
+import insideNhaRong from '../../assets/TayNguyenGame/inside_nha_rong.webp';
+import characterSprite from '../../assets/TayNguyenGame/character.webp';
+import elderSprite from '../../assets/TayNguyenGame/elder.webp';
+import assistantSprite from '../../assets/TayNguyenGame/cong-chieng1.webp';
+import mapImage from '../../assets/TayNguyenGame/map.webp';
+import trongDatImage from '../../assets/TayNguyenGame/trong_dat.webp';
+import hoiLuaImage from '../../assets/TayNguyenGame/hoi_lua.webp';
+import bongRungImage from '../../assets/TayNguyenGame/bong_rung.webp';
+import danDaImage from '../../assets/TayNguyenGame/dan_da.webp';
+import danDaImage1 from '../../assets/TayNguyenGame/dan_da1.webp';
+import danDaImage2 from '../../assets/TayNguyenGame/dan_da2.webp';
+import congChiengImage from '../../assets/TayNguyenGame/cong_chieng.webp';
+import congChiengImage1 from '../../assets/TayNguyenGame/cong_chieng1.webp';
+import congChiengImage2 from '../../assets/TayNguyenGame/cong_chieng2.webp';
+import danTrungImage from '../../assets/TayNguyenGame/dan_trung.webp';
+import danTrungImage1 from '../../assets/TayNguyenGame/dan_trung1.webp';
+import danTrungImage2 from '../../assets/TayNguyenGame/dan_trung2.webp';
 import backgroundMusic from '../../assets/TayNguyenGame/sound/nhac_nen.mp3';
 import { 
   GAME_WIDTH, 
@@ -2381,9 +2381,9 @@ const TayNguyenGongsGame = () => {
     <>
       {isLoading && (
         <LoadingScreen isLoading={isLoading}>
-          <LogoImage src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} alt="Cồng Chiêng Tây Nguyên Logo" />
+          <LogoImage src={`${process.env.PUBLIC_URL}/images/icons/logo.webp`} alt="Cồng Chiêng Tây Nguyên Logo" />
           <LoadingSubtitle>
-            <img src={`${process.env.PUBLIC_URL}/images/icons/logo-font.png`} alt="Lạc vào miền ký ức của đại ngàn" style={{ maxWidth: '100%', height: 'auto' }} />
+            <img src={`${process.env.PUBLIC_URL}/images/icons/logo-font.webp`} alt="Lạc vào miền ký ức của đại ngàn" style={{ maxWidth: '100%', height: 'auto' }} />
           </LoadingSubtitle>
           
           <LoadingBar>

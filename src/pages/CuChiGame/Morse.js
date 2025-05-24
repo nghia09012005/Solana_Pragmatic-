@@ -3,16 +3,16 @@ import Loading from './CuChiLoading';
 import '../../styles/CuChiStyle/Morse.css';
 import ReactAudioPlayer from 'react-audio-player';
 import audioFile from '../../assets/CuChiGame/audio/morse.wav'; // Import tệp âm thanh
-import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.png'; // Nhân vật
+import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.webp'; // Nhân vật
 import { useNavigate } from 'react-router-dom';
-import morsetable from '../../assets/CuChiGame/images/Morse.png';
-import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
+import morsetable from '../../assets/CuChiGame/images/Morse.webp';
+import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.webp';
 // morse sound
 import m1 from '../../assets/CuChiGame/audio/CUCHICON.wav';
 import m2 from '../../assets/CuChiGame/audio/SAIGONMAT.wav';
 import confetti from 'canvas-confetti';
 import Swal from 'sweetalert2';
-import letter from '../../assets/CuChiGame/images/successletter.png';
+import letter from '../../assets/CuChiGame/images/successletter.webp';
 import { Link } from 'react-router-dom';
 
 

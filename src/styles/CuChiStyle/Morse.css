@@ -11,7 +11,7 @@
   .Morse-background {
     width: 100%;
     height: 100vh;
-    background-image: url('../../assets/CuChiGame/images/morsebackground.png');
+    background-image: url('../../assets/CuChiGame/images/morsebackground.webp');
     background-size: auto 100%; /* Chiều cao fix toàn màn, chiều ngang tự động */
     /* background-repeat: repeat-x; */
     /* animation: moveBackground 30s linear infinite; */
