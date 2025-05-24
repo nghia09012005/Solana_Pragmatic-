@@ -1,0 +1,152 @@
+/* Styles for Ba Na Hills Game */
+
+/* Game container */
+.game-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cable car styling */
+.cable-car {
+  position: absolute;
+  width: 60px;
+  height: 50px;
+  background-image: url('../../assets/BaNaHills/cable_car.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10;
+  animation: swing 2s infinite ease-in-out;
+}
+
+/* Cable lines */
+.cable-line {
+  position: absolute;
+  height: 2px;
+  background-color: #333;
+  top: 25%;
+  width: 100%;
+  z-index: 5;
+}
+
+.cable-line:nth-child(1) {
+  height: 3px;
+}
+
+.cable-line:nth-child(2) {
+  top: calc(25% + 20px);
+  height: 2px;
+}
+
+/* Cable poles */
+.cable-pole {
+  position: absolute;
+  width: 8px;
+  height: 150px;
+  background-color: #444;
+  z-index: 6;
+}
+
+.cable-pole-base {
+  position: absolute;
+  width: 30px;
+  height: 20px;
+  background-color: #333;
+  z-index: 6;
+}
+
+/* Platform styling */
+.platform {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  background-color: #8B4513;
+  z-index: 8;
+}
+
+/* Animation for cable car swinging */
+@keyframes swing {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Cable car connector line */
+.connector-line {
+  position: absolute;
+  width: 2px;
+  background-color: #333;
+  z-index: 7;
+}
+
+/* Golden Bridge styling */
+.golden-bridge {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  width: 80%;
+  height: 100px;
+  background-image: url('../../assets/BaNaHills/mountain1.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 4;
+}
+
+/* Mountains in background */
+.mountain {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background-image: url('../../assets/BaNaHills/mountain2.png');
+  background-size: cover;
+  background-position: bottom;
+  z-index: 2;
+}
+
+/* Sky background */
+.sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #87ceeb;
+  z-index: 1;
+}
+
+/* Player styling */
+.player {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: blue;
+  border-radius: 50%;
+  z-index: 9;
+}
+
+/* Score display */
+.score-display {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+
+/* Lives display */
+.lives-display {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 20;
+} 
