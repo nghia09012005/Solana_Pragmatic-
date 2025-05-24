@@ -6,6 +6,19 @@ import { useNavigate } from 'react-router-dom';
 import '../../styles/DaNang.css';
 
 const DaNangCARDS = [
+   {
+    title: "Hoi An",
+  
+    description: "Bathed in golden lantern light, Hoi An feels like a step into a dream. With its ancient alleys, whispered legends, and glowing riverside nights, this enchanting town holds a timeless, almost mystical charm that lingers long after you leave.",
+    
+    artist: {
+      name: "Hoi An Ancient Town",
+      location: "Quang Nam, Viet Nam",
+      image: "/images/character/hoi-an.webp"
+    },
+    image: "/images/hoi-an.webp"
+  },
+
   {
     title: "Dragon Bridge",
     
@@ -45,19 +58,7 @@ const DaNangCARDS = [
     },
     image: "/images/ngu-hanh.webp"
   },
-  {
-    title: "Hoi An",
-  
-    description: "Bathed in golden lantern light, Hoi An feels like a step into a dream. With its ancient alleys, whispered legends, and glowing riverside nights, this enchanting town holds a timeless, almost mystical charm that lingers long after you leave.",
-    
-    artist: {
-      name: "Hoi An Ancient Town",
-      location: "Quang Nam, Viet Nam",
-      image: "/images/character/trong-dong-dong-son.webp"
-    },
-    image: "/images/hoi-an.webp"
-  },
-
+ 
   
   {
     title: "Dien Hai Ancient Citadel",
