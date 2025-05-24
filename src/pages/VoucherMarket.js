@@ -24,8 +24,8 @@ const mockVouchers = [
   },
   {
     id: 3,
-    name: "3% OFF at Ba Na Hills",
-    description: "Get 5% off admission to Ba Na Hills.",
+    name: "15% OFF at Ba Na Hills",
+    description: "Get 15% off entrance ticket to Ba Na Hills.",
     price: 90,
     expires: "2025-09-01",
   },
