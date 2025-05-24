@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import DaNang from './pages/DaNang/DaNang';
 // import CollectionPage from './pages/CollectionPage';
 import LeaderboardPage from './pages/Leaderboard';
+import BaNaHills from './pages/BaNaHills/BaNaHills';
 
 // import LoginPage from './pages/LoginPage';
 // import RegisterPage from './pages/RegisterPage';
@@ -50,7 +51,7 @@ function App() {
 
   
           <Route path="/taynguyengame" element={<TayNguyenGame />} />
-          <Route path="/banahill" element={<BaNaHill />} />
+          <Route path="/banahill" element={<BaNaHills />} />
           <Route path="/introduction" element={<Introduction />} />
           <Route path="/tankgame" element={<TankGame />} /> 
           <Route path="/bantin" element={<Bantin />} />
