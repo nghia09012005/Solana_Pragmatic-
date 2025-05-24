@@ -22,8 +22,8 @@ const Header = () => {
       <div className="header-container">
         <div className="logo">
           <Link to="/">
-            <img src="/images/icons/logo.png" alt="VNTOUR" />
-            <img src="/images/icons/logo-font.png" alt="VNTOUR" />
+            <img src="/images/icons/logo.webp" alt="VNTOUR" />
+            <img src="/images/icons/logo-font.webp" alt="VNTOUR" />
           </Link>
         </div>
 
@@ -39,19 +39,19 @@ const Header = () => {
           <ul>
             <li>
               <Link to="/" onClick={() => setMobileMenuOpen(false)} className="nav-item">
-                <img src="/images/icons/logo.png" alt="Trang chủ" />
+                <img src="/images/icons/logo.webp" alt="Trang chủ" />
                 <span>Thành tựu</span>
               </Link>
             </li>
             <li>
               <Link to="/museum" onClick={() => setMobileMenuOpen(false)} className="nav-item">
-                <img src="/images/icons/leaderboard.png" alt="Bảng xếp hạng" />
+                <img src="/images/icons/leaderboard.webp" alt="Bảng xếp hạng" />
                 <span>Bảng xếp hạng</span>
               </Link>
             </li>
             <li>
               <Link to="/my-museum" onClick={() => setMobileMenuOpen(false)} className="nav-item">
-                <img src="/images/icons/shop.png" alt="Cửa hàng" />
+                <img src="/images/icons/shop.webp" alt="Cửa hàng" />
                 <span>Cửa hàng</span>
               </Link>
             </li>
@@ -61,11 +61,11 @@ const Header = () => {
             <div className="user-section">
               <div className="currency-indicator">
                 <div className="currency-row">
-                  <img src="/images/icons/gold.png" alt="Vàng" className="currency-icon" />
+                  <img src="/images/icons/gold.webp" alt="Vàng" className="currency-icon" />
                   <span className="currency-value">1,000</span>
                 </div>
                 <div className="currency-row">
-                  <img src="/images/icons/silver.png" alt="Bạc" className="currency-icon" />
+                  <img src="/images/icons/silver.webp" alt="Bạc" className="currency-icon" />
                   <span className="currency-value">1,000</span>
                 </div>
               </div>

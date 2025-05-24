@@ -122,7 +122,7 @@ const VoucherMarketplace = () => {
       </button>
 
       <h2>
-        <img src="/images/icons/logo.png" alt="Logo" className="logo-icon" />
+        <img src="/images/icons/logo.webp" alt="Logo" className="logo-icon" />
         Voucher Marketplace
       </h2>
 

@@ -172,7 +172,7 @@ const CuChiLoading = ({ onLoadingComplete }) => {
 
   return (
     <LoadingScreen 
-      backgroundImage={require('../../assets/CuChiGame/images/Cuchibackground.png') || 'black'}
+      backgroundImage={require('../../assets/CuChiGame/images/Cuchibackground.webp') || 'black'}
       isLoading={!loadingComplete}
     >
       <LogoImage 

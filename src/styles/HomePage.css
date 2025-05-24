@@ -133,7 +133,7 @@ html, body {
   padding: 0;
   /* align-items: center;
   justify-content: center; Căn giữa nội dung */
-   background:url('/public/images/vietnam.png') no-repeat center center fixed ;
+   background:url('/public/images/vietnam.webp') no-repeat center center fixed ;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
@@ -512,7 +512,7 @@ body:has(.overlay) .background button {
     transform-origin: center center;
   opacity: 0;
   background-blend-mode: overlay;
-  background-image: url('/public/images/sign-in-sign-up-box.png');
+  background-image: url('/public/images/sign-in-sign-up-box.webp');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -650,7 +650,7 @@ body:has(.overlay) .background button {
     animation: formSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform-origin: center center;
     opacity: 0;
-    background-image: url('/public/images/sign-in-sign-up-box.png');
+    background-image: url('/public/images/sign-in-sign-up-box.webp');
   background-repeat: no-repeat;
   background-size: contain;
 
@@ -894,27 +894,27 @@ body:has(.overlay) .background button {
 
 /* Individual card backgrounds */
 .feature-card:nth-child(1)::before {
-  background-image: url('/public/images/time-travel.png');
+  background-image: url('/public/images/time-travel.webp');
 }
 
 .feature-card:nth-child(2)::before {
-  background-image: url('/public/images/minigame.png');
+  background-image: url('/public/images/minigame.webp');
 }
 
  .feature-card:nth-child(3)::before {
-  background-image: url('/public/images/education.png');
+  background-image: url('/public/images/education.webp');
 }
 
 .feature-card:nth-child(4)::before {
-  background-image: url('/public/images/blockchain.jpeg');
+  background-image: url('/public/images/blockchain.webp');
 }
 
 .feature-card:nth-child(5)::before {
-  background-image: url('/public/images/character.png');
+  background-image: url('/public/images/character.webp');
 }
 
 .feature-card:nth-child(6)::before {
-  background-image: url('/public/images/travel.jpg');
+  background-image: url('/public/images/travel.webp');
 }
  
 
@@ -1722,7 +1722,7 @@ body:has(.overlay) .background button {
   }
 
 .container{
-  background: url('/public/images/vietnam-portrait.png');
+  background: url('/public/images/vietnam-portrait.webp');
   width: 100%;
   height: auto;
 }
@@ -1796,7 +1796,7 @@ body:has(.overlay) .background button {
     font-size: 16px;
   }
   .container{
-  background: url('/public/images/vietnam-portrait.png');
+  background: url('/public/images/vietnam-portrait.webp');
  
 }
 }

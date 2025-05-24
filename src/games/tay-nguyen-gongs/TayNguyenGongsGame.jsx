@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { styled, keyframes } from 'styled-components';
-import villageBackground from '../../assets/tay-nguyen-gongs/village-background.png';
-import insideNhaRong from '../../assets/tay-nguyen-gongs/inside_nha_rong.png';
-import characterSprite from '../../assets/tay-nguyen-gongs/character.png';
-import elderSprite from '../../assets/tay-nguyen-gongs/elder.png';
-import assistantSprite from '../../assets/tay-nguyen-gongs/assistant.png';
-import mapImage from '../../assets/tay-nguyen-gongs/map.png';
-import trongDatImage from '../../assets/tay-nguyen-gongs/trong_dat.png';
-import hoiLuaImage from '../../assets/tay-nguyen-gongs/hoi_lua.png';
-import bongRungImage from '../../assets/tay-nguyen-gongs/bong_rung.png';
-import danDaImage from '../../assets/tay-nguyen-gongs/dan_da.png';
-import danDaImage1 from '../../assets/tay-nguyen-gongs/dan_da1.jpg';
-import danDaImage2 from '../../assets/tay-nguyen-gongs/dan_da2.png';
-import congChiengImage from '../../assets/tay-nguyen-gongs/cong_chieng.png';
-import congChiengImage1 from '../../assets/tay-nguyen-gongs/cong_chieng1.jpg';
-import congChiengImage2 from '../../assets/tay-nguyen-gongs/cong_chieng2.jpg';
-import danTrungImage from '../../assets/tay-nguyen-gongs/dan_trung.png';
-import danTrungImage1 from '../../assets/tay-nguyen-gongs/dan_trung1.jpg';
-import danTrungImage2 from '../../assets/tay-nguyen-gongs/dan_trung2.jpg';
+import villageBackground from '../../assets/tay-nguyen-gongs/village-background.webp';
+import insideNhaRong from '../../assets/tay-nguyen-gongs/inside_nha_rong.webp';
+import characterSprite from '../../assets/tay-nguyen-gongs/character.webp';
+import elderSprite from '../../assets/tay-nguyen-gongs/elder.webp';
+import assistantSprite from '../../assets/tay-nguyen-gongs/assistant.webp';
+import mapImage from '../../assets/tay-nguyen-gongs/map.webp';
+import trongDatImage from '../../assets/tay-nguyen-gongs/trong_dat.webp';
+import hoiLuaImage from '../../assets/tay-nguyen-gongs/hoi_lua.webp';
+import bongRungImage from '../../assets/tay-nguyen-gongs/bong_rung.webp';
+import danDaImage from '../../assets/tay-nguyen-gongs/dan_da.webp';
+import danDaImage1 from '../../assets/tay-nguyen-gongs/dan_da1.webp';
+import danDaImage2 from '../../assets/tay-nguyen-gongs/dan_da2.webp';
+import congChiengImage from '../../assets/tay-nguyen-gongs/cong_chieng.webp';
+import congChiengImage1 from '../../assets/tay-nguyen-gongs/cong_chieng1.webp';
+import congChiengImage2 from '../../assets/tay-nguyen-gongs/cong_chieng2.webp';
+import danTrungImage from '../../assets/tay-nguyen-gongs/dan_trung.webp';
+import danTrungImage1 from '../../assets/tay-nguyen-gongs/dan_trung1.webp';
+import danTrungImage2 from '../../assets/tay-nguyen-gongs/dan_trung2.webp';
 import { 
   GAME_WIDTH, 
   GAME_HEIGHT,

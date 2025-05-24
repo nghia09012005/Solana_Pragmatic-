@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/PersonalMuseum.css';
-import museumbg from '../assets/PersonalMuseum/museum1.png';
-import artifact1 from '../assets/PersonalMuseum/Comattran.png';
-import artifact2 from '../assets/PersonalMuseum/successletter.png';
-import artifact3 from '../assets/PersonalMuseum/tranh-dong-ho.png';
-import artifact4 from '../assets/PersonalMuseum/cong_chieng.png';
+import museumbg from '../assets/PersonalMuseum/museum1.webp';
+import artifact1 from '../assets/PersonalMuseum/Comattran.webp';
+import artifact2 from '../assets/PersonalMuseum/successletter.webp';
+import artifact3 from '../assets/PersonalMuseum/tranh-dong-ho.webp';
+import artifact4 from '../assets/PersonalMuseum/cong_chieng.webp';
 import museumMusic from '../assets/PersonalMuseum/audio/acoustic.mp3';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft, FaSave, FaUndo } from 'react-icons/fa';

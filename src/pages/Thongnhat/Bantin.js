@@ -3,7 +3,7 @@ import bantin from '../../assets/Thongnhat/audio/bantin.wav';
 import backgroundbantin from '../../assets/Thongnhat/audio/backgroundbantin.wav';
 import vidbackground from '../../assets/Thongnhat/video/backgroundvid.mp4';
 import "../../styles/Thongnhat/Bantin.css";
-import flag from '../../assets/Thongnhat/images/Comattran.png';
+import flag from '../../assets/Thongnhat/images/Comattran.webp';
 import { useNavigate } from 'react-router-dom';
 import GameMenu from './GameMenu';
 

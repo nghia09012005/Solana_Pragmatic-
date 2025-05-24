@@ -6,11 +6,11 @@ import DongHoLoading from './DongHoLoading';
 import GameMenu from './GameMenu';
 
 // Import ảnh
-import nhanvat from '../../assets/DongHoGame/image/nhanvat.png';
-import buoc1 from '../../assets/DongHoGame/image/buoc1.jpg';
-import buoc2 from '../../assets/DongHoGame/image/buoc2.jpg';
-import buoc3 from '../../assets/DongHoGame/image/buoc3.jpg';
-import buoc4 from '../../assets/DongHoGame/image/buoc4.jpg';
+import nhanvat from '../../assets/DongHoGame/image/nhanvat.webp';
+import buoc1 from '../../assets/DongHoGame/image/buoc1.webp';
+import buoc2 from '../../assets/DongHoGame/image/buoc2.webp';
+import buoc3 from '../../assets/DongHoGame/image/buoc3.webp';
+import buoc4 from '../../assets/DongHoGame/image/buoc4.webp';
 
 const buocImages = [buoc1, buoc2, buoc3, buoc4];
 

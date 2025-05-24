@@ -403,7 +403,7 @@ const scrollToCarousel = () => {
 
        <header>
   <div className="head-left">
-    <img src="/images/logo.png" alt="logo" />
+    <img src="/images/logo.webp" alt="logo" />
   </div>
 
 
