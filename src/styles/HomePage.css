@@ -19,7 +19,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cantata+One&family=Quicksand:wght@300..700&display=swap');
 
 * {
-  font-family: 'Quicksand', sans-serif;
+  font-family: system-ui;
   font-weight: 200;
   font-size: 16px;
 }
@@ -166,21 +166,40 @@ html, body {
   height: calc(100% - 315px); 
 }
 header {
-  font-family: 'Quicksand', sans-serif;
+  font-family: system-ui;
   font-weight: 200;
   font-size: 16px;
-
   position: fixed;
-  top: 5%;
+  top: 0;
   left: 0;
   right: 0;
-  
   display: flex;
   align-items: center;
   justify-content: space-between;
- 
-   
+  padding: 20px 0;
   z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  padding: 10px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+header.scrolled .head-left img {
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+header.scrolled a {
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+header.scrolled .button-box {
+  transform: scale(0.95);
+  transition: all 0.3s ease;
 }
 
 .head-left{
@@ -367,7 +386,7 @@ header a:hover:hover::before {
 
 .background-text h1{
   font-size: 70px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .background-text h3{
@@ -821,9 +840,10 @@ body:has(.overlay) .background button {
 }
 
 .feature h1{
-  font-family: montse;
- font-size: 100px;
-  font-weight: bold;
+  color: #fff;
+  font-family: 'Cantata One', serif;
+  font-size: 100px;
+  font-weight: 300;
 }
 
 .feature-grid {
@@ -867,6 +887,9 @@ body:has(.overlay) .background button {
 .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(218, 165, 32, 0.1);
+  .feature-card h1 {
+    color: #fff;
+  }
 }
 .feature-card:hover::before {
   opacity: 1;
@@ -881,6 +904,7 @@ body:has(.overlay) .background button {
 .feature-card h3 {
   color: #795548;
   font-size: 29px;
+  font-weight: 500;
   margin-bottom: 35px;
   position: relative;
   z-index: 1;
@@ -892,11 +916,12 @@ body:has(.overlay) .background button {
 
 .feature-card p {
   color: #4E4E4E ;
+  font-weight: 300;
   font-size: 17px;
   line-height: 1.6;
   position: relative;
   z-index: 1;
-  text-align: justify; /* Add this line */
+  text-align: left; /* Add this line */
   hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;

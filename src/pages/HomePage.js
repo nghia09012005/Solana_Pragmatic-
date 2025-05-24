@@ -175,7 +175,7 @@ function HomePage() {
             title: "Da Lat",
 
             description:
-                "Nestled in Vietnam’s central highlands, Da Lat enchants with its cool mountain air, pine-covered hills, and romantic charm—a dreamy escape where every misty morning feels like a fairytale waiting to unfold.",
+                "Nestled in Vietnam's central highlands, Da Lat enchants with its cool mountain air, pine-covered hills, and romantic charm—a dreamy escape where every misty morning feels like a fairytale waiting to unfold.",
 
             artist: {
                 name: "Central",
@@ -189,7 +189,7 @@ function HomePage() {
             title: "Hue",
 
             description:
-                "Graceful and poetic, Hue whispers tales of emperors and ancient dynasties—its imperial citadel, peaceful rivers, and timeless charm invite you to step back into Vietnam’s royal past.",
+                "Graceful and poetic, Hue whispers tales of emperors and ancient dynasties—its imperial citadel, peaceful rivers, and timeless charm invite you to step back into Vietnam's royal past.",
 
             artist: {
                 name: "Central",
@@ -216,7 +216,7 @@ function HomePage() {
             title: "Ha Noi",
 
             description:
-                "Hanoi, Vietnam’s vibrant capital, blends centuries-old architecture with bustling street life—where tranquil lakes, ancient temples, and lively markets create a city full of stories waiting to be discovered.",
+                "Hanoi, Vietnam's vibrant capital, blends centuries-old architecture with bustling street life—where tranquil lakes, ancient temples, and lively markets create a city full of stories waiting to be discovered.",
 
             artist: {
                 name: "Northern",
@@ -445,9 +445,30 @@ function HomePage() {
         setIsVisible(true);
     }, []);
 
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [headerOpacity, setHeaderOpacity] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            // Tính toán độ trong suốt dựa trên vị trí cuộn
+            // Khi cuộn từ 0 đến 200px, độ trong suốt sẽ tăng từ 0 đến 1
+            const opacity = Math.min(scrollPosition / 200, 1);
+            setHeaderOpacity(opacity);
+            setIsScrolled(scrollPosition > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div className="container">
-            <header>
+            <header className={isScrolled ? 'scrolled' : ''} style={{ 
+                backgroundColor: `rgba(0, 0, 0, ${headerOpacity})`,
+                backdropFilter: `blur(${headerOpacity * 10}px)`,
+                WebkitBackdropFilter: `blur(${headerOpacity * 10}px)`
+            }}>
                 <div className="head-left">
                     <img src="/images/logo.webp" alt="logo" />
                 </div>
