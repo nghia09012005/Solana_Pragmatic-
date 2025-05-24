@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import background from '../../assets/Thongnhat/images/hcmcampaign.jpg';
-import tankImage from '../../assets/Thongnhat/images/loadingHCMCampaign.png';
-import gateImage from '../../assets/Thongnhat/images/congdinhdoclap.png';
+import background from '../../assets/Thongnhat/images/hcmcampaign.webp';
+import tankImage from '../../assets/Thongnhat/images/loadingHCMCampaign.webp';
+import gateImage from '../../assets/Thongnhat/images/congdinhdoclap.webp';
 
 // Animations
 const fadeIn = keyframes`
@@ -191,13 +191,13 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
   return (
     <LoadingScreen $backgroundImage={background} $isLoading={!loadingComplete}>
       <LogoImage 
-        src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
+        src={`${process.env.PUBLIC_URL}/images/icons/logo.webp`} 
         alt="Thống Nhất Logo" 
       />
       
       <LoadingTitle>
         <img 
-          src={`${process.env.PUBLIC_URL}/images/icons/logo-font.png`} 
+          src={`${process.env.PUBLIC_URL}/images/icons/logo-font.webp`} 
           alt="Thống Nhất" 
           style={{ maxWidth: '100%', height: 'auto' }}
         />

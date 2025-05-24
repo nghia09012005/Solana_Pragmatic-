@@ -15,6 +15,16 @@
   
 } */
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cantata+One&family=Quicksand:wght@300..700&display=swap');
+
+* {
+  font-family: system-ui;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+
 /* HomePage.css */
 html, body {
   margin: 0;
@@ -133,7 +143,7 @@ html, body {
   padding: 0;
   /* align-items: center;
   justify-content: center; Căn giữa nội dung */
-   background:url('/public/images/vietnam.png') no-repeat center center fixed ;
+   background:url('/public/images/vietnam.webp') no-repeat center center fixed ;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
@@ -156,17 +166,40 @@ html, body {
   height: calc(100% - 315px); 
 }
 header {
+  font-family: system-ui;
+  font-weight: 200;
+  font-size: 16px;
   position: fixed;
-  top: 5%;
+  top: 0;
   left: 0;
   right: 0;
-  
   display: flex;
   align-items: center;
   justify-content: space-between;
- 
-   
+  padding: 20px 0;
   z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  padding: 10px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+header.scrolled .head-left img {
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+header.scrolled a {
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+header.scrolled .button-box {
+  transform: scale(0.95);
+  transition: all 0.3s ease;
 }
 
 .head-left{
@@ -197,7 +230,9 @@ header a{
   
   font-size: 20px;
   transition: 0.3s;
-  font-family:MONTSERAT;}
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 200;
+}
 
 header a:hover {
   color: white;
@@ -334,35 +369,31 @@ header a:hover:hover::before {
 
 
 
-.background h1{
+.background-text{
   position: absolute;
-  top:10%;
-  text-align: left;
-  font-family:montserat;  
-  font-size: 70px;
-  max-width: 650px;
+  top:20%;
+  max-width: 100%;
   /* text-align: center; */
-  color: rgb(206, 198, 198);
- opacity: 1;
+  color: rgb(255, 255, 255);
+  opacity: 1;
   padding-left: 60px;
   z-index: 2;
   font-weight: 700;
  
   text-align: center;
+  line-height: 0;
 }
 
-.background h3{
-  position: absolute;
-  top: 15%;
-  font-size: 120px;
-  max-width: 650px;
-  font-family:montserat;
-  color: rgb(255, 255, 255);
-  font-weight: 900;
-  padding-left: 60px;
-  opacity: 1;
-  z-index: 2;
+.background-text h1{
+  font-size: 70px;
+  font-weight: 400;
 }
+
+.background-text h3{
+  font-size: 140px;
+  font-family: 'Cantata One', serif;
+}
+
 
 body:has(.overlay) .background h1,
 body:has(.overlay) .background h3,
@@ -389,7 +420,6 @@ body:has(.overlay) .background button {
   transition: all 0.3s ease;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  font-family: montserat;
 }
 
 .background button:hover {
@@ -512,7 +542,7 @@ body:has(.overlay) .background button {
     transform-origin: center center;
   opacity: 0;
   background-blend-mode: overlay;
-  background-image: url('/public/images/sign-in-sign-up-box.png');
+  background-image: url('/public/images/sign-in-sign-up-box.webp');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -650,7 +680,7 @@ body:has(.overlay) .background button {
     animation: formSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform-origin: center center;
     opacity: 0;
-    background-image: url('/public/images/sign-in-sign-up-box.png');
+    background-image: url('/public/images/sign-in-sign-up-box.webp');
   background-repeat: no-repeat;
   background-size: contain;
 
@@ -810,9 +840,10 @@ body:has(.overlay) .background button {
 }
 
 .feature h1{
-  font-family: montse;
- font-size: 100px;
-  font-weight: bold;
+  color: #fff;
+  font-family: 'Cantata One', serif;
+  font-size: 100px;
+  font-weight: 300;
 }
 
 .feature-grid {
@@ -856,6 +887,9 @@ body:has(.overlay) .background button {
 .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(218, 165, 32, 0.1);
+  .feature-card h1 {
+    color: #fff;
+  }
 }
 .feature-card:hover::before {
   opacity: 1;
@@ -870,6 +904,7 @@ body:has(.overlay) .background button {
 .feature-card h3 {
   color: #795548;
   font-size: 29px;
+  font-weight: 500;
   margin-bottom: 35px;
   position: relative;
   z-index: 1;
@@ -881,11 +916,12 @@ body:has(.overlay) .background button {
 
 .feature-card p {
   color: #4E4E4E ;
+  font-weight: 300;
   font-size: 17px;
   line-height: 1.6;
   position: relative;
   z-index: 1;
-  text-align: justify; /* Add this line */
+  text-align: left; /* Add this line */
   hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
@@ -894,27 +930,27 @@ body:has(.overlay) .background button {
 
 /* Individual card backgrounds */
 .feature-card:nth-child(1)::before {
-  background-image: url('/public/images/time-travel.png');
+  background-image: url('/public/images/time-travel.webp');
 }
 
 .feature-card:nth-child(2)::before {
-  background-image: url('/public/images/minigame.png');
+  background-image: url('/public/images/minigame.webp');
 }
 
  .feature-card:nth-child(3)::before {
-  background-image: url('/public/images/education.png');
+  background-image: url('/public/images/education.webp');
 }
 
 .feature-card:nth-child(4)::before {
-  background-image: url('/public/images/blockchain.jpeg');
+  background-image: url('/public/images/blockchain.webp');
 }
 
 .feature-card:nth-child(5)::before {
-  background-image: url('/public/images/character.png');
+  background-image: url('/public/images/character.webp');
 }
 
 .feature-card:nth-child(6)::before {
-  background-image: url('/public/images/travel.jpg');
+  background-image: url('/public/images/travel.webp');
 }
  
 
@@ -1722,7 +1758,7 @@ body:has(.overlay) .background button {
   }
 
 .container{
-  background: url('/public/images/vietnam-portrait.png');
+  background: url('/public/images/vietnam-portrait.webp');
   width: 100%;
   height: auto;
 }
@@ -1796,7 +1832,7 @@ body:has(.overlay) .background button {
     font-size: 16px;
   }
   .container{
-  background: url('/public/images/vietnam-portrait.png');
+  background: url('/public/images/vietnam-portrait.webp');
  
 }
 }

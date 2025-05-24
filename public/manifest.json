@@ -5,16 +5,16 @@
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "images/icons/logo.png"
+      "type": "images/icons/logo.webp"
     },
     {
-      "src": "logo192.png",
-      "type": "images/icons/logo.png",
+      "src": "logo192.webp",
+      "type": "images/icons/logo.webp",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "images/icons/logo.png",
+      "src": "logo512.webp",
+      "type": "images/icons/logo.webp",
       "sizes": "512x512"
     }
   ],

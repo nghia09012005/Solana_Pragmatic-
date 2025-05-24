@@ -15,9 +15,9 @@ const DaNangCARDS = [
       name: "Da Nang",
      
       location: "Da Nang, Viet Nam",
-      image: "./images/character/dragon-bridge.png"
+      image: "./images/character/dragon-bridge.webp"
     },
-    image: "./images/dragon-bridge.png"
+    image: "./images/dragon-bridge.webp"
   },
   {
     title: "Ba Na Hills",
@@ -28,9 +28,9 @@ const DaNangCARDS = [
       name: "Truong Son Mountains",
       
       location: "Da Nang, Viet Nam",
-      image: "/images/character/ba-na.png"
+      image: "/images/character/ba-na.webp"
     },
-    image: "./images/ba-na.png"
+    image: "./images/ba-na.webp"
   },
   {
     title: "Marble Mountains",
@@ -41,9 +41,9 @@ const DaNangCARDS = [
       name: "Da Nang",
       
       location: "Da Nang, Viet Nam",
-      image: "/images/character/ngu-hanh.png"
+      image: "/images/character/ngu-hanh.webp"
     },
-    image: "/images/ngu-hanh.png"
+    image: "/images/ngu-hanh.webp"
   },
   {
     title: "Hoi An",
@@ -53,9 +53,9 @@ const DaNangCARDS = [
     artist: {
       name: "Hoi An Ancient Town",
       location: "Quang Nam, Viet Nam",
-      image: "/images/character/trong-dong-dong-son.png"
+      image: "/images/character/trong-dong-dong-son.webp"
     },
-    image: "/images/hoi-an.png"
+    image: "/images/hoi-an.webp"
   },
 
   
@@ -65,9 +65,9 @@ const DaNangCARDS = [
     artist: {
       name: "Dien Hai Ancient Citadel",
       location: "Đà Nẵng, Việt Nam",
-      image: "images/character/dia-dao1.png"
+      image: "images/character/dia-dao1.webp"
     },
-    image: "/images/thanh-dien-hai.jpg"
+    image: "/images/thanh-dien-hai.webp"
   },
 
   {
@@ -79,9 +79,9 @@ const DaNangCARDS = [
       name: "son Tra Mountain",
      
       location: "Da Nang, Viet Nam",
-      image: "/images/character/giai-phong.png"
+      image: "/images/character/giai-phong.webp"
     },
-    image: "/images/chua-linh-ung.png"
+    image: "/images/chua-linh-ung.webp"
   },
   
   {
@@ -93,7 +93,7 @@ const DaNangCARDS = [
       name: "Quang Nam",
       
       location: "Quang Nam, Viet Nam",
-      image: "/images/character/quan-ho.png"
+      image: "/images/character/quan-ho.webp"
     },
     image: "/images/thanh-dia-my-son.jpg"
   },
@@ -140,8 +140,8 @@ const DaNangCard = ({ artwork, isActive }) => {
         navigate('/donghogame');
       } else if (artwork.title === "Marble ") {
         navigate('/taynguyengame');
-      } else if (artwork.title === "Chiến dịch Hồ Chí Minh"){
-        navigate('/introduction');
+      } else if (artwork.title === "Hoi An"){
+        navigate('/hoiangame');
       } else if (artwork.title === "Dien Hai Ancient Citadel"){
         navigate('/dienhaicothanh');
       } else {

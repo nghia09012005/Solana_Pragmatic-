@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import co from '../assets/PersonalMuseum/Comattran.svg';
-import thu from '../assets/PersonalMuseum/successletter.png';
-import tranh from '../assets/PersonalMuseum/tranh-dong-ho.png';
-import congchieng from '../assets/PersonalMuseum/cong_chieng.png';
+import thu from '../assets/PersonalMuseum/successletter.webp';
+import tranh from '../assets/PersonalMuseum/tranh-dong-ho.webp';
+import congchieng from '../assets/PersonalMuseum/cong_chieng.webp';
 import '../styles/ProfilePage.css';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';

@@ -4,10 +4,10 @@ import '../../styles/CuChiStyle/CuChiGameG1.css';
 import '../../styles/CuChiStyle/usequiz.css';
 import ReactAudioPlayer from 'react-audio-player';
 import audioFile from '../../assets/CuChiGame/audio/Cuchisound.mp3';
-import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.png';
+import characterImg from '../../assets/CuChiGame/images/MODEL_CUCHI_NOBG.webp';
 import { useNavigate } from 'react-router-dom';
-import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.jpg';
-import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.jpg';
+import diadaomap from '../../assets/CuChiGame/images/Bandodiadao.webp';
+import didaodist from '../../assets/CuChiGame/images/khoangcachdiadao.webp';
 import Usequiz from "./Usequiz";
 
 // Add a style to control transitions
