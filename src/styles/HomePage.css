@@ -15,6 +15,16 @@
   
 } */
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cantata+One&family=Quicksand:wght@300..700&display=swap');
+
+* {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+
 /* HomePage.css */
 html, body {
   margin: 0;
@@ -156,6 +166,10 @@ html, body {
   height: calc(100% - 315px); 
 }
 header {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 200;
+  font-size: 16px;
+
   position: fixed;
   top: 5%;
   left: 0;
@@ -197,7 +211,9 @@ header a{
   
   font-size: 20px;
   transition: 0.3s;
-  font-family:MONTSERAT;}
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 200;
+}
 
 header a:hover {
   color: white;
@@ -334,35 +350,31 @@ header a:hover:hover::before {
 
 
 
-.background h1{
+.background-text{
   position: absolute;
-  top:10%;
-  text-align: left;
-  font-family:montserat;  
-  font-size: 70px;
-  max-width: 650px;
+  top:20%;
+  max-width: 100%;
   /* text-align: center; */
-  color: rgb(206, 198, 198);
- opacity: 1;
+  color: rgb(255, 255, 255);
+  opacity: 1;
   padding-left: 60px;
   z-index: 2;
   font-weight: 700;
  
   text-align: center;
+  line-height: 0;
 }
 
-.background h3{
-  position: absolute;
-  top: 15%;
-  font-size: 120px;
-  max-width: 650px;
-  font-family:montserat;
-  color: rgb(255, 255, 255);
-  font-weight: 900;
-  padding-left: 60px;
-  opacity: 1;
-  z-index: 2;
+.background-text h1{
+  font-size: 70px;
+  font-weight: 500;
 }
+
+.background-text h3{
+  font-size: 140px;
+  font-family: 'Cantata One', serif;
+}
+
 
 body:has(.overlay) .background h1,
 body:has(.overlay) .background h3,
@@ -389,7 +401,6 @@ body:has(.overlay) .background button {
   transition: all 0.3s ease;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  font-family: montserat;
 }
 
 .background button:hover {

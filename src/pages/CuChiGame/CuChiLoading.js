@@ -176,13 +176,13 @@ const CuChiLoading = ({ onLoadingComplete }) => {
       isLoading={!loadingComplete}
     >
       <LogoImage 
-        src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
+        src={`${process.env.PUBLIC_URL}/images/icons/logo.webp`} 
         alt="Địa Đạo Củ Chi Logo" 
       />
       
       <LoadingTitle>
         <img 
-          src={`${process.env.PUBLIC_URL}/images/icons/logo-font.png`} 
+          src={`${process.env.PUBLIC_URL}/images/icons/logo-font.webp`} 
           alt="Địa Đạo Củ Chi" 
           style={{ maxWidth: '100%', height: 'auto' }}
         />

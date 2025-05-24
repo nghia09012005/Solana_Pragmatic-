@@ -71,7 +71,7 @@ const Header = () => {
               </div>
               <div className="user-profile">
                 <img 
-                  src={currentUser?.avatar || "/images/default-avatar.png"} 
+                  src={currentUser?.avatar || "/images/default-avatar.webp"} 
                   alt={currentUser?.displayName || "Người dùng"} 
                   className="user-avatar"
                 />

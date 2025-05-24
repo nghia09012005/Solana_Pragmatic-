@@ -191,13 +191,13 @@ const ThongNhatLoading = ({ onLoadingComplete }) => {
   return (
     <LoadingScreen $backgroundImage={background} $isLoading={!loadingComplete}>
       <LogoImage 
-        src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} 
+        src={`${process.env.PUBLIC_URL}/images/icons/logo.webp`} 
         alt="Thống Nhất Logo" 
       />
       
       <LoadingTitle>
         <img 
-          src={`${process.env.PUBLIC_URL}/images/icons/logo-font.png`} 
+          src={`${process.env.PUBLIC_URL}/images/icons/logo-font.webp`} 
           alt="Thống Nhất" 
           style={{ maxWidth: '100%', height: 'auto' }}
         />

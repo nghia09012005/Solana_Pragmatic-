@@ -86,7 +86,7 @@ const VoucherMarketplace = () => {
       .replace("image/png", "image/octet-stream");
     let downloadLink = document.createElement("a");
     downloadLink.href = pngUrl;
-    downloadLink.download = `${selectedVoucher.name}_voucher_qr.png`;
+    downloadLink.download = `${selectedVoucher.name}_voucher_qr.webp`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);

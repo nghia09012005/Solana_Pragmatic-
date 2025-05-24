@@ -2381,9 +2381,9 @@ const TayNguyenGongsGame = () => {
     <>
       {isLoading && (
         <LoadingScreen isLoading={isLoading}>
-          <LogoImage src={`${process.env.PUBLIC_URL}/images/icons/logo.png`} alt="Cồng Chiêng Tây Nguyên Logo" />
+          <LogoImage src={`${process.env.PUBLIC_URL}/images/icons/logo.webp`} alt="Cồng Chiêng Tây Nguyên Logo" />
           <LoadingSubtitle>
-            <img src={`${process.env.PUBLIC_URL}/images/icons/logo-font.png`} alt="Lạc vào miền ký ức của đại ngàn" style={{ maxWidth: '100%', height: 'auto' }} />
+            <img src={`${process.env.PUBLIC_URL}/images/icons/logo-font.webp`} alt="Lạc vào miền ký ức của đại ngàn" style={{ maxWidth: '100%', height: 'auto' }} />
           </LoadingSubtitle>
           
           <LoadingBar>
