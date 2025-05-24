@@ -24,6 +24,7 @@ import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
 import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
+import BaNaHill from './pages/BaNaHills/BaNaHills'
   
 function App() {
   
@@ -41,7 +42,7 @@ function App() {
 
   
           <Route path="/taynguyengame" element={<TayNguyenGame />} />
-
+          <Route path="/banahill" element={<BaNaHill />} />
           <Route path="/introduction" element={<Introduction />} />
           <Route path="/tankgame" element={<TankGame />} /> 
           <Route path="/bantin" element={<Bantin />} />
