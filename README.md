@@ -58,6 +58,16 @@ npm start
 - Wallet: Phantom, Solflare
 - Marketplace: Magic Eden hoặc marketplace tùy chỉnh trong game
 
+## Tool chuyển các file ảnh thành .webp
+Chuyển thành webp: convertToWebP.js
+Đổi references: updateImageReferences.js
+Chuyển các file không phải webp vào src: moveNonWebPImages.js
+Chạy tất cả file trên: runAll.js
+
+### Cách chạy
+node <file-name>
+
+
 ## Truy cập tại
 ```
 https://wda2025.vercel.app/
