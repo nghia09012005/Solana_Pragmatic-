@@ -41,10 +41,10 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        {/* <Route path="/" element={<HomePage />} />  */}
+        <Route path="/vouchermarket" element={<VoucherMarketplace />} /> 
         {/* <Route path="/" element={<SendTokenTest />} /> */}
-         <Route path="/" element={<HomePage />} /> 
-        
+           <Route path="/" element={<HomePage />} />  
+         
         <Route path="/danang" element={<DaNang />} />
         <Route path="/cauronggame" element={<CauRongGame />} />
 
