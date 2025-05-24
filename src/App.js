@@ -26,16 +26,13 @@ import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
 import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
-<<<<<<< HEAD
 import BaNaHill from './pages/BaNaHills/BaNaHills'
   
-=======
 import SendTokenTest from './pages/SendTokenTest';  
 import VoucherMarketplace from './pages/VoucherMarket';
 
 import TestGame from './pages/DaNang/DienHai/minigames/TestGame';
 
->>>>>>> 49067a5f4d079bf810858577c7081b1b93ef371a
 function App() {
   
   return (
