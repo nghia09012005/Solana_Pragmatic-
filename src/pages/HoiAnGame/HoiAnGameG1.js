@@ -90,7 +90,7 @@ const HoiAnGame = () => {
           </div>
 
           {isGameStarted && (
-            <button onClick={startGame} className="start-button">Bắt đầu</button>
+            <button onClick={startGame} className="start-button">Start</button>
           )}
         </div>
       )}

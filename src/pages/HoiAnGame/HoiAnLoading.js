@@ -192,7 +192,7 @@ const messageInbox = [
         visible={loadingComplete} 
         onClick={handleStartGame}
       >
-        Bắt Đầu Khám Phá
+        Start your journey
       </StartButton>
     </LoadingScreen>
   );
