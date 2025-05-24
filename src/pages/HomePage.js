@@ -472,7 +472,9 @@ function HomePage() {
                 WebkitBackdropFilter: `blur(${headerOpacity * 10}px)`
             }}>
                 <div className="head-left">
-                    <img src="/images/logo.webp" alt="logo" />
+                <a href="/">
+  <img src="/images/logo.webp" alt="logo" />
+</a>
                 </div>
 
                 <ul className={isMenuOpen ? "nav-menu active" : "nav-menu"}>
