@@ -165,7 +165,7 @@ const VoucherMarketplace = () => {
                   bgColor="#ffffff"
                   fgColor="#00796b"
                   level="H"
-                  includeMargin={true}
+              
                 />
                 <br />
                 {/* <button className="buy-button" onClick={downloadQR}>
