@@ -40,6 +40,7 @@ const scrollToCarousel = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
+  const [email, setemail] = useState("");
   const { signUp, loading, message } = useSignUp();
   //----------
 
@@ -82,12 +83,13 @@ const scrollToCarousel = () => {
 
   // handle signup
   const handleSignUp = async () => {
-    if (password !== passwordAgain) {
-      alert("Mật khẩu không khớp");
+    if (password !== passwordAgain || email == "") {
+      alert("Mật khẩu không khớp hoac email chua dung");
       return;
     }
 
     const success = await signUp({ username, password });
+    localStorage.setItem("email",email);
     console.log(success)
     if (!success) {
       // Nếu đăng ký thất bại, hiển thị lỗi
@@ -502,8 +504,10 @@ const scrollToCarousel = () => {
             <h1>SIGN UP</h1>
             <h3>
             <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input type="email" placeholder="Email" value={email} onChange={(e) => setemail(e.target.value)} />
             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <input type="password" placeholder="Confirm password" value={passwordAgain} onChange={(e) => setPasswordAgain(e.target.value)} />
+
             </h3>
             <div>
             Have an account?{" "}

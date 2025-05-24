@@ -9,6 +9,7 @@
     "build": "craco build"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@metaplex-foundation/js": "^0.14.1",
@@ -23,8 +24,11 @@
     "animate.css": "^4.1.1",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.6",
+    "bs58": "^6.0.0",
     "canvas-confetti": "^1.9.3",
+    "cloudinary": "^2.6.1",
     "framer-motion": "^12.7.4",
+    "phaser": "^3.90.0",
     "qrcode.react": "^4.2.0",
     "react": "^18.2.0",
     "react-audio-player": "^0.17.0",
