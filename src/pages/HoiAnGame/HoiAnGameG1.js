@@ -5,7 +5,7 @@ import '../../styles/HoiAnStyle/HoiAnGameG1.css';
 import HoiAnLoading from './HoiAnLoading';
 import GameMenu from './GameMenu';
 
-import nhanvat from '../../assets/HoiAnGame/images/nhanvat.png';
+import nhanvat from '../../assets/HoiAnGame/images/nhanvat.webp';
 
 const noTransitionStyle = {
   transition: 'none'

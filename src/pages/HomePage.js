@@ -48,6 +48,7 @@ function HomePage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordAgain, setPasswordAgain] = useState("");
+    const [email, setEmail] = useState("");
     const { signUp, loading, message } = useSignUp();
     //----------
 
@@ -95,12 +96,13 @@ function HomePage() {
 
     // handle signup
     const handleSignUp = async () => {
-        if (password !== passwordAgain) {
-            alert("Mật khẩu không khớp");
+        if (password !== passwordAgain || email == "") {
+            alert("Mật khẩu không khớp hoac email de trong");
             return;
         }
 
         const success = await signUp({ username, password });
+        localStorage.setItem("email",email);
         console.log(success);
         if (!success) {
             // Nếu đăng ký thất bại, hiển thị lỗi
@@ -585,6 +587,12 @@ function HomePage() {
                                 placeholder="Username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <input
                                 type="password"

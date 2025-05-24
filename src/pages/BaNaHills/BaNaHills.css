@@ -13,7 +13,7 @@
   position: absolute;
   width: 60px;
   height: 50px;
-  background-image: url('../../assets/BaNaHills/cable_car.png');
+  background-image: url('../../assets/BaNaHills/cable_car.webp');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -90,7 +90,7 @@
   left: 10%;
   width: 80%;
   height: 100px;
-  background-image: url('../../assets/BaNaHills/mountain1.png');
+  background-image: url('../../assets/BaNaHills/mountain1.webp');
   background-size: cover;
   background-position: center;
   z-index: 4;
@@ -102,7 +102,7 @@
   bottom: 0;
   width: 100%;
   height: 40%;
-  background-image: url('../../assets/BaNaHills/mountain2.png');
+  background-image: url('../../assets/BaNaHills/mountain2.webp');
   background-size: cover;
   background-position: bottom;
   z-index: 2;
