@@ -241,7 +241,7 @@ const scrollToCarousel = () => {
         if (artwork.title === "Da Nang") {
           navigate('/danang');
         } else if (artwork.title === "Ba Na Hills") {
-          navigate('/donghogame');
+          navigate('/banahill');
         } else if (artwork.title === "Marble ") {
           navigate('/taynguyengame');
         } else if (artwork.title === "Chiến dịch Hồ Chí Minh"){
