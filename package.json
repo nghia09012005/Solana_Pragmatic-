@@ -27,6 +27,7 @@
     "bs58": "^6.0.0",
     "canvas-confetti": "^1.9.3",
     "cloudinary": "^2.6.1",
+    "emailjs": "^4.0.3",
     "framer-motion": "^12.7.4",
     "phaser": "^3.90.0",
     "qrcode.react": "^4.2.0",
