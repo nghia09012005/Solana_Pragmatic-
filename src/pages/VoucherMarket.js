@@ -10,37 +10,37 @@ import emailjs from '@emailjs/browser';
 const mockVouchers = [
   {
     id: 1,
-    name: "10% OFF at Starbucks",
-    description: "Discount 10% when purchasing at Starbucks (applicable nationwide)",
-    price: 50,
+    name: "10% OFF at Traveloka",
+    description: "Get 10% off hotel bookings on Traveloka with this voucher.",
+    price: 90,
     expires: "2025-12-31",
   },
   {
     id: 2,
-    name: "50k Lazada Voucher",
-    description: "50,000 VND discount for orders from 500,000 VND on Lazada",
-    price: 70,
+    name: "5% OFF at Dien Hai Citadel",
+    description: "Get 5% off admission to Dien Hai Citadel.",
+    price: 10,
     expires: "2025-08-15",
   },
   {
     id: 3,
-    name: "100k Tiki Voucher",
-    description: "100,000 VND discount for any order on Tiki",
+    name: "3% OFF at Ba Na Hills",
+    description: "Get 5% off admission to Ba Na Hills.",
     price: 90,
     expires: "2025-09-01",
   },
   {
     id: 4,
-    name: "100k Tiki Voucher",
-    description: "100,000 VND discount for any order on Tiki",
+    name: "10% OFF at booking.com",
+    description: "Enjoy a 10% discount when booking a hotel with bill above 1 million VND Booking.com using this promo code.",
     price: 90,
     expires: "2025-09-01",
   },
   {
     id: 5,
-    name: "100k Tiki Voucher",
-    description: "100,000 VND discount for any order on Tiki",
-    price: 90,
+    name: "Free to LangBiang",
+    description: "Enjoy free entrance to LangBiang Land in Da Lat.",
+    price: 100,
     expires: "2025-09-01",
   },
 ];
@@ -121,12 +121,13 @@ setShowQR(true);
 // 3. Send email 
 await emailjs.send(
 'service_49yef2t',
-'template_gbhdggp',
+'template_5cqkafj',
 {
   email:localStorage.getItem("email"),
   name:selectedVoucher.name,
   description: selectedVoucher.description ,
   price: selectedVoucher.price ,
+  date: selectedVoucher.expires
 
 
 },
