@@ -16,7 +16,6 @@ import TransitionCover from "../components/TransitionCover";
 import TransitionLink from "../components/TransitionLink";
 
 function HomePage() {
-<<<<<<< HEAD
   // Thêm ở đầu function HomePage
 const carouselRef = React.useRef(null);
 const scrollToCarousel = () => {
@@ -214,20 +213,6 @@ const scrollToCarousel = () => {
   const MAX_VISIBILITY = 3;  
   
   const Card = ({ artwork, isActive }) => {
-=======
-    // Thêm ở đầu function HomePage
-    const carouselRef = React.useRef(null);
-    const scrollToCarousel = () => {
-        if (carouselRef.current) {
-            carouselRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
-        }
-    };
-    const [showCover, setShowCover] = useState(false);
-    const [nextPath, setNextPath] = useState("");
->>>>>>> e49a0beda353a86006c71f1817263542a845f115
     const navigate = useNavigate();
 
     const handleNavigate = (path) => {
@@ -922,7 +907,6 @@ const scrollToCarousel = () => {
             <Footer />
         </div>
     );
-<<<<<<< HEAD
   };  
   
   const Carousel = ({ children }) => {  
@@ -1223,8 +1207,6 @@ const scrollToCarousel = () => {
 </div>
 
   );
-=======
->>>>>>> e49a0beda353a86006c71f1817263542a845f115
 }
 
 export default HomePage;

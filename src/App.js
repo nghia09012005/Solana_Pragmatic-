@@ -29,11 +29,6 @@ import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
 
 import BaNaHill from './pages/BaNaHills/BaNaHills'
-<<<<<<< HEAD
-  
-
-=======
->>>>>>> e49a0beda353a86006c71f1817263542a845f115
 import SendTokenTest from './pages/SendTokenTest';  
 import VoucherMarketplace from './pages/VoucherMarket';
 
@@ -47,10 +42,10 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        <Route path="/" element={<VoucherMarketplace />} /> 
+        <Route path="/vouchermarket" element={<VoucherMarketplace />} /> 
         {/* <Route path="/" element={<SendTokenTest />} /> */}
-         {/* <Route path="/" element={<HomePage />} /> 
-         */}
+           <Route path="/" element={<HomePage />} />  
+         
         <Route path="/danang" element={<DaNang />} />
         <Route path="/cauronggame" element={<CauRongGame />} />
 
