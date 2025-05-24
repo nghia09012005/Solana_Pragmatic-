@@ -313,7 +313,7 @@ function HomePage() {
                     ) : (
                         <>
                             <BsArrowsFullscreen />
-                            Khám phá
+                            Let's go!
                         </>
                     )}
                 </button>

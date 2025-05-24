@@ -165,7 +165,7 @@ const FlipCard = () => {
         try {
           const signature = await sendTokenSPL({
             clientPublicKeyString: localStorage.getItem("Wallet"),
-            amount: 100
+            amount: 1_000_000
           });
           console.log("Token sent, tx signature:", signature);
         } catch (err) {
