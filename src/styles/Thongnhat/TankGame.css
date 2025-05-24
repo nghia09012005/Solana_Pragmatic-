@@ -170,7 +170,7 @@
   left: 0;
   width: 26vw;
   height: 100vh;
-  background: url("../../assets/Thongnhat/images/background_left.png") repeat-y left top;
+  background: url('../../assets/Thongnhat/images/background_left.webp') repeat-y left top;
   background-size: cover;
   z-index: 0;
   animation: road-move-side 2.4s linear infinite;
@@ -182,7 +182,7 @@
   left: 26vw;
   width: 48vw;
   height: 120vh;
-  background: url("../../assets/Thongnhat/images/background_center.png") repeat-y center top;
+  background: url('../../assets/Thongnhat/images/background_center.webp') repeat-y center top;
   background-size: cover;
   z-index: 0;
   animation: road-move 4s linear infinite;
@@ -212,7 +212,7 @@
   right: 0;
   width: 26vw;
   height: 100vh;
-  background: url("../../assets/Thongnhat/images/background_right.png") repeat-y right top;
+  background: url('../../assets/Thongnhat/images/background_right.webp') repeat-y right top;
   background-size: cover;
   z-index: 0;
   animation: road-move-side 2.4s linear infinite;
@@ -224,7 +224,7 @@
   bottom: 5%;
   width: 50px;
   height: 50px;
-  background-image: url("../../assets/Thongnhat/images/tank.png");
+  background-image: url('../../assets/Thongnhat/images/tank.webp');
   background-size: contain; /* Hoặc 'cover' tùy theo yêu cầu */
   background-position: center;
   background-repeat: no-repeat; /* Đảm bảo hình ảnh không bị lặp lại */
@@ -235,7 +235,7 @@
   position: absolute;
   width: 8px;
   height: 20px;
-  background-image: url("../../assets/Thongnhat/images/bullet.png"); /* Đảm bảo đường dẫn hình ảnh đúng */
+  background-image: url('../../assets/Thongnhat/images/bullet.webp'); /* Đảm bảo đường dẫn hình ảnh đúng */
   background-size: cover;
   transform: translateX(-50%);
   z-index: 1; /* Đảm bảo đạn hiển thị trên cùng */
@@ -245,7 +245,7 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  background-image: url("../../assets/Thongnhat/images/obstacle.png"); /* Đảm bảo đường dẫn hình ảnh đúng */
+  background-image: url('../../assets/Thongnhat/images/obstacle.webp'); /* Đảm bảo đường dẫn hình ảnh đúng */
   background-size: cover; /* Hoặc 'contain' tùy theo yêu cầu */
   z-index: 0; /* Đảm bảo chướng ngại vật nằm dưới đạn */
   border-radius: 5px; /* Nếu muốn chướng ngại vật có góc bo tròn */

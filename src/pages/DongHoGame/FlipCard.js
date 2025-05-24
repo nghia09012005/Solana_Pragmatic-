@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/DongHoStyle/FlipCard.css';
-import nhanvat from '../../assets/DongHoGame/image/nhanvat.png';
+import nhanvat from '../../assets/DongHoGame/image/nhanvat.webp';
 import flipSound from '../../assets/DongHoGame/audio/flipcard.mp3';
 import congratsSound from '../../assets/DongHoGame/audio/level-win.mp3';
 import nhacNen from '../../assets/DongHoGame/audio/FlipCardnhacnen.mp3';
@@ -9,14 +9,14 @@ import Swal from 'sweetalert2';
 import GameMenu from './GameMenu';
 
 // Import tranh
-import p1BitMatBatDe from '../../assets/DongHoGame/image/p1BitMatBatDe.jpg';
-import p2DamCuoiChuot from '../../assets/DongHoGame/image/p2DamCuoiChuot.jpg';
-import p3DanGa from '../../assets/DongHoGame/image/p3DanGa.jpg';
-import p4DanLonAmDuong from '../../assets/DongHoGame/image/p4DanLonAmDuong.jpg';
-import p5VinhHoaPhuQuy from '../../assets/DongHoGame/image/p5VinhHoaPhuQuy.jpg';
-import p6QuanTrang from '../../assets/DongHoGame/image/p6QuanTrang.jpg';
-import p7HaiDua from '../../assets/DongHoGame/image/p7HaiDua.jpg';
-import p8DanhGhen from '../../assets/DongHoGame/image/p8DanhGhen.jpg';
+import p1BitMatBatDe from '../../assets/DongHoGame/image/p1BitMatBatDe.webp';
+import p2DamCuoiChuot from '../../assets/DongHoGame/image/p2DamCuoiChuot.webp';
+import p3DanGa from '../../assets/DongHoGame/image/p3DanGa.webp';
+import p4DanLonAmDuong from '../../assets/DongHoGame/image/p4DanLonAmDuong.webp';
+import p5VinhHoaPhuQuy from '../../assets/DongHoGame/image/p5VinhHoaPhuQuy.webp';
+import p6QuanTrang from '../../assets/DongHoGame/image/p6QuanTrang.webp';
+import p7HaiDua from '../../assets/DongHoGame/image/p7HaiDua.webp';
+import p8DanhGhen from '../../assets/DongHoGame/image/p8DanhGhen.webp';
 
 // Thông tin tranh
 const knowledge = {

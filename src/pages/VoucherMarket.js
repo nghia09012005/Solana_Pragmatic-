@@ -87,7 +87,7 @@ const VoucherMarketplace = () => {
       .replace("image/png", "image/octet-stream");
     let downloadLink = document.createElement("a");
     downloadLink.href = pngUrl;
-    downloadLink.download = `${selectedVoucher.name}_voucher_qr.png`;
+    downloadLink.download = `${selectedVoucher.name}_voucher_qr.webp`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -147,7 +147,7 @@ await emailjs.send(
       </button>
 
       <h2>
-        <img src="/images/icons/logo.png" alt="Logo" className="logo-icon" />
+        <img src="/images/icons/logo.webp" alt="Logo" className="logo-icon" />
         Voucher Marketplace
       </h2>
 
@@ -190,7 +190,7 @@ await emailjs.send(
                   bgColor="#ffffff"
                   fgColor="#00796b"
                   level="H"
-                  includeMargin={true}
+              
                 />
                 <br />
                 {/* <button className="buy-button" onClick={downloadQR}>

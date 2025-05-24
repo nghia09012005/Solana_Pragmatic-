@@ -11,10 +11,10 @@ Module game demo độc lập dành cho dự án "Hành trình di sản" (Herita
 ```
 tay-nguyen-gongs/
 ├── assets/                     # Hình ảnh và tài nguyên
-│   ├── village-background.png  # Nền làng Tây Nguyên
-│   ├── character.png           # Nhân vật người chơi
-│   ├── elder.png               # Nhân vật già làng
-│   └── assistant.png           # Nhân vật trợ lý
+│   ├── village-background.webp  # Nền làng Tây Nguyên
+│   ├── character.webp           # Nhân vật người chơi
+│   ├── elder.webp               # Nhân vật già làng
+│   └── assistant.webp           # Nhân vật trợ lý
 ├── TayNguyenGongsGame.jsx      # Component chính của game
 ├── TayNguyenGongsPage.jsx      # Component trang hiển thị
 ├── index.js                    # File export
