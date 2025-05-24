@@ -1,7 +1,7 @@
 import React from "react";
 import "./TransitionCover.css";
-import logo from "../assets/logo.png"; // Đổi lại đúng đường dẫn logo nếu cần
-import logo_font from "../assets/logo-font.png"; // Đổi lại đúng đường dẫn logo nếu cần
+import logo from '../assets/logo.webp'; // Đổi lại đúng đường dẫn logo nếu cần
+import logo_font from '../assets/logo-font.webp'; // Đổi lại đúng đường dẫn logo nếu cần
 
 
 export default function TransitionCover({ show }) {

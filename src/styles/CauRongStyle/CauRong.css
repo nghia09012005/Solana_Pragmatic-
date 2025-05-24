@@ -43,7 +43,7 @@
 } */
 
 .cau-rong-game-container {
-  background-image: url('../../assets/CauRong/images/bg.png');
+  background-image: url('../../assets/CauRong/images/bg.webp');
   background-size: cover;
   background-position: center;
   height: 100vh;

@@ -27,6 +27,8 @@ import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
 import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
+
+import BaNaHill from './pages/BaNaHills/BaNaHills'
 import SendTokenTest from './pages/SendTokenTest';  
 import VoucherMarketplace from './pages/VoucherMarket';
 
@@ -73,6 +75,7 @@ function App() {
           <Route path="/donghogame" element={<DongHoGame />} />
           <Route path="/FlipCard" element={<FlipCard />} /> 
           <Route path="/dienhaicothanh" element=  {<DienHai />} />
+          <Route path="/testgame" element=  {<TestGame />} />
 
           <Route path="/caurong" element={<CauRong />} /> 
 

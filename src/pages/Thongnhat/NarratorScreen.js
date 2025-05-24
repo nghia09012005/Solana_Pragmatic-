@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import backgroundImage from '../../assets/Thongnhat/images/hcmcampaign.jpg';
-import soldierImage from '../../assets/Thongnhat/images/giai-phong1.png'; // Cần thêm hình ảnh người lính
+import backgroundImage from '../../assets/Thongnhat/images/hcmcampaign.webp';
+import soldierImage from '../../assets/Thongnhat/images/giai-phong1.webp'; // Cần thêm hình ảnh người lính
 import GameMenu from './GameMenu';
 // import ThongNhatLoading from './ThongNhatLoading';
 import tankSound from '../../assets/Thongnhat/audio/sound.wav';

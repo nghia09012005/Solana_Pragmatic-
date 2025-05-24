@@ -93,19 +93,19 @@ function DragonGame() {
 
     // Tạo ảnh để vẽ nhanh
     const background = new Image();
-    background.src = "/images/caurong-background.png";
+    background.src = "/images/caurong-background.webp";
 
     const dragonImg = new Image();
-    dragonImg.src = "/images/dragon.png";
+    dragonImg.src = "/images/dragon.webp";
 
     const fireballImg = new Image();
-    fireballImg.src = "/images/fireball.png";
+    fireballImg.src = "/images/fireball.webp";
 
     const ghostImg = new Image();
-    ghostImg.src = "/images/ghost.png";
+    ghostImg.src = "/images/ghost.webp";
 
     const cloudImg = new Image();
-    cloudImg.src = "/images/cloud.png";
+    cloudImg.src = "/images/cloud.webp";
 
     function roundRect(ctx, x, y, width, height, radius) {
       ctx.beginPath();

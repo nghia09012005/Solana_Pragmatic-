@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../../styles/Thongnhat/TankGame.css"; // Import CSS file
 import styled, { keyframes } from 'styled-components';
-import tankImage from '../../assets/Thongnhat/images/tankfinal.png'; // Đảm bảo đường dẫn hình ảnh đúng
+import tankImage from '../../assets/Thongnhat/images/tankfinal.webp'; // Đảm bảo đường dẫn hình ảnh đúng
 import tankSound from '../../assets/Thongnhat/audio/sound.wav';
-import obstacle from '../../assets/Thongnhat/images/obstacle.png';
-import explosionGif from '../../assets/Thongnhat/images/explosion.gif';
-import bullet from '../../assets/Thongnhat/images/bullet.png';
+import obstacle from '../../assets/Thongnhat/images/obstacle.webp';
+import explosionGif from '../../assets/Thongnhat/images/explosion.webp';
+import bullet from '../../assets/Thongnhat/images/bullet.webp';
 import explo from '../../assets/Thongnhat/audio/explosion.wav';
 import flagImage from '../../assets/Thongnhat/images/Comattran.svg'; // Cờ giải phóng
-import enemyTankImage from '../../assets/Thongnhat/images/tank.png'; // Xe tăng địch
+import enemyTankImage from '../../assets/Thongnhat/images/tank.webp'; // Xe tăng địch
 import { useNavigate } from "react-router-dom";
 import GameMenu from './GameMenu';
 import NarratorScreen from './NarratorScreen';
