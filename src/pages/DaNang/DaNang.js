@@ -171,12 +171,12 @@ const DaNangCard = ({ artwork, isActive }) => {
         {isLocked ? (
           <>
             <span className="lock-icon">🔒</span>
-            Sắp ra mắt
+            Coming soon!
           </>
         ) : (
           <>
             <BsArrowsFullscreen />
-            Khám phá
+            Let's Go!
           </>
         )}
       </button>

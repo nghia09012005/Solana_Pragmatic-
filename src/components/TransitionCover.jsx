@@ -13,7 +13,7 @@ export default function TransitionCover({ show }) {
         <div className="cover-logo-glow"></div>
         <img className="cover-logo" src={logo} alt="logo" />
       </div>
-      <img className="cover-logo-font" src={logo_font} alt="logo" />
+      {/* <img className="cover-logo-font" src={logo_font} alt="logo" /> */}
     </div>
   );
 }

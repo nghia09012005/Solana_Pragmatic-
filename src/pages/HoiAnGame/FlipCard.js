@@ -62,14 +62,14 @@ const showCongrats = (audioRef, playAgainFn, returnToMuseumFn) => {
   
   
   Swal.fire({
-    title: "Chúc mừng!",
-    text: "Bạn đã nhận được 10 tokens",
+    title: "Congratulations!",
+    text: "You have recieved 10 tokens",
     icon: "success",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Chơi lại",
-    cancelButtonText: "Quay về"
+    confirmButtonText: "Play again",
+    cancelButtonText: "Back"
   }).then((result) => {
     if (result.isConfirmed) {
       playAgainFn();

@@ -116,7 +116,7 @@ const StartButton = styled.button`
 
 const HoiAnLoading = ({ onLoadingComplete }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const [loadingMessage, setLoadingMessage] = useState("Đang chuẩn bị hành trình...");
+  const [loadingMessage, setLoadingMessage] = useState("Loading...");
   const [loadingComplete, setLoadingComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   
