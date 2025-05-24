@@ -39,10 +39,10 @@ function App() {
       <main className="main-content">
         <Routes>
 
-        
+        <Route path="/" element={<VoucherMarketplace />} /> 
         {/* <Route path="/" element={<SendTokenTest />} /> */}
-         <Route path="/" element={<HomePage />} /> 
-        
+         {/* <Route path="/" element={<HomePage />} /> 
+         */}
         <Route path="/danang" element={<DaNang />} />
         <Route path="/cauronggame" element={<CauRongGame />} />
 
@@ -80,7 +80,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />    
          
           
-
+  <Route path="/testgame" element={<TestGame />} /> 
         </Routes>
       </main>
       {/* <Footer /> */}
