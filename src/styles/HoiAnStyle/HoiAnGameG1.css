@@ -211,3 +211,13 @@
 .mission-complete-notification {
   animation: fadeIn 0.5s ease-out forwards;
 }
+
+@media (max-width: 768px)
+{
+  .text-box{
+      width: 55%;
+  }
+  .character-img{
+    height: 40%;
+  }
+}
