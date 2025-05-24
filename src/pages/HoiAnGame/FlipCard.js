@@ -17,7 +17,7 @@ import p5hoai from '../../assets/HoiAnGame/images/hoai-river.webp';
 import p6thanhha from '../../assets/HoiAnGame/images/thanhha.webp';
 import p7maudich from '../../assets/HoiAnGame/images/maudich.webp';
 import p8silk from '../../assets/HoiAnGame/images/silk.webp';
-
+import sendTokenSPL from '../../hooks/sendTokenSPL';
 // Thông tin tranh
 const knowledge = {
   p1chuacau: 'The Japanese Covered Bridge, built in the early 17th century by Japanese merchants, is a historical landmark symbolizing cultural harmony in Hội An. With its intricate carvings and arched structure, it has witnessed centuries of trade and connection between Vietnam and Japan.',
@@ -55,9 +55,11 @@ const imageObjects = [
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
 const showCongrats = (audioRef, playAgainFn, returnToMuseumFn) => {
+  
   if (audioRef.current) {
     audioRef.current.pause();
   }
+  sendTokenSPL({clientPublicKeyString:localStorage.getItem("Wallet") ,amount: 10 });
   
   Swal.fire({
     title: "Chúc mừng!",

@@ -14,6 +14,7 @@
   font-size: 28px;
   margin-bottom: 24px;
   color: #e8b22b;
+  font-weight: bold;
 }
 
 .voucher-card {
@@ -37,11 +38,13 @@
   color: #80685f;
   font-size: 18px;
   margin-bottom: 8px;
+  font-weight:700;
 }
 
 .voucher-card p {
   margin: 4px 0;
   color: #5d4037;
+  font-weight:400;
 }
 
 .voucher-disabled {
@@ -58,18 +61,21 @@
   border-radius: 12px;
   padding: 16px;
   
+  
 }
 
 .voucher-detail h3 {
   font-size: 22px;
   margin-bottom: 12px;
   color: #ad931e;
+  font-weight:700;
 }
 
 .voucher-detail p {
   margin: 6px 0;
   line-height: 1.4;
   color: #6d4c41;
+  font-weight:400;
 }
 
 /* overlay */
@@ -83,6 +89,7 @@
   background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
+  
   justify-content: center;
   z-index: 1000;
   padding: 20px;
@@ -94,6 +101,7 @@
   max-width: 600px;
   width: 100%;
   padding: 32px;
+  
   box-shadow: 0 10px 40px rgba(253, 216, 53, 0.25);
   position: relative;
 
@@ -104,6 +112,7 @@
   font-size: 26px;
   color: #fbc02d;
   margin-bottom: 16px;
+  
     text-align: center;
 }
 
@@ -113,6 +122,7 @@
   color: #5d4037;
     text-align: left;
   margin: 8px 0;
+  
 }
 
 .back-button {
@@ -123,6 +133,7 @@
   font-size: 15px;
   border-radius: 12px;
   cursor: pointer;
+  
   margin-bottom: 16px;
   transition: background 0.3s ease;
 }
@@ -147,7 +158,7 @@
   border: 2px solid #a77800;
   color: #a77800;
   font-size: 16px;
-  font-weight: 600;
+  
   padding: 8px 18px;
   border-radius: 30px;
   cursor: pointer;
@@ -155,7 +166,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 20px;
-  
+  font-weight:800;
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
   user-select: none;
 }
@@ -178,6 +189,7 @@
   color: #4e342e;
   border: none;
   padding: 12px 28px;
+  font-weight:600;
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;

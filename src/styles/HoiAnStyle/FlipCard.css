@@ -34,7 +34,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   line-height: 1.4;
   text-align: justify;
-  font-size: 100%;
+  font-size: 16px;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -155,4 +155,35 @@
   border-radius: 10px !important;
   font-weight: 500;
   padding: 10px 20px;
+}
+
+@media (max-width: 768px)
+{
+  .info-panel{
+    width: 50%;
+    height: 100%;
+  }
+  .info-text{
+    height: 70%;
+    width: auto;
+    font-size: 14px;
+  }
+  .info-img{
+   width: 100%;
+   height: auto;
+  }
+  .card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 12px;
+  width: 120%;
+  height: 100%;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+/* .card-image{
+  height: 100%;
+  width: auto;
+} */
 }
