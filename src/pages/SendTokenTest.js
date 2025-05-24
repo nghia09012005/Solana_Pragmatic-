@@ -20,7 +20,7 @@ const SendTokenTest =  () => {
     setResult("");
 
     try {
-      const signature = await sendTokenFromUserToAdmin( 1);
+       sendTokenSPL( {clientPublicKeyString: localStorage.getItem("Wallet"),amount: 10});
 
       setResult(`✅ Gửi thành công! Tx signature: ${signature}`);
     } catch (error) {

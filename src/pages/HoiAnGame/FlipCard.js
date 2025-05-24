@@ -59,7 +59,7 @@ const showCongrats = (audioRef, playAgainFn, returnToMuseumFn) => {
   if (audioRef.current) {
     audioRef.current.pause();
   }
-  sendTokenSPL({clientPublicKeyString:localStorage.getItem("Wallet") ,amount: 10 });
+  
   
   Swal.fire({
     title: "Chúc mừng!",
@@ -96,7 +96,7 @@ const FlipCard = () => {
     try {
       const token = localStorage.getItem('token');
       const username = localStorage.getItem('username');
-      const response = await fetch('https://wda-be-1.onrender.com/api/users/stats/me', {
+      const response = await fetch('http://localhost:8080/api/users/stats/me', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ const FlipCard = () => {
     try {
       const token = localStorage.getItem('token');
       const username = localStorage.getItem('username');
-      const response = await fetch('https://wda-be-1.onrender.com/api/users/stats/set', {
+      const response = await fetch('http://localhost:8080/api/users/stats/me', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -160,6 +160,20 @@ const FlipCard = () => {
       new Audio(congratsSound).play();
       setTranhItem(); // Set the tranh item when all cards are matched
       showCongrats(audioRef, playAgain, returnToMuseum);
+
+      const sendToken = async () => {
+        try {
+          const signature = await sendTokenSPL({
+            clientPublicKeyString: localStorage.getItem("Wallet"),
+            amount: 100
+          });
+          console.log("Token sent, tx signature:", signature);
+        } catch (err) {
+          console.error("Gửi token thất bại:", err.message || err);
+        }
+      };
+      sendToken();
+
     }
   }, [matched]);
 
@@ -235,6 +249,9 @@ const FlipCard = () => {
     }
     navigate('/museum'); // Quay về trang chính/bảo tàng
   };
+
+
+ 
 
   return (
     <div className="flipcard-game-container">
