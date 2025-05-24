@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import DaNang from './pages/DaNang/DaNang';
 // import CollectionPage from './pages/CollectionPage';
 import LeaderboardPage from './pages/Leaderboard';
+import BaNaHills from './pages/BaNaHills/BaNaHills';
 
 // import LoginPage from './pages/LoginPage';
 // import RegisterPage from './pages/RegisterPage';
@@ -26,6 +27,8 @@ import PersonalMuseum from './pages/PersonalMuseum';
 import Introduction from './pages/Thongnhat/Introduction';
 import TankGame2 from './pages/Thongnhat/TankGame2';
 import NarratorScreen from './pages/Thongnhat/NarratorScreen';
+
+import BaNaHill from './pages/BaNaHills/BaNaHills'
 import SendTokenTest from './pages/SendTokenTest';  
 import VoucherMarketplace from './pages/VoucherMarket';
 
@@ -50,7 +53,7 @@ function App() {
 
   
           <Route path="/taynguyengame" element={<TayNguyenGame />} />
-          <Route path="/banahill" element={<BaNaHill />} />
+          <Route path="/banahill" element={<BaNaHills />} />
           <Route path="/introduction" element={<Introduction />} />
           <Route path="/tankgame" element={<TankGame />} /> 
           <Route path="/bantin" element={<Bantin />} />
@@ -72,6 +75,7 @@ function App() {
           <Route path="/hoiangame" element={<HoiAnGame />} />
           <Route path="/FlipCard" element={<FlipCard />} /> 
           <Route path="/dienhaicothanh" element=  {<DienHai />} />
+          <Route path="/testgame" element=  {<TestGame />} />
 
           <Route path="/caurong" element={<CauRong />} /> 
 

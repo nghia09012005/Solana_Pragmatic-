@@ -5,11 +5,11 @@ Thư mục này chứa các tài nguyên hình ảnh và âm thanh cho game Cồ
 ## Danh sách tài nguyên cần chuẩn bị
 
 ### Hình ảnh
-1. `village-background.png` - Nền làng Tây Nguyên với nhà rông, cây cối và các chi tiết đặc trưng
-2. `character.png` - Sprite nhân vật người chơi
-3. `elder.png` - Sprite nhân vật già làng
-4. `assistant.png` - Sprite nhân vật trợ lý
-5. `gong.png` - Hình ảnh cồng chiêng để hiển thị trong game
+1. `village-background.webp` - Nền làng Tây Nguyên với nhà rông, cây cối và các chi tiết đặc trưng
+2. `character.webp` - Sprite nhân vật người chơi
+3. `elder.webp` - Sprite nhân vật già làng
+4. `assistant.webp` - Sprite nhân vật trợ lý
+5. `gong.webp` - Hình ảnh cồng chiêng để hiển thị trong game
 
 ### Âm thanh (triển khai trong tương lai)
 1. `gong-sound.mp3` - Âm thanh cồng chiêng

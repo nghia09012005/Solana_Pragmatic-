@@ -48,8 +48,8 @@ mkdir -p public/images/avatars
 
 Đặt các hình ảnh vào thư mục tương ứng:
 
-1. **Logo**: Đặt logo ở `public/images/logo.png`
-2. **Icons**: Đặt các biểu tượng như home.png, leaderboard.png, shop.png, calendar.png, gold.png, silver.png, gift.png trong `public/images/icons/`
+1. **Logo**: Đặt logo ở `public/images/logo.webp`
+2. **Icons**: Đặt các biểu tượng như home.webp, leaderboard.webp, shop.webp, calendar.webp, gold.webp, silver.webp, gift.webp trong `public/images/icons/`
 3. **Nhân vật**: Đặt hình ảnh nhân vật trong `public/images/characters/`
 4. **Avatar**: Đặt hình ảnh avatar người dùng trong `public/images/avatars/`
 
